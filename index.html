@@ -478,6 +478,24 @@
   /* ---- CH 01 Sanford ---- */
   #ch1 .chapter-bg{background-image:url('assets/photos/sanford-clock.webp')}
   #ch1 .display{font-size:clamp(40px,5.6vw,84px);line-height:1.15;letter-spacing:-.02em}
+  #ch1 .display b{color:var(--cream);font-weight:900}
+  #ch1 .story-swipe{position:relative;display:inline-block}
+  #ch1 .story-swipe::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:.02em;
+    height:.06em;
+    background:var(--orange);
+    transform:scaleX(0);
+    transform-origin:left center;
+    animation:story-underline 4.8s ease-in-out 1.6s infinite;
+    box-shadow:0 0 14px rgba(255,154,31,.7);
+  }
+  @keyframes story-underline{
+    0%{transform:scaleX(0);transform-origin:left center}
+    35%{transform:scaleX(1);transform-origin:left center}
+    55%{transform:scaleX(1);transform-origin:right center}
+    100%{transform:scaleX(0);transform-origin:right center}
+  }
 
   /* ---- Scripture ---- */
   #chScripture{
@@ -898,8 +916,8 @@
   <div class="chapter-inner">
     <h2 class="display rv rv-2">
       하나님은 <span class="accent">지금도</span><br>
-      이 도시와, 당신의 삶에,<br>
-      이야기를 써 내려가고 계십니다.
+      이 <b>도시</b>와, <span class="accent">당신의 삶</span>에,<br>
+      <span class="accent story-swipe">이야기</span>를 써 내려가고 계십니다.
     </h2>
   </div>
 </section>
