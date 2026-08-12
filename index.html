@@ -133,18 +133,18 @@
   }
   .hero-bg{
     position:absolute;inset:0;z-index:0;
-    background:url('assets/photos/sanford-sign.jpg') 62% 45%/cover no-repeat;
-    transform:scale(1.04);will-change:transform;
+    background:url('assets/photos/sanford-sign.jpg') 55% 42%/cover no-repeat;
+    transform:scale(1.28);will-change:transform;
   }
   .hero-tint{
     position:absolute;inset:0;z-index:1;pointer-events:none;
     background:
-      /* soft top/bottom fade only */
-      linear-gradient(180deg,rgba(20,14,8,.22) 0%,transparent 25%,transparent 65%,rgba(20,14,8,.85) 100%),
-      /* spotlight — darkens the vertical strip behind text only */
-      radial-gradient(70% 55% at 50% 55%,rgba(20,14,8,.55) 0%,rgba(20,14,8,.15) 45%,transparent 75%),
+      /* soft top fade + heavy bottom for text readability */
+      linear-gradient(180deg,rgba(20,14,8,.15) 0%,transparent 28%,transparent 55%,rgba(20,14,8,.85) 100%),
+      /* bottom spotlight — dims only where the poster sits */
+      radial-gradient(95% 45% at 50% 82%,rgba(20,14,8,.7) 0%,rgba(20,14,8,.25) 55%,transparent 82%),
       /* warm bottom glow */
-      linear-gradient(180deg,transparent 60%,rgba(255,154,31,.08) 100%);
+      linear-gradient(180deg,transparent 60%,rgba(255,154,31,.10) 100%);
   }
 
   /* massive faded emblem watermark behind text */
@@ -161,8 +161,9 @@
   ============================================ */
   .poster{
     position:relative;z-index:3;
-    flex:1 1 auto;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    flex:0 0 auto;
+    margin-top:auto;                 /* push poster to the bottom so sign has the top area */
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
     gap:clamp(10px,1.6vw,20px);
     text-align:center;padding:0 12px;
     pointer-events:none;
@@ -191,11 +192,15 @@
     display:inline-block;
     color:var(--cream);
     clip-path:inset(0 100% -.1em 0);
-    animation:hero-wipe 1.4s cubic-bezier(.72,0,.28,1) forwards;
+    animation:hero-wipe .95s cubic-bezier(.72,0,.28,1) forwards;
     will-change:clip-path;
   }
-  .poster-headline .line:nth-child(1) .fill{animation-delay:.75s}
-  .poster-headline .line:nth-child(2) .fill{animation-delay:1s}
+  .poster-headline .line:nth-child(1) .fill{animation-delay:.65s}
+  /* line 2: fast pop so 'SANFORD' shows immediately after 'IN ' */
+  .poster-headline .line:nth-child(2) .fill{
+    animation-delay:1.55s;
+    animation-duration:.35s;
+  }
   @keyframes hero-wipe{
     0%{clip-path:inset(0 100% -.1em 0)}
     100%{clip-path:inset(0 0 -.1em 0)}
@@ -227,8 +232,8 @@
     position:relative;
     display:inline-block;
     animation:
-      accent-warm 1.4s var(--ease) 2.5s forwards,
-      accent-pulse 4s ease-in-out 4.4s infinite;
+      accent-warm 1.2s var(--ease) 2.1s forwards,
+      accent-pulse 4s ease-in-out 3.6s infinite;
     will-change:color,filter;
   }
   .poster-headline .accent::after{
@@ -238,7 +243,7 @@
     background:var(--orange);
     transform:scaleX(0);
     transform-origin:left center;
-    animation:sanford-underline 4.5s ease-in-out 3.3s infinite;
+    animation:sanford-underline 4.5s ease-in-out 2.8s infinite;
     box-shadow:0 0 12px rgba(255,154,31,.6);
     will-change:transform;
   }
