@@ -133,8 +133,8 @@
   }
   .hero-bg{
     position:absolute;inset:0;z-index:0;
-    background:url('assets/photos/sanford-sign.jpg') 78% 22%/cover no-repeat;
-    transform:scale(1.75);will-change:transform;
+    background:url('assets/photos/sanford-sign.jpg') 55% 42%/cover no-repeat;
+    transform:scale(1.28);will-change:transform;
   }
   .hero-tint{
     position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -170,13 +170,6 @@
     pointer-events:none;
     will-change:opacity,transform;
     --tx:0px;transform:translate3d(var(--tx),0,0);
-  }
-  /* headline shifts left; other poster elements stay centered */
-  .poster-headline{
-    align-self:flex-start;
-    text-align:left;
-    padding-left:clamp(20px,5vw,60px);
-    max-width:100%;
   }
 
   /* ---- HEADLINE (main slogan, English primary) ---- */
@@ -234,30 +227,41 @@
     66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
   }
 
-  /* long, thick orange bar next to 'in' — completes the sentence toward the sign */
-  .post-line{
+  /* Sanford — starts cream (revealed by wipe), warms to orange, then pulses */
+  .poster-headline .accent{
+    color:var(--cream);
+    position:relative;
     display:inline-block;
-    vertical-align:middle;
-    height:.24em;
-    width:min(58vw,760px);
+    animation:
+      accent-warm 1.2s var(--ease) 2.1s forwards,
+      accent-pulse 4s ease-in-out 3.6s infinite;
+    will-change:color,filter;
+  }
+  .poster-headline .accent::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:.02em;
+    height:.055em;
     background:var(--orange);
-    margin-left:.4em;
-    margin-bottom:.14em;
-    border-radius:.03em;
     transform:scaleX(0);
     transform-origin:left center;
-    animation:post-line-draw 4.5s ease-in-out 2.2s infinite;
-    box-shadow:0 0 22px rgba(255,154,31,.7),0 0 4px rgba(255,154,31,.9);
+    animation:sanford-underline 4.5s ease-in-out 2.8s infinite;
+    box-shadow:0 0 12px rgba(255,154,31,.6);
     will-change:transform;
   }
-  @keyframes post-line-draw{
+  @keyframes sanford-underline{
     0%{transform:scaleX(0);transform-origin:left center}
-    28%{transform:scaleX(1);transform-origin:left center}
-    64%{transform:scaleX(1);transform-origin:right center}
+    35%{transform:scaleX(1);transform-origin:left center}
+    55%{transform:scaleX(1);transform-origin:right center}
     100%{transform:scaleX(0);transform-origin:right center}
   }
-  .line-in{white-space:nowrap;overflow:visible}
-  .line-in .fill{overflow:visible}
+  @keyframes accent-warm{
+    0%{color:var(--cream)}
+    100%{color:var(--orange)}
+  }
+  @keyframes accent-pulse{
+    0%,100%{filter:drop-shadow(0 0 0 rgba(255,154,31,0))}
+    50%{filter:drop-shadow(0 0 22px rgba(255,154,31,.55))}
+  }
 
   .poster-headline-ko{
     font-family:var(--disp-ko);
@@ -930,6 +934,7 @@
     .poster-headline .drift{animation:none}
     .poster-headline .accent{color:var(--orange)}
     .poster-headline .accent::after{animation:none;transform:scaleX(1)}
+    .poster-headline .accent::after{animation:none;transform:scaleX(1)}
     .hero-bg,.chapter-bg{transform:none}
     .rv{opacity:1;transform:none}
     .marquee-track{animation:none}
@@ -961,12 +966,7 @@
 
       <h1 class="poster-headline">
         <span class="line"><span class="fill"><span class="drift">The Story Begins</span></span></span>
-        <span class="line line-in">
-          <span class="fill">
-            <span class="drift">in</span>
-            <span class="post-line" aria-hidden="true"></span>
-          </span>
-        </span>
+        <span class="line"><span class="fill"><span class="drift">in <span class="accent">Sanford.</span></span></span></span>
       </h1>
       <div class="poster-headline-ko">
         이야기는 <span class="accent">샌포드</span>에서 시작됩니다.
