@@ -858,10 +858,14 @@
     .brand-bar .status .label{display:none}
     .scroll-hint{font-size:8.5px;letter-spacing:.28em;bottom:14px}
 
-    .hero-sticky{padding:9vh 14px 4vh}
+    .hero-sticky{padding:9vh 14px 5vh}
     .hero-mark{width:min(160vw,900px)}
-    .poster{gap:10px}
-    .poster-headline{font-size:clamp(48px,13.5vw,74px);line-height:.9;letter-spacing:-.05em}
+    .poster{
+      gap:14px;
+      margin-top:0;                /* mobile: don't push to bottom */
+      justify-content:center;
+    }
+    .poster-headline{font-size:clamp(58px,16.5vw,96px);line-height:.9;letter-spacing:-.055em}
     .poster-headline-ko{font-size:clamp(14px,4.2vw,17px);margin-top:6px}
     .poster-date-wrap{gap:12px;margin-top:14px}
     .poster-date{font-size:clamp(22px,7vw,34px);padding:0 .18em}
