@@ -133,8 +133,8 @@
   }
   .hero-bg{
     position:absolute;inset:0;z-index:0;
-    background:url('assets/photos/sanford-sign.jpg') 68% 42%/cover no-repeat;
-    transform:scale(1.55);will-change:transform;
+    background:url('assets/photos/sanford-sign.jpg') 78% 22%/cover no-repeat;
+    transform:scale(1.75);will-change:transform;
   }
   .hero-tint{
     position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -166,9 +166,17 @@
     display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
     gap:clamp(10px,1.6vw,20px);
     text-align:center;padding:0 12px;
+    width:100%;
     pointer-events:none;
     will-change:opacity,transform;
     --tx:0px;transform:translate3d(var(--tx),0,0);
+  }
+  /* headline shifts left; other poster elements stay centered */
+  .poster-headline{
+    align-self:flex-start;
+    text-align:left;
+    padding-left:clamp(20px,5vw,60px);
+    max-width:100%;
   }
 
   /* ---- HEADLINE (main slogan, English primary) ---- */
@@ -226,26 +234,30 @@
     66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
   }
 
-  /* underline that points to the SANFORD word on the sign photo */
-  .sign-line{
-    position:absolute;
-    top:44%;left:52%;
-    width:min(220px,22vw);
-    height:4px;border-radius:2px;
+  /* long, thick orange bar next to 'in' — completes the sentence toward the sign */
+  .post-line{
+    display:inline-block;
+    vertical-align:middle;
+    height:.24em;
+    width:min(58vw,760px);
     background:var(--orange);
-    z-index:4;
-    transform:scaleX(0);transform-origin:left center;
-    animation:sign-underline 4.5s ease-in-out 2.4s infinite;
-    box-shadow:0 0 14px rgba(255,154,31,.75),0 0 2px rgba(255,154,31,1);
+    margin-left:.4em;
+    margin-bottom:.14em;
+    border-radius:.03em;
+    transform:scaleX(0);
+    transform-origin:left center;
+    animation:post-line-draw 4.5s ease-in-out 2.2s infinite;
+    box-shadow:0 0 22px rgba(255,154,31,.7),0 0 4px rgba(255,154,31,.9);
     will-change:transform;
-    pointer-events:none;
   }
-  @keyframes sign-underline{
+  @keyframes post-line-draw{
     0%{transform:scaleX(0);transform-origin:left center}
-    30%{transform:scaleX(1);transform-origin:left center}
-    62%{transform:scaleX(1);transform-origin:right center}
+    28%{transform:scaleX(1);transform-origin:left center}
+    64%{transform:scaleX(1);transform-origin:right center}
     100%{transform:scaleX(0);transform-origin:right center}
   }
+  .line-in{white-space:nowrap;overflow:visible}
+  .line-in .fill{overflow:visible}
 
   .poster-headline-ko{
     font-family:var(--disp-ko);
@@ -944,13 +956,17 @@
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-tint"></div>
     <img class="hero-mark" src="assets/emblem/icon-orange-tp.png" alt="">
-    <span class="sign-line" aria-hidden="true"></span>
 
     <div class="poster" id="poster">
 
       <h1 class="poster-headline">
         <span class="line"><span class="fill"><span class="drift">The Story Begins</span></span></span>
-        <span class="line"><span class="fill"><span class="drift">in</span></span></span>
+        <span class="line line-in">
+          <span class="fill">
+            <span class="drift">in</span>
+            <span class="post-line" aria-hidden="true"></span>
+          </span>
+        </span>
       </h1>
       <div class="poster-headline-ko">
         이야기는 <span class="accent">샌포드</span>에서 시작됩니다.
