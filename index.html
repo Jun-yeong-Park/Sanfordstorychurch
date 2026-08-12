@@ -133,15 +133,18 @@
   }
   .hero-bg{
     position:absolute;inset:0;z-index:0;
-    background:url('assets/photos/sanford-sign.jpg') center/cover no-repeat;
+    background:url('assets/photos/sanford-sign.jpg') 62% 45%/cover no-repeat;
     transform:scale(1.04);will-change:transform;
   }
   .hero-tint{
     position:absolute;inset:0;z-index:1;pointer-events:none;
     background:
-      linear-gradient(180deg,rgba(30,20,10,.45) 0%,rgba(30,20,10,.15) 40%,rgba(30,20,10,.28) 68%,rgba(20,16,10,.85) 100%),
-      radial-gradient(120% 80% at 50% 45%,transparent 45%,rgba(30,20,10,.4) 100%),
-      linear-gradient(180deg,transparent 60%,rgba(255,154,31,.10) 100%);
+      /* soft top/bottom fade only */
+      linear-gradient(180deg,rgba(20,14,8,.22) 0%,transparent 25%,transparent 65%,rgba(20,14,8,.85) 100%),
+      /* spotlight — darkens the vertical strip behind text only */
+      radial-gradient(70% 55% at 50% 55%,rgba(20,14,8,.55) 0%,rgba(20,14,8,.15) 45%,transparent 75%),
+      /* warm bottom glow */
+      linear-gradient(180deg,transparent 60%,rgba(255,154,31,.08) 100%);
   }
 
   /* massive faded emblem watermark behind text */
@@ -1037,7 +1040,7 @@
       하나님의 이야기가 다시 시작됩니다 — <span class="accent">당신 안에서.</span>
     </p>
     <div class="cta-row rv rv-3">
-      <a class="btn primary" href="#join">
+      <a class="btn primary" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%ED%95%A8%EA%BB%98%ED%95%98%EA%B3%A0%20%EC%8B%B6%EC%96%B4%EC%9A%94&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%EC%97%90%20%EA%B4%80%EC%8B%AC%EC%9D%B4%20%EC%9E%88%EC%96%B4%EC%84%9C%20%EC%97%B0%EB%9D%BD%EB%93%9C%EB%A0%A4%EC%9A%94.">
         함께하고 싶어요 <span class="arrow">→</span>
       </a>
       <a class="btn" href="mailto:junyeongpark96@gmail.com?subject=함께%20기도합니다">
@@ -1047,28 +1050,6 @@
   </div>
 </section>
 
-<!-- ============ JOIN / EMAIL ============ -->
-<section class="chapter" id="chJoin">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      첫 장부터<br><span class="accent">함께해주세요.</span>
-    </h2>
-    <p class="body-copy rv rv-3">
-      모임, 런칭일, 앞으로의 이야기를 가장 먼저 전해드립니다.
-    </p>
-    <form class="signup rv rv-4" id="signup"
-          action="https://formsubmit.co/junyeongpark96@gmail.com" method="POST" novalidate>
-      <div class="fields">
-        <input type="email" name="email" required placeholder="your@email.com" autocomplete="email">
-        <input type="hidden" name="_subject" value="[스토리교회] 뉴스레터 신청">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <button type="submit">이야기에 함께하기 <span>→</span></button>
-      </div>
-      <div class="msg">감사합니다. 곧 연락드릴게요.</div>
-    </form>
-  </div>
-</section>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site">
@@ -1261,26 +1242,6 @@
     apply();
   }
 
-  // Signup — POST to formsubmit.co ajax endpoint (delivers to junyeongpark96@gmail.com)
-  const form = document.getElementById('signup');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = form.querySelector('input[type=email]').value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    form.classList.add('done');
-    try {
-      await fetch('https://formsubmit.co/ajax/junyeongpark96@gmail.com', {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({
-          email,
-          _subject:'[스토리교회] 뉴스레터 신청',
-          _template:'table',
-          _captcha:'false'
-        })
-      });
-    } catch(_){}
-  });
 })();
 </script>
 </body>
