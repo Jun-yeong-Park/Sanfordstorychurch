@@ -221,55 +221,81 @@
     will-change:opacity,transform;
     --tx:0px;transform:translate3d(var(--tx),0,0);
   }
-  .countdown{
-    display:inline-flex;gap:clamp(22px,3.5vw,44px);
-    margin-bottom:34px;padding:22px 34px;
-    background:rgba(20,14,8,.28);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    border:1px solid rgba(245,239,228,.14);
-    animation:fadeUp 1.2s var(--ease) .4s backwards;
+  /* ---- COUNTDOWN (church-plant poster style) ---- */
+  .cd-kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--body);
+    font-size:clamp(11px,1.15vw,13px);font-weight:700;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--orange);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    margin-bottom:14px;
+    animation:fadeUp 1.2s var(--ease) .35s backwards;
   }
-  .countdown .cell{
-    display:flex;flex-direction:column;align-items:center;
-    min-width:60px;position:relative;
+  .cd-kicker .live-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 12px rgba(255,154,31,1);
+    animation:blink 2s ease-in-out infinite;
   }
-  .countdown .cell + .cell::before{
-    content:":";position:absolute;left:calc(-1 * (clamp(22px,3.5vw,44px) / 2));top:38%;
-    transform:translate(-50%,-50%);
-    font-family:var(--disp-en);font-weight:900;
-    font-size:clamp(34px,4.4vw,54px);line-height:1;
-    color:rgba(245,239,228,.35);
-    pointer-events:none;
+  .cd-days{
+    display:inline-flex;align-items:baseline;gap:clamp(14px,1.8vw,26px);
+    margin-bottom:18px;
+    animation:fadeUp 1.2s var(--ease) .5s backwards;
+    position:relative;
   }
-  .countdown .n{
+  .cd-days-num{
     font-family:var(--disp-en);
     font-weight:900;font-variant-numeric:tabular-nums;
-    font-size:clamp(44px,6.4vw,78px);
-    line-height:1;letter-spacing:-.03em;
+    font-size:clamp(96px,14vw,180px);
+    line-height:.82;letter-spacing:-.045em;
     color:var(--cream);
-    text-shadow:0 3px 18px rgba(0,0,0,.7);
-    transition:transform .25s var(--ease);
+    text-shadow:
+      0 6px 40px rgba(0,0,0,.8),
+      0 0 60px rgba(255,154,31,.35);
+    display:inline-block;
+    position:relative;
   }
-  .countdown .n.tick{animation:cdtick .5s var(--ease)}
-  @keyframes cdtick{
-    0%{transform:translateY(-30%);opacity:0;color:var(--orange)}
-    60%{transform:translateY(4%);opacity:1}
-    100%{transform:none;color:var(--cream)}
+  .cd-days-num::after{
+    content:"";position:absolute;left:-8%;right:-8%;bottom:-10px;height:2px;
+    background:linear-gradient(90deg,transparent 0%,var(--orange) 30%,var(--orange) 70%,transparent 100%);
+    opacity:.75;
   }
-  .countdown .days .n{color:var(--orange);text-shadow:0 3px 22px rgba(255,154,31,.55),0 2px 12px rgba(0,0,0,.6)}
-  .countdown .days .n.tick{animation:cdtick-o .5s var(--ease)}
-  @keyframes cdtick-o{
-    0%{transform:translateY(-30%);opacity:0}
-    60%{transform:translateY(4%);opacity:1}
-    100%{transform:none}
+  .cd-days-label{
+    font-family:var(--disp-en);font-weight:900;text-transform:uppercase;
+    font-size:clamp(22px,2.8vw,40px);letter-spacing:.24em;line-height:1;
+    color:var(--orange);
+    text-shadow:0 2px 12px rgba(0,0,0,.6);
+    padding-bottom:.24em;
   }
-  .countdown .l{
-    margin-top:12px;
+  .cd-ticker{
+    display:inline-flex;align-items:baseline;gap:10px;
+    font-family:var(--disp-en);
+    font-weight:900;font-variant-numeric:tabular-nums;
+    font-size:clamp(18px,2vw,26px);letter-spacing:.02em;
+    color:rgba(245,239,228,.9);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    margin-bottom:26px;
+    animation:fadeUp 1.2s var(--ease) .65s backwards;
+  }
+  .cd-ticker .c{color:var(--orange);opacity:.7;padding:0 2px}
+  .cd-ticker .tag{
+    margin-left:16px;
     font-family:var(--body);
-    font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
-    color:rgba(245,239,228,.75);
-    text-shadow:0 1px 8px rgba(0,0,0,.5);
+    font-size:9.5px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+    color:rgba(245,239,228,.5);
+  }
+  /* live tick shimmer on seconds change */
+  #cdS{transition:color .25s ease}
+  #cdS.tick{animation:sec-tick .5s var(--ease)}
+  @keyframes sec-tick{
+    0%{color:var(--orange);text-shadow:0 0 20px rgba(255,154,31,.9)}
+    100%{color:rgba(245,239,228,.9);text-shadow:0 1px 10px rgba(0,0,0,.55)}
+  }
+  /* huge days pulse on day change */
+  #cdD.tick{animation:day-pulse 1s var(--ease)}
+  @keyframes day-pulse{
+    0%{transform:scale(1);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 60px rgba(255,154,31,.35)}
+    35%{transform:scale(1.03);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 120px rgba(255,154,31,.85)}
+    100%{transform:scale(1);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 60px rgba(255,154,31,.35)}
   }
   .meta .brand{
     font-family:var(--disp-en);
@@ -714,14 +740,14 @@
     .brand-bar .status .label{display:none}
     .scroll-hint{font-size:8.5px;letter-spacing:.28em}
     .word-soon{top:.62em}
-    .meta{bottom:10vh}
-    .meta .brand{font-size:15px;letter-spacing:.04em}
-    .meta .sub{font-size:12.5px;max-width:32ch;margin-left:auto;margin-right:auto}
-    .countdown{gap:16px;padding:14px 18px;margin-bottom:22px}
-    .countdown .cell{min-width:40px}
-    .countdown .cell + .cell::before{font-size:22px;left:-8px}
-    .countdown .n{font-size:34px}
-    .countdown .l{font-size:9px;letter-spacing:.24em;margin-top:8px}
+    .meta{bottom:7vh}
+    .meta .brand{font-size:14px;letter-spacing:.04em}
+    .meta .sub{font-size:12px;max-width:32ch;margin-left:auto;margin-right:auto}
+    .cd-kicker{font-size:10px;letter-spacing:.28em;margin-bottom:10px}
+    .cd-days-num{font-size:112px}
+    .cd-days-label{font-size:22px;letter-spacing:.2em}
+    .cd-ticker{font-size:16px;margin-bottom:18px}
+    .cd-ticker .tag{display:none}
     .marquee{padding:20px 0}
     .marquee-track{gap:44px}
     .marquee-item{gap:44px}
@@ -788,11 +814,17 @@
     </div>
 
     <div class="meta" id="meta">
-      <div class="countdown" id="countdown" aria-label="Countdown to launch">
-        <div class="cell days"><span class="n" id="cdD">–</span><span class="l">Days</span></div>
-        <div class="cell"><span class="n" id="cdH">–</span><span class="l">Hours</span></div>
-        <div class="cell"><span class="n" id="cdM">–</span><span class="l">Minutes</span></div>
-        <div class="cell"><span class="n" id="cdS">–</span><span class="l">Seconds</span></div>
+      <div class="cd-kicker">
+        <span class="live-dot"></span>
+        첫 예배까지 · Until Our First Gathering
+      </div>
+      <div class="cd-days">
+        <span class="cd-days-num" id="cdD">0</span>
+        <span class="cd-days-label">Days</span>
+      </div>
+      <div class="cd-ticker" aria-label="Hours minutes seconds until launch">
+        <span id="cdH">00</span><span class="c">:</span><span id="cdM">00</span><span class="c">:</span><span id="cdS">00</span>
+        <span class="tag">HRS · MIN · SEC</span>
       </div>
       <div class="brand"><span class="accent">September 27, 2026</span> · Sunday 6:00 PM</div>
       <div class="sub">플로리다 샌포드 · 스토리교회 창립예배</div>
@@ -810,12 +842,13 @@
   <div class="marquee-track" id="marqueeTrack">
     <!-- item content is duplicated by JS to make a seamless loop -->
     <div class="marquee-item">
-      Story Church <span class="dot"></span>
-      <span class="dim">스토리교회</span> <span class="dot"></span>
+      First Gathering <span class="dot"></span>
+      <span class="dim">첫 예배</span> <span class="dot"></span>
       09.27.2026 <span class="dot"></span>
       Sunday 6PM <span class="dot"></span>
       Sanford · FL <span class="dot"></span>
-      <span class="dim">A New Story</span> <span class="dot"></span>
+      <span class="dim">Story Church</span> <span class="dot"></span>
+      Planting 2026 <span class="dot"></span>
     </div>
   </div>
 </div>
@@ -1067,19 +1100,20 @@
   updateHero();
   schedule();
 
-  // Countdown to launch
+  // Countdown to launch — with initial count-up animation
   (function(){
     const target = new Date('2026-09-27T18:00:00-04:00').getTime();
     const pad = n => String(Math.max(0,n)).padStart(2,'0');
     const els = {D:document.getElementById('cdD'),H:document.getElementById('cdH'),M:document.getElementById('cdM'),S:document.getElementById('cdS')};
     const prev = {D:null,H:null,M:null,S:null};
     if (!els.D) return;
-    function set(key, val){
+
+    function set(key, val, animate){
       const node = els[key];
       const str = key==='D' ? String(val) : pad(val);
       if (node.textContent !== str){
         node.textContent = str;
-        if (prev[key] !== null){
+        if (animate && prev[key] !== null){
           node.classList.remove('tick');
           void node.offsetWidth;
           node.classList.add('tick');
@@ -1087,15 +1121,42 @@
         prev[key] = str;
       }
     }
-    function tickCd(){
-      const diff = Math.max(0, target - Date.now());
-      set('D', Math.floor(diff/86400000));
-      set('H', Math.floor(diff%86400000/3600000));
-      set('M', Math.floor(diff%3600000/60000));
-      set('S', Math.floor(diff%60000/1000));
+
+    function currentDiff(){ return Math.max(0, target - Date.now()); }
+
+    function liveTick(){
+      const diff = currentDiff();
+      set('D', Math.floor(diff/86400000), true);
+      set('H', Math.floor(diff%86400000/3600000), true);
+      set('M', Math.floor(diff%3600000/60000), true);
+      set('S', Math.floor(diff%60000/1000), true);
     }
-    tickCd();
-    setInterval(tickCd, 1000);
+
+    // Initial hero count-up: 0 → real days, then start live
+    const finalDays = Math.floor(currentDiff()/86400000);
+    const startTime = performance.now();
+    const duration = 1600;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced || finalDays === 0){
+      liveTick();
+      setInterval(liveTick, 1000);
+      return;
+    }
+
+    function countUp(now){
+      const t = Math.min((now - startTime)/duration, 1);
+      const eased = 1 - Math.pow(1 - t, 4); // ease-out quart
+      const cur = Math.round(eased * finalDays);
+      set('D', cur, false);
+      if (t < 1){
+        requestAnimationFrame(countUp);
+      } else {
+        liveTick();
+        setInterval(liveTick, 1000);
+      }
+    }
+    requestAnimationFrame(countUp);
   })();
 
   // Marquee — duplicate item for seamless loop
