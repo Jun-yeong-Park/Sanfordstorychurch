@@ -177,9 +177,8 @@
     font-size:clamp(78px,min(14.5vw,20vh),260px);
     line-height:.85;
     color:var(--cream);
-    text-shadow:
-      0 6px 40px rgba(0,0,0,.75),
-      0 0 60px rgba(255,154,31,.15);
+    text-shadow:none;
+    filter:drop-shadow(0 3px 1px rgba(20,10,0,.55)) drop-shadow(0 12px 28px rgba(0,0,0,.35));
     max-width:1400px;
   }
   .poster-headline .line{
@@ -207,12 +206,12 @@
     will-change:color,text-shadow;
   }
   @keyframes accent-warm{
-    0%{color:var(--cream);text-shadow:0 0 0 rgba(255,154,31,0)}
-    100%{color:var(--orange);text-shadow:0 4px 24px rgba(0,0,0,.5),0 0 60px rgba(255,154,31,.55)}
+    0%{color:var(--cream)}
+    100%{color:var(--orange)}
   }
   @keyframes accent-pulse{
-    0%,100%{text-shadow:0 4px 24px rgba(0,0,0,.5),0 0 40px rgba(255,154,31,.4)}
-    50%{text-shadow:0 4px 24px rgba(0,0,0,.5),0 0 90px rgba(255,154,31,.85)}
+    0%,100%{filter:drop-shadow(0 0 0 rgba(255,154,31,0))}
+    50%{filter:drop-shadow(0 0 22px rgba(255,154,31,.55))}
   }
 
   .poster-headline-ko{
