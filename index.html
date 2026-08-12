@@ -585,31 +585,24 @@
   }
   #chFor .chapter-inner{max-width:960px}
   #chFor .chapter-label{color:var(--orange)}
-  .for-list{
-    display:flex;flex-direction:column;gap:16px;
-    font-family:var(--disp-ko);font-weight:900;letter-spacing:-.025em;
-    font-size:clamp(42px,7vw,96px);line-height:1;color:var(--ink);
+  .for-hero{
+    font-family:var(--disp-ko);font-weight:900;letter-spacing:-.03em;
+    font-size:clamp(48px,8vw,110px);line-height:1;color:var(--ink);
   }
-  .for-list li{list-style:none}
-  .for-list .dim{color:rgba(42,29,15,.32)}
+  .for-hero .accent{color:var(--orange)}
   .for-tail{
-    margin-top:64px;
-    font-family:var(--disp-ko);font-weight:900;letter-spacing:-.025em;
-    font-size:clamp(22px,3.2vw,42px);line-height:1.35;
+    margin-top:36px;
+    font-family:var(--disp-ko);font-weight:800;letter-spacing:-.02em;
+    font-size:clamp(20px,2.8vw,36px);line-height:1.35;
     color:var(--ink);
   }
-  .for-tail .accent{color:var(--orange)}
   .for-tail b{color:var(--orange);font-weight:900}
-  .for-cta{margin-top:36px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .for-cta{margin-top:44px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
   .for-cta .btn{
     background:var(--navy);color:var(--cream);border-color:var(--navy);
     padding:18px 28px;font-size:12px;
   }
   .for-cta .btn.primary{background:var(--orange);color:var(--navy);border-color:var(--orange)}
-  .for-cta-sub{
-    font-family:var(--body);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:rgba(42,29,15,.55);font-weight:700;
-  }
 
   /* ---- CH 03 CTA ---- */
   #ch3{background:var(--navy)}
@@ -636,41 +629,42 @@
     display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center;
   }
   .recruit{
-    margin-top:48px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:16px;max-width:820px;
+    margin-top:56px;
+    display:flex;flex-direction:column;
+    max-width:720px;margin-left:auto;margin-right:auto;
+    border-top:1px solid rgba(245,239,228,.18);
   }
   .recruit-card{
-    display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;
-    padding:26px 28px;
-    background:rgba(245,239,228,.04);
-    border:1px solid rgba(245,239,228,.18);
+    display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:24px;
+    padding:26px 4px;
+    border-bottom:1px solid rgba(245,239,228,.18);
     color:var(--cream);text-align:left;
-    transition:background .3s ease,border-color .3s ease,transform .3s ease;
+    transition:color .3s ease,padding .3s ease;
   }
-  .recruit-card:hover{
-    background:rgba(255,154,31,.08);
-    border-color:var(--orange);
-    transform:translateY(-2px);
-  }
+  .recruit-card:hover{color:var(--orange)}
   .recruit-card .rc-num{
-    font-family:var(--disp-en);font-weight:900;font-size:32px;line-height:1;
+    font-family:var(--disp-en);font-weight:900;font-size:clamp(24px,2.6vw,32px);line-height:1;
     color:var(--orange);letter-spacing:.02em;
   }
   .recruit-card .rc-title{
     font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;
-    font-size:clamp(22px,2.4vw,30px);line-height:1;color:var(--cream);
+    font-size:clamp(24px,3vw,38px);line-height:1;
   }
   .recruit-card .rc-title small{
-    display:block;margin-top:6px;
-    font-family:var(--body);font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+    display:inline-block;margin-left:14px;
+    font-family:var(--body);font-weight:700;letter-spacing:.22em;text-transform:uppercase;
     font-size:11px;color:rgba(245,239,228,.55);
+    vertical-align:middle;
   }
   .recruit-card .rc-arrow{
     font-family:var(--disp-en);font-size:24px;color:var(--orange);
     transition:transform .3s ease;
   }
-  .recruit-card:hover .rc-arrow{transform:translateX(4px)}
+  .recruit-card:hover .rc-arrow{transform:translateX(6px)}
+  @media(max-width:640px){
+    .recruit-card{grid-template-columns:44px 1fr auto;gap:14px;padding:22px 2px}
+    .recruit-card .rc-title small{display:block;margin-left:0;margin-top:6px}
+  }
   .btn{
     font-family:var(--body);
     display:inline-flex;align-items:center;gap:10px;
@@ -984,22 +978,16 @@
 <!-- ============ WHO IS THIS FOR ============ -->
 <section class="chapter" id="chFor">
   <div class="chapter-inner">
-    <ul class="for-list">
-      <li class="rv rv-2">궁금해하는 <span class="dim">이에게.</span></li>
-      <li class="rv rv-3">찾고 있는 <span class="dim">이에게.</span></li>
-      <li class="rv rv-4">가정 <span class="dim">에게.</span></li>
-      <li class="rv rv-4">이웃 <span class="dim">에게.</span></li>
-      <li class="rv rv-5">샌포드 <span class="dim">에게.</span></li>
-    </ul>
-    <p class="for-tail rv rv-5">
-      샌포드에서 시작되는 <span class="accent">새로운 이야기.</span><br>
+    <p class="for-hero rv rv-2">
+      샌포드에서 시작되는<br><span class="accent">새로운 이야기.</span>
+    </p>
+    <p class="for-tail rv rv-3">
       당신을 위한 <b>따뜻한 식탁</b>이 준비되어 있습니다.
     </p>
-    <div class="for-cta rv rv-5">
-      <a class="btn primary" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EC%A0%80%EB%85%81%20%EC%8B%9D%EC%82%AC%20%26%20%EC%9B%B0%EC%BB%B4%20%EB%AA%A8%EC%9E%84%20%EC%8B%A0%EC%B2%AD&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20%EC%A0%80%EB%85%81%20%EC%8B%9D%EC%82%AC%20%26%20%EC%9B%B0%EC%BB%B4%20%EB%AA%A8%EC%9E%84%EC%97%90%20%EC%B0%B8%EC%84%9D%ED%95%98%EA%B3%A0%20%EC%8B%B6%EC%96%B4%EC%9A%94.%0A%0A%EC%9D%B4%EB%A6%84%3A%0A%EC%97%B0%EB%9D%BD%EC%B2%98%3A%0A%EC%9D%BC%EC%A0%95%3A">
-        저녁 식사 &amp; 웰컴 모임 신청 <span class="arrow">→</span>
+    <div class="for-cta rv rv-4">
+      <a class="btn primary" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EC%B2%AB%20%EC%8A%A4%ED%86%A0%EB%A6%AC%20%EC%A0%80%EB%85%81%20%EC%8B%A0%EC%B2%AD&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20%EC%B2%AB%20%EC%8A%A4%ED%86%A0%EB%A6%AC%20%EC%A0%80%EB%85%81%EC%97%90%20%EC%B0%B8%EC%84%9D%ED%95%98%EA%B3%A0%20%EC%8B%B6%EC%96%B4%EC%9A%94.%0A%0A%EC%9D%B4%EB%A6%84%3A%0A%EC%97%B0%EB%9D%BD%EC%B2%98%3A%0A%EC%9D%BC%EC%A0%95%3A">
+        첫 스토리 저녁 신청 <span class="arrow">→</span>
       </a>
-      <div class="for-cta-sub">1분 컷 · Mailto로 열려요</div>
     </div>
   </div>
 </section>
