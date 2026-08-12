@@ -198,12 +198,55 @@
     0%{transform:translateY(110%)}
     100%{transform:translateY(0)}
   }
+
+  /* continuous drift — opposite phase per line for gentle life */
+  .poster-headline .drift{
+    display:inline-block;
+    animation:hero-drift 7s ease-in-out infinite;
+    animation-delay:2.2s;
+    will-change:transform;
+  }
+  .poster-headline .line:nth-child(2) .drift{
+    animation-name:hero-drift-alt;
+    animation-delay:2.6s;
+  }
+  @keyframes hero-drift{
+    0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+    33%{transform:translate3d(-3px,-5px,0) rotate(-.2deg)}
+    66%{transform:translate3d(2px,-3px,0) rotate(.15deg)}
+  }
+  @keyframes hero-drift-alt{
+    0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+    33%{transform:translate3d(4px,5px,0) rotate(.2deg)}
+    66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
+  }
+
+  /* Sanford accent — warm color, pulse glow, underline sweep */
   .poster-headline .accent{
     color:var(--cream);
+    position:relative;
+    display:inline-block;
     animation:
       accent-warm 1.4s var(--ease) 1.7s forwards,
-      accent-pulse 4s ease-in-out 3.2s infinite;
-    will-change:color,text-shadow;
+      accent-pulse 4s ease-in-out 3.4s infinite;
+    will-change:color,filter;
+  }
+  .poster-headline .accent::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:.02em;
+    height:.055em;
+    background:var(--orange);
+    transform:scaleX(0);
+    transform-origin:left center;
+    animation:sanford-underline 4s ease-in-out 2.6s infinite;
+    box-shadow:0 0 12px rgba(255,154,31,.6);
+    will-change:transform;
+  }
+  @keyframes sanford-underline{
+    0%{transform:scaleX(0);transform-origin:left center}
+    35%{transform:scaleX(1);transform-origin:left center}
+    55%{transform:scaleX(1);transform-origin:right center}
+    100%{transform:scaleX(0);transform-origin:right center}
   }
   @keyframes accent-warm{
     0%{color:var(--cream)}
@@ -882,7 +925,9 @@
     *{animation-duration:.01ms!important;animation-delay:0!important;transition-duration:.01ms!important}
     .poster{opacity:1;transform:none}
     .poster-headline .line .fill{transform:none}
+    .poster-headline .drift{animation:none}
     .poster-headline .accent{color:var(--orange)}
+    .poster-headline .accent::after{animation:none;transform:scaleX(1)}
     .hero-bg,.chapter-bg{transform:none}
     .rv{opacity:1;transform:none}
     .marquee-track{animation:none}
@@ -913,8 +958,8 @@
     <div class="poster" id="poster">
 
       <h1 class="poster-headline">
-        <span class="line"><span class="fill">The Story Begins</span></span>
-        <span class="line"><span class="fill">in <span class="accent">Sanford.</span></span></span>
+        <span class="line"><span class="fill"><span class="drift">The Story Begins</span></span></span>
+        <span class="line"><span class="fill"><span class="drift">in <span class="accent">Sanford.</span></span></span></span>
       </h1>
       <div class="poster-headline-ko">
         이야기는 <span class="accent">샌포드</span>에서 시작됩니다.
