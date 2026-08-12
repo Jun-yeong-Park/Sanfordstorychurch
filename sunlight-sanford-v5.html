@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunlight Sanford — Chapter One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E7;
+    --ink:#14121A;
+    --amber:#E2812E;
+    --dim:#8E8896;
+    --disp:'Fraunces',serif;
+    --grot:'Space Grotesk',sans-serif;
+    --ko:'Noto Sans KR',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--grot);display:flex;flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+  .lbl{font-size:10.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+
+  /* top */
+  .top{
+    flex:none;display:flex;justify-content:space-between;align-items:center;
+    padding:16px clamp(16px,3vw,30px);
+    border-bottom:1px solid rgba(20,18,26,.12);
+    opacity:0;animation:fade .8s .1s forwards;
+  }
+  .mark{font-family:var(--disp);font-size:17px;font-weight:600;font-variation-settings:'SOFT' 40,'WONK' 1}
+  .mark i{font-style:italic;color:var(--amber)}
+  .top .mid{display:none}
+  @media(min-width:800px){.top .mid{display:block}}
+  .soon{position:relative;padding-left:16px}
+  .soon::before{
+    content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:7px;height:7px;border-radius:50%;background:var(--amber);
+    animation:blink 1.8s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* chapter rule */
+  .chap{
+    flex:none;display:flex;align-items:center;gap:14px;
+    padding:12px clamp(16px,3vw,30px) 0;
+    opacity:0;animation:fade .8s .25s forwards;
+  }
+  .chap .rule{flex:1;height:1px;background:rgba(20,18,26,.16)}
+  .chap em{font-family:var(--disp);font-style:italic;font-size:13px;color:var(--dim)}
+
+  /* stage */
+  .stage{
+    flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(14px,2.6vw,28px);position:relative;
+  }
+  /* oversized quote mark */
+  .quote{
+    position:absolute;left:clamp(-6px,-1vw,0px);top:clamp(-14px,-2vh,0px);
+    font-family:var(--disp);font-weight:700;font-style:italic;
+    font-size:clamp(9rem,26vw,22rem);line-height:.7;
+    color:rgba(20,18,26,.055);pointer-events:none;user-select:none;
+    opacity:0;animation:fade 1.4s .2s forwards;
+  }
+  .line{
+    position:relative;z-index:1;
+    font-family:var(--disp);font-weight:600;
+    font-variation-settings:'SOFT' 45,'WONK' 1,'opsz' 144;
+    font-size:clamp(2.7rem,13.4vw,11rem);
+    line-height:.88;letter-spacing:-.035em;white-space:nowrap;
+    opacity:0;transform:translateY(30px);
+    animation:up 1s cubic-bezier(.16,.86,.24,1) forwards;
+  }
+  .l1{animation-delay:.35s}
+  .l2{animation-delay:.5s;font-style:italic;color:var(--amber);text-align:center}
+  .l3{animation-delay:.65s;text-align:right;min-height:1em}
+  .ch{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1),color .3s}
+  .ch:hover{transform:translateY(-.07em) rotate(-4deg);color:var(--amber)}
+
+  /* typing cursor */
+  .cursor{
+    display:inline-block;width:.055em;height:.78em;
+    background:var(--amber);vertical-align:-.03em;margin-left:.06em;
+    animation:caret 1s step-end infinite;
+  }
+  @keyframes caret{0%,100%{opacity:1}50%{opacity:0}}
+
+  /* marquee */
+  .marq{
+    flex:none;overflow:hidden;white-space:nowrap;
+    border-top:1px solid rgba(20,18,26,.12);
+    border-bottom:1px solid rgba(20,18,26,.12);
+    padding:11px 0;opacity:0;animation:fade .8s 1.2s forwards;
+  }
+  .run{display:inline-block;animation:run 32s linear infinite}
+  .marq span{
+    font-family:var(--disp);font-size:clamp(14px,2vw,20px);font-weight:400;
+    font-variation-settings:'SOFT' 60,'WONK' 1;padding:0 20px;
+  }
+  .marq span.ko{font-family:var(--ko);font-weight:300;font-size:clamp(11.5px,1.5vw,14px)}
+  .marq span.dot{color:var(--amber)}
+  .marq span.big{font-weight:700;font-style:italic;color:var(--amber)}
+  @keyframes run{to{transform:translateX(-50%)}}
+
+  /* bottom */
+  .bot{
+    flex:none;display:flex;justify-content:space-between;align-items:flex-end;gap:18px;
+    padding:14px clamp(16px,3vw,30px) 18px;
+    opacity:0;animation:fade .8s 1.4s forwards;
+  }
+  .cd{display:flex;align-items:baseline;gap:12px}
+  .cd .n{
+    font-family:var(--disp);font-weight:700;font-variation-settings:'SOFT' 35,'WONK' 1;
+    font-size:clamp(2.6rem,8.5vw,5.4rem);line-height:.82;letter-spacing:-.04em;
+    font-variant-numeric:tabular-nums;
+  }
+  .cd .u{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(1rem,2.6vw,1.7rem);color:var(--amber)}
+  .cd .meta{
+    margin-left:6px;padding-left:14px;border-left:1px solid rgba(20,18,26,.18);
+    font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dim);line-height:1.7;align-self:center;
+  }
+  .cd .meta b{color:var(--ink);font-weight:700}
+  .bot a{text-decoration:none;color:var(--ink);transition:color .3s;white-space:nowrap}
+  .bot a:hover{color:var(--amber)}
+
+  @keyframes fade{to{opacity:1}}
+  @keyframes up{to{opacity:1;transform:none}}
+  @media(max-width:620px){.cd .meta{display:none}.bot{align-items:center}}
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;opacity:1!important;transform:none!important}
+    .run,.soon::before,.cursor{animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="mark">Sunlight <i>Sanford</i></div>
+  <div class="mid lbl">A new church in Sanford, FL</div>
+  <div class="lbl soon">Coming soon</div>
+</div>
+
+<div class="chap">
+  <em>Chapter One</em>
+  <div class="rule"></div>
+  <span class="lbl">Still being written</span>
+</div>
+
+<div class="stage">
+  <div class="quote">“</div>
+  <div class="line l1" id="l1">EVERY STORY</div>
+  <div class="line l2" id="l2">BEGINS WITH</div>
+  <div class="line l3"><span id="typed"></span><span class="cursor"></span></div>
+</div>
+
+<div class="marq"><div class="run" id="run"></div></div>
+
+<div class="bot">
+  <div class="cd">
+    <span class="n" id="days">–</span>
+    <span class="u">days to go</span>
+    <div class="meta"><b>SEP 27, 2026</b><br>Sunday 6:00 PM</div>
+  </div>
+  <a class="lbl" href="#" style="letter-spacing:.2em">@SUNDAY_SANFORD →</a>
+</div>
+
+<script>
+  ['l1','l2'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.innerHTML=[...el.textContent].map(c=>
+      c===' '?'<span class="ch">&nbsp;</span>':`<span class="ch">${c}</span>`).join('');
+  });
+
+  // typing loop
+  const words=['A QUESTION.','A STRANGER.','A SUNDAY.','YOU.'];
+  const out=document.getElementById('typed');
+  let w=0,i=0,del=false;
+  function type(){
+    const t=words[w];
+    out.textContent = del ? t.slice(0,i--) : t.slice(0,i++);
+    let wait = del ? 45 : 95;
+    if(!del && i>t.length){ del=true; wait=1600; }
+    if(del && i<0){ del=false; i=0; w=(w+1)%words.length; wait=320; }
+    setTimeout(type,wait);
+  }
+  setTimeout(type,1500);
+
+  const bits=[
+    '<span class="big">COMING SOON</span>',
+    '<span class="ko">아직 쓰이지 않은 이야기</span>',
+    '<span>Bring your story</span>',
+    '<span class="ko">주일 저녁 6시 · 샌포드</span>',
+    '<span>Come as you are</span>',
+    '<span class="ko">당신의 이야기가 궁금합니다</span>'
+  ].join('<span class="dot">✳</span>');
+  document.getElementById('run').innerHTML=bits+'<span class="dot">✳</span>'+bits+'<span class="dot">✳</span>';
+
+  const target=new Date('2026-09-27T18:00:00-04:00').getTime();
+  function tick(){
+    document.getElementById('days').textContent=Math.max(0,Math.ceil((target-Date.now())/86400000));
+  }
+  tick(); setInterval(tick,60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* Sanford Story Church — Design Tokens */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand colors */
+  --story-orange: #FF9A1F;
+  --story-navy: #0F1E34;
+  --story-cream: #F4F0E6;
+  --story-gray: #D7D9DD;
+  --story-white: #FFFFFF;
+  --story-black: #111111;
+
+  /* Aliases */
+  --color-orange: var(--story-orange);
+  --color-navy: var(--story-navy);
+  --color-cream: var(--story-cream);
+  --color-gray: var(--story-gray);
+  --color-white: var(--story-white);
+
+  /* Typography */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+
+  /* Layout */
+  --container: 1280px;
+  --mobile-padding: 24px;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 7rem;
+  --space-2xl: 10rem;
+
+  /* Radius — keep small, no pill buttons */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+/* Base type styles */
+.h-display {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-orange);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--story-navy);
+  background: var(--story-cream);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--story-orange);
+  color: var(--story-navy);
+  padding: 14px 24px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn-secondary-on-navy {
+  background: transparent;
+  color: var(--story-cream);
+  border: 1px solid var(--story-cream);
+  padding: 14px 24px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.btn-secondary-on-navy:hover {
+  color: var(--story-orange);
+  border-color: var(--story-orange);
+}
+
+.btn-secondary-on-light {
+  background: transparent;
+  color: var(--story-navy);
+  border: 1px solid var(--story-navy);
+  padding: 14px 24px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.btn-secondary-on-light:hover {
+  background: var(--story-navy);
+  color: var(--story-cream);
+}
