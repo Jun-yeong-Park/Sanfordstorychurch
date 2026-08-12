@@ -128,6 +128,8 @@
     position:sticky;top:0;
     height:100vh;height:100dvh;
     overflow:hidden;isolation:isolate;
+    display:flex;flex-direction:column;
+    padding:12vh 20px 5vh;
   }
   .hero-bg{
     position:absolute;inset:0;z-index:0;
@@ -151,15 +153,17 @@
     filter:blur(.5px);
   }
 
-  /* Title layer */
+  /* Title layer — sits in top portion of flex column */
   .title-wrap{
-    position:absolute;inset:0;z-index:3;
-    display:flex;align-items:center;justify-content:center;pointer-events:none;
+    position:relative;z-index:3;
+    flex:0 0 auto;
+    display:flex;justify-content:center;align-items:flex-start;
+    pointer-events:none;
   }
   .title{
     position:relative;height:1.35em;width:100%;
-    font-size:clamp(96px,15.5vw,260px);
-    line-height:.75;
+    font-size:clamp(78px,12.5vw,200px);
+    line-height:.78;
   }
   .word{
     position:absolute;left:0;right:0;
@@ -215,9 +219,30 @@
   }
   .reveal h2 .accent{color:var(--orange)}
 
+  /* Ornamental divider — cross flanked by lines */
+  .hero-divider{
+    position:relative;z-index:3;
+    flex:1 1 auto;
+    display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,30px);
+    padding:2vh 0;
+    pointer-events:none;
+    animation:fadeUp 1.4s var(--ease) .9s backwards;
+  }
+  .hero-divider .dv-line{
+    display:block;flex:0 1 min(180px,22vw);height:1px;
+    background:linear-gradient(90deg,transparent,rgba(245,239,228,.5) 40%,rgba(245,239,228,.5) 60%,transparent);
+  }
+  .hero-divider .dv-cross{
+    color:var(--orange);
+    filter:drop-shadow(0 0 14px rgba(255,154,31,.65)) drop-shadow(0 2px 6px rgba(0,0,0,.5));
+    flex:0 0 auto;
+  }
+
   .meta{
-    position:absolute;left:0;right:0;bottom:14vh;z-index:3;
-    text-align:center;padding:0 24px;
+    position:relative;z-index:3;
+    flex:0 0 auto;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:0 20px;
     will-change:opacity,transform;
     --tx:0px;transform:translate3d(var(--tx),0,0);
   }
@@ -245,26 +270,21 @@
   .cd-days-num{
     font-family:var(--disp-en);
     font-weight:900;font-variant-numeric:tabular-nums;
-    font-size:clamp(96px,14vw,180px);
+    font-size:clamp(84px,11vw,132px);
     line-height:.82;letter-spacing:-.045em;
     color:var(--cream);
     text-shadow:
-      0 6px 40px rgba(0,0,0,.8),
-      0 0 60px rgba(255,154,31,.35);
+      0 4px 28px rgba(0,0,0,.75),
+      0 0 44px rgba(255,154,31,.28);
     display:inline-block;
     position:relative;
   }
-  .cd-days-num::after{
-    content:"";position:absolute;left:-8%;right:-8%;bottom:-10px;height:2px;
-    background:linear-gradient(90deg,transparent 0%,var(--orange) 30%,var(--orange) 70%,transparent 100%);
-    opacity:.75;
-  }
   .cd-days-label{
     font-family:var(--disp-en);font-weight:900;text-transform:uppercase;
-    font-size:clamp(22px,2.8vw,40px);letter-spacing:.24em;line-height:1;
+    font-size:clamp(20px,2.4vw,32px);letter-spacing:.24em;line-height:1;
     color:var(--orange);
     text-shadow:0 2px 12px rgba(0,0,0,.6);
-    padding-bottom:.24em;
+    padding-bottom:.22em;
   }
   .cd-ticker{
     display:inline-flex;align-items:baseline;gap:10px;
@@ -740,13 +760,15 @@
     .brand-bar .status .label{display:none}
     .scroll-hint{font-size:8.5px;letter-spacing:.28em}
     .word-soon{top:.62em}
-    .meta{bottom:7vh}
+    .hero-sticky{padding:10vh 16px 4vh}
+    .hero-divider{padding:1.4vh 0}
+    .hero-divider .dv-line{flex-basis:min(120px,26vw)}
     .meta .brand{font-size:14px;letter-spacing:.04em}
     .meta .sub{font-size:12px;max-width:32ch;margin-left:auto;margin-right:auto}
     .cd-kicker{font-size:10px;letter-spacing:.28em;margin-bottom:10px}
-    .cd-days-num{font-size:112px}
-    .cd-days-label{font-size:22px;letter-spacing:.2em}
-    .cd-ticker{font-size:16px;margin-bottom:18px}
+    .cd-days-num{font-size:88px}
+    .cd-days-label{font-size:20px;letter-spacing:.2em}
+    .cd-ticker{font-size:15px;margin-bottom:16px}
     .cd-ticker .tag{display:none}
     .marquee{padding:20px 0}
     .marquee-track{gap:44px}
@@ -805,6 +827,14 @@
         <div class="word word-coming" id="wCom"><span class="inner">09.27</span></div>
         <div class="word word-soon"   id="wSoon"><span class="inner">2026</span></div>
       </div>
+    </div>
+
+    <div class="hero-divider" aria-hidden="true">
+      <span class="dv-line"></span>
+      <svg class="dv-cross" viewBox="0 0 24 40" width="18" height="30" fill="currentColor" aria-hidden="true">
+        <path d="M10 0h4v12h10v4H14v24h-4V16H0v-4h10z"/>
+      </svg>
+      <span class="dv-line"></span>
     </div>
 
     <div class="reveal" id="reveal" aria-hidden="true">
