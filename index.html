@@ -153,39 +153,154 @@
     filter:blur(.5px);
   }
 
-  /* Title layer — sits in top portion of flex column */
-  .title-wrap{
+  /* ============================================
+     POSTER HERO — event poster typography stack
+  ============================================ */
+  .poster{
     position:relative;z-index:3;
-    flex:0 0 auto;
-    display:flex;justify-content:center;align-items:flex-start;
+    flex:1 1 auto;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:clamp(14px,2vw,26px);
+    text-align:center;padding:0 12px;
     pointer-events:none;
+    will-change:opacity,transform;
+    --tx:0px;transform:translate3d(var(--tx),0,0);
   }
-  .title{
-    position:relative;height:1.35em;width:100%;
-    font-size:clamp(78px,12.5vw,200px);
-    line-height:.78;
-  }
-  .word{
-    position:absolute;left:0;right:0;
-    display:flex;justify-content:center;
-    will-change:transform,opacity;
-    --tx:0px; --ty:0px;
-    transform:translate3d(var(--tx),var(--ty),0);
-  }
-  .word-coming{top:0}
-  .word-soon{top:.58em}
-  .word .inner{
-    display:inline-block;
-    font-family:var(--disp-en);
-    font-weight:900;text-transform:uppercase;letter-spacing:-.06em;
+
+  .poster-mast{
+    display:inline-flex;align-items:center;gap:clamp(14px,2vw,22px);
+    font-family:var(--body);
+    font-size:clamp(11px,1.2vw,13.5px);font-weight:800;letter-spacing:.4em;text-transform:uppercase;
     color:var(--cream);
-    text-shadow:0 2px 24px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.4);
-    opacity:0;transform:translateY(80px);
-    will-change:transform,opacity;
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    animation:fadeUp 1.1s var(--ease) .15s backwards;
   }
-  .word-coming .inner{animation:enter 1s var(--ease) .05s forwards}
-  .word-soon   .inner{transform:translateY(100px);animation:enter 1s var(--ease) .18s forwards}
-  @keyframes enter{to{opacity:1;transform:translateY(0)}}
+  .poster-mast .p-cross{
+    width:12px;height:20px;color:var(--orange);
+    filter:drop-shadow(0 0 8px rgba(255,154,31,.7));
+  }
+
+  .poster-kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--body);
+    font-size:clamp(11px,1.15vw,13.5px);font-weight:700;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--orange);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    animation:fadeUp 1.1s var(--ease) .3s backwards;
+  }
+  .live-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 12px rgba(255,154,31,1);
+    animation:blink 2s ease-in-out infinite;
+    display:inline-block;
+  }
+  .live-dot.small{width:6px;height:6px}
+
+  .poster-days{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    margin:8px 0 4px;
+    animation:fadeUp 1.2s var(--ease) .5s backwards;
+    line-height:1;
+  }
+  .poster-days-num{
+    font-family:var(--disp-en);
+    font-weight:900;font-variant-numeric:tabular-nums;
+    font-size:clamp(180px,26vw,380px);
+    line-height:.82;letter-spacing:-.06em;
+    color:var(--cream);
+    text-shadow:
+      0 8px 60px rgba(0,0,0,.85),
+      0 0 100px rgba(255,154,31,.35);
+    display:inline-block;
+    position:relative;
+  }
+  .poster-days-num::before{
+    content:"";position:absolute;left:-14%;right:-14%;top:50%;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,154,31,.35),transparent);
+    z-index:-1;
+  }
+  .poster-days-label{
+    font-family:var(--disp-en);font-weight:900;text-transform:uppercase;
+    font-size:clamp(32px,4vw,64px);letter-spacing:.4em;line-height:1;
+    color:var(--orange);
+    text-shadow:0 2px 14px rgba(0,0,0,.65);
+    padding-left:.4em;
+  }
+
+  .poster-date-wrap{
+    display:flex;align-items:center;justify-content:center;gap:clamp(14px,2vw,26px);
+    width:100%;max-width:920px;
+    margin-top:8px;
+    animation:fadeUp 1.1s var(--ease) .7s backwards;
+  }
+  .poster-date-wrap .p-line{
+    flex:1 1 auto;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(245,239,228,.55) 30%,rgba(245,239,228,.55) 70%,transparent);
+  }
+  .poster-date{
+    flex:0 0 auto;
+    font-family:var(--disp-en);
+    font-weight:900;letter-spacing:.02em;text-transform:uppercase;
+    font-size:clamp(30px,5vw,80px);
+    line-height:1;
+    color:var(--cream);
+    text-shadow:0 3px 16px rgba(0,0,0,.6);
+    padding:0 .3em;
+  }
+
+  .poster-details{
+    font-family:var(--disp-en);font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+    font-size:clamp(16px,2vw,28px);line-height:1.2;
+    color:rgba(245,239,228,.95);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    animation:fadeUp 1.1s var(--ease) .82s backwards;
+  }
+  .poster-details-ko{
+    font-family:var(--body);font-weight:600;
+    font-size:clamp(13px,1.5vw,17px);letter-spacing:.02em;
+    color:rgba(245,239,228,.72);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+    animation:fadeUp 1.1s var(--ease) .92s backwards;
+  }
+
+  .poster-ticker{
+    display:inline-flex;align-items:baseline;gap:10px;
+    margin-top:10px;
+    padding:10px 18px;
+    border:1px solid rgba(245,239,228,.18);
+    background:rgba(20,14,8,.28);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    font-family:var(--disp-en);
+    font-weight:900;font-variant-numeric:tabular-nums;
+    font-size:clamp(16px,1.9vw,24px);letter-spacing:.02em;
+    color:rgba(245,239,228,.92);
+    text-shadow:0 1px 10px rgba(0,0,0,.5);
+    animation:fadeUp 1.1s var(--ease) 1.05s backwards;
+  }
+  .poster-ticker .c{color:var(--orange);opacity:.75;padding:0 1px}
+  .poster-ticker .tag{
+    margin-left:14px;
+    font-family:var(--body);
+    font-size:9.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(245,239,228,.55);
+  }
+  .poster-ticker .live-dot{margin-right:6px;align-self:center}
+
+  /* live tick shimmer on seconds change */
+  #cdS{transition:color .25s ease}
+  #cdS.tick{animation:sec-tick .5s var(--ease)}
+  @keyframes sec-tick{
+    0%{color:var(--orange);text-shadow:0 0 18px rgba(255,154,31,.9)}
+    100%{color:rgba(245,239,228,.92);text-shadow:0 1px 10px rgba(0,0,0,.5)}
+  }
+  /* day change pulse */
+  #cdD.tick{animation:day-pulse 1s var(--ease)}
+  @keyframes day-pulse{
+    0%{transform:scale(1)}
+    35%{transform:scale(1.02);text-shadow:0 8px 60px rgba(0,0,0,.85),0 0 160px rgba(255,154,31,.9)}
+    100%{transform:scale(1)}
+  }
 
   /* Reveal layer — LOGO LOCKUP + Korean headline */
   .reveal{
@@ -219,122 +334,6 @@
   }
   .reveal h2 .accent{color:var(--orange)}
 
-  /* Ornamental divider — cross flanked by lines */
-  .hero-divider{
-    position:relative;z-index:3;
-    flex:1 1 auto;
-    display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,30px);
-    padding:2vh 0;
-    pointer-events:none;
-    animation:fadeUp 1.4s var(--ease) .9s backwards;
-  }
-  .hero-divider .dv-line{
-    display:block;flex:0 1 min(180px,22vw);height:1px;
-    background:linear-gradient(90deg,transparent,rgba(245,239,228,.5) 40%,rgba(245,239,228,.5) 60%,transparent);
-  }
-  .hero-divider .dv-cross{
-    color:var(--orange);
-    filter:drop-shadow(0 0 14px rgba(255,154,31,.65)) drop-shadow(0 2px 6px rgba(0,0,0,.5));
-    flex:0 0 auto;
-  }
-
-  .meta{
-    position:relative;z-index:3;
-    flex:0 0 auto;
-    display:flex;flex-direction:column;align-items:center;text-align:center;
-    padding:0 20px;
-    will-change:opacity,transform;
-    --tx:0px;transform:translate3d(var(--tx),0,0);
-  }
-  /* ---- COUNTDOWN (church-plant poster style) ---- */
-  .cd-kicker{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--body);
-    font-size:clamp(11px,1.15vw,13px);font-weight:700;letter-spacing:.36em;text-transform:uppercase;
-    color:var(--orange);
-    text-shadow:0 1px 10px rgba(0,0,0,.55);
-    margin-bottom:14px;
-    animation:fadeUp 1.2s var(--ease) .35s backwards;
-  }
-  .cd-kicker .live-dot{
-    width:7px;height:7px;border-radius:50%;background:var(--orange);
-    box-shadow:0 0 12px rgba(255,154,31,1);
-    animation:blink 2s ease-in-out infinite;
-  }
-  .cd-days{
-    display:inline-flex;align-items:baseline;gap:clamp(14px,1.8vw,26px);
-    margin-bottom:18px;
-    animation:fadeUp 1.2s var(--ease) .5s backwards;
-    position:relative;
-  }
-  .cd-days-num{
-    font-family:var(--disp-en);
-    font-weight:900;font-variant-numeric:tabular-nums;
-    font-size:clamp(84px,11vw,132px);
-    line-height:.82;letter-spacing:-.045em;
-    color:var(--cream);
-    text-shadow:
-      0 4px 28px rgba(0,0,0,.75),
-      0 0 44px rgba(255,154,31,.28);
-    display:inline-block;
-    position:relative;
-  }
-  .cd-days-label{
-    font-family:var(--disp-en);font-weight:900;text-transform:uppercase;
-    font-size:clamp(20px,2.4vw,32px);letter-spacing:.24em;line-height:1;
-    color:var(--orange);
-    text-shadow:0 2px 12px rgba(0,0,0,.6);
-    padding-bottom:.22em;
-  }
-  .cd-ticker{
-    display:inline-flex;align-items:baseline;gap:10px;
-    font-family:var(--disp-en);
-    font-weight:900;font-variant-numeric:tabular-nums;
-    font-size:clamp(18px,2vw,26px);letter-spacing:.02em;
-    color:rgba(245,239,228,.9);
-    text-shadow:0 1px 10px rgba(0,0,0,.55);
-    margin-bottom:26px;
-    animation:fadeUp 1.2s var(--ease) .65s backwards;
-  }
-  .cd-ticker .c{color:var(--orange);opacity:.7;padding:0 2px}
-  .cd-ticker .tag{
-    margin-left:16px;
-    font-family:var(--body);
-    font-size:9.5px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
-    color:rgba(245,239,228,.5);
-  }
-  /* live tick shimmer on seconds change */
-  #cdS{transition:color .25s ease}
-  #cdS.tick{animation:sec-tick .5s var(--ease)}
-  @keyframes sec-tick{
-    0%{color:var(--orange);text-shadow:0 0 20px rgba(255,154,31,.9)}
-    100%{color:rgba(245,239,228,.9);text-shadow:0 1px 10px rgba(0,0,0,.55)}
-  }
-  /* huge days pulse on day change */
-  #cdD.tick{animation:day-pulse 1s var(--ease)}
-  @keyframes day-pulse{
-    0%{transform:scale(1);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 60px rgba(255,154,31,.35)}
-    35%{transform:scale(1.03);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 120px rgba(255,154,31,.85)}
-    100%{transform:scale(1);text-shadow:0 6px 40px rgba(0,0,0,.8),0 0 60px rgba(255,154,31,.35)}
-  }
-  .meta .brand{
-    font-family:var(--disp-en);
-    font-weight:900;letter-spacing:.06em;text-transform:uppercase;
-    font-size:clamp(18px,2.6vw,32px);
-    line-height:1.1;
-    color:var(--cream);
-    text-shadow:0 2px 12px rgba(0,0,0,.65);
-    animation:fadeUp 1.2s var(--ease) .55s backwards;
-  }
-  .meta .brand .accent{color:var(--orange)}
-  .meta .sub{
-    margin-top:14px;
-    font-family:var(--body);
-    font-size:clamp(14px,1.4vw,17px);font-weight:600;line-height:1.55;letter-spacing:.02em;
-    color:rgba(245,239,228,.9);
-    text-shadow:0 1px 10px rgba(0,0,0,.6);
-    animation:fadeUp 1.2s var(--ease) .75s backwards;
-  }
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
   /* ============================================
@@ -760,16 +759,19 @@
     .brand-bar .status .label{display:none}
     .scroll-hint{font-size:8.5px;letter-spacing:.28em}
     .word-soon{top:.62em}
-    .hero-sticky{padding:10vh 16px 4vh}
-    .hero-divider{padding:1.4vh 0}
-    .hero-divider .dv-line{flex-basis:min(120px,26vw)}
-    .meta .brand{font-size:14px;letter-spacing:.04em}
-    .meta .sub{font-size:12px;max-width:32ch;margin-left:auto;margin-right:auto}
-    .cd-kicker{font-size:10px;letter-spacing:.28em;margin-bottom:10px}
-    .cd-days-num{font-size:88px}
-    .cd-days-label{font-size:20px;letter-spacing:.2em}
-    .cd-ticker{font-size:15px;margin-bottom:16px}
-    .cd-ticker .tag{display:none}
+    .hero-sticky{padding:10vh 14px 4vh}
+    .poster{gap:12px}
+    .poster-mast{font-size:9.5px;letter-spacing:.28em;gap:12px}
+    .poster-mast .p-cross{width:10px;height:16px}
+    .poster-kicker{font-size:10px;letter-spacing:.26em}
+    .poster-days-num{font-size:160px}
+    .poster-days-label{font-size:26px;letter-spacing:.28em;padding-left:.4em}
+    .poster-date{font-size:24px;padding:0 .2em}
+    .poster-date-wrap{gap:12px}
+    .poster-details{font-size:14px;letter-spacing:.12em}
+    .poster-details-ko{font-size:12px}
+    .poster-ticker{font-size:15px;padding:8px 14px}
+    .poster-ticker .tag{display:none}
     .marquee{padding:20px 0}
     .marquee-track{gap:44px}
     .marquee-item{gap:44px}
@@ -794,7 +796,7 @@
 
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;animation-delay:0!important;transition-duration:.01ms!important}
-    .word .inner{opacity:1;transform:none}
+    .poster{opacity:1;transform:none}
     .hero-bg,.chapter-bg{transform:none}
     .rv{opacity:1;transform:none}
     .marquee-track{animation:none}
@@ -822,42 +824,45 @@
     <div class="hero-tint"></div>
     <img class="hero-mark" src="assets/emblem/icon-orange-tp.png" alt="">
 
-    <div class="title-wrap" aria-label="September 27, 2026">
-      <div class="title" aria-hidden="true">
-        <div class="word word-coming" id="wCom"><span class="inner">09.27</span></div>
-        <div class="word word-soon"   id="wSoon"><span class="inner">2026</span></div>
-      </div>
-    </div>
+    <div class="poster" id="poster">
 
-    <div class="hero-divider" aria-hidden="true">
-      <span class="dv-line"></span>
-      <svg class="dv-cross" viewBox="0 0 24 40" width="18" height="30" fill="currentColor" aria-hidden="true">
-        <path d="M10 0h4v12h10v4H14v24h-4V16H0v-4h10z"/>
-      </svg>
-      <span class="dv-line"></span>
+      <div class="poster-mast" aria-hidden="true">
+        <svg class="p-cross" viewBox="0 0 24 40" fill="currentColor"><path d="M10 0h4v12h10v4H14v24h-4V16H0v-4h10z"/></svg>
+        <span>Sanford Story Church · 스토리교회</span>
+        <svg class="p-cross" viewBox="0 0 24 40" fill="currentColor"><path d="M10 0h4v12h10v4H14v24h-4V16H0v-4h10z"/></svg>
+      </div>
+
+      <div class="poster-kicker">
+        <span class="live-dot"></span>
+        첫 예배까지 · Until Our First Gathering
+      </div>
+
+      <div class="poster-days" aria-label="Days until launch">
+        <span class="poster-days-num" id="cdD">0</span>
+        <span class="poster-days-label">Days</span>
+      </div>
+
+      <div class="poster-date-wrap">
+        <span class="p-line"></span>
+        <span class="poster-date">September 27 · 2026</span>
+        <span class="p-line"></span>
+      </div>
+
+      <div class="poster-details">Sunday 6:00 PM · Sanford, Florida</div>
+      <div class="poster-details-ko">플로리다 샌포드 · 스토리교회 창립예배</div>
+
+      <div class="poster-ticker" aria-label="Hours minutes seconds">
+        <span class="live-dot small"></span>
+        <span id="cdH">00</span><span class="c">:</span><span id="cdM">00</span><span class="c">:</span><span id="cdS">00</span>
+        <span class="tag">Hours · Minutes · Seconds</span>
+      </div>
+
     </div>
 
     <div class="reveal" id="reveal" aria-hidden="true">
       <img class="logo-lockup" src="assets/logo/logo-primary-on-navy-tp.png" alt="Sanford Story Church">
       <span class="kicker">Sunday · 6:00 PM · Sanford, FL</span>
       <h2>새로운 이야기가<br><span class="accent">샌포드</span>에서 시작됩니다.</h2>
-    </div>
-
-    <div class="meta" id="meta">
-      <div class="cd-kicker">
-        <span class="live-dot"></span>
-        첫 예배까지 · Until Our First Gathering
-      </div>
-      <div class="cd-days">
-        <span class="cd-days-num" id="cdD">0</span>
-        <span class="cd-days-label">Days</span>
-      </div>
-      <div class="cd-ticker" aria-label="Hours minutes seconds until launch">
-        <span id="cdH">00</span><span class="c">:</span><span id="cdM">00</span><span class="c">:</span><span id="cdS">00</span>
-        <span class="tag">HRS · MIN · SEC</span>
-      </div>
-      <div class="brand"><span class="accent">September 27, 2026</span> · Sunday 6:00 PM</div>
-      <div class="sub">플로리다 샌포드 · 스토리교회 창립예배</div>
     </div>
   </div>
 </section>
@@ -1047,11 +1052,9 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = matchMedia('(hover: none), (pointer: coarse)').matches;
 
-  const wCom = document.getElementById('wCom');
-  const wSoon = document.getElementById('wSoon');
-  const meta = document.getElementById('meta');
-  const bg   = document.getElementById('heroBg');
-  const hero = document.getElementById('hero');
+  const poster = document.getElementById('poster');
+  const bg     = document.getElementById('heroBg');
+  const hero   = document.getElementById('hero');
   const reveal = document.getElementById('reveal');
   const scrollHint = document.getElementById('scrollHint');
 
@@ -1090,28 +1093,20 @@
 
     const s = state.heroScroll;
 
-    const comX  =  state.px * 8;
-    const comY  =  state.py * 5;
-    const soonX = -state.px * 8;
-    const soonY = -state.py * 6;
+    // subtle poster parallax based on mouse
+    const posterX = state.px * 4;
+    const posterY = state.py * 3;
 
-    const scrollDistance = window.innerWidth * 0.55;
-    const scrollComX  = -s * scrollDistance;
-    const scrollSoonX =  s * scrollDistance;
-    const wordOpacity = Math.max(0, 1 - Math.min(s * 1.9, 1));
+    // poster scrolls up gently and fades as user scrolls
+    const posterOpacity = Math.max(0, 1 - Math.min(s * 1.9, 1));
+    const posterScrollY = -s * 60;
 
-    wCom .style.setProperty('--tx', (comX  + scrollComX)  + 'px');
-    wCom .style.setProperty('--ty', comY  + 'px');
-    wSoon.style.setProperty('--tx', (soonX + scrollSoonX) + 'px');
-    wSoon.style.setProperty('--ty', soonY + 'px');
-    wCom .style.opacity = wordOpacity;
-    wSoon.style.opacity = wordOpacity;
+    poster.style.setProperty('--tx', (posterX) + 'px');
+    poster.style.transform = `translate3d(${posterX}px, ${posterY + posterScrollY}px, 0)`;
+    poster.style.opacity = posterOpacity;
 
     if (s > 0.22) reveal.classList.add('is-visible');
     else reveal.classList.remove('is-visible');
-
-    meta.style.opacity = Math.max(0, 1 - s * 1.6);
-    meta.style.setProperty('--tx', (s * -14) + 'px');
 
     scrollHint.style.opacity = Math.max(0, 1 - s * 3);
 
