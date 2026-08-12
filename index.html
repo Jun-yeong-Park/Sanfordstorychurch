@@ -187,9 +187,9 @@
     gap:6px;
   }
   .reveal .logo-lockup{
-    width:min(600px,80vw);
+    width:min(440px,64vw);
     height:auto;display:block;
-    margin-bottom:36px;
+    margin-bottom:32px;
     filter:drop-shadow(0 6px 20px rgba(0,0,0,.45));
     animation:fadeUp 1s var(--ease) .1s backwards;
   }
@@ -249,26 +249,32 @@
     flex-wrap:wrap;justify-content:center;
   }
   .rc-num{
-    font-size:clamp(56px,min(7vw,10vh),110px);
+    font-size:clamp(72px,min(9vw,13vh),140px);
     color:var(--cream);
     text-shadow:0 4px 26px rgba(0,0,0,.8),0 0 46px rgba(255,154,31,.35);
   }
   .rc-label{
-    font-size:clamp(22px,min(2.8vw,3.6vh),38px);
+    font-size:clamp(26px,min(3.4vw,4.4vh),46px);
     color:var(--orange);letter-spacing:.18em;text-transform:uppercase;
     padding-bottom:.14em;
   }
   .rc-sep{
     color:rgba(245,239,228,.35);
-    font-size:clamp(26px,min(3.2vw,4.4vh),44px);
+    font-size:clamp(30px,min(3.8vw,5.2vh),52px);
     padding:0 4px;padding-bottom:.14em;
   }
   .rc-ticker{
-    font-size:clamp(24px,min(3vw,4vh),44px);
+    font-size:clamp(30px,min(3.8vw,5.2vh),56px);
     color:rgba(245,239,228,.9);
     padding-bottom:.14em;
   }
   .rc-ticker .c{color:var(--orange);opacity:.7;padding:0 1px}
+  .rc-note{
+    margin-top:10px;
+    font-family:var(--body);
+    font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+    color:rgba(245,239,228,.45);
+  }
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
@@ -731,7 +737,7 @@
     .hero-mark{width:min(160vw,900px)}
 
     .reveal{padding:0 20px;gap:4px}
-    .reveal .logo-lockup{width:min(420px,82vw);margin-bottom:24px}
+    .reveal .logo-lockup{width:min(320px,66vw);margin-bottom:22px}
     .reveal h2{font-size:34px;line-height:1.15}
     .reveal-details{font-size:11px;letter-spacing:.16em;margin-top:18px}
     .reveal-cd{
@@ -846,6 +852,7 @@
             <span id="cdH">00</span><span class="c">:</span><span id="cdM">00</span><span class="c">:</span><span id="cdS">00</span>
           </span>
         </div>
+        <div class="rc-note">EST 기준 · Eastern Time</div>
       </div>
     </div>
   </div>
@@ -890,10 +897,11 @@
     <h2 class="display rv rv-2">
       샌포드에는<br><span class="accent">이야기</span>가 있습니다.
     </h2>
-    <p class="body-copy body-lead rv rv-3">
+    <p class="body-manifesto rv rv-3">
       <b>그리고 당신에게도.</b><br>
-      하나님은 <em>지금도</em> 이 도시와, 당신의 삶에,<br>
-      이야기를 써 내려가고 계십니다.
+      하나님은 <em>지금도</em><br>
+      이 <b>도시</b>와, <b>당신의 삶</b>에,<br>
+      <em>이야기</em>를 써 내려가고 계십니다.
     </p>
   </div>
 </section>
@@ -914,7 +922,7 @@
       <b>하나님의 가장 <em>아름다운</em> 이야기</b>입니다.
     </p>
     <p class="body-manifesto rv rv-5" style="margin-top:28px">
-      우리는 <em>끊어진 옛 이야기</em>를 끝내고,<br>
+      우리는 <em>옛 이야기</em>를 끝내고,<br>
       그리스도 안에서 완전히 새로워진<br>
       '<b>하나님의 살아있는 편지</b>'로<br>
       <em>다시 태어났습니다.</em>
