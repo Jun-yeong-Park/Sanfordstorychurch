@@ -525,6 +525,21 @@
     padding:0 .12em;
   }
 
+  /* Manifesto body — enlarged, balanced, editorial line-breaks */
+  .body-manifesto{
+    font-family:var(--body);
+    font-size:clamp(19px,2.2vw,28px);
+    line-height:1.7;letter-spacing:-.008em;font-weight:500;
+    color:rgba(245,239,228,.94);
+    max-width:760px;margin:48px auto 0;
+    text-shadow:0 2px 14px rgba(0,0,0,.55);
+    text-wrap:balance;
+  }
+  .body-manifesto b{color:#fff;font-weight:800}
+  .body-manifesto em{
+    font-style:normal;color:var(--orange);font-weight:800;
+  }
+
   /* reveal-on-scroll */
   .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
   .rv.is-in{opacity:1;transform:none}
@@ -609,14 +624,14 @@
     color:var(--orange);padding-top:8px;
   }
   .pillars h3{
-    font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;
-    font-size:clamp(34px,4.6vw,58px);
-    line-height:1.02;color:var(--ink);
+    font-family:var(--disp-en);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;
+    font-size:clamp(38px,5vw,72px);
+    line-height:.98;color:var(--ink);
   }
   .pillars h3 small{
     display:block;
-    font-family:var(--disp-en);font-weight:900;text-transform:uppercase;letter-spacing:.01em;
-    font-size:clamp(14px,1.4vw,18px);color:var(--orange);margin-top:12px;
+    font-family:var(--disp-ko);font-weight:800;letter-spacing:-.02em;
+    font-size:clamp(17px,1.7vw,24px);color:var(--orange);margin-top:10px;
   }
   .pillars p{
     font-family:var(--body);
@@ -798,8 +813,8 @@
     .verse{font-size:14.5px}
     .pillars li{grid-template-columns:1fr;gap:14px;padding:34px 0}
     .pillars .pnum{padding-top:0;font-size:32px}
-    .pillars h3{font-size:30px}
-    .pillars h3 small{font-size:13px;margin-top:8px}
+    .pillars h3{font-size:36px}
+    .pillars h3 small{font-size:16px;margin-top:8px}
     .pillars p{padding-top:4px;font-size:15.5px;line-height:1.75}
     .signup{flex-direction:column}
     .signup button{padding:14px;justify-content:center}
@@ -944,8 +959,12 @@
     <h2 class="display rv rv-2">
       플로리다 샌포드에<br><span class="accent">새로운 교회</span>가<br>시작됩니다.
     </h2>
-    <p class="body-copy rv rv-3">
-      예수 그리스도를 중심에 두고, 은혜로 빚어지며, 이 도시에서 하나님의 이야기의 일부가 되고자 하는 신실한 공동체.
+    <p class="body-manifesto rv rv-3">
+      <b>예수 그리스도</b>를 중심에 두고,<br>
+      <em>은혜</em>로 빚어지며,<br>
+      이 도시에서 하나님의 이야기의<br>
+      <em>일부</em>가 되고자 하는<br>
+      <b>신실한 공동체.</b>
     </p>
   </div>
 </section>
@@ -960,22 +979,22 @@
     <ol class="pillars">
       <li class="rv rv-2">
         <span class="pnum">01</span>
-        <h3>그의 이야기<small>His Story</small></h3>
+        <h3>His Story<small>그의 이야기</small></h3>
         <p>복음은 우리를 구원하신 하나님의 위대한 이야기입니다. 모든 사역과 예배의 중심에 오직 예수 그리스도의 복음을 둡니다.</p>
       </li>
       <li class="rv rv-3">
         <span class="pnum">02</span>
-        <h3>살아있는 이야기<small>Living Story</small></h3>
+        <h3>Living Story<small>살아있는 이야기</small></h3>
         <p>우리는 단순한 관람객이 아닙니다. 우리를 새로이 하신 주님의 이야기를 삶으로 증거하는 살아있는 증인입니다.</p>
       </li>
       <li class="rv rv-4">
         <span class="pnum">03</span>
-        <h3>영성과 훈련<small>Spiritual Training</small></h3>
+        <h3>Spiritual Training<small>영성과 훈련</small></h3>
         <p>말씀과 기도를 통한 깊은 영성 훈련으로, 성도 한 사람 한 사람을 주님의 충성스러운 제자로 세웁니다.</p>
       </li>
       <li class="rv rv-5">
         <span class="pnum">04</span>
-        <h3>신실한 공동체<small>Faithful Community</small></h3>
+        <h3>Faithful Community<small>신실한 공동체</small></h3>
         <p>훈련된 성도들이 삶의 현장에서 그리스도의 성품과 복음을 선명하게 드러내는 신실한 공동체를 이룹니다.</p>
       </li>
     </ol>
@@ -1012,7 +1031,7 @@
       <a class="btn primary" href="#join">
         함께하고 싶어요 <span class="arrow">→</span>
       </a>
-      <a class="btn" href="mailto:hello@storychurchsanford.com?subject=함께%20기도합니다">
+      <a class="btn" href="mailto:junyeongpark96@gmail.com?subject=함께%20기도합니다">
         함께 기도해요 <span class="arrow">→</span>
       </a>
     </div>
@@ -1028,9 +1047,13 @@
     <p class="body-copy rv rv-3">
       모임, 런칭일, 앞으로의 이야기를 가장 먼저 전해드립니다.
     </p>
-    <form class="signup rv rv-4" id="signup" novalidate>
+    <form class="signup rv rv-4" id="signup"
+          action="https://formsubmit.co/junyeongpark96@gmail.com" method="POST" novalidate>
       <div class="fields">
         <input type="email" name="email" required placeholder="your@email.com" autocomplete="email">
+        <input type="hidden" name="_subject" value="[스토리교회] 뉴스레터 신청">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
         <button type="submit">이야기에 함께하기 <span>→</span></button>
       </div>
       <div class="msg">감사합니다. 곧 연락드릴게요.</div>
@@ -1229,13 +1252,25 @@
     apply();
   }
 
-  // Signup
+  // Signup — POST to formsubmit.co ajax endpoint (delivers to junyeongpark96@gmail.com)
   const form = document.getElementById('signup');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = form.querySelector('input[type=email]').value.trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
     form.classList.add('done');
+    try {
+      await fetch('https://formsubmit.co/ajax/junyeongpark96@gmail.com', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({
+          email,
+          _subject:'[스토리교회] 뉴스레터 신청',
+          _template:'table',
+          _captcha:'false'
+        })
+      });
+    } catch(_){}
   });
 })();
 </script>
