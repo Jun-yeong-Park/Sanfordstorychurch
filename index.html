@@ -186,38 +186,29 @@
     overflow:hidden;
     padding:.02em 0 .06em;
   }
+  /* WIPE REVEAL — photo alone first, then text sweeps in from left */
   .poster-headline .line .fill{
     display:inline-block;
-    transform:translateY(110%);
-    animation:hero-slide 1.4s var(--ease) forwards;
-    will-change:transform;
+    color:var(--cream);
+    clip-path:inset(0 100% -.1em 0);
+    animation:hero-wipe 1.4s cubic-bezier(.72,0,.28,1) forwards;
+    will-change:clip-path;
   }
-  .poster-headline .line:nth-child(1) .fill{animation-delay:.2s}
-  .poster-headline .line:nth-child(2) .fill{animation-delay:.42s}
-  @keyframes hero-slide{
-    0%{transform:translateY(110%)}
-    100%{transform:translateY(0)}
+  .poster-headline .line:nth-child(1) .fill{animation-delay:.75s}
+  .poster-headline .line:nth-child(2) .fill{animation-delay:1s}
+  @keyframes hero-wipe{
+    0%{clip-path:inset(0 100% -.1em 0)}
+    100%{clip-path:inset(0 0 -.1em 0)}
   }
 
-  /* STROKE REVEAL — start as outline, fill in after slide */
+  /* drift (post-entry gentle life) */
   .poster-headline .drift{
     display:inline-block;
-    color:transparent;
-    -webkit-text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
-    text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
-    animation:
-      stroke-fill 1.3s var(--ease) 1.55s forwards,
-      hero-drift 7s ease-in-out 3s infinite;
-    will-change:transform,color,-webkit-text-stroke-color;
+    animation:hero-drift 7s ease-in-out 3.4s infinite;
+    will-change:transform;
   }
   .poster-headline .line:nth-child(2) .drift{
-    animation:
-      stroke-fill 1.3s var(--ease) 1.75s forwards,
-      hero-drift-alt 7s ease-in-out 3.2s infinite;
-  }
-  @keyframes stroke-fill{
-    0%{color:transparent;-webkit-text-stroke-color:var(--cream)}
-    100%{color:var(--cream);-webkit-text-stroke-color:transparent}
+    animation:hero-drift-alt 7s ease-in-out 3.6s infinite;
   }
   @keyframes hero-drift{
     0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
@@ -230,17 +221,15 @@
     66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
   }
 
-  /* Sanford accent — stroke → orange fill, pulse, underline sweep */
+  /* Sanford — starts cream (revealed by wipe), warms to orange, then pulses */
   .poster-headline .accent{
-    color:transparent;
-    -webkit-text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
-    text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
+    color:var(--cream);
     position:relative;
     display:inline-block;
     animation:
-      accent-warm 1.6s var(--ease) 2s forwards,
-      accent-pulse 4s ease-in-out 3.9s infinite;
-    will-change:color,filter,-webkit-text-stroke-color;
+      accent-warm 1.4s var(--ease) 2.5s forwards,
+      accent-pulse 4s ease-in-out 4.4s infinite;
+    will-change:color,filter;
   }
   .poster-headline .accent::after{
     content:"";
@@ -249,7 +238,7 @@
     background:var(--orange);
     transform:scaleX(0);
     transform-origin:left center;
-    animation:sanford-underline 4s ease-in-out 2.6s infinite;
+    animation:sanford-underline 4.5s ease-in-out 3.3s infinite;
     box-shadow:0 0 12px rgba(255,154,31,.6);
     will-change:transform;
   }
@@ -260,9 +249,8 @@
     100%{transform:scaleX(0);transform-origin:right center}
   }
   @keyframes accent-warm{
-    0%{color:transparent;-webkit-text-stroke-color:var(--cream)}
-    50%{color:transparent;-webkit-text-stroke-color:var(--orange)}
-    100%{color:var(--orange);-webkit-text-stroke-color:transparent}
+    0%{color:var(--cream)}
+    100%{color:var(--orange)}
   }
   @keyframes accent-pulse{
     0%,100%{filter:drop-shadow(0 0 0 rgba(255,154,31,0))}
@@ -276,7 +264,7 @@
     line-height:1.1;
     color:rgba(245,239,228,.85);
     text-shadow:0 1px 10px rgba(0,0,0,.55);
-    animation:fadeUp 1.1s var(--ease) .5s backwards;
+    animation:fadeUp 1.1s var(--ease) 2.35s backwards;
     margin-top:6px;
   }
   .poster-headline-ko .accent{color:var(--orange)}
@@ -286,7 +274,7 @@
     display:flex;align-items:center;justify-content:center;gap:clamp(14px,2vw,32px);
     width:100%;max-width:1100px;
     margin-top:24px;
-    animation:fadeUp 1.1s var(--ease) .68s backwards;
+    animation:fadeUp 1.1s var(--ease) 2.5s backwards;
   }
   .poster-date-wrap .p-line{
     flex:1 1 auto;height:1px;
@@ -310,7 +298,7 @@
     font-size:clamp(13px,min(1.6vw,2.2vh),22px);line-height:1.2;
     color:rgba(245,239,228,.92);
     text-shadow:0 1px 10px rgba(0,0,0,.55);
-    animation:fadeUp 1.1s var(--ease) .78s backwards;
+    animation:fadeUp 1.1s var(--ease) 2.65s backwards;
   }
 
   /* ---- COUNTDOWN BLOCK ---- */
@@ -373,7 +361,7 @@
     font-size:clamp(12px,1.35vw,16px);letter-spacing:.02em;
     color:rgba(245,239,228,.7);
     text-shadow:0 1px 10px rgba(0,0,0,.55);
-    animation:fadeUp 1.1s var(--ease) 1.05s backwards;
+    animation:fadeUp 1.1s var(--ease) 2.85s backwards;
   }
 
   /* live tick shimmer on seconds change */
@@ -936,15 +924,9 @@
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;animation-delay:0!important;transition-duration:.01ms!important}
     .poster{opacity:1;transform:none}
-    .poster-headline .line .fill{transform:none}
-    .poster-headline .drift{
-      animation:none;color:var(--cream);
-      -webkit-text-stroke-color:transparent;
-    }
-    .poster-headline .accent{
-      color:var(--orange);
-      -webkit-text-stroke-color:transparent;
-    }
+    .poster-headline .line .fill{clip-path:none;animation:none}
+    .poster-headline .drift{animation:none}
+    .poster-headline .accent{color:var(--orange)}
     .poster-headline .accent::after{animation:none;transform:scaleX(1)}
     .hero-bg,.chapter-bg{transform:none}
     .rv{opacity:1;transform:none}
