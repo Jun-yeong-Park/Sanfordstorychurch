@@ -471,6 +471,8 @@
     overflow:hidden;
     border-top:1px solid rgba(20,16,10,.12);
     border-bottom:1px solid rgba(20,16,10,.12);
+    mask-image:linear-gradient(90deg,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);
   }
   .marquee-track{
     display:flex;gap:64px;
@@ -874,13 +876,29 @@
 
     .reveal .logo-lockup{width:min(360px,68vw);margin-bottom:22px}
     .reveal h2{font-size:36px;line-height:1.1}
-    .reveal-cd{margin-top:22px;padding:12px 14px;gap:8px}
-    .rc-kicker{font-size:14px;letter-spacing:.22em;gap:10px}
-    .rc-line{gap:10px;flex-wrap:wrap;justify-content:center}
+    .reveal-cd{
+      margin-top:22px;padding:12px 14px;gap:8px;
+      width:100%;max-width:none;box-sizing:border-box;
+      align-items:center;
+    }
+    .rc-kicker{
+      font-size:14px;letter-spacing:.22em;gap:10px;
+      text-align:center;
+    }
+    .rc-en{display:none}
+    .rc-line{
+      display:flex;width:100%;
+      flex-direction:row;flex-wrap:wrap;
+      justify-content:center;align-items:baseline;
+      gap:10px;
+    }
     .rc-num{font-size:68px}
     .rc-label{font-size:22px;letter-spacing:.14em}
     .rc-sep{display:none}
-    .rc-ticker{font-size:24px;flex-basis:100%}
+    .rc-ticker{
+      display:block;flex-basis:100%;width:100%;
+      text-align:center;font-size:24px;
+    }
 
     .marquee{padding:18px 0}
     .marquee-track{gap:36px}
@@ -988,7 +1006,7 @@
       <div class="reveal-cd" aria-label="Countdown to first gathering">
         <div class="rc-kicker">
           <span class="live-dot"></span>
-          첫 예배까지 · Until Our First Gathering
+          <span class="rc-ko">첫 예배까지</span><span class="rc-en"> · Until Our First Gathering</span>
         </div>
         <div class="rc-line">
           <span class="rc-num" id="cdD">0</span>
