@@ -9,9 +9,10 @@
 <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96.png">
 <link rel="apple-touch-icon" href="assets/emblem/icon-app-rounded.png">
 
-<link rel="preload" as="image" href="assets/photos/sanford1.jpg">
-<link rel="preload" as="image" href="assets/photos/sanford-sign.jpg">
 <link rel="preload" as="image" href="assets/photos/sanford-waterfront.jpg">
+<link rel="preload" as="image" href="assets/photos/sanford-clock.webp">
+<link rel="preload" as="image" href="assets/photos/sanford-park.webp">
+<link rel="preload" as="image" href="assets/photos/sanford1.jpg">
 <link rel="preload" as="image" href="assets/logo/logo-primary-on-navy-tp.png">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -362,12 +363,14 @@
     border-bottom:1px solid rgba(245,239,228,.18);
   }
   .rc-kicker{
-    display:inline-flex;align-items:center;gap:10px;
+    display:inline-flex;align-items:center;gap:12px;
     font-family:var(--body);
-    font-size:clamp(10.5px,1.15vw,13px);font-weight:700;letter-spacing:.36em;text-transform:uppercase;
+    font-size:clamp(15px,1.7vw,22px);font-weight:800;letter-spacing:.3em;text-transform:uppercase;
     color:var(--orange);
     text-shadow:0 1px 10px rgba(0,0,0,.55);
+    margin-bottom:4px;
   }
+  .rc-kicker .live-dot{width:9px;height:9px}
   .rc-line{
     display:inline-flex;align-items:baseline;gap:clamp(10px,1.6vw,20px);
     font-family:var(--disp-en);
@@ -596,7 +599,7 @@
   .rv-5{transition-delay:.48s}
 
   /* ---- CH 01 Sanford ---- */
-  #ch1 .chapter-bg{background-image:url('assets/photos/sanford-sign.jpg')}
+  #ch1 .chapter-bg{background-image:url('assets/photos/sanford-clock.webp')}
   #ch1 .display{font-size:clamp(56px,10vw,150px);line-height:.98}
 
   /* ---- Scripture ---- */
@@ -634,7 +637,7 @@
   .display.living{font-size:clamp(48px,7vw,100px);line-height:1}
 
   /* ---- CH 02 New Community ---- */
-  #ch2 .chapter-bg{background-image:url('assets/photos/sanford1.jpg')}
+  #ch2 .chapter-bg{background-image:url('assets/photos/sanford-park.webp')}
   #ch2 .chapter-tint{
     background:
       linear-gradient(180deg,rgba(30,20,10,.78),rgba(30,20,10,.55) 50%,rgba(20,14,8,.92)),
@@ -814,7 +817,7 @@
     .reveal .kicker{font-size:9.5px;letter-spacing:.36em;margin-bottom:16px}
     .reveal h2{font-size:36px;line-height:1.1}
     .reveal-cd{margin-top:22px;padding:12px 14px;gap:8px}
-    .rc-kicker{font-size:10px;letter-spacing:.28em;gap:8px}
+    .rc-kicker{font-size:14px;letter-spacing:.22em;gap:10px}
     .rc-line{gap:10px;flex-wrap:wrap;justify-content:center}
     .rc-num{font-size:68px}
     .rc-label{font-size:22px;letter-spacing:.14em}
