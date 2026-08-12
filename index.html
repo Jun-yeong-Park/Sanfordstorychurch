@@ -199,16 +199,25 @@
     100%{transform:translateY(0)}
   }
 
-  /* continuous drift — opposite phase per line for gentle life */
+  /* STROKE REVEAL — start as outline, fill in after slide */
   .poster-headline .drift{
     display:inline-block;
-    animation:hero-drift 7s ease-in-out infinite;
-    animation-delay:2.2s;
-    will-change:transform;
+    color:transparent;
+    -webkit-text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
+    text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
+    animation:
+      stroke-fill 1.3s var(--ease) 1.55s forwards,
+      hero-drift 7s ease-in-out 3s infinite;
+    will-change:transform,color,-webkit-text-stroke-color;
   }
   .poster-headline .line:nth-child(2) .drift{
-    animation-name:hero-drift-alt;
-    animation-delay:2.6s;
+    animation:
+      stroke-fill 1.3s var(--ease) 1.75s forwards,
+      hero-drift-alt 7s ease-in-out 3.2s infinite;
+  }
+  @keyframes stroke-fill{
+    0%{color:transparent;-webkit-text-stroke-color:var(--cream)}
+    100%{color:var(--cream);-webkit-text-stroke-color:transparent}
   }
   @keyframes hero-drift{
     0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
@@ -221,15 +230,17 @@
     66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
   }
 
-  /* Sanford accent — warm color, pulse glow, underline sweep */
+  /* Sanford accent — stroke → orange fill, pulse, underline sweep */
   .poster-headline .accent{
-    color:var(--cream);
+    color:transparent;
+    -webkit-text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
+    text-stroke:clamp(1.4px,.18vw,2.6px) var(--cream);
     position:relative;
     display:inline-block;
     animation:
-      accent-warm 1.4s var(--ease) 1.7s forwards,
-      accent-pulse 4s ease-in-out 3.4s infinite;
-    will-change:color,filter;
+      accent-warm 1.6s var(--ease) 2s forwards,
+      accent-pulse 4s ease-in-out 3.9s infinite;
+    will-change:color,filter,-webkit-text-stroke-color;
   }
   .poster-headline .accent::after{
     content:"";
@@ -249,8 +260,9 @@
     100%{transform:scaleX(0);transform-origin:right center}
   }
   @keyframes accent-warm{
-    0%{color:var(--cream)}
-    100%{color:var(--orange)}
+    0%{color:transparent;-webkit-text-stroke-color:var(--cream)}
+    50%{color:transparent;-webkit-text-stroke-color:var(--orange)}
+    100%{color:var(--orange);-webkit-text-stroke-color:transparent}
   }
   @keyframes accent-pulse{
     0%,100%{filter:drop-shadow(0 0 0 rgba(255,154,31,0))}
@@ -925,8 +937,14 @@
     *{animation-duration:.01ms!important;animation-delay:0!important;transition-duration:.01ms!important}
     .poster{opacity:1;transform:none}
     .poster-headline .line .fill{transform:none}
-    .poster-headline .drift{animation:none}
-    .poster-headline .accent{color:var(--orange)}
+    .poster-headline .drift{
+      animation:none;color:var(--cream);
+      -webkit-text-stroke-color:transparent;
+    }
+    .poster-headline .accent{
+      color:var(--orange);
+      -webkit-text-stroke-color:transparent;
+    }
     .poster-headline .accent::after{animation:none;transform:scaleX(1)}
     .hero-bg,.chapter-bg{transform:none}
     .rv{opacity:1;transform:none}
