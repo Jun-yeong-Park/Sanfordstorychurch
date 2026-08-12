@@ -179,8 +179,7 @@
     font-size:clamp(78px,min(14.5vw,20vh),260px);
     line-height:.85;
     color:var(--cream);
-    text-shadow:none;
-    filter:drop-shadow(0 3px 1px rgba(20,10,0,.55)) drop-shadow(0 12px 28px rgba(0,0,0,.35));
+    text-shadow:0 2px 0 rgba(20,10,0,.5),0 3px 6px rgba(0,0,0,.4);
     max-width:1400px;
   }
   .poster-headline .line{
@@ -227,15 +226,13 @@
     66%{transform:translate3d(-2px,3px,0) rotate(-.15deg)}
   }
 
-  /* Sanford — starts cream (revealed by wipe), warms to orange, then pulses */
+  /* Sanford — starts cream (revealed by wipe), warms to orange */
   .poster-headline .accent{
     color:var(--cream);
     position:relative;
     display:inline-block;
-    animation:
-      accent-warm 1.2s var(--ease) 2.1s forwards,
-      accent-pulse 4s ease-in-out 3.6s infinite;
-    will-change:color,filter;
+    animation:accent-warm 1.2s var(--ease) 2.1s forwards;
+    will-change:color;
   }
   .poster-headline .accent::after{
     content:"";
@@ -257,10 +254,6 @@
   @keyframes accent-warm{
     0%{color:var(--cream)}
     100%{color:var(--orange)}
-  }
-  @keyframes accent-pulse{
-    0%,100%{filter:drop-shadow(0 0 0 rgba(255,154,31,0))}
-    50%{filter:drop-shadow(0 0 22px rgba(255,154,31,.55))}
   }
 
 
