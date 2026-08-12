@@ -354,6 +354,51 @@
   }
   .reveal h2 .accent{color:var(--orange)}
 
+  /* Countdown inside the reveal */
+  .reveal-cd{
+    margin-top:38px;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    padding:18px 30px;
+    border-top:1px solid rgba(245,239,228,.18);
+    border-bottom:1px solid rgba(245,239,228,.18);
+  }
+  .rc-kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--body);
+    font-size:clamp(10.5px,1.15vw,13px);font-weight:700;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--orange);
+    text-shadow:0 1px 10px rgba(0,0,0,.55);
+  }
+  .rc-line{
+    display:inline-flex;align-items:baseline;gap:clamp(10px,1.6vw,20px);
+    font-family:var(--disp-en);
+    font-weight:900;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.01em;
+    color:var(--cream);
+    text-shadow:0 3px 18px rgba(0,0,0,.7);
+    flex-wrap:wrap;justify-content:center;
+  }
+  .rc-num{
+    font-size:clamp(56px,min(7vw,10vh),110px);
+    color:var(--cream);
+    text-shadow:0 4px 26px rgba(0,0,0,.8),0 0 46px rgba(255,154,31,.35);
+  }
+  .rc-label{
+    font-size:clamp(22px,min(2.8vw,3.6vh),38px);
+    color:var(--orange);letter-spacing:.18em;text-transform:uppercase;
+    padding-bottom:.14em;
+  }
+  .rc-sep{
+    color:rgba(245,239,228,.35);
+    font-size:clamp(26px,min(3.2vw,4.4vh),44px);
+    padding:0 4px;padding-bottom:.14em;
+  }
+  .rc-ticker{
+    font-size:clamp(24px,min(3vw,4vh),44px);
+    color:rgba(245,239,228,.9);
+    padding-bottom:.14em;
+  }
+  .rc-ticker .c{color:var(--orange);opacity:.7;padding:0 1px}
+
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
   /* ============================================
@@ -806,6 +851,13 @@
     .poster-date{font-size:30px;padding:0 .18em}
     .poster-details{font-size:12px;letter-spacing:.12em}
     .poster-details-ko{font-size:12px}
+    .reveal-cd{margin-top:24px;padding:14px 16px;gap:8px}
+    .rc-kicker{font-size:10px;letter-spacing:.28em;gap:8px}
+    .rc-line{gap:10px;flex-wrap:wrap;justify-content:center}
+    .rc-num{font-size:68px}
+    .rc-label{font-size:22px;letter-spacing:.14em}
+    .rc-sep{display:none}
+    .rc-ticker{font-size:24px;flex-basis:100%}
     .marquee{padding:20px 0}
     .marquee-track{gap:44px}
     .marquee-item{gap:44px}
@@ -889,6 +941,21 @@
       <img class="logo-lockup" src="assets/logo/logo-primary-on-navy-tp.png" alt="Sanford Story Church">
       <span class="kicker">Sunday · 6:00 PM · Sanford, FL</span>
       <h2>새로운 이야기가<br><span class="accent">샌포드</span>에서 시작됩니다.</h2>
+
+      <div class="reveal-cd" aria-label="Countdown to first gathering">
+        <div class="rc-kicker">
+          <span class="live-dot"></span>
+          첫 예배까지 · Until Our First Gathering
+        </div>
+        <div class="rc-line">
+          <span class="rc-num" id="cdD">0</span>
+          <span class="rc-label">Days</span>
+          <span class="rc-sep">·</span>
+          <span class="rc-ticker">
+            <span id="cdH">00</span><span class="c">:</span><span id="cdM">00</span><span class="c">:</span><span id="cdS">00</span>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
