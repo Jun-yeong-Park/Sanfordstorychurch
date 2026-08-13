@@ -686,17 +686,26 @@
     transition:transform .3s ease;
   }
   .recruit-card:hover .rc-arrow{transform:translateX(4px)}
-  .recruit-inquiry{
-    display:inline-flex;align-items:center;gap:8px;
-    margin-top:28px;
-    font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    color:rgba(245,239,228,.55);
-    transition:color .3s ease;
+  .recruit-card--inquiry .rc-num{font-family:var(--body);font-size:24px}
+  .recruit-card--inquiry .rc-title small{
+    color:rgba(245,239,228,.55);letter-spacing:.06em;text-transform:none;font-weight:600;
   }
-  .recruit-inquiry b{color:var(--cream);font-weight:800}
-  .recruit-inquiry .arrow{color:var(--orange);transition:transform .3s ease}
-  .recruit-inquiry:hover{color:var(--cream)}
-  .recruit-inquiry:hover .arrow{transform:translateX(4px)}
+  .inquiry-block{
+    margin:64px auto 0;max-width:520px;
+    display:flex;flex-direction:column;align-items:stretch;
+  }
+  .inquiry-label{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:20px;
+    font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+    color:rgba(245,239,228,.4);
+    justify-content:center;
+  }
+  .inquiry-label .line{
+    flex:1 1 auto;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(245,239,228,.22) 30%,rgba(245,239,228,.22) 70%,transparent);
+    max-width:120px;
+  }
   @media(max-width:640px){
     .recruit-card{padding:16px 22px;gap:12px}
     .recruit-card .rc-title small{display:block;margin-left:0;margin-top:5px;letter-spacing:.18em}
@@ -1049,9 +1058,14 @@
         <span class="rc-arrow">→</span>
       </a>
     </div>
-    <a class="recruit-inquiry rv rv-4" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%AC%B8%EC%9D%98">
-      그 외 궁금한 점은 <b>이메일로</b> <span class="arrow">→</span>
-    </a>
+    <div class="inquiry-block rv rv-4">
+      <div class="inquiry-label"><span class="line"></span>General Inquiry<span class="line"></span></div>
+      <a class="recruit-card recruit-card--inquiry" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%AC%B8%EC%9D%98">
+        <span class="rc-num">✉</span>
+        <span class="rc-title">그 외 문의사항 <small>junyeongpark96@gmail.com</small></span>
+        <span class="rc-arrow">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
