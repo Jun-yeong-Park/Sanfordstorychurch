@@ -686,6 +686,17 @@
     transition:transform .3s ease;
   }
   .recruit-card:hover .rc-arrow{transform:translateX(4px)}
+  .recruit-inquiry{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:28px;
+    font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(245,239,228,.55);
+    transition:color .3s ease;
+  }
+  .recruit-inquiry b{color:var(--cream);font-weight:800}
+  .recruit-inquiry .arrow{color:var(--orange);transition:transform .3s ease}
+  .recruit-inquiry:hover{color:var(--cream)}
+  .recruit-inquiry:hover .arrow{transform:translateX(4px)}
   @media(max-width:640px){
     .recruit-card{padding:16px 22px;gap:12px}
     .recruit-card .rc-title small{display:block;margin-left:0;margin-top:5px;letter-spacing:.18em}
@@ -1038,6 +1049,9 @@
         <span class="rc-arrow">→</span>
       </a>
     </div>
+    <a class="recruit-inquiry rv rv-4" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%AC%B8%EC%9D%98">
+      그 외 궁금한 점은 <b>이메일로</b> <span class="arrow">→</span>
+    </a>
   </div>
 </section>
 
