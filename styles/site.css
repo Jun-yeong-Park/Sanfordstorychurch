@@ -46,17 +46,34 @@ button{font:inherit;background:none;border:0;color:inherit;cursor:pointer}
 .bmark{
   display:inline-flex;align-items:center;gap:14px;
 }
-.crcna-mini{
-  display:inline-flex;align-items:center;
-  padding:6px 10px;
-  background:rgba(251,246,234,.88);
-  border-radius:6px;
-  transition:background .3s ease,transform .3s ease;
-  box-shadow:0 4px 14px rgba(0,0,0,.35);
+.brand-bar-divider{
+  display:inline-block;
+  width:1px;height:26px;
+  background:rgba(245,239,228,.22);
 }
-.crcna-mini:hover{background:var(--cream);transform:translateY(-1px)}
-.crcna-mini img{
-  height:20px;width:auto;display:block;
+.crcna-mini{
+  display:inline-flex;align-items:center;gap:9px;
+  opacity:.88;
+  transition:opacity .3s ease;
+}
+.crcna-mini:hover{opacity:1}
+.crcna-mini .mark{
+  height:22px;width:auto;display:block;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.4));
+}
+.crcna-mini .txt{
+  display:inline-flex;flex-direction:column;line-height:1.15;
+  font-family:var(--body);
+  color:var(--cream);
+  text-shadow:0 1px 8px rgba(0,0,0,.5);
+}
+.crcna-mini .txt small{
+  font-size:8.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(245,239,228,.55);
+}
+.crcna-mini .txt b{
+  font-size:11px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
+  margin-top:3px;
 }
 .bmark .emb{
   height:38px;width:auto;display:block;
@@ -817,8 +834,11 @@ footer.site .copyright{
   .bmark .word{font-size:10px;letter-spacing:.24em}
   .bmark .word small{font-size:8px;letter-spacing:.32em}
   .brand-bar-left{gap:10px}
-  .crcna-mini{padding:5px 8px}
-  .crcna-mini img{height:16px}
+  .brand-bar-divider{height:22px}
+  .crcna-mini{gap:7px}
+  .crcna-mini .mark{height:18px}
+  .crcna-mini .txt small{font-size:7.5px;letter-spacing:.28em}
+  .crcna-mini .txt b{font-size:9.5px;letter-spacing:.24em;margin-top:2px}
   .brand-bar-right{gap:14px}
   .lang-switch{font-size:10px;letter-spacing:.22em;gap:7px}
   .brand-bar .status{font-size:9px;letter-spacing:.24em}
