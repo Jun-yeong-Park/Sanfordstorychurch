@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 E: GRID</title>
+<style>
+body{background:var(--cream);color:var(--navy)}
+.board{min-height:100svh;display:grid;gap:1px;background:var(--hair-dark);
+  grid-template-columns:1fr;padding:var(--pad);
+  grid-template-areas:"mark" "date" "head" "when" "where" "dday" "cta";}
+.cell{background:var(--cream);padding:18px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.cell > .label{color:var(--orange-ink);margin:0}
+.cell .val{font-family:var(--kr);font-weight:800;font-size:1.15rem;letter-spacing:-.03em;margin:0}
+.cell .val small{display:block;font-family:var(--body);font-weight:600;font-size:12px;
+  letter-spacing:.08em;color:var(--navy-dim);margin-top:5px}
+[style*="mark"],.c-mark{grid-area:mark}
+.c-mark{flex-direction:row;align-items:center;justify-content:space-between;gap:var(--s2)}
+.c-mark .lock{display:flex;align-items:center;gap:10px}
+.c-mark img{width:28px}
+.c-mark b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.c-mark b i{font-style:normal;color:var(--orange-ink)}
+.c-mark .denom{color:var(--navy-dim);text-align:right}
+.c-date{grid-area:date;justify-content:center}
+.c-date .big{font-family:var(--display);font-size:clamp(3.6rem,12vw,8.5rem);line-height:.78;
+  letter-spacing:-.03em;margin:0}
+.c-date .big span{display:block;color:var(--orange-ink)}
+.c-head{grid-area:head;justify-content:flex-end}
+.c-head h1{font-family:var(--kr);font-weight:800;font-size:clamp(1.5rem,3.6vw,2.5rem);
+  line-height:1.16;letter-spacing:-.048em;margin:0}
+.c-head h1 mark{background:var(--orange);color:var(--navy);padding:0 .1em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.c-when{grid-area:when}.c-where{grid-area:where}
+.c-denom{display:none}
+.c-dday{grid-area:dday;background:var(--orange);color:var(--navy);justify-content:center}
+.c-dday > .label{color:var(--navy)}
+.c-dday .num{font-family:var(--display);font-size:clamp(3rem,9vw,5.6rem);line-height:.82;margin:0}
+.c-cta{grid-area:cta;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px}
+.c-cta .ig{margin-left:auto;color:var(--navy-dim);text-decoration:none}
+.c-cta .ig:hover{color:var(--navy)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:9px}
+.chips span{border:1px solid var(--hair-dark);padding:5px 10px;font-size:11px;font-weight:700;
+  letter-spacing:.1em;font-family:var(--kr)}
+@media(min-width:860px){
+  .board{grid-template-columns:1fr 1fr minmax(230px,.62fr);
+    grid-template-rows:auto minmax(0,1fr) auto auto;
+    grid-template-areas:
+      "mark mark  denomcell"
+      "date date  when"
+      "head head  where"
+      "cta  cta   dday";}
+  .c-mark .denom{display:none}
+  .c-denom{grid-area:denomcell;display:flex}
+  .cell{padding:22px}
+}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="cell c-mark">
+    <span class="lock"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i></b></span>
+    <span class="denom label">Member of CRCNA</span>
+  </div>
+  <div class="cell c-denom"><p class="label">Denomination</p><p class="val">CRCNA<small>Christian Reformed Church</small></p>
+    <div class="chips"><span>개혁교회</span><span>Since 1857</span></div></div>
+  <div class="cell c-date"><p class="label">First Gathering</p>
+    <p class="big mono">09.27<span>2026</span></p></div>
+  <div class="cell c-head">
+    <h1 class="kr">하나님의 이야기가<br><mark>당신의 삶</mark>에서<br>시작됩니다.</h1></div>
+  <div class="cell c-when"><p class="label">Service</p><p class="val">주일 오후 6시<small>SUNDAY 6:00 PM · EST</small></p>
+    <div class="chips"><span>컨템포러리 찬양</span><span>캐주얼</span></div></div>
+  <div class="cell c-where"><p class="label">Location</p><p class="val">Sanford, FL<small>SEMINOLE COUNTY</small></p>
+    <div class="chips"><span>예배 후 식탁 교제</span></div></div>
+  <div class="cell c-dday"><p class="label">Countdown</p><p class="num mono" id="dday">D–23</p></div>
+  <div class="cell c-cta">
+    <a class="btn btn-navy" href="#">처음 오시나요? →</a>
+    <a class="btn btn-ghost-dark" href="#">교회 소개</a>
+    <a class="ig label" href="https://instagram.com/sundayproject_fl" target="_blank" rel="noopener">@sundayproject_fl →</a>
+  </div>
+</div>
+<a class="study" href="index.html"><b>E</b> GRID — 히어로 시안 · 목록으로</a>
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('dday').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

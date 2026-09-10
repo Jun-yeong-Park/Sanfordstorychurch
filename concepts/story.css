@@ -1,0 +1,660 @@
+/* Structure and genre are unchanged from concept O.
+   Palette and type are back inside the brand system: tokens.css colours only,
+   Bebas Neue for display numerals, Montserrat for labels, Pretendard for Korean.
+   #FF9A1F is used unmodified: it is only ever set on navy or used as a fill,
+   never as text on cream (that pairing is 1.87:1). */
+:root{
+  --navy:#0F1E34; --orange:#FF9A1F; --cream:#F4F0E6; --stone:#D7D9DD;
+  --navy-dim:#4A5768;    /* muted ink on cream — 6.4:1 */
+  --grid:rgba(15,30,52,.13); --grid-2:rgba(15,30,52,.26);
+  --display:"Bebas Neue",sans-serif;
+  --body:"Montserrat","Pretendard Variable",Pretendard,sans-serif;
+  --kr:"Pretendard Variable",Pretendard,"Montserrat",sans-serif;
+  --pad:clamp(16px,3.4vw,38px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--navy);font-family:var(--body);
+  word-break:keep-all;overflow-wrap:anywhere;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tnum{font-variant-numeric:tabular-nums}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.10em;text-transform:uppercase}
+
+
+/* the survey sheet */
+.grid{position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid-2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
+  background-size:26px 26px,26px 26px,130px 130px,130px 130px}
+
+.plot{position:absolute;inset:0;width:100%;height:100%}
+.plot .water{fill:rgba(15,30,52,.075);stroke:none}
+.plot .shore{fill:none;stroke:rgba(15,30,52,.30);stroke-width:1.6}
+/* road weight follows road class, the way a real chart ranks them */
+.plot .rd-h{fill:none;stroke:rgba(15,30,52,.52);stroke-width:3.4;stroke-linecap:round}
+.plot .rd-a{fill:none;stroke:rgba(15,30,52,.30);stroke-width:1.8;stroke-linecap:round}
+/* no street address yet — a dashed radius says "somewhere in here", which is true,
+   where a dropped pin would claim a corner we cannot name */
+.approxarea{position:absolute;left:74.58%;top:50.73%;transform:translate(-50%,-50%);
+  width:clamp(128px,17vmax,215px);aspect-ratio:1;border-radius:50%;
+  border:1.6px dashed var(--orange);background:rgba(255,154,31,.10)}
+/* brand-guide 13 asks for a flowing path standing for the story. Here it carries a
+   real fact: the I-4 corridor the plan names as the reason for this region. */
+.plot .i4{fill:none;stroke:var(--orange);stroke-width:5;stroke-linecap:round}
+.plot .i4-halo{fill:none;stroke:var(--cream);stroke-width:12;stroke-linecap:round}
+
+/* markers live in HTML so the labels never stretch with the map */
+.markers{position:absolute;inset:0;z-index:2;pointer-events:none}
+.town{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.town .d{width:7px;height:7px;border-radius:50%;background:var(--navy);flex:none;
+  box-shadow:0 0 0 3px var(--cream)}
+.town .l{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--navy-dim);text-shadow:0 0 4px var(--cream),0 0 8px var(--cream)}
+.town.flip{flex-direction:row-reverse}
+
+.lakelabel{position:absolute;transform:translate(-50%,-50%);font-size:10px;font-weight:700;
+  letter-spacing:.10em;text-transform:uppercase;color:var(--navy-dim);opacity:.85}
+
+/* edge rulers — the frame reads as a chart, not a webpage */
+.ruler{position:absolute;display:flex;color:var(--navy-dim);font-size:9px;
+  font-weight:600;letter-spacing:.1em}
+.ruler.x{top:0;left:0;right:0;height:22px;align-items:center;
+  border-bottom:1px solid var(--grid-2);background:rgba(244,240,230,.86)}
+.ruler.y{top:0;bottom:0;left:0;width:24px;flex-direction:column;justify-content:space-between;
+  align-items:center;padding:26px 0 12px;border-right:1px solid var(--grid-2);
+  background:rgba(244,240,230,.86)}
+.ruler.x span{flex:1;padding-left:6px;border-left:1px solid var(--grid-2)}
+.ruler.y span{writing-mode:vertical-rl}
+
+/* the pin — the emblem itself, on the church's real coordinates */
+.pin{position:absolute;left:74.58%;top:50.73%;transform:translate(-50%,-100%);z-index:4;text-align:center}
+.pin .tip{display:inline-block;background:var(--navy);color:var(--orange);
+  margin:0 0 8px;padding:5px 9px;border-radius:4px;white-space:nowrap}
+.pin .mark{width:34px;margin:0 auto;position:relative;z-index:2}
+.pin .ping{position:absolute;left:50%;top:0;width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--orange);transform:translate(-50%,0);opacity:0;
+  animation:ping 3.6s cubic-bezier(.2,.7,.3,1) infinite}
+.pin .wrap{position:relative}
+@keyframes ping{0%{opacity:.5;transform:translate(-50%,0) scale(1)}
+  70%,100%{opacity:0;transform:translate(-50%,0) scale(3.4)}}
+.pin .stem{width:1px;height:54px;background:var(--navy);margin:0 auto;opacity:.55}
+
+/* legend */
+.legend{position:absolute;right:var(--pad);top:calc(22px + var(--pad));z-index:4;text-align:right;
+  color:var(--navy-dim);line-height:1.95}
+.legend b{display:block;color:var(--navy)}
+.legend .coord{font-family:var(--display);font-size:19px;letter-spacing:.04em;color:var(--navy);
+  display:block;margin-top:4px}
+
+/* the field card — every human-readable thing lives here, off-centre by design */
+.card{position:absolute;left:calc(24px + var(--pad));bottom:var(--pad);z-index:4;
+  width:min(92vw - var(--pad),28rem);background:var(--cream);
+  border:1.5px solid var(--navy);border-radius:4px;padding:clamp(16px,3vw,26px)}
+.card .head{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  color:var(--navy-dim);padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--grid-2)}
+.card .dday{background:var(--orange);color:var(--navy);font-family:var(--display);
+  font-size:17px;line-height:1;letter-spacing:.04em;padding:5px 9px 3px;border-radius:4px}
+.card h2{font-family:var(--kr);font-weight:800;font-size:clamp(1.25rem,3.6vw,1.8rem);
+  line-height:1.45;letter-spacing:-.04em;margin:0}
+.card h2 mark{background:var(--orange);color:var(--navy);padding:0 .1em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.card dl{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:13px}
+.card dt{color:var(--navy-dim);padding-top:3px}
+.card dd{margin:0;font-family:var(--kr);font-weight:700;letter-spacing:-.02em}
+.card dd .en{font-family:var(--display);font-size:15px;letter-spacing:.04em;color:var(--navy-dim);
+  margin-left:6px}
+.card .go{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--kr);
+  font-weight:800;font-size:14px;letter-spacing:-.02em;text-decoration:none;
+  background:var(--orange);color:var(--navy);padding:13px 20px;border-radius:4px;
+  transition:background .18s,color .18s}
+.card .go:hover{background:var(--navy);color:var(--cream)}
+
+@media (max-width:700px){
+  /* The map is a small framed plate now, not a full screen with a card on top of it,
+     so every dodge those overrides performed is obsolete. What it needs instead is
+     furniture scaled to a 343px-wide box. */
+  .mapbox .town .l{font-size:8px;letter-spacing:.08em}
+  .mapbox .town .d{width:5px;height:5px;box-shadow:0 0 0 2px var(--cream)}
+  .mapbox .shield{font-size:11px;padding:3px 5px 2px;border-width:1px}
+  .mapbox .lakelabel{font-size:8px;letter-spacing:.12em;top:17%}
+  .mapbox .approxnote{font-size:8.5px}
+  .mapbox .pin .tip{font-size:9px;padding:3px 6px}
+  .mapbox .pin .mark{width:24px}
+  .mapbox .pin .stem{height:32px}
+  .mapbox .ruler{font-size:7px}
+  .mapbox .ruler.x{height:16px}
+  .mapbox .ruler.y{width:17px;padding:19px 0 8px}
+  .mapbox .legend{display:none}          /* too dense to read at this size */
+  .mapbox .approxarea{width:96px}
+}
+
+@media (prefers-reduced-motion:reduce){ .pin .ping{animation:none;opacity:.28} }
+
+/* ============================================================
+   Below the hero this stops being a chart and becomes a page to read.
+   Body copy is 16-17px / 1.95 with a Korean measure under 42 characters;
+   the survey language survives only as section numbering, the orange
+   story line, and the field-card border. Sections alternate navy/cream
+   per CLAUDE.md so no single ground runs the whole page.
+   ============================================================ */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;padding:11px var(--pad);
+  background:rgba(244,240,230,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(15,30,52,.18);box-shadow:0 2px 0 var(--orange);
+  transition:transform .28s ease}
+.bar a{text-decoration:none}
+.bar .brand{display:flex;align-items:center;gap:9px;color:var(--navy)}
+.bar .brand img{width:24px}
+.bar .brand b{font-family:var(--display);font-size:18px;letter-spacing:.05em;font-weight:400}
+.bar nav{display:none;gap:20px;font-size:12px;font-weight:600;letter-spacing:.02em}
+.bar nav a{color:var(--navy-dim);font-family:var(--kr)}
+.bar nav a:hover{color:var(--navy)}
+.bar .cta{background:var(--orange);color:var(--navy);font-family:var(--kr);font-weight:800;
+  font-size:13px;padding:9px 15px;border-radius:4px}
+.bar .cta:hover{background:var(--cream)}
+@media(min-width:900px){.bar nav{display:flex}}
+
+section.band{position:relative;padding-block:clamp(3.5rem,9vw,6.5rem)}
+.band.dark{background:var(--navy);color:var(--cream)}
+.band.light{background:var(--cream);color:var(--navy)}
+.band.accent{background:var(--orange);color:var(--navy)}
+.band .inner{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+/* the survey grid stays, one notch quieter, so the page still feels like the sheet */
+/* The survey grid is the page's language, not just the map's. Two levels, the same
+   26/130 rhythm the chart uses: the fine line gives the graph-paper read, the major
+   line gives the sheet its structure. Kept far lighter than the map's own grid —
+   this sits under running text, and the copy has to win. */
+.band.light::before,.band.dark::before,.hero-copy::before,.band.accent::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--gf) 1px,transparent 1px),
+    linear-gradient(90deg,var(--gf) 1px,transparent 1px),
+    linear-gradient(var(--gm) 1px,transparent 1px),
+    linear-gradient(90deg,var(--gm) 1px,transparent 1px);
+  background-size:26px 26px,26px 26px,130px 130px,130px 130px}
+.band.light::before{--gf:rgba(15,30,52,.045);--gm:rgba(15,30,52,.10)}
+.band.dark::before{--gf:rgba(244,240,230,.045);--gm:rgba(244,240,230,.10)}
+.band.accent::before{--gf:rgba(15,30,52,.05);--gm:rgba(15,30,52,.11)}
+.band.accent{position:relative}
+.band.accent .inner{position:relative;z-index:1}
+
+/* a ruled edge along the top of every band, the way a chart sheet is trimmed */
+.band::after{content:"";position:absolute;left:0;right:0;top:0;height:9px;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,var(--tick) 0 1px,transparent 1px 26px)}
+.band.light::after{--tick:rgba(15,30,52,.20)}
+.band.dark::after{--tick:rgba(244,240,230,.20)}
+.band.accent::after{--tick:rgba(15,30,52,.24)}
+.band .inner{position:relative;z-index:1}
+
+.sheet{display:flex;align-items:baseline;gap:12px;margin:0 0 clamp(18px,3vw,28px);
+  font-size:13px;font-weight:700;letter-spacing:.04em}
+.sheet .no{font-family:var(--display);font-size:26px;letter-spacing:.04em;line-height:1}
+.dark .sheet{color:rgba(244,240,230,.62)}
+.dark .sheet .no{color:var(--orange)}
+.light .sheet{color:var(--navy-dim)}
+/* the muted ink is only 3.47:1 on orange — the accent band takes full navy */
+.accent .sheet{color:var(--navy)}
+.light .sheet .no,.accent .sheet .no{color:var(--navy)}
+.sheet .tick{flex:1;height:1px;max-width:140px}
+.dark .sheet .tick{background:rgba(244,240,230,.24)}
+.light .sheet .tick,.accent .sheet .tick{background:rgba(15,30,52,.22)}
+
+h2.big{font-family:var(--kr);font-weight:800;font-size:clamp(1.75rem,4.4vw,2.9rem);
+  line-height:1.28;letter-spacing:-.042em;margin:0;max-width:20ch}
+h2.big mark{background:var(--orange);color:var(--navy);padding:0 .1em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dark h2.big mark{background:var(--orange);color:var(--navy)}
+
+/* the reading sizes — deliberately not the chart's label sizes */
+.read{font-family:var(--kr);font-size:clamp(16px,1.55vw,17.5px);line-height:1.95;
+  letter-spacing:-.015em;max-width:42ch;margin:clamp(16px,2.4vw,24px) 0 0}
+.dark .read{color:rgba(244,240,230,.82)}
+.light .read{color:#3C4756}
+.read b{font-weight:700}
+.dark .read b{color:var(--cream)}
+.light .read b{color:var(--navy)}
+.read.wide{max-width:52ch}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--kr);font-weight:800;
+  font-size:15px;letter-spacing:-.02em;text-decoration:none;padding:14px 22px;border-radius:4px;
+  border:1px solid transparent;transition:background .18s,color .18s,border-color .18s}
+.btn.solid{background:var(--orange);color:var(--navy)}
+.dark .btn.solid:hover{background:var(--cream)}
+.light .btn.solid:hover,.accent .btn.solid:hover{background:var(--navy);color:var(--cream)}
+.btn.line{border-color:currentColor}
+.dark .btn.line:hover{background:var(--cream);color:var(--navy);border-color:var(--cream)}
+.light .btn.line:hover{background:var(--navy);color:var(--cream)}
+.accent .btn.solid{background:var(--navy);color:var(--cream)}
+.accent .btn.solid:hover{background:var(--cream);color:var(--navy)}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(20px,3vw,30px)}
+
+/* 02 — the three verbs, read as a chart legend */
+.legendkeys{display:grid;gap:1px;margin-top:clamp(26px,4vw,40px);
+  background:rgba(244,240,230,.18);border:1px solid rgba(244,240,230,.18)}
+.legendkeys div{background:var(--navy);color:var(--cream);padding:clamp(18px,2.6vw,26px)}
+.legendkeys .key{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.legendkeys .swatch{width:13px;height:13px;background:var(--orange);flex:none}
+.legendkeys .n{font-family:var(--display);font-size:19px;color:var(--orange);letter-spacing:.04em}
+.legendkeys .en{font-family:var(--display);font-size:clamp(1.5rem,3vw,2rem);line-height:1;
+  letter-spacing:.03em;display:block;color:var(--cream)}
+.legendkeys .ko{font-family:var(--kr);font-weight:700;font-size:15px;letter-spacing:-.02em;
+  color:rgba(244,240,230,.82);margin-top:9px;display:block}
+@media(min-width:760px){.legendkeys{grid-template-columns:repeat(3,1fr)}}
+
+/* 03 — the four stages plotted along the story line */
+.route{margin-top:clamp(30px,5vw,48px);position:relative}
+.route .line{position:absolute;left:9px;top:8px;bottom:8px;width:2.4px;background:var(--orange)}
+.route ol{list-style:none;margin:0;padding:0;display:grid;gap:clamp(24px,3.4vw,34px)}
+.route li{position:relative;padding-left:44px}
+.route .dot{position:absolute;left:0;top:4px;width:20px;height:20px;border-radius:50%;
+  background:var(--cream);border:2.5px solid var(--navy)}
+.route .dot::after{content:"";position:absolute;inset:3.5px;border-radius:50%;background:var(--orange)}
+.route .n{font-family:var(--display);font-size:15px;letter-spacing:.1em;color:var(--navy-dim);display:block}
+.route h3{font-family:var(--display);font-size:clamp(1.4rem,3vw,1.9rem);line-height:1;margin:5px 0 0;
+  font-weight:400;letter-spacing:.02em}
+.route h3 span{display:block;font-family:var(--kr);font-weight:800;font-size:.6em;
+  letter-spacing:-.03em;margin-top:8px}
+.route p{font-family:var(--kr);font-size:16px;line-height:1.9;letter-spacing:-.015em;
+  color:#3C4756;margin:12px 0 0;max-width:44ch}
+@media(min-width:900px){
+  .route .line{left:0;right:0;top:9px;bottom:auto;width:auto;height:2.4px}
+  .route ol{grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.4vw,30px)}
+  .route li{padding-left:0;padding-top:44px}
+  .route .dot{top:0}
+}
+
+/* 04 — the service, read as three acts on a clock */
+.acts{display:grid;gap:1px;margin-top:clamp(26px,4vw,40px);
+  background:rgba(244,240,230,.18);border:1px solid rgba(244,240,230,.18)}
+.acts article{background:var(--navy);padding:clamp(18px,2.6vw,26px)}
+.acts .when{font-family:var(--display);font-size:17px;letter-spacing:.06em;color:var(--orange)}
+.acts h3{font-family:var(--display);font-size:clamp(1.45rem,3vw,1.95rem);line-height:1;
+  margin:8px 0 0;font-weight:400;letter-spacing:.02em}
+.acts .ko{font-family:var(--kr);font-weight:700;font-size:15px;letter-spacing:-.025em;margin:12px 0 0}
+.acts p{font-family:var(--kr);font-size:15.5px;line-height:1.9;letter-spacing:-.015em;
+  color:rgba(244,240,230,.78);margin:10px 0 0}
+@media(min-width:820px){.acts{grid-template-columns:repeat(3,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(20px,3vw,28px)}
+.chips span{font-family:var(--kr);font-weight:700;font-size:13.5px;letter-spacing:-.02em;
+  padding:8px 14px;border-radius:4px}
+.dark .chips span{border:1px solid rgba(244,240,230,.28)}
+.dark .chips span.on{background:var(--orange);color:var(--navy);border-color:var(--orange)}
+
+/* field cards — the hero's frame, reused for real content */
+.cards{display:grid;gap:14px;margin-top:clamp(26px,4vw,40px)}
+.cards article{border:1.5px solid var(--navy);border-radius:4px;padding:clamp(18px,2.6vw,24px);
+  display:flex;flex-direction:column;gap:9px;background:var(--cream)}
+.cards .tag{display:flex;align-items:center;gap:9px;font-family:var(--display);font-size:19px;
+  letter-spacing:.05em;color:var(--navy)}
+.cards .tag i{width:9px;height:9px;background:var(--orange);font-style:normal;flex:none}
+.cards h3{font-family:var(--kr);font-weight:800;font-size:1.2rem;letter-spacing:-.035em;margin:0}
+.cards h3 small{display:block;font-family:var(--display);font-weight:400;font-size:.86rem;
+  letter-spacing:.06em;color:var(--navy-dim);margin-top:5px}
+.cards p{font-family:var(--kr);font-size:15.5px;line-height:1.9;letter-spacing:-.015em;
+  color:#3C4756;margin:0}
+.cards .foot{margin-top:auto;padding-top:12px;font-family:var(--kr);font-size:13px;
+  font-weight:600;letter-spacing:-.01em;color:var(--navy-dim)}
+@media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.cards.four{grid-template-columns:repeat(4,1fr)}}
+
+/* 06 — visit */
+.visit{display:grid;gap:clamp(30px,4vw,48px);margin-top:clamp(24px,3.4vw,36px)}
+.visit > div:first-child{min-width:0}
+@media(min-width:900px){.visit{grid-template-columns:1.05fr .95fr}}
+.spec{margin:0;border-top:1px solid rgba(244,240,230,.22)}
+.spec div{display:grid;grid-template-columns:6.5rem 1fr;gap:14px;padding:15px 0;
+  border-bottom:1px solid rgba(244,240,230,.22)}
+.spec dt{font-size:12.5px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--orange);padding-top:5px}
+.spec dd{margin:0;font-family:var(--kr);font-size:16px;font-weight:700;line-height:1.7;letter-spacing:-.02em}
+.spec dd small{display:block;font-weight:400;font-size:14.5px;color:rgba(244,240,230,.72);
+  margin-top:5px;line-height:1.8}
+.pending{border:1px dashed rgba(244,240,230,.34);border-radius:4px;padding:15px 18px;
+  margin-top:20px;font-family:var(--kr);font-size:14.5px;line-height:1.85;color:rgba(244,240,230,.78)}
+.pending b{display:block;font-family:var(--body);color:var(--orange);font-size:12.5px;font-weight:700;
+  letter-spacing:.10em;text-transform:uppercase;margin-bottom:7px}
+.weeks{display:grid;gap:12px}
+.weeks article{border:1px solid rgba(244,240,230,.22);border-radius:4px;padding:clamp(16px,2.4vw,22px)}
+.weeks .w{font-family:var(--display);font-size:16px;letter-spacing:.08em;color:var(--orange)}
+.weeks h3{font-family:var(--kr);font-weight:800;font-size:1.1rem;letter-spacing:-.03em;margin:7px 0 9px}
+.weeks p{font-family:var(--kr);font-size:15.5px;line-height:1.9;letter-spacing:-.015em;
+  color:rgba(244,240,230,.78);margin:0}
+
+/* 07 — people, framed as survey plates */
+.people{display:grid;gap:clamp(20px,3vw,28px);margin-top:clamp(26px,4vw,40px)}
+@media(min-width:760px){.people{grid-template-columns:repeat(3,1fr)}}
+.people.one{grid-template-columns:1fr;max-width:420px}
+@media(min-width:760px){
+  .people.one{grid-template-columns:minmax(0,260px) 1fr;max-width:760px;
+    gap:clamp(24px,4vw,40px);align-items:center}
+  .people.one figure{display:contents}
+}
+.people figure{margin:0}
+.people img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;
+  border:1.5px solid var(--navy);border-radius:4px;background:#E7E1D4}
+.people .plate{display:flex;gap:10px;margin-top:10px;font-size:12.5px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--navy-dim)}
+.people .plate b{color:var(--navy)}
+.people h3{font-family:var(--kr);font-weight:800;font-size:1.2rem;letter-spacing:-.035em;margin:9px 0 0}
+.people h3 span{display:block;font-family:var(--body);font-weight:600;font-size:12.5px;
+  letter-spacing:.06em;color:var(--navy-dim);margin-top:4px}
+.people p{font-family:var(--kr);font-size:15.5px;line-height:1.9;letter-spacing:-.015em;
+  color:#3C4756;margin:10px 0 0}
+
+/* 08 — join */
+.joins{display:grid;gap:12px;margin-top:clamp(24px,3.4vw,34px)}
+@media(min-width:760px){.joins{grid-template-columns:repeat(2,1fr)}}
+.joins a{display:flex;align-items:center;gap:14px;background:var(--cream);border:1.5px solid var(--navy);
+  border-radius:4px;padding:17px 20px;text-decoration:none;color:var(--navy);
+  transition:background .18s,color .18s,transform .18s}
+.joins a:hover,.joins a:focus-visible{background:var(--navy);color:var(--cream);transform:translateX(3px)}
+.joins .n{font-family:var(--display);font-size:1.35rem;letter-spacing:.06em;flex:none;width:2em}
+.joins .t{flex:1;font-family:var(--kr);font-weight:800;font-size:1.05rem;letter-spacing:-.03em}
+.joins .t small{display:block;font-weight:500;font-size:13.5px;margin-top:3px;letter-spacing:-.01em;opacity:.72}
+.joins .ar{font-size:1.15rem}
+
+/* footer */
+footer.site{background:var(--navy);color:rgba(244,240,230,.72);
+  padding-block:clamp(3rem,6vw,4.5rem);border-top:2px solid var(--orange)}
+footer.site .inner{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.fgrid{display:grid;gap:clamp(24px,3.4vw,36px)}
+@media(min-width:820px){.fgrid{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.fgrid h4{font-size:12.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--orange);margin:0 0 11px}
+.fgrid ul{list-style:none;margin:0;padding:0;font-family:var(--kr);font-size:15px;line-height:2.05}
+.fgrid a{text-decoration:none}
+.fgrid a:hover{color:var(--cream)}
+.fgrid .logo{width:min(250px,60vw);margin-bottom:16px}
+.crcna{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(28px,4vw,40px);
+  padding-top:clamp(20px,3vw,28px);border-top:1px solid rgba(244,240,230,.18)}
+.crcna img{width:150px;background:var(--cream);padding:11px;border-radius:4px}
+.crcna p{font-family:var(--kr);font-size:15px;line-height:1.9;letter-spacing:-.015em;margin:0;max-width:52ch}
+.crcna a{color:var(--orange);font-weight:700;white-space:nowrap}
+.legal{margin-top:clamp(22px,3vw,30px);padding-top:16px;border-top:1px solid rgba(244,240,230,.18);
+  display:flex;flex-wrap:wrap;gap:6px 22px;font-size:12.5px;letter-spacing:.1em}
+
+/* Content is visible by default. The reveal is opt-in and only ever applied by
+   script that has already confirmed it can finish the job — otherwise a failed
+   IntersectionObserver, a JS error, or a no-JS reader loses the whole page body. */
+.rv{opacity:1;transform:none}
+.js-reveal .rv{opacity:0;transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.js-reveal .rv.in{opacity:1;transform:none}
+.js-reveal .rv2{transition-delay:.08s}
+.js-reveal .rv3{transition-delay:.16s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js-reveal .rv{opacity:1;transform:none;transition:none}
+  .bar{transition:none}
+}
+
+
+/* below 900px the header nav collapses, so there has to be another way through */
+.menubtn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(15,30,52,.30);
+  color:var(--navy);font:inherit;font-family:var(--kr);font-weight:700;font-size:13px;
+  padding:9px 14px;border-radius:4px;cursor:pointer}
+.menubtn:hover{border-color:var(--navy);background:var(--orange);color:var(--navy)}
+@media(min-width:900px){.menubtn{display:none}}
+#drawer{position:fixed;inset:0;z-index:60;background:var(--cream);color:var(--navy);
+  padding:72px var(--pad) var(--pad);display:flex;flex-direction:column;overflow:auto}
+#drawer[hidden]{display:none}
+#drawer a{display:flex;align-items:baseline;gap:14px;font-family:var(--kr);font-weight:800;
+  font-size:clamp(1.4rem,6.4vw,2rem);letter-spacing:-.035em;text-decoration:none;
+  padding:18px 0;border-bottom:1px solid rgba(15,30,52,.18);color:var(--navy)}
+#drawer a em{font-style:normal;font-family:var(--display);font-weight:400;font-size:.55em;
+  letter-spacing:.12em;color:var(--navy);background:var(--orange);padding:3px 7px 1px;border-radius:3px}
+#drawer .close{position:fixed;top:14px;right:var(--pad);z-index:61}
+#drawer .visit{margin-top:auto;padding-top:26px}
+#drawer .visit a{border:0;background:var(--orange);color:var(--navy);border-radius:4px;
+  justify-content:center;font-size:1.05rem;padding:16px}
+
+.legend .legkey{display:flex;align-items:center;justify-content:flex-end;gap:7px}
+.legend .legkey i{width:11px;height:11px;flex:none;font-style:normal}
+.legend .k-i4{height:3px;background:var(--orange);border-radius:2px}
+.legend .k-rd{height:2px;background:rgba(15,30,52,.52);border-radius:2px}
+.legend .k-approx{border-radius:50%;border:1.5px dashed var(--orange);background:rgba(255,154,31,.10)}
+.card dd.area{font-weight:600;font-size:12.5px;line-height:1.75;color:var(--navy-dim)}
+
+/* the generated lakefront print. Full bleed, no text over it: the picture is
+   doing the work and an overlay would only fight its own cream sky. */
+/* the width/height attributes hold the layout before load, but they also pin the
+   used height — aspect-ratio is ignored until height goes back to auto */
+.shield{position:absolute;transform:translate(-50%,-50%);background:var(--navy);color:var(--cream);
+  font-family:var(--display);font-size:15px;line-height:1;letter-spacing:.06em;
+  padding:5px 8px 3px;border-radius:3px;border:1.5px solid var(--cream)}
+.shield.i4{background:var(--orange);color:var(--navy);border-color:var(--navy)}
+.approxnote{position:absolute;transform:translate(-50%,0);font-family:var(--kr);font-weight:700;
+  font-size:12.5px;letter-spacing:-.02em;color:var(--navy-dim);white-space:nowrap;
+  text-shadow:0 0 5px var(--cream),0 0 9px var(--cream)}
+
+/* ============================================================
+   Hero: the print carries the first impression and nothing sits on top of it.
+   Measured, every zone of the illustration holds near-black ink (min luminance
+   0.001), so any text over it would bottom out around 1.2:1. The copy therefore
+   gets its own solid ground directly beneath.
+   ============================================================ */
+.hero{background:var(--cream)}
+.hero-plate{margin:0}
+.hero-plate img{width:100%;height:auto;display:block;aspect-ratio:5/4;object-fit:cover;
+  object-position:68% center}
+.hero-copy{position:relative;background:var(--cream) url("../assets/photos/paper-texture.jpg") center/cover no-repeat;
+  border-top:2px solid var(--navy)}
+.hero-copy::before{--gf:rgba(15,30,52,.05);--gm:rgba(15,30,52,.12)}
+/* the same longitude scale the map is drawn on, run along the top of the sheet */
+.heroruler{position:relative;z-index:1;display:flex;height:22px;align-items:center;
+  border-bottom:1px solid rgba(15,30,52,.20);
+  font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--navy-dim)}
+.heroruler span{flex:1;padding-left:6px;border-left:1px solid rgba(15,30,52,.20)}
+.heroruler span:first-child{border-left:0}
+.hero-inner{position:relative;z-index:1}
+.hero-inner{max-width:1180px;margin:0 auto;padding:clamp(1.8rem,4vw,3rem) var(--pad) clamp(2.2rem,5vw,3.6rem);
+  display:grid;gap:clamp(1.6rem,3vw,2.6rem)}
+.hero h1{font-family:var(--kr);font-weight:800;font-size:clamp(1.9rem,5vw,3.3rem);line-height:1.24;
+  letter-spacing:-.045em;margin:14px 0 0;max-width:18ch}
+.hero h1 mark{background:var(--orange);color:var(--navy);padding:0 .1em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hero .read{margin-top:clamp(14px,2vw,20px)}
+.hero .btnrow{margin-top:clamp(18px,2.6vw,26px)}
+.plate{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0;
+  font-size:12.5px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--navy-dim)}
+.plate b{color:var(--navy)}
+.plate .kr{font-family:var(--kr);letter-spacing:.02em;font-size:12.5px;font-weight:600;
+  text-transform:none;color:var(--navy-dim)}
+.herofacts{margin:0;border-top:1px solid var(--grid-2)}
+.herofacts div{display:grid;grid-template-columns:8.5rem 1fr;gap:14px;padding:12px 0;
+  border-bottom:1px solid var(--grid-2)}
+.herofacts dt{font-size:12.5px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--navy-dim);padding-top:4px}
+.herofacts dd{margin:0;font-family:var(--kr);font-size:15.5px;font-weight:700;letter-spacing:-.02em}
+.herofacts dd .en{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:.05em;
+  color:var(--navy-dim);margin-left:6px}
+.herofacts .dday{display:inline-block;background:var(--orange);color:var(--navy);
+  font-family:var(--display);font-size:15px;line-height:1;letter-spacing:.04em;
+  padding:4px 8px 2px;border-radius:3px;margin-left:8px}
+@media(min-width:900px){
+  .hero-plate img{aspect-ratio:21/9}
+  .hero-inner{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);align-items:start}
+}
+
+/* the map is now a numbered plate, not a rival hero. A fixed 3:2 box matches the
+   viewBox exactly, so nothing stretches and the markers land where they should. */
+.mapfig{margin:0 0 clamp(28px,4vw,40px)}
+.mapbox{position:relative;aspect-ratio:3/2;overflow:hidden;border:1.5px solid rgba(244,240,230,.5);
+  border-radius:4px;background:var(--cream) url("../assets/photos/paper-texture.jpg") center/cover no-repeat}
+.mapfig figcaption{margin-top:10px;padding-top:9px;border-top:1px solid rgba(244,240,230,.22)}
+.dark .mapfig .plate{color:rgba(244,240,230,.7)}
+.dark .mapfig .plate b{color:var(--cream)}
+.dark .mapfig .plate .kr{color:rgba(244,240,230,.7)}
+/* heavier ink so the chart holds its own as a printed figure */
+.plot .rd-h{stroke-width:4.2}
+.plot .rd-a{stroke-width:2.2}
+
+
+/* ---- orange, threaded through the page instead of pooled in one band ---- */
+/* a rule at every section seam */
+.band,.hero-copy{border-top:3px solid var(--orange)}
+.band::after{display:none}
+
+/* the sheet number becomes a chip, so every section carries the accent */
+.sheet .no{background:var(--orange);color:var(--navy);padding:3px 7px 1px;border-radius:3px}
+.dark .sheet .no,.light .sheet .no{background:var(--orange);color:var(--navy)}
+.accent .sheet .no{background:var(--navy);color:var(--orange)}
+
+/* the largest navy areas get a warm ruling rather than a cold one */
+.band.dark::before{--gf:rgba(244,240,230,.04);--gm:rgba(255,154,31,.13)}
+
+/* copy on the orange field */
+.accent .read{color:#3A2A12}
+.accent .read b{color:var(--navy)}
+.accent .legendkeys{background:rgba(15,30,52,.28);border-color:rgba(15,30,52,.28)}
+.accent .btn.line{border-color:var(--navy);color:var(--navy)}
+.accent .btn.line:hover{background:var(--navy);color:var(--orange)}
+
+/* ---------- Visit moved from a navy ground to cream, so every piece that was
+   drawn for dark needs its light twin. Orange labels cannot come along: on cream
+   #FF9A1F is 1.87:1, so those become navy ink. ---------- */
+.light .spec{border-top-color:var(--grid-2)}
+.light .spec div{border-bottom-color:var(--grid-2)}
+.light .spec dt{color:var(--navy-dim)}
+.light .spec dd{color:var(--navy)}
+.light .spec dd small{color:#3C4756;font-weight:400}
+.light .pending{border-color:rgba(15,30,52,.34);color:#3C4756}
+.light .pending b{color:var(--navy)}
+.light .weeks article{border-color:var(--grid-2)}
+.light .weeks .w{color:var(--navy);background:var(--orange);display:inline-block;
+  padding:3px 8px 2px;border-radius:3px}
+.light .weeks h3{color:var(--navy)}
+.light .weeks p{color:#3C4756}
+.light .mapbox{border-color:var(--navy)}
+.light .mapfig figcaption{border-top-color:var(--grid-2)}
+.light .mapfig .plate{color:var(--navy-dim)}
+.light .mapfig .plate b{color:var(--navy)}
+.light .mapfig .plate .kr{color:var(--navy-dim)}
+
+/* ---------- Ministries moved onto the orange field ---------- */
+.accent .cards article{background:var(--cream);border-color:var(--navy)}
+.accent .cards .tag{color:var(--navy-dim)}
+.accent .cards .tag i{background:var(--navy)}
+.accent .cards .foot{color:var(--navy-dim)}
+
+/* ============================================================
+   Navy is gone as a ground; it stays only as ink. Cream and orange now
+   alternate the whole way down. Both are light grounds taking navy type,
+   so the rules that were written for cream simply extend to orange —
+   except the muted tones: #4A5768 is 3.47:1 on orange and #3C4756 is 4.44:1,
+   both short of AA, so the accent field gets a darker secondary ink.
+   ============================================================ */
+:root{--ink-2:#2A3648}          /* secondary ink on the orange field — 5.75:1 */
+
+.accent .spec{border-top-color:rgba(15,30,52,.30)}
+.accent .spec div{border-bottom-color:rgba(15,30,52,.30)}
+.accent .spec dt{color:var(--ink-2)}
+.accent .spec dd{color:var(--navy)}
+.accent .spec dd small{color:var(--ink-2);font-weight:400}
+.accent .pending{border-color:rgba(15,30,52,.40);color:var(--ink-2)}
+.accent .pending b{color:var(--navy)}
+.accent .weeks article{border-color:rgba(15,30,52,.30)}
+.accent .weeks .w{color:var(--orange);background:var(--navy);display:inline-block;
+  padding:3px 8px 2px;border-radius:3px}
+.accent .weeks h3{color:var(--navy)}
+.accent .weeks p{color:var(--ink-2)}
+.accent .mapbox{border-color:var(--navy)}
+.accent .mapfig figcaption{border-top-color:rgba(15,30,52,.30)}
+.accent .mapfig .plate{color:var(--ink-2)}
+.accent .mapfig .plate b{color:var(--navy)}
+.accent .mapfig .plate .kr{color:var(--ink-2)}
+
+/* worship, now on orange */
+.accent .acts{background:rgba(15,30,52,.28);border-color:rgba(15,30,52,.28)}
+.accent .acts article{background:var(--cream);color:var(--navy)}
+.accent .acts .when{color:var(--navy);background:var(--orange);display:inline-block;
+  padding:3px 8px 2px;border-radius:3px}
+.accent .acts h3{color:var(--navy)}
+.accent .acts .ko{color:var(--navy)}
+.accent .acts p{color:#3C4756}
+.accent .chips span{border:1px solid rgba(15,30,52,.34);color:var(--navy)}
+.accent .chips span.on{background:var(--navy);color:var(--orange);border-color:var(--navy)}
+
+/* the footer closes on cream, held down by the orange rule above it */
+footer.site.light{background:var(--cream);color:#3C4756;border-top:3px solid var(--orange)}
+footer.site.light h4{color:var(--navy-dim)}
+footer.site.light a:hover{color:var(--navy)}
+footer.site.light .crcna{border-top-color:var(--grid-2)}
+footer.site.light .crcna img{background:transparent;padding:0}
+footer.site.light .crcna p b{color:var(--navy)!important}
+footer.site.light .crcna a{color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+footer.site.light .legal{border-top-color:var(--grid-2);color:var(--navy-dim)}
+
+/* ---- detail pages ---- */
+.pagehead{padding-top:calc(clamp(3.5rem,9vw,6.5rem) + 46px)}
+.pagehead h1.big{margin:14px 0 0;max-width:20ch}
+.bar nav a[aria-current="page"]{color:var(--navy);background:var(--orange);border-radius:6px}
+#drawer a[aria-current="page"]{color:var(--navy)}
+.visit .sheet{margin-bottom:16px}
+
+/* Components authored for cream/navy grounds, now reused on the orange field.
+   #4A5768 is 3.47:1 there and #3C4756 is 4.44:1 — both short of AA — so the
+   accent ground takes the darker secondary ink instead. */
+.accent .route .n{color:var(--navy)}
+.accent .route h3 span{color:var(--ink-2)}
+.accent .route p{color:var(--ink-2)}
+.accent .route .dot{background:var(--cream);border-color:var(--navy)}
+.accent .people .plate{color:var(--ink-2)}
+.accent .people .plate b{color:var(--navy)}
+.accent .people h3{color:var(--navy)}
+.accent .people h3 span{color:var(--ink-2)}
+.accent .people p{color:var(--ink-2)}
+.accent .cards p{color:#3C4756}
+.accent .weeks .w{color:var(--orange)}
+
+/* ---- type on the picture ----
+   Measured on an 8x6 grid of the illustration: the left columns hold 12.5-13.3:1
+   for navy ink while every other cell bottoms out near 1.2:1, and cream ink fails
+   everywhere. So the overlay is navy, it lives in the left band only, and it is
+   desktop-only — the phone crop shifts right to keep the clock tower, which takes
+   that clean band off screen. There it stays stacked under the picture instead. */
+.hero-plate{position:relative}
+.hero-over{display:none}
+@media(min-width:900px){
+  .hero-over{display:block;position:absolute;left:var(--pad);top:26%;width:min(30%,22rem);z-index:2}
+  .ov-eyebrow{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--navy)}
+  .ov-date{margin:8px 0 0;font-family:var(--display);font-size:clamp(2.6rem,4.6vw,4.2rem);
+    line-height:.9;letter-spacing:.01em;color:var(--navy);font-variant-numeric:tabular-nums}
+  .ov-line{margin:10px 0 0;font-family:var(--kr);font-weight:800;font-size:clamp(1rem,1.5vw,1.25rem);
+    letter-spacing:-.03em;color:var(--navy)}
+  .ov-line::before{content:"";display:block;width:46px;height:3px;background:var(--orange);margin-bottom:12px}
+}
+
+/* ============================================================
+   "적어나가는" — one line runs the whole page, in the left margin, the way a
+   pen keeps its place down a sheet. It is drawn progressively with scroll, and
+   each section's number hangs off it like a margin note. Decoration only:
+   with no JS it simply renders fully drawn.
+   ============================================================ */
+.band .inner,.hero-inner{position:relative}
+.band .inner::before,.hero-inner::before{
+  content:"";position:absolute;left:calc(var(--pad) - 15px);top:0;bottom:0;width:3px;
+  background:var(--orange);opacity:.5;pointer-events:none;
+  transform-origin:top;transform:scaleY(var(--drawn,1))}
+.accent .inner::before{background:var(--navy);opacity:.35}
+
+/* the section number hangs off the line instead of floating free */
+.sheet{position:relative}
+.sheet::before{content:"";position:absolute;left:-15px;top:.62em;width:15px;height:3px;
+  background:var(--orange);opacity:.5}
+.accent .sheet::before{background:var(--navy);opacity:.35}
+
+@media(max-width:700px){
+  .band .inner::before,.hero-inner::before{left:calc(var(--pad) - 11px);width:2px}
+  .sheet::before{left:-11px;width:11px;height:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .band .inner::before,.hero-inner::before{transform:none}
+}

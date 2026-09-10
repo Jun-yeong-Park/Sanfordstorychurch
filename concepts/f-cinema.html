@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 F: CINEMA</title>
+<style>
+body{background:var(--navy);color:var(--cream)}
+.stage{position:relative;min-height:100svh;display:grid;
+  grid-template-rows:auto 1fr auto;padding:var(--pad);gap:var(--s3);overflow:hidden}
+.bg,.bg img{position:absolute;inset:0;width:100%;height:100%}
+.bg img{object-fit:cover;object-position:center 45%;filter:saturate(.7) contrast(1.08)}
+/* scrim earns its keep: without it the headline sits at ~2:1 on the sky */
+.bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,30,52,.58) 0%, rgba(15,30,52,.10) 30%,
+    rgba(15,30,52,.70) 52%, rgba(15,30,52,.92) 66%, rgba(15,30,52,.95) 100%)}
+.stage > .bg{position:absolute;inset:0;z-index:0}
+.stage > *:not(.bg){position:relative;z-index:1}
+/* corners carry everything; the middle stays empty on purpose */
+.bl{display:flex;flex-direction:column;gap:var(--s3)}
+.row{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s3)}
+.lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lock img{width:30px}
+.lock b{font-family:var(--display);font-size:21px;letter-spacing:.05em;font-weight:400}
+.lock b i{font-style:normal;color:var(--orange)}
+.tr{display:flex;align-items:center;gap:18px;color:var(--cream-dim);text-align:right}
+.tr a{text-decoration:none}
+.tr a:hover{color:var(--orange)}
+.tr .now{display:flex;align-items:center;gap:7px}
+.tr .now i{width:6px;height:6px;border-radius:50%;background:var(--orange);font-style:normal}
+h1{font-family:var(--kr);font-weight:800;font-size:clamp(2.2rem,7.4vw,5.2rem);line-height:1.12;
+  letter-spacing:-.05em;margin:0;max-width:15ch;text-wrap:balance}
+h1 em{font-style:normal;color:var(--orange);white-space:nowrap}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.br{display:flex;flex-direction:column;align-items:flex-end;gap:12px;text-align:right;color:var(--cream-dim)}
+.br .big{font-family:var(--display);font-size:clamp(2.4rem,6vw,4rem);line-height:.85;color:var(--cream)}
+.br .big span{color:var(--orange)}
+.hint{display:flex;align-items:center;gap:9px;color:var(--cream-dim)}
+.hint .bar{width:34px;height:1px;background:var(--orange);transform-origin:left;animation:pull 2.6s ease-in-out infinite}
+@keyframes pull{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.hint .bar{animation:none}}
+@media(min-width:900px){
+  .stage{padding:calc(var(--pad) * 1.1) var(--pad)}
+  h1{font-size:clamp(3rem,5.6vw,5.4rem)}
+  .bl{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:var(--s4)}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="bg"><img src="../assets/photos/sanford-waterfront.jpg" alt="플로리다 샌포드 워터프론트"></div>
+
+  <div class="tl row">
+    <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+    <div class="tr label">
+      <span class="now"><i></i><span id="clock">–</span> EST</span>
+      <a href="#">KO</a><a href="#" style="color:var(--cream)">EN</a>
+    </div>
+  </div>
+
+  <div></div>
+
+  <div class="bl">
+    <div>
+      <p class="label" style="color:var(--orange);margin:0 0 var(--s3)">First Gathering <span class="kr" style="color:var(--cream-dim)">· 첫 예배</span></p>
+      <h1 class="kr">하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h1>
+      <div class="acts" style="margin-top:var(--s3)">
+        <a class="btn btn-orange" href="#">처음 오시나요? →</a>
+        <a class="btn btn-ghost-light" href="#">교회 소개</a>
+      </div>
+    </div>
+    <div class="br">
+      <p class="big mono" style="margin:0">09.27<span>.26</span></p>
+      <p class="label" style="margin:0">Sunday 6PM · Sanford, FL</p>
+      <p class="hint label" style="margin:0"><span class="bar"></span>Scroll</p>
+    </div>
+  </div>
+</div>
+<a class="study" href="index.html"><b>F</b> CINEMA — 히어로 시안 · 목록으로</a>
+<script>
+function up(){document.getElementById('clock').textContent=new Intl.DateTimeFormat('en-US',
+  {timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date())}
+up();setInterval(up,20000);
+</script>
+</body>
+</html>

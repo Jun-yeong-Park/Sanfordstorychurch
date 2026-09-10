@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 · Sanford Story Church — 안 A: DROP</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --navy:#0F1E34; --orange:#FF9A1F; --cream:#F4F0E6; --stone:#D7D9DD;
+  --orange-ink:#8A4B00; --cream-dim:#B9BFC9; --navy-dim:#4A5768;
+  --hair:rgba(244,240,230,.16); --hair-dark:rgba(15,30,52,.16);
+  --display:"Bebas Neue",sans-serif;
+  --body:"Montserrat","Pretendard Variable",Pretendard,sans-serif;
+  --kr:"Pretendard Variable",Pretendard,"Montserrat",sans-serif;
+  --s1:.5rem; --s2:1rem; --s3:2rem; --s4:4rem; --s5:7rem;
+  --pad:22px; --max:1360px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--navy);color:var(--cream);font-family:var(--body);font-size:17px;line-height:1.7;overflow-x:hidden;
+  word-break:keep-all;overflow-wrap:anywhere}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.light :focus-visible{outline-color:var(--orange-ink)}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+.kr{font-family:var(--kr)}
+.mono{font-variant-numeric:tabular-nums}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+section{position:relative}
+.light{background:var(--cream);color:var(--navy)}
+.pad-lg{padding-block:clamp(4.5rem,12vw,9rem)}
+.pad-md{padding-block:clamp(3.5rem,8vw,6rem)}
+
+/* type */
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--orange);margin:0 0 var(--s3)}
+.light .eyebrow{color:var(--orange-ink)}
+.eyebrow .kr{letter-spacing:.06em;font-weight:600;color:var(--cream-dim)}
+.light .eyebrow .kr{color:var(--navy-dim)}
+.h2{font-family:var(--kr);font-weight:800;font-size:clamp(1.9rem,5.4vw,3.8rem);line-height:1.16;letter-spacing:-.04em;margin:0}
+.h2 .ac{color:var(--orange)}
+.light .h2 .ac{color:var(--orange-ink)}
+.h3{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1;letter-spacing:.02em;margin:0;font-weight:400}
+.lede{font-family:var(--kr);max-width:44ch;font-size:16px;line-height:1.95;color:var(--cream-dim);letter-spacing:-.01em}
+.light .lede{color:var(--navy-dim)}
+
+/* nav */
+.bar{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;gap:var(--s2);
+  justify-content:space-between;padding:12px var(--pad);transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent}
+.bar.stuck{background:rgba(15,30,52,.94);backdrop-filter:blur(12px);border-bottom-color:var(--hair)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand img{width:26px}
+.brand b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.brand b i{font-style:normal;color:var(--orange)}
+.nav{display:none;gap:22px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.nav a{text-decoration:none;color:var(--cream-dim);padding-block:4px;border-bottom:1px solid transparent}
+.nav a:hover{color:var(--cream);border-bottom-color:var(--orange)}
+.bar-cta{display:flex;align-items:center;gap:12px;flex:none}
+.pill{background:var(--orange);color:var(--navy);padding:6px 11px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.menu-btn{background:none;border:1px solid var(--hair);color:var(--cream);padding:8px 12px;font:inherit;font-size:11px;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:4px;cursor:pointer}
+.menu-btn:hover{border-color:var(--orange);color:var(--orange)}
+#drawer{position:fixed;inset:0;z-index:70;background:var(--navy);padding:76px var(--pad) var(--pad);display:flex;
+  flex-direction:column;gap:2px;overflow:auto}
+#drawer[hidden]{display:none}
+#drawer a{font-family:var(--kr);font-weight:800;font-size:clamp(1.6rem,7vw,2.4rem);letter-spacing:-.03em;
+  text-decoration:none;padding:var(--s2) 0;border-bottom:1px solid var(--hair)}
+#drawer a span{display:block;font-family:var(--display);font-weight:400;font-size:.5em;letter-spacing:.14em;color:var(--orange);margin-bottom:2px}
+.drawer-close{position:fixed;top:12px;right:var(--pad);z-index:71}
+@media (min-width:1080px){ .nav{display:flex} .menu-btn{display:none} }
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding-top:120px;padding-bottom:var(--s3);overflow:hidden}
+.ghost{position:absolute;right:-4vw;top:48%;transform:translateY(-50%);font-family:var(--display);
+  font-size:clamp(14rem,38vw,40rem);line-height:.72;letter-spacing:-.04em;color:transparent;
+  -webkit-text-stroke:1px rgba(255,154,31,.26);pointer-events:none;user-select:none;white-space:nowrap}
+.hero-grid{position:relative;display:grid;gap:var(--s3);width:100%}
+.hero .date{font-family:var(--display);font-size:clamp(4.6rem,17vw,14rem);line-height:.74;letter-spacing:-.03em;
+  margin:.1em 0 0;font-weight:400}
+.hero .date .yr{display:block;color:var(--orange)}
+.hero .sub{font-family:var(--kr);font-weight:800;font-size:clamp(1.1rem,3vw,1.7rem);letter-spacing:-.03em;margin:var(--s3) 0 0;max-width:22ch}
+.rule{height:2px;background:var(--orange);margin:var(--s3) 0 var(--s2);max-width:520px}
+.where{font-size:clamp(13px,2.2vw,17px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:0}
+.where span{color:var(--cream-dim)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--s3)}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--hair);max-width:520px}
+.cd div{padding:13px 10px;border-right:1px solid var(--hair)}
+.cd div:last-child{border-right:0}
+.cd b{display:block;font-family:var(--display);font-size:clamp(2.1rem,6.4vw,3.2rem);line-height:.9;font-weight:400}
+.cd .live b{color:var(--orange)}
+.cd small{display:block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);margin-top:5px}
+.cd-note{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);margin:var(--s2) 0 0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;font-size:13px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;border:1px solid transparent;
+  transition:background .18s,color .18s,border-color .18s,transform .12s}
+.btn .kr{letter-spacing:.02em}
+.btn:active{transform:translateY(1px)}
+.btn-fill{background:var(--orange);color:var(--navy)}
+.btn-fill:hover{background:var(--cream)}
+.btn-line{border-color:var(--cream);color:var(--cream)}
+.btn-line:hover{border-color:var(--orange);color:var(--orange)}
+.light .btn-line{border-color:var(--navy);color:var(--navy)}
+.light .btn-line:hover{background:var(--navy);color:var(--cream)}
+
+/* marquee */
+.mq{background:var(--orange);color:var(--navy);overflow:hidden}
+.mq-track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.mq-item{display:flex;align-items:center;gap:20px;padding:13px 20px 11px;font-family:var(--display);
+  font-size:clamp(1.3rem,3.2vw,2rem);letter-spacing:.02em;white-space:nowrap}
+.mq-item i{font-style:normal;font-family:var(--kr);font-size:.6em;font-weight:800;letter-spacing:-.01em}
+.mq-item s{text-decoration:none;opacity:.42}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* vision */
+.verbs{display:grid;gap:1px;background:var(--hair-dark);border:1px solid var(--hair-dark);margin-top:var(--s4)}
+.verbs div{background:var(--cream);padding:var(--s3)}
+.verbs .n{font-family:var(--display);font-size:1.3rem;color:var(--orange-ink);display:block;margin-bottom:6px}
+.verbs .e{font-family:var(--display);font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1;display:block}
+.verbs .k{font-family:var(--kr);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--navy-dim);margin-top:8px;display:block}
+
+/* process — editorial rows */
+.rows4{list-style:none;margin:var(--s4) 0 0;padding:0;border-top:1px solid var(--hair-dark)}
+.rows4 li{display:grid;grid-template-columns:auto 1fr;gap:var(--s2) var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--hair-dark)}
+.rows4 .n{font-family:var(--display);font-size:clamp(2.4rem,6.4vw,4.4rem);line-height:.8;color:var(--orange)}
+.light .rows4 .n{color:var(--orange-ink)}
+.rows4 h3{font-family:var(--display);font-size:clamp(1.8rem,4.2vw,2.8rem);line-height:.95;margin:0;font-weight:400}
+.rows4 h3 small{display:block;font-family:var(--kr);font-size:13px;font-weight:700;color:var(--orange-ink);margin-top:8px}
+.rows4 p{font-family:var(--kr);margin:0;max-width:52ch;font-size:15px;line-height:1.9;color:var(--navy-dim)}
+
+/* worship — 3 acts */
+.acts{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:var(--s4)}
+.acts article{background:var(--navy);padding:var(--s3)}
+.acts .t{font-family:var(--display);font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1;margin:0;font-weight:400}
+.acts .t em{font-style:normal;color:var(--orange);display:block;font-size:.52em;letter-spacing:.16em;margin-bottom:10px}
+.acts .k{font-family:var(--kr);font-weight:700;font-size:15px;letter-spacing:-.02em;margin:10px 0 0}
+.acts p{font-family:var(--kr);font-size:14px;line-height:1.9;color:var(--cream-dim);margin:12px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s3)}
+.facts span{border:1px solid var(--hair);padding:7px 13px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.facts .kr{letter-spacing:.02em;font-size:13px}
+
+/* ministries */
+.grid2{display:grid;gap:1px;background:var(--hair-dark);border:1px solid var(--hair-dark);margin-top:var(--s4)}
+.grid2 article{background:var(--cream);padding:var(--s3);display:flex;flex-direction:column;gap:8px}
+.grid2 .tag{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-ink)}
+.grid2 h3{font-family:var(--kr);font-weight:800;font-size:1.25rem;letter-spacing:-.03em;margin:0}
+.grid2 p{font-family:var(--kr);font-size:14px;line-height:1.9;color:var(--navy-dim);margin:0}
+.grid2 .when{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-dim);margin-top:auto;padding-top:var(--s2)}
+
+/* visit */
+.visit{display:grid;gap:var(--s4)}
+.dl{margin:0;border-top:1px solid var(--hair)}
+.dl div{display:grid;grid-template-columns:9rem 1fr;gap:var(--s2);padding:var(--s2) 0;border-bottom:1px solid var(--hair)}
+.dl dt{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);padding-top:4px}
+.dl dd{margin:0;font-family:var(--kr);font-size:15px;line-height:1.85}
+.dl dd small{display:block;color:var(--cream-dim);font-size:13px;margin-top:4px}
+.todo{border:1px dashed var(--hair);padding:var(--s2) var(--s3);margin-top:var(--s3);font-size:13px;color:var(--cream-dim)}
+.todo b{color:var(--orange);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11px;display:block;margin-bottom:6px}
+
+/* people */
+.people{display:grid;gap:var(--s3);margin-top:var(--s4)}
+.person figure{margin:0}
+.person img,.person .ph{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 22%;
+  filter:saturate(.9) contrast(1.03);background:#16243d}
+.person .ph{display:flex;align-items:center;justify-content:center;border:1px dashed var(--hair);
+  font-family:var(--display);font-size:2.4rem;color:var(--cream-dim);text-align:center;line-height:1.1}
+.person .role{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:var(--s2) 0 4px}
+.person .nm{font-family:var(--kr);font-weight:800;font-size:1.2rem;letter-spacing:-.03em;margin:0}
+.person .nm span{display:block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--cream-dim);margin-top:4px}
+.person p{font-family:var(--kr);font-size:14px;line-height:1.85;color:var(--cream-dim);margin:10px 0 0}
+
+/* join rows */
+.jrows{margin-top:var(--s4);border-top:1px solid var(--hair)}
+.jrow{display:flex;align-items:center;gap:var(--s2);padding:var(--s3) 0;border-bottom:1px solid var(--hair);
+  text-decoration:none;transition:padding-inline .22s,background .22s}
+.jrow:hover,.jrow:focus-visible{padding-inline:16px;background:rgba(255,154,31,.08)}
+.jrow .n{font-family:var(--display);font-size:1.4rem;color:var(--orange);width:2.4em;flex:none}
+.jrow .t{flex:1;font-family:var(--display);font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1;font-weight:400}
+.jrow .t small{display:block;font-family:var(--kr);font-size:13px;font-weight:600;color:var(--cream-dim);margin-top:7px}
+.jrow .ar{color:var(--orange);font-size:1.3rem;transition:transform .22s}
+.jrow:hover .ar{transform:translateX(8px)}
+
+/* crcna */
+.crc{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3)}
+.crc img{width:min(200px,44vw);background:var(--cream);padding:14px;border-radius:4px}
+
+/* footer */
+footer{border-top:1px solid var(--hair);padding-block:var(--s4)}
+.f-grid{display:grid;gap:var(--s3)}
+.f-list{list-style:none;margin:0;padding:0;font-size:14px;line-height:2.05;color:var(--cream-dim)}
+.f-list b{display:block;color:var(--cream);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.legal{margin-top:var(--s4);padding-top:var(--s2);border-top:1px solid var(--hair);font-size:11px;
+  letter-spacing:.1em;color:var(--cream-dim);display:flex;flex-wrap:wrap;gap:6px 20px}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv-2{transition-delay:.09s}.rv-3{transition-delay:.18s}.rv-4{transition-delay:.27s}
+
+@media (min-width:720px){
+  .verbs{grid-template-columns:repeat(3,1fr)}
+  .acts{grid-template-columns:repeat(3,1fr)}
+  .grid2{grid-template-columns:repeat(2,1fr)}
+  .people{grid-template-columns:repeat(3,1fr)}
+  .f-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
+}
+@media (min-width:960px){
+  :root{--pad:44px}
+  .hero-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);align-items:end;gap:var(--s4)}
+  .rows4 li{grid-template-columns:auto 1.1fr 1.5fr;align-items:baseline}
+  .visit{grid-template-columns:1.1fr .9fr;gap:var(--s5)}
+  .grid2{grid-template-columns:repeat(4,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .mq-track{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>STORY<i>.</i>CHURCH</b></a>
+  <nav class="nav" aria-label="주요 메뉴">
+    <a href="#about">About</a><a href="#worship">Worship</a><a href="#ministries">Ministries</a>
+    <a href="#visit">Visit</a><a href="#people">People</a>
+  </nav>
+  <div class="bar-cta">
+    <span class="pill mono" id="ddayPill">D–24</span>
+    <a class="btn btn-fill" style="padding:9px 16px;font-size:11px" href="#visit"><span class="kr">처음 오시나요?</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
+  </div>
+</header>
+
+<div id="drawer" hidden>
+  <button class="menu-btn drawer-close" id="drawerClose">Close</button>
+  <a href="#about"><span>01 About</span>교회 소개</a>
+  <a href="#worship"><span>02 Worship</span>예배</a>
+  <a href="#ministries"><span>03 Ministries</span>사역 · 소그룹</a>
+  <a href="#visit"><span>04 Visit</span>처음 오시는 분</a>
+  <a href="#people"><span>05 People</span>섬기는 사람들</a>
+  <a href="#join"><span>06 Join</span>함께하기</a>
+</div>
+
+<h1 class="sr-only">스토리교회 · Sanford Story Church — 플로리다 샌포드 한인 개척교회. 2026년 9월 27일 주일 오후 6시 첫 예배.</h1>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="ghost" aria-hidden="true" id="ghost">D–24</div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">First Gathering <span class="kr">· 첫 예배</span></p>
+      <p class="date mono">09.27<span class="yr">2026</span></p>
+      <div class="rule"></div>
+      <p class="where">Sunday 6PM <span>· Sanford, Florida</span></p>
+      <p class="sub kr">하나님의 이야기가<br>당신의 삶에서 시작됩니다.</p>
+      <div class="cta-row">
+        <a class="btn btn-fill" href="#visit"><span class="kr">처음 오시나요?</span> →</a>
+        <a class="btn btn-line" href="#about"><span class="kr">교회 소개</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="cd mono">
+        <div><b id="cdD">–</b><small>Days</small></div>
+        <div><b id="cdH">–</b><small>Hrs</small></div>
+        <div><b id="cdM">–</b><small>Min</small></div>
+        <div class="live"><b id="cdS">–</b><small>Sec</small></div>
+      </div>
+      <p class="cd-note">Eastern Time · 2026.09.27 18:00</p>
+    </div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true">
+  <div class="mq-track" id="mqTrack">
+    <div class="mq-item">Know Jesus <s>◆</s> Make Jesus Known <s>◆</s> Live a Jesus Life <s>◆</s>
+      <i>예수를 알고, 전하고, 예수로 살다</i> <s>◆</s> Sunday 6PM <s>◆</s> Sanford FL <s>◆</s></div>
+  </div>
+</div>
+
+<!-- 2. VISION -->
+<section class="light pad-lg" id="about">
+  <div class="wrap">
+    <p class="eyebrow rv">Vision <span class="kr">· 비전</span></p>
+    <h2 class="h2 rv rv-2">예수님을 <span class="ac">알고</span>,<br>예수님을 <span class="ac">전하고</span>,<br>예수로 <span class="ac">사는 삶</span>.</h2>
+    <div class="verbs">
+      <div class="rv"><span class="n">01</span><span class="e">Know Jesus</span><span class="k">예수님을 알고</span></div>
+      <div class="rv rv-2"><span class="n">02</span><span class="e">Make Jesus Known</span><span class="k">예수님을 전하고</span></div>
+      <div class="rv rv-3"><span class="n">03</span><span class="e">Live a Jesus Life</span><span class="k">예수로 사는 삶</span></div>
+    </div>
+    <p class="lede rv" style="margin-top:var(--s4);max-width:56ch">
+      스토리교회는 하나님이 써 내려가시는 은혜의 발자취를 온전히 담아내는 거룩한 그릇이 되고자 합니다.
+      우리를 부르신 거룩한 뜻을 따라, 내 안에 살아계신 예수 그리스도의 이야기를 담대히 증거하는 신실한 공동체가 되기를 꿈꿉니다.
+      <b style="color:var(--navy)">모든 성도가 그의 스토리텔러가 되는 교회</b>, 그것이 우리의 미션입니다.
+    </p>
+  </div>
+</section>
+
+<!-- 3. PROCESS -->
+<section class="light pad-md">
+  <div class="wrap">
+    <p class="eyebrow rv">Ministry Process <span class="kr">· 4단계 사역 프로세스</span></p>
+    <h2 class="h2 rv rv-2">복음에서 시작해<br><span class="ac">공동체</span>로 완성됩니다.</h2>
+    <ol class="rows4">
+      <li class="rv"><span class="n mono">01</span><h3>His Story<small>복음의 중심 · Center of the Gospel</small></h3>
+        <p>나를 구원하신 주님의 위대한 이야기. 모든 사역과 예배의 중심에 오직 예수 그리스도의 복음을 두고, 처음 오신 분도 복음의 핵심을 쉽게 이해할 수 있도록 돕습니다.</p></li>
+      <li class="rv"><span class="n mono">02</span><h3>My Story<small>증인의 삶 · Living Story</small></h3>
+        <p>세상 속에서 내가 직접 살아내는 이야기. 예배 관람객에 머물지 않고, 일터와 가정과 학교에서 주님의 이야기를 삶으로 증거하는 증인으로 섭니다.</p></li>
+      <li class="rv"><span class="n mono">03</span><h3>Deep Story<small>영성 훈련 · Spiritual Training</small></h3>
+        <p>말씀과 기도로 내면이 깊어지는 이야기. 222 디사이플십, Coffee Break, PRS 등 소그룹과 일대일 양육으로 한 사람을 충성스러운 제자로 훈련합니다.</p></li>
+      <li class="rv"><span class="n mono">04</span><h3>Our Story<small>신실한 공동체 · Faithful Community</small></h3>
+        <p>우리가 함께 모여 완성해 가는 이야기. 원형 테이블 중심의 식탁 교제와 나눔을 통해, 그리스도의 성품이 선명하게 드러나는 따뜻한 공동체를 이룹니다.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4. WORSHIP -->
+<section class="pad-lg" id="worship">
+  <div class="wrap">
+    <p class="eyebrow rv">Worship <span class="kr">· 주일 예배</span></p>
+    <h2 class="h2 rv rv-2">보는 예배가 아니라<br><span class="ac">살아내는 예배</span>.</h2>
+    <p class="lede rv rv-3" style="margin-top:var(--s3)">
+      전통적인 관람형 예배에서 벗어나, 모든 성도가 깊이 몰입하고 마음을 나누는 참여형 예배를 드립니다.
+    </p>
+    <div class="facts rv rv-3">
+      <span class="mono">Sunday 6:00 PM</span>
+      <span class="kr">컨템포러리 찬양</span>
+      <span class="kr">캐주얼 드레스코드</span>
+      <span class="kr">원형 테이블</span>
+      <span class="kr">식탁 교제</span>
+    </div>
+    <div class="acts">
+      <article class="rv"><h3 class="t"><em>Act 01 · Praise &amp; Word</em>His Story</h3>
+        <p class="k">뜨거운 찬양과 강력한 말씀</p>
+        <p>마음을 열어주는 찬양으로 하나님의 임재 앞에 나아갑니다. 오직 예수 그리스도의 복음과 선명한 말씀에 몰입하며, 영적 가슴이 다시 뛰는 은혜를 경험합니다.</p></article>
+      <article class="rv rv-2"><h3 class="t"><em>Act 02 · Reflection &amp; Action</em>Your Story</h3>
+        <p class="k">결단과 행동하는 믿음</p>
+        <p>성도들의 진솔한 영상 간증에 마음을 모으고, 각자의 기도와 결단을 담은 <b>Story Card</b>를 팰릿 월에 직접 꽂습니다. 보는 예배에서 살아내는 믿음으로.</p></article>
+      <article class="rv rv-3"><h3 class="t"><em>Act 03 · Fellowship &amp; Sending</em>Our Story</h3>
+        <p class="k">깊은 나눔과 파송</p>
+        <p>원형 테이블에 둘러앉아 은혜를 솔직하게 나누고 서로를 위해 중보합니다. 따뜻한 식탁 교제로 하나 된 후, 세상 속 증인으로 담대히 파송받습니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MINISTRIES -->
+<section class="light pad-lg" id="ministries">
+  <div class="wrap">
+    <p class="eyebrow rv">Ministries <span class="kr">· 사역 · 소그룹</span></p>
+    <h2 class="h2 rv rv-2">한 사람을<br><span class="ac">제자로</span> 세웁니다.</h2>
+    <div class="grid2">
+      <article class="rv"><span class="tag">01 · Discipleship</span><h3>222 디사이플십</h3>
+        <p>목회자가 직접 진행하는 1:1 또는 1:2 양육. 다음 세대 소그룹 리더를 세우는 과정입니다.</p>
+        <span class="when">1:1 · 1:2 · 목회자 인도</span></article>
+      <article class="rv rv-2"><span class="tag">02 · Small Group</span><h3>Coffee Break</h3>
+        <p>교회 건물이 아닌 지역 카페와 가정에서 모이는, 처음 오신 분도 편하게 참여하는 소그룹.</p>
+        <span class="when">평일 저녁 · 주말 오후</span></article>
+      <article class="rv rv-3"><span class="tag">03 · Scripture</span><h3>PRS 성경 읽기</h3>
+        <p>Public Reading of Scripture. 함께 소리 내어 말씀을 읽고 나누는 모임입니다.</p>
+        <span class="when">평신도 리더 인도</span></article>
+      <article class="rv rv-4"><span class="tag">04 · Community</span><h3>북클럽</h3>
+        <p>책을 매개로 신앙과 삶을 나누는 모임. 대상별 특성을 고려해 운영합니다.</p>
+        <span class="when">시즌제 운영</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VISIT -->
+<section class="pad-lg" id="visit">
+  <div class="wrap visit">
+    <div>
+      <p class="eyebrow rv">Plan Your Visit <span class="kr">· 처음 오시는 분</span></p>
+      <h2 class="h2 rv rv-2">편하게 오세요.<br><span class="ac">준비할 건 없습니다.</span></h2>
+      <dl class="dl rv rv-3">
+        <div><dt>When</dt><dd>주일 오후 6시<small>Sunday 6:00 PM</small></dd></div>
+        <div><dt>Where</dt><dd>Sanford, Seminole County, Florida<small>정확한 주소는 첫 예배 전 공지됩니다</small></dd></div>
+        <div><dt>Dress</dt><dd>캐주얼<small>편한 복장으로 오시면 됩니다</small></dd></div>
+        <div><dt>After</dt><dd>식탁 교제<small>예배 후 원형 테이블에 함께 앉아 식사를 나눕니다</small></dd></div>
+        <div><dt>Kids</dt><dd>2028년 아동부 런칭 예정<small>현재는 부모님과 함께 예배드립니다</small></dd></div>
+      </dl>
+      <div class="todo"><b>콘텐츠 대기 중</b>예배 장소 주소·주차 안내·지도 임베드가 확정되면 이 자리에 들어갑니다.</div>
+    </div>
+    <div>
+      <p class="eyebrow rv">New Family <span class="kr">· 새가족 2주</span></p>
+      <div class="acts rv rv-2" style="grid-template-columns:1fr;margin-top:0">
+        <article><h3 class="t"><em>Week 01</em>Welcome Story</h3>
+          <p>예배 후 식탁 교제 때 웰컴팀이 함께합니다. 교회 머그컵과 드립백 커피, 손편지가 담긴 웰컴 키트를 드립니다.</p></article>
+        <article><h3 class="t"><em>Week 02</em>Pastor's Table</h3>
+          <p>담임목사와 함께하는 가벼운 식사 자리. 교회의 비전을 나누고, 무엇보다 당신의 이야기를 듣습니다.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. PEOPLE -->
+<section class="pad-lg" id="people" style="border-top:1px solid var(--hair)">
+  <div class="wrap">
+    <p class="eyebrow rv">People <span class="kr">· 섬기는 사람들</span></p>
+    <h2 class="h2 rv rv-2">세 사람이<br>먼저 시작합니다.</h2>
+    <div class="people">
+      <article class="person rv"><figure>
+        <img src="../assets/people/Jung.jpg" alt="정경원 담임목사" loading="lazy">
+        <figcaption><p class="role">Senior Pastor</p><p class="nm">정경원<span>Kyong Won Jung</span></p>
+        <p>전체 사역 디렉션, 설교와 성경 공부, 교단·행정 네트워크, 예배 장소 관리.</p></figcaption></figure></article>
+      <article class="person rv rv-2"><figure>
+        <div class="ph" role="img" aria-label="사진 준비 중">PHOTO<br>TBD</div>
+        <figcaption><p class="role">Campus Coordinator</p><p class="nm">박준영<span>Junyeong Park</span></p>
+        <p>캠퍼스 외부 컨택, 미디어·SNS 홍보와 영상, 소그룹(Coffee Break · 222 · PRS · 북클럽) 운영.</p></figcaption></figure></article>
+      <article class="person rv rv-3"><figure>
+        <img src="../assets/people/heo.jpg" alt="허강현 Ministry Coordinator" loading="lazy">
+        <figcaption><p class="role">Ministry Coordinator</p><p class="nm">허강현<span>Kanghyeon Heo</span></p>
+        <p>재정 회계 관리, 찬양 인도와 음악 기획, 예배당 무대 및 현장 셋업.</p></figcaption></figure></article>
+    </div>
+  </div>
+</section>
+
+<!-- 8. AFFILIATION -->
+<section class="light pad-md">
+  <div class="wrap crc">
+    <img class="rv" src="../assets/brand/crcna-logo.png" alt="Christian Reformed Church in North America">
+    <p class="lede rv rv-2" style="max-width:52ch;margin:0">
+      스토리교회는 <b style="color:var(--navy)">북미주 개혁교회(CRCNA)</b>에 속한 교회입니다.
+      1857년 세워진 신앙 유산 위에서, 말씀의 절대 권위를 믿고 삶의 모든 영역에서 하나님의 주권을 인정하는 건강한 신앙을 추구합니다.
+      <a href="https://www.crcna.org/" target="_blank" rel="noopener" style="color:var(--orange-ink);font-weight:700;white-space:nowrap">crcna.org →</a>
+    </p>
+  </div>
+</section>
+
+<!-- 9. JOIN -->
+<section class="pad-lg" id="join">
+  <div class="wrap">
+    <p class="eyebrow rv">Join <span class="kr">· 함께하기</span></p>
+    <h2 class="h2 rv rv-2">하나님의 이야기를<br><span class="ac">함께 써 내려가요.</span></h2>
+    <div class="jrows">
+      <a class="jrow" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">
+        <span class="n mono">01</span><span class="t">First Gathering<small>9월 27일 첫 예배 참석 신청</small></span><span class="ar" aria-hidden="true">→</span></a>
+      <a class="jrow" href="https://forms.gle/AWhvv4ShUS9dLa7A9" target="_blank" rel="noopener">
+        <span class="n mono">02</span><span class="t">Worship Team<small>찬양팀 동역자 모집</small></span><span class="ar" aria-hidden="true">→</span></a>
+      <a class="jrow" href="https://docs.google.com/forms/u/2/d/e/1FAIpQLSfx3vyJKxm3ixhfoT4CRvCoW7EcD_wKn_njVPkHBbSzxcjFzg/viewform?usp=send_form" target="_blank" rel="noopener">
+        <span class="n mono">03</span><span class="t">Media Team<small>미디어팀 동역자 모집</small></span><span class="ar" aria-hidden="true">→</span></a>
+      <a class="jrow" href="mailto:junyeongpark96@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%AC%B8%EC%9D%98">
+        <span class="n">✉</span><span class="t">Inquiry<small>그 외 문의 — 이메일 보내기</small></span><span class="ar" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div><img style="width:min(260px,58vw)" src="../assets/logo/1.png" alt="스토리교회 Sanford Story Church 로고"></div>
+      <ul class="f-list"><li><b>예배</b></li><li>주일 오후 6시</li><li>Sanford, Seminole County, FL</li></ul>
+      <ul class="f-list"><li><b>메뉴</b></li>
+        <li><a href="#about">교회 소개</a></li><li><a href="#worship">예배</a></li>
+        <li><a href="#ministries">사역 · 소그룹</a></li><li><a href="#visit">처음 오시는 분</a></li></ul>
+      <ul class="f-list"><li><b>연결</b></li>
+        <li><a href="https://instagram.com/sundayproject_fl" target="_blank" rel="noopener">@sundayproject_fl</a></li>
+        <li><a href="mailto:junyeongpark96@gmail.com">이메일 문의</a></li>
+        <li><a href="https://www.crcna.org/" target="_blank" rel="noopener">Member of CRCNA</a></li></ul>
+    </div>
+    <div class="legal">
+      <span>Sunday Project Ministry Inc. dba Sanford Story Church</span>
+      <span>Florida Non-Profit Corporation</span>
+      <span>© 2026 스토리교회</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TARGET=new Date('2026-09-27T18:00:00-04:00').getTime();
+  var d=document.getElementById('cdD'),h=document.getElementById('cdH'),m=document.getElementById('cdM'),
+      s=document.getElementById('cdS'),pill=document.getElementById('ddayPill'),ghost=document.getElementById('ghost');
+  function p(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var left=TARGET-Date.now();
+    if(left<=0){[d,h,m,s].forEach(function(e){e.textContent='00'});pill.textContent='TODAY';ghost.textContent='TODAY';return}
+    var dd=Math.floor(left/864e5);
+    d.textContent=p(dd);h.textContent=p(Math.floor(left/36e5)%24);
+    m.textContent=p(Math.floor(left/6e4)%60);s.textContent=p(Math.floor(left/1e3)%60);
+    pill.textContent='D–'+dd;ghost.textContent='D–'+dd;
+  }
+  tick();setInterval(tick,1000);
+
+  var t=document.getElementById('mqTrack');
+  if(t)t.appendChild(t.firstElementChild.cloneNode(true));
+
+  var bar=document.getElementById('bar');
+  addEventListener('scroll',function(){bar.classList.toggle('stuck',scrollY>40)},{passive:true});
+
+  var drawer=document.getElementById('drawer'),btn=document.getElementById('menuBtn'),
+      close=document.getElementById('drawerClose');
+  function setOpen(o){drawer.hidden=!o;btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';
+    if(o)close.focus();else btn.focus()}
+  btn.addEventListener('click',function(){setOpen(true)});
+  close.addEventListener('click',function(){setOpen(false)});
+  drawer.addEventListener('click',function(e){if(e.target.tagName==='A')setOpen(false)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&!drawer.hidden)setOpen(false)});
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12,rootMargin:'0px 0px -6%'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  /* anything already on screen at load reveals at once — no observer wait */
+  document.querySelectorAll('.rv, .mark').forEach(function(el){
+    if(el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+  });
+
+})();
+</script>
+</body>
+</html>

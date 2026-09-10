@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 안 L: TITLE CARD</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@500;600&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* palette: no brand colours here. ink black, bone, one ember. */
+:root{
+  --ink:#0B0C0E; --bone:#EDE9E1; --bone-dim:#8E8A83; --ember:#E4593B;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --kr:"Nanum Myeongjo",serif;
+  --sans:"Montserrat",system-ui,sans-serif;
+  --bar:clamp(38px,7vh,74px);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--sans);
+  word-break:keep-all;overflow:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* letterbox — the frame is the whole idea, so it is real geometry, not decoration */
+.bar{position:fixed;left:0;right:0;height:var(--bar);background:var(--ink);z-index:5;
+  display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,40px);
+  animation:open 1.5s cubic-bezier(.16,.84,.3,1)}
+.bar.top{top:0;border-bottom:1px solid rgba(237,233,225,.12)}
+.bar.bot{bottom:0;border-top:1px solid rgba(237,233,225,.12)}
+@keyframes open{from{height:32vh}to{height:var(--bar)}}
+.tag{font-size:10px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--bone-dim)}
+.bar a.tag:hover{color:var(--bone)}
+
+/* the credit block: centred, small, and patient */
+.card{height:100%;display:grid;place-items:center;padding:calc(var(--bar) + 4vh) 6vw;text-align:center}
+.block{max-width:34rem;animation:up 1.6s cubic-bezier(.2,.7,.3,1) .5s backwards}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.presents{font-size:10px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--bone-dim);margin:0}
+.title{font-family:var(--kr);font-weight:400;font-size:clamp(2.6rem,9vw,5.2rem);line-height:1.08;
+  letter-spacing:-.02em;margin:clamp(18px,4vh,34px) 0 0}
+.latin{font-family:var(--serif);font-weight:300;font-size:clamp(1rem,2.6vw,1.5rem);
+  letter-spacing:.42em;text-transform:uppercase;color:var(--bone-dim);margin:14px 0 0;
+  padding-left:.42em}
+.rule{width:44px;height:1px;background:var(--ember);margin:clamp(20px,4.5vh,38px) auto}
+.line{font-family:var(--kr);font-size:clamp(14px,2vw,17px);line-height:2;color:var(--bone);margin:0}
+.line em{font-style:normal;color:var(--ember)}
+.dates{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--bone-dim);margin:clamp(18px,4vh,32px) 0 0;font-variant-numeric:tabular-nums}
+.enter{display:inline-block;margin-top:clamp(20px,4.5vh,34px);font-family:var(--kr);font-size:14px;
+  color:var(--bone);text-decoration:none;border-bottom:1px solid var(--ember);padding-bottom:5px}
+.enter:hover{color:var(--ember)}
+
+@media (prefers-reduced-motion:reduce){
+  .bar,.block{animation:none}
+}
+</style>
+</head>
+<body>
+<h1 class="sr-only">스토리교회 — 2026년 9월 27일 주일 저녁 6시, 플로리다 샌포드에서 시작되는 한인 개척교회</h1>
+
+<div class="bar top">
+  <span class="tag">Sunday Project Ministry</span>
+  <span class="tag">Sanford · Florida</span>
+</div>
+
+<div class="card">
+  <div class="block">
+    <p class="presents">A New Church, 2026</p>
+    <p class="title">스토리교회</p>
+    <p class="latin">Sanford Story</p>
+    <div class="rule"></div>
+    <p class="line">하나님의 이야기가<br><em>당신의 삶</em>에서 시작됩니다.</p>
+    <p class="dates">First Gathering · 09 · 27 · 2026 · Sunday 6PM</p>
+    <a class="enter" href="#">들어가기 →</a>
+  </div>
+</div>
+
+<div class="bar bot">
+  <a class="tag" href="#">Menu</a>
+  <span class="tag" id="cd">D–23</span>
+</div>
+
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('cd').textContent=l<=0?'Today':'D–'+Math.floor(l/864e5)}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

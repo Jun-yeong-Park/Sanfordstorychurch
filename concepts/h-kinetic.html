@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 H: KINETIC</title>
+<style>
+body{background:var(--navy);color:var(--cream)}
+.stage{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:var(--pad);gap:var(--s3);overflow:hidden}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+.lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lock img{width:28px}
+.lock b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.lock b i{font-style:normal;color:var(--orange)}
+.mid{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);min-width:0}
+
+/* each line is a window; the type slides up into it */
+.line{overflow:hidden;display:block}
+.line > span{display:block;font-family:var(--kr);font-weight:800;
+  font-size:clamp(2.2rem,8.4vw,6rem);line-height:1.1;letter-spacing:-.05em;
+  transform:translateY(110%);animation:rise .95s cubic-bezier(.16,.84,.3,1) forwards}
+.line:nth-of-type(1) > span{animation-delay:.30s}
+.line:nth-of-type(2) > span{animation-delay:.42s}
+.line:nth-of-type(3) > span{animation-delay:.54s}
+@keyframes rise{to{transform:none}}
+.accent{color:var(--orange);position:relative}
+/* the accent word gets a slow orange sweep, once every few seconds */
+.accent::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.07em;background:var(--orange);
+  transform:scaleX(0);transform-origin:left;animation:sweep 7s ease-in-out 1.6s infinite}
+@keyframes sweep{0%{transform:scaleX(0);transform-origin:left}
+  18%{transform:scaleX(1);transform-origin:left}
+  60%{transform:scaleX(1);transform-origin:right}
+  78%,100%{transform:scaleX(0);transform-origin:right}}
+
+/* an orange bar cuts across once, like a shutter, then leaves */
+.cut{position:fixed;inset:0;background:var(--orange);transform-origin:left;z-index:70;
+  animation:shutter 1.05s cubic-bezier(.76,0,.24,1) forwards;pointer-events:none}
+@keyframes shutter{0%{transform:scaleX(0)}42%{transform:scaleX(1);transform-origin:left}
+  43%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+
+.fade{opacity:0;animation:fade .8s ease .95s forwards}
+.fade-2{animation-delay:1.08s}
+@keyframes fade{to{opacity:1}}
+.eyebrow{display:flex;align-items:center;gap:9px;color:var(--orange);margin:0}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--orange);font-style:normal;
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
+.sub{font-family:var(--kr);font-size:16px;line-height:1.9;color:var(--cream-dim);max-width:36ch;margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.foot{display:flex;flex-wrap:wrap;gap:6px 26px;padding-top:var(--s2);border-top:1px solid var(--hair);color:var(--cream-dim)}
+.foot b{color:var(--cream)}
+
+/* motion off: the same composition, simply already arrived */
+@media (prefers-reduced-motion:reduce){
+  .line > span{transform:none;animation:none}
+  .accent::after,.eyebrow i{animation:none}
+  .accent::after{transform:scaleX(1)}
+  .cut{display:none}
+  .fade{opacity:1;animation:none}
+}
+</style>
+</head>
+<body>
+<i class="cut" aria-hidden="true"></i>
+<div class="stage">
+  <div class="mast fade">
+    <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+    <span class="label" style="color:var(--cream-dim)">Sunday 6PM</span>
+  </div>
+
+  <div class="mid">
+    <p class="eyebrow label fade"><i></i>First Gathering · 2026.09.27</p>
+    <h1 style="margin:0">
+      <span class="line"><span>하나님의 이야기가</span></span>
+      <span class="line"><span class="accent">당신의 삶</span></span>
+      <span class="line"><span>에서 시작됩니다.</span></span>
+    </h1>
+    <p class="sub fade fade-2">주일 저녁 6시. 편한 옷으로 오셔서 함께 예배하고, 예배가 끝나면 한 상에 둘러앉습니다.</p>
+    <div class="acts fade fade-2">
+      <a class="btn btn-orange" href="#">처음 오시나요? →</a>
+      <a class="btn btn-ghost-light" href="#">교회 소개</a>
+    </div>
+  </div>
+
+  <div class="foot label fade fade-2">
+    <span><b>Sanford, Seminole County, FL</b></span><span>Member of CRCNA</span>
+    <span class="mono" id="dday">D–23</span>
+  </div>
+</div>
+<a class="study" href="index.html"><b>H</b> KINETIC — 히어로 시안 · 목록으로</a>
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('dday').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

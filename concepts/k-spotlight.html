@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 K: SPOTLIGHT</title>
+<style>
+body{background:var(--navy);color:var(--cream)}
+.stage{position:relative;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;
+  padding:var(--pad);gap:var(--s3);overflow:hidden}
+.stage > *:not(.reveal){position:relative;z-index:1}
+
+/* the photo only exists where the light falls */
+.reveal{position:absolute;inset:0;z-index:0;
+  --mx:50%; --my:52%; --r:min(46vmin,340px);
+  -webkit-mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my),#000 0%,#000 42%,transparent 72%);
+  mask-image:radial-gradient(circle var(--r) at var(--mx) var(--my),#000 0%,#000 42%,transparent 72%);
+  transition:none}
+.reveal img{width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:saturate(.72)}
+/* the grade must survive a near-white pixel: cream stays >=4.5:1 over it */
+.reveal::after{content:"";position:absolute;inset:0;background:rgba(15,30,52,.85)}
+.reveal.drift{animation:drift 19s ease-in-out infinite}
+@keyframes drift{
+  0%{--mx:26%;--my:44%} 25%{--mx:64%;--my:34%}
+  50%{--mx:74%;--my:62%} 75%{--mx:34%;--my:66%} 100%{--mx:26%;--my:44%}}
+@property --mx{syntax:'<percentage>';inherits:false;initial-value:50%}
+@property --my{syntax:'<percentage>';inherits:false;initial-value:52%}
+
+.mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+.lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lock img{width:28px}
+.lock b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.lock b i{font-style:normal;color:var(--orange)}
+.mid{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);min-width:0}
+h1{font-family:var(--kr);font-weight:800;font-size:clamp(2.1rem,7.6vw,5.2rem);line-height:1.13;
+  letter-spacing:-.05em;margin:0;max-width:15ch}
+h1 em{font-style:normal;color:var(--orange);white-space:nowrap}
+.sub{font-family:var(--kr);font-size:16px;line-height:1.9;color:var(--cream-dim);max-width:36ch;margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.hintline{display:flex;align-items:center;gap:9px;color:var(--cream-dim);margin:0}
+.hintline i{width:16px;height:16px;border:1px solid var(--orange);border-radius:50%;font-style:normal}
+.foot{display:flex;flex-wrap:wrap;gap:6px 26px;padding-top:var(--s2);border-top:1px solid var(--hair);color:var(--cream-dim)}
+.foot b{color:var(--cream)}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal.drift{animation:none}
+  .reveal{--mx:62%;--my:48%}   /* a designed resting position, not an off state */
+  .hintline{display:none}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="reveal drift" id="reveal" aria-hidden="true">
+    <img src="../assets/photos/sanford-clock.webp" alt="">
+  </div>
+
+  <div class="mast">
+    <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+    <span class="label" style="color:var(--cream-dim)">Sanford, Florida</span>
+  </div>
+
+  <div class="mid">
+    <p class="label" style="color:var(--orange);margin:0">First Gathering <span class="kr" style="color:var(--cream-dim)">· 2026.09.27 · Sunday 6PM</span></p>
+    <h1 class="kr">하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h1>
+    <p class="sub">주일 저녁 6시. 편한 옷으로 오셔서 함께 예배하고, 예배가 끝나면 한 상에 둘러앉습니다.</p>
+    <div class="acts">
+      <a class="btn btn-orange" href="#">처음 오시나요? →</a>
+      <a class="btn btn-ghost-light" href="#">교회 소개</a>
+    </div>
+    <p class="hintline label"><i></i>커서를 움직여 보세요 · 샌포드가 드러납니다</p>
+  </div>
+
+  <div class="foot label">
+    <span><b>Seminole County, FL</b></span><span>Member of CRCNA</span>
+    <span class="mono" id="dday">D–23</span>
+  </div>
+</div>
+<a class="study" href="index.html"><b>K</b> SPOTLIGHT — 히어로 시안 · 목록으로</a>
+<script>
+(function(){
+  var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+  function dd(){var l=T-Date.now();
+    document.getElementById('dday').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+  dd();setInterval(dd,60000);
+
+  var el=document.getElementById('reveal');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // a coarse pointer cannot hover, so the light keeps drifting on its own there
+  if(reduce || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var tx=50, ty=52, cx=50, cy=52, raf=0;
+  function ease(){
+    cx += (tx-cx)*0.12; cy += (ty-cy)*0.12;
+    el.style.setProperty('--mx', cx.toFixed(2)+'%');
+    el.style.setProperty('--my', cy.toFixed(2)+'%');
+    raf = (Math.abs(tx-cx)>0.05 || Math.abs(ty-cy)>0.05) ? requestAnimationFrame(ease) : 0;
+  }
+  addEventListener('pointermove', function(e){
+    el.classList.remove('drift');
+    tx = e.clientX / innerWidth * 100;
+    ty = e.clientY / innerHeight * 100;
+    if(!raf) raf = requestAnimationFrame(ease);
+  }, {passive:true});
+  addEventListener('pointerleave', function(){ el.classList.add('drift'); });
+})();
+</script>
+</body>
+</html>

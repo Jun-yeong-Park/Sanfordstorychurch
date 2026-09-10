@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 폰트 비교</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Anton&family=Archivo+Black&family=Space+Grotesk:wght@500;700&family=Instrument+Serif:ital@0;1&family=Black+Han+Sans&family=Gothic+A1:wght@700;900&family=IBM+Plex+Sans+KR:wght@500;700&family=Hahmlet:wght@500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --navy:#0F1E34; --orange:#FF9A1F; --cream:#F4F0E6; --white:#fff;
+  --orange-ink:#8A4B00; --cream-dim:#B9BFC9; --navy-dim:#4A5768;
+  --line:rgba(15,30,52,.16); --line-inv:rgba(244,240,230,.18);
+  --body:"Montserrat","Pretendard Variable",Pretendard,sans-serif;
+  --s2:1rem; --s3:2rem; --s4:4rem; --pad:22px;
+  /* the two swappable slots */
+  --disp:"Bebas Neue",sans-serif;
+  --kr:"Pretendard Variable",Pretendard,sans-serif;
+  --kr-weight:800; --kr-tracking:-.045em;
+}
+@media(min-width:900px){:root{--pad:40px}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--navy);font-family:var(--body);font-size:17px;
+  line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange-ink);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.mono{font-variant-numeric:tabular-nums}
+
+header{padding-block:clamp(2.5rem,6vw,4rem) var(--s3)}
+h1{font-family:var(--kr);font-weight:800;font-size:clamp(1.7rem,4.6vw,2.7rem);letter-spacing:-.04em;
+  line-height:1.18;margin:0}
+.intro{max-width:62ch;color:var(--navy-dim);font-size:15px;line-height:1.9;margin:var(--s2) 0 0}
+.intro b{color:var(--navy)}
+.finding{border-left:2px solid var(--orange);padding:2px 0 2px 18px;margin:var(--s3) 0 0;max-width:64ch;
+  font-size:14px;line-height:1.9;color:var(--navy-dim)}
+.finding b{color:var(--navy);display:block;margin-bottom:4px}
+
+/* ---- live preview ---- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s3) 0 0}
+.chips button{font:inherit;font-size:13px;font-weight:700;padding:10px 15px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line);background:var(--white);color:var(--navy);transition:background .16s,border-color .16s,color .16s}
+.chips button:hover{border-color:var(--navy)}
+.chips button[aria-pressed="true"]{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+
+.preview{background:var(--navy);color:var(--cream);border-radius:10px;overflow:hidden;margin-top:var(--s3)}
+.preview .inner{padding:clamp(1.6rem,4vw,2.6rem)}
+.preview .eyebrow{color:var(--orange);margin:0 0 var(--s2)}
+.preview .date{font-family:var(--disp);font-size:clamp(3rem,9vw,6rem);line-height:.78;letter-spacing:-.02em;margin:0}
+.preview .date span{color:var(--orange)}
+.preview h2{font-family:var(--kr);font-weight:var(--kr-weight);letter-spacing:var(--kr-tracking);
+  font-size:clamp(1.6rem,5vw,3.2rem);line-height:1.16;margin:var(--s3) 0 0}
+.preview h2 em{font-style:normal;color:var(--orange);white-space:nowrap}
+.preview p{font-family:var(--kr);font-weight:400;font-size:15px;line-height:1.9;color:var(--cream-dim);
+  max-width:38ch;margin:var(--s2) 0 0;letter-spacing:-.01em}
+.preview .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s3)}
+.preview .btn{font-family:var(--kr);font-weight:700;font-size:14px;letter-spacing:-.02em;padding:13px 22px;
+  border-radius:4px;text-decoration:none;background:var(--orange);color:var(--navy)}
+.preview .btn.ghost{background:transparent;color:var(--cream);border:1px solid var(--line-inv)}
+.preview .meta{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:var(--s3);padding-top:var(--s2);
+  border-top:1px solid var(--line-inv);color:var(--cream-dim)}
+
+/* ---- specimen table ---- */
+.specimens{margin:var(--s4) 0 0;border-top:1px solid var(--line)}
+.spec{padding:var(--s3) 0;border-bottom:1px solid var(--line);display:grid;gap:var(--s3)}
+.spec .name{display:flex;flex-direction:column;gap:6px}
+.spec .name h3{font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0}
+.spec .name .stack{font-size:12px;color:var(--navy-dim);line-height:1.7}
+.spec .name .stack b{color:var(--orange-ink)}
+.spec .verdict{font-size:13px;line-height:1.8;color:var(--navy-dim)}
+.spec .verdict p{margin:0 0 8px}
+.spec .verdict p:last-child{margin:0}
+.spec .verdict .good::before{content:"+ ";color:var(--orange-ink);font-weight:700}
+.spec .verdict .bad::before{content:"− ";color:var(--navy);font-weight:700}
+.spec .sample .kr-line{font-weight:var(--w,800);letter-spacing:var(--t,-.045em);
+  font-size:clamp(1.5rem,4.2vw,2.4rem);line-height:1.2;margin:0}
+.spec .sample .kr-line em{font-style:normal;color:var(--orange-ink);white-space:nowrap}
+.spec .sample .lat{font-size:clamp(1.8rem,5vw,3rem);line-height:.85;letter-spacing:-.01em;margin:14px 0 0}
+.spec .sample .body{font-weight:400;font-size:14px;line-height:1.9;color:var(--navy-dim);max-width:42ch;
+  margin:14px 0 0;letter-spacing:-.01em}
+@media(min-width:840px){ .spec{grid-template-columns:230px 1fr 210px;align-items:start} }
+
+.note{margin:var(--s4) 0 clamp(3rem,8vw,5rem);padding:20px 24px;border:1px dashed var(--line);
+  border-radius:8px;font-size:14px;line-height:1.9;color:var(--navy-dim);max-width:72ch}
+.note b{color:var(--navy);display:block;margin-bottom:6px}
+.note code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
+  background:var(--white);padding:2px 6px;border-radius:4px;border:1px solid var(--line)}
+.back{display:inline-block;margin-top:var(--s3);font-size:13px;font-weight:700;color:var(--navy)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="label" style="color:var(--orange-ink);margin:0 0 12px">Type Study · 폰트 비교</p>
+  <h1>폰트는 바꿀 수 있습니다.<br>다만 바꿔야 할 건 한글 쪽입니다.</h1>
+  <p class="intro">
+    브랜드 가이드 5항은 디스플레이 <b>Bebas Neue</b>, 본문 <b>Montserrat</b>을 지정합니다.
+    한글 폰트는 가이드에 없고, 기존 사이트에서 Pretendard를 쓰고 있어 시안도 그대로 따랐습니다.
+  </p>
+  <p class="finding">
+    <b>측정 결과 — Bebas Neue에는 한글 글리프가 없습니다</b>
+    "이야기"를 <code style="font-size:12px">Bebas Neue, Pretendard</code>로 렌더하면 104px,
+    Pretendard 단독도 104px로 동일합니다. <code style="font-size:12px">Bebas Neue, serif</code>는 120px로 serif 단독과 같습니다.
+    즉 Bebas는 <b style="display:inline">09.27 · 2026 · STORY</b> 같은 라틴과 숫자에만 걸리고,
+    한글 헤드라인은 전부 다음 폰트로 떨어집니다. 화면 인상의 대부분을 결정하는 건 한글 폰트입니다.
+  </p>
+</header>
+
+<section>
+  <p class="label" style="color:var(--orange-ink);margin:0">Live preview · 눌러서 바꿔보세요</p>
+  <div class="chips" id="chips" role="group" aria-label="폰트 조합 선택"></div>
+
+  <div class="preview">
+    <div class="inner">
+      <p class="eyebrow label">First Gathering · 첫 예배</p>
+      <p class="date mono">09.27<span>.2026</span></p>
+      <h2>하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h2>
+      <p>주일 저녁 6시. 편한 옷으로 오셔서 함께 예배하고, 예배가 끝나면 한 상에 둘러앉습니다.</p>
+      <div class="btns">
+        <a class="btn" href="#">처음 오시나요? →</a>
+        <a class="btn ghost" href="#">교회 소개</a>
+      </div>
+      <p class="meta label" style="margin-bottom:0">
+        <span>Sanford, Seminole County, FL</span><span>Member of CRCNA</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="specimens" id="specimens"></section>
+
+<div class="note">
+  <b>바꾸는 방법</b>
+  각 시안 파일 맨 위 <code>:root</code>의 <code>--display</code>와 <code>--kr</code> 두 줄만 고치면 사이트 전체가 따라옵니다.
+  D~K는 <code>_hero.css</code> 한 파일만 고치면 8개 시안이 동시에 바뀝니다.
+  본문 <code>--body</code>는 라틴 전용이라 한글 본문에는 거의 영향이 없습니다.
+</div>
+
+<a class="back" href="index.html">← 시안 목록으로</a>
+</div>
+
+<script>
+var PAIRS = [
+  { id:'now', name:'현재 (가이드 기준)',
+    disp:'"Bebas Neue",sans-serif', dispName:'Bebas Neue',
+    kr:'"Pretendard Variable",Pretendard,sans-serif', krName:'Pretendard 800',
+    w:800, t:'-.045em',
+    good:'가이드 그대로. 한글 자소가 또렷하고 작은 크기에서도 안 뭉갬.',
+    bad:'한국 웹에서 가장 흔한 조합이라 인상이 약함.' },
+
+  { id:'impact', name:'더 세게 — 임팩트',
+    disp:'"Anton",sans-serif', dispName:'Anton',
+    kr:'"Black Han Sans",sans-serif', krName:'Black Han Sans',
+    w:400, t:'-.02em',
+    good:'젊고 시끄러움. 포스터·릴스 썸네일과 톤이 맞음. A·H안과 잘 붙음.',
+    bad:'굵기가 하나뿐이라 본문 못 씀. 오래 보면 피로함.' },
+
+  { id:'solid', name:'단단하게 — 그로테스크',
+    disp:'"Archivo Black",sans-serif', dispName:'Archivo Black',
+    kr:'"Gothic A1",sans-serif', krName:'Gothic A1 900',
+    w:900, t:'-.035em',
+    good:'무게감이 있으면서 정보 밀도가 높은 화면에서도 버팀. E안과 잘 맞음.',
+    bad:'따뜻함보다 기업 인상 쪽으로 기울 수 있음.' },
+
+  { id:'editorial', name:'편지처럼 — 에디토리얼',
+    disp:'"Instrument Serif",serif', dispName:'Instrument Serif',
+    kr:'"Hahmlet",serif', krName:'Hahmlet 800',
+    w:800, t:'-.02em',
+    good:'고린도후서 3:3 "살아있는 편지"와 개념이 직결됨. B안 전용에 가까움.',
+    bad:'가이드가 "세리프 중심의 전통적 교회 미감"을 피하라고 명시함.' },
+
+  { id:'modern', name:'모던 산세',
+    disp:'"Space Grotesk",sans-serif', dispName:'Space Grotesk',
+    kr:'"IBM Plex Sans KR",sans-serif', krName:'IBM Plex Sans KR 700',
+    w:700, t:'-.03em',
+    good:'중성적이고 읽기 편함. 정보량이 늘어날 실제 운영 단계에 유리.',
+    bad:'헤드라인에서 힘이 약함. 히어로가 밋밋해짐.' }
+];
+
+var root = document.documentElement.style;
+function applyPair(p){
+  root.setProperty('--disp', p.disp);
+  root.setProperty('--kr', p.kr);
+  root.setProperty('--kr-weight', p.w);
+  root.setProperty('--kr-tracking', p.t);
+  [].forEach.call(document.querySelectorAll('#chips button'), function(b){
+    b.setAttribute('aria-pressed', String(b.dataset.id === p.id));
+  });
+}
+
+var chips = document.getElementById('chips');
+PAIRS.forEach(function(p, i){
+  var b = document.createElement('button');
+  b.type = 'button'; b.textContent = p.name; b.dataset.id = p.id;
+  b.setAttribute('aria-pressed', String(i === 0));
+  b.addEventListener('click', function(){ applyPair(p); });
+  chips.appendChild(b);
+});
+
+var specs = document.getElementById('specimens');
+function el(tag, cls, text){
+  var n = document.createElement(tag);
+  if(cls) n.className = cls;
+  if(text != null) n.textContent = text;
+  return n;
+}
+PAIRS.forEach(function(p){
+  var row = el('article','spec');
+
+  var name = el('div','name');
+  name.appendChild(el('h3', null, p.name));
+  var stack = el('span','stack');
+  stack.append('한글 ');            stack.appendChild(el('b', null, p.krName));
+  stack.appendChild(el('br'));
+  stack.append('라틴 ');            stack.appendChild(el('b', null, p.dispName));
+  name.appendChild(stack);
+
+  // font stacks carry double quotes — they must go through the CSSOM,
+  // never through a concatenated style="" attribute
+  var sample = el('div','sample');
+  sample.style.setProperty('--w', p.w);
+  sample.style.setProperty('--t', p.t);
+
+  var kr = el('p','kr-line');
+  kr.style.fontFamily = p.kr;
+  kr.append('하나님의 이야기가 ');
+  var em = el('em', null, '당신의 삶'); kr.appendChild(em);
+  kr.append('에서 시작됩니다.');
+
+  var lat = el('p','lat', '09.27.2026 · SUNDAY 6PM');
+  lat.style.fontFamily = p.disp;
+
+  var body = el('p','body','주일 저녁 6시. 편한 옷으로 오셔서 함께 예배하고, 예배가 끝나면 원형 테이블에 둘러앉아 식사를 나눕니다.');
+  body.style.fontFamily = p.kr;
+
+  sample.append(kr, lat, body);
+
+  var verdict = el('div','verdict');
+  verdict.appendChild(el('p','good', p.good));
+  verdict.appendChild(el('p','bad', p.bad));
+
+  row.append(name, sample, verdict);
+  specs.appendChild(row);
+});
+
+applyPair(PAIRS[0]);
+</script>
+</body>
+</html>

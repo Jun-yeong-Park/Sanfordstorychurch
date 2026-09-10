@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 J: DECK</title>
+<style>
+body{background:var(--navy);color:var(--cream);padding-bottom:0}
+.scroller{position:relative;height:260svh}
+.deck{position:sticky;top:0;height:100svh;display:grid;grid-template-rows:auto 1fr auto;
+  padding:var(--pad) var(--pad) 50px;gap:var(--s3);overflow:hidden}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+.lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lock img{width:28px}
+.lock b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.lock b i{font-style:normal;color:var(--orange)}
+.arena{position:relative;display:grid;place-items:center;min-height:0}
+.copy{position:absolute;inset:auto 0 auto 0;text-align:center;width:min(92vw,42rem);margin-inline:auto;z-index:5}
+.copy h1{font-family:var(--kr);font-weight:800;font-size:clamp(1.9rem,6.4vw,4.2rem);line-height:1.14;
+  letter-spacing:-.05em;margin:0}
+.copy h1 em{font-style:normal;color:var(--orange);white-space:nowrap}
+.copy p{font-family:var(--kr);font-size:15px;line-height:1.85;color:var(--cream-dim);margin:var(--s2) 0 0}
+.acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:var(--s3)}
+
+.card{position:absolute;width:min(230px,62vw);border:1px solid var(--hair);border-radius:8px;
+  background:#16294a;padding:20px;display:flex;flex-direction:column;gap:7px;text-align:left;
+  box-shadow:0 18px 44px rgba(6,14,26,.45)}
+.card .n{font-family:var(--display);font-size:2rem;line-height:.85;color:var(--orange)}
+.card .en{font-family:var(--display);font-size:1.3rem;line-height:1;letter-spacing:.03em}
+.card h2{font-family:var(--kr);font-weight:800;font-size:1rem;letter-spacing:-.03em;margin:0;color:var(--orange)}
+.card p{font-family:var(--kr);font-size:13px;line-height:1.8;color:var(--cream-dim);margin:0}
+
+.foot{display:flex;flex-wrap:wrap;gap:6px 26px;padding-top:var(--s2);border-top:1px solid var(--hair);color:var(--cream-dim)}
+.foot b{color:var(--cream)}
+.scrollhint{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);z-index:6;
+  display:flex;align-items:center;gap:9px;color:var(--cream-dim)}
+.scrollhint .bar{width:30px;height:1px;background:var(--orange);transform-origin:left;
+  animation:pull 2.4s ease-in-out infinite}
+@keyframes pull{0%,100%{transform:scaleX(.3)}50%{transform:scaleX(1)}}
+
+/* --- scroll-driven: the deck fans out as you read, the headline steps back --- */
+@supports (animation-timeline: scroll()){
+  .card,.copy,.scrollhint{animation-fill-mode:both;animation-timeline:scroll(root block)}
+  .card{animation-timing-function:cubic-bezier(.45,.05,.35,1);animation-range:5% 62%}
+  .c1{animation-name:fan1}
+  .c2{animation-name:fan2}
+  .c3{animation-name:fan3}
+  .c4{animation-name:fan4}
+  @keyframes fan1{from{transform:translate(0,26px) rotate(-4deg) scale(.9);opacity:.45}
+                  to{transform:translate(-160%,-6%) rotate(-9deg);opacity:1}}
+  @keyframes fan2{from{transform:translate(0,14px) rotate(-1deg) scale(.94);opacity:.6}
+                  to{transform:translate(-54%,7%) rotate(-3deg);opacity:1}}
+  @keyframes fan3{from{transform:translate(0,4px) rotate(2deg) scale(.97);opacity:.8}
+                  to{transform:translate(54%,7%) rotate(3deg);opacity:1}}
+  @keyframes fan4{from{transform:translate(0,-6px) rotate(5deg);opacity:.9}
+                  to{transform:translate(160%,-6%) rotate(9deg);opacity:1}}
+  .copy{animation-name:recede;animation-timing-function:linear;animation-range:5% 46%}
+  @keyframes recede{to{opacity:0;transform:translateY(-26px) scale(.94);visibility:hidden}}
+  .scrollhint{animation-name:hide;animation-timing-function:linear;animation-range:0% 14%}
+  @keyframes hide{to{opacity:0}}
+
+  @media (max-width:860px){
+    .c1{animation-name:fan1m}.c2{animation-name:fan2m}
+    .c3{animation-name:fan3m}.c4{animation-name:fan4m}
+    @keyframes fan1m{from{transform:translate(0,26px) rotate(-4deg) scale(.9);opacity:.45}
+                     to{transform:translate(-50%,-56%) rotate(-7deg);opacity:1}}
+    @keyframes fan2m{from{transform:translate(0,14px) rotate(-1deg) scale(.94);opacity:.6}
+                     to{transform:translate(50%,-19%) rotate(4deg);opacity:1}}
+    @keyframes fan3m{from{transform:translate(0,4px) rotate(2deg) scale(.97);opacity:.8}
+                     to{transform:translate(-50%,19%) rotate(-4deg);opacity:1}}
+    @keyframes fan4m{from{transform:translate(0,-6px) rotate(5deg);opacity:.9}
+                     to{transform:translate(50%,56%) rotate(7deg);opacity:1}}
+  }
+}
+/* if the scroll timeline never activates (older engine, or a non-rendering context),
+   the same keyframes are scrubbed by hand — identical motion, no second set of rules */
+body.scrub .card,body.scrub .copy,body.scrub .scrollhint{
+  animation-timeline:auto;animation-duration:1s;animation-iteration-count:1}
+
+/* browsers without scroll-driven animations get the fanned end state, laid out honestly */
+@supports not (animation-timeline: scroll()){
+  .scroller{height:auto}
+  .deck{position:static;height:auto;min-height:100svh}
+  .arena{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:stretch;padding-block:var(--s3)}
+  .copy{position:static;width:min(92vw,42rem);margin-bottom:var(--s3)}
+  .card{position:static;width:min(230px,80vw)}
+  .scrollhint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .scroller{height:auto}
+  .deck{position:static;height:auto;min-height:100svh}
+  .arena{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding-block:var(--s3)}
+  .copy{position:static;max-width:26ch;margin-bottom:var(--s3);animation:none;opacity:1;visibility:visible;transform:none}
+  .card{position:static;width:min(230px,80vw);animation:none;transform:none;opacity:1}
+  .scrollhint{display:none}
+}
+</style>
+</head>
+<body>
+<div class="scroller">
+  <div class="deck">
+    <div class="mast">
+      <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+      <span class="label" style="color:var(--cream-dim)">Sunday 6PM · Sanford, FL</span>
+    </div>
+
+    <div class="arena">
+      <div class="copy">
+        <h1 class="kr">하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h1>
+        <p>스크롤하면 우리가 함께 써 내려갈 네 개의 이야기가 펼쳐집니다.</p>
+        <div class="acts">
+          <a class="btn btn-orange" href="#">처음 오시나요? →</a>
+          <a class="btn btn-ghost-light" href="#">교회 소개</a>
+        </div>
+      </div>
+
+      <article class="card c1"><span class="n mono">01</span><span class="en">His Story</span>
+        <h2>복음의 중심</h2><p>나를 구원하신 주님의 위대한 이야기.</p></article>
+      <article class="card c2"><span class="n mono">02</span><span class="en">My Story</span>
+        <h2>증인의 삶</h2><p>삶의 현장에서 직접 살아내는 이야기.</p></article>
+      <article class="card c3"><span class="n mono">03</span><span class="en">Deep Story</span>
+        <h2>영성 훈련</h2><p>말씀과 기도로 내면이 깊어지는 이야기.</p></article>
+      <article class="card c4"><span class="n mono">04</span><span class="en">Our Story</span>
+        <h2>신실한 공동체</h2><p>함께 모여 완성해 가는 이야기.</p></article>
+
+      <p class="scrollhint label"><span class="bar"></span>Scroll</p>
+    </div>
+
+    <div class="foot label">
+      <span><b>First Gathering</b></span><span class="mono">2026.09.27</span>
+      <span>Member of CRCNA</span><span class="mono" id="dday">D–23</span>
+    </div>
+  </div>
+</div>
+<a class="study" href="index.html"><b>J</b> DECK — 히어로 시안 · 목록으로</a>
+<script>
+(function(){
+  var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+  function up(){var l=T-Date.now();
+    document.getElementById('dday').textContent=l<=0?'TODAY':'D-'+Math.floor(l/864e5)}
+  up();setInterval(up,60000);
+
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!CSS.supports('animation-timeline: scroll()')) return;   // static fan already applies
+
+  var scrubbed=[], raf=0;
+  function clamp01(v){ return v<0?0:v>1?1:v }
+  function range(p,a,b){ return clamp01((p-a)/(b-a)) }
+  function progress(){
+    var max=document.documentElement.scrollHeight-innerHeight;
+    return max>0 ? clamp01(scrollY/max) : 0;
+  }
+  function apply(){
+    raf=0;
+    var p=progress();
+    for(var i=0;i<scrubbed.length;i++){
+      var a=scrubbed[i], n=a.animationName, t;
+      if(n==='recede') t=range(p,.05,.46);
+      else if(n==='hide') t=range(p,0,.14);
+      else t=range(p,.05,.62);
+      try{ a.currentTime = t*1000; }catch(e){}
+    }
+  }
+  function onScroll(){
+    if(typeof requestAnimationFrame==='function'){ if(!raf) raf=requestAnimationFrame(apply) }
+    else apply();
+  }
+
+  // deliberately not rAF: a page that is not being painted never fires it,
+  // which is exactly the case where this fallback is needed most.
+  setTimeout(function(){
+    var probe=document.getAnimations().filter(function(x){return /^fan/.test(x.animationName)})[0];
+    if(probe && probe.timeline && probe.timeline.currentTime !== null) return;  // scroll timeline is live
+
+    document.body.classList.add('scrub');
+    setTimeout(function(){
+      scrubbed=document.getAnimations().filter(function(x){
+        return /^fan/.test(x.animationName) || x.animationName==='recede' || x.animationName==='hide';
+      });
+      for(var i=0;i<scrubbed.length;i++){ try{ scrubbed[i].pause() }catch(e){} }
+      apply();
+      addEventListener('scroll',onScroll,{passive:true});
+      addEventListener('resize',onScroll,{passive:true});
+    },0);
+  },200);
+})();
+</script>
+</body>
+</html>

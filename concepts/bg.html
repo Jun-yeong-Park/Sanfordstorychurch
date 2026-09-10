@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 배경 비교</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --navy:#0F1E34; --orange:#FF9A1F; --cream:#F4F0E6; --white:#fff;
+  --orange-ink:#8A4B00; --cream-dim:#B9BFC9; --navy-dim:#4A5768;
+  --line:rgba(15,30,52,.16); --line-inv:rgba(244,240,230,.18);
+  --display:"Bebas Neue",sans-serif;
+  --body:"Montserrat","Pretendard Variable",Pretendard,sans-serif;
+  --kr:"Pretendard Variable",Pretendard,sans-serif;
+  --s2:1rem; --s3:2rem; --s4:4rem; --pad:22px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media(min-width:900px){:root{--pad:40px}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--navy);font-family:var(--body);font-size:17px;
+  line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange-ink);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.mono{font-variant-numeric:tabular-nums}
+
+header{padding-block:clamp(2.5rem,6vw,4rem) var(--s3)}
+h1{font-family:var(--kr);font-weight:800;font-size:clamp(1.7rem,4.6vw,2.7rem);letter-spacing:-.04em;line-height:1.18;margin:0}
+.intro{max-width:62ch;color:var(--navy-dim);font-size:15px;line-height:1.9;margin:var(--s2) 0 0}
+.intro b{color:var(--navy)}
+
+/* ============ the hero — identical in every treatment ============ */
+.hero{position:relative;min-height:74svh;display:grid;grid-template-rows:auto 1fr auto;
+  padding:clamp(1.4rem,3.5vw,2.4rem);overflow:hidden;isolation:isolate;
+  background:var(--navy);color:var(--cream)}
+.hero > *{position:relative;z-index:3}
+.hero .mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+.hero .lockup{display:flex;align-items:center;gap:9px}
+.hero .lockup img{width:26px}
+.hero .lockup b{font-family:var(--display);font-size:19px;letter-spacing:.05em;font-weight:400}
+.hero .mid{display:flex;flex-direction:column;justify-content:center;gap:var(--s3)}
+.hero .eyebrow{color:var(--orange);margin:0}
+.hero .date{font-family:var(--display);font-size:clamp(2.8rem,8vw,5.4rem);line-height:.8;letter-spacing:-.02em;margin:0}
+.hero .date span{color:var(--orange)}
+.hero h2{font-family:var(--kr);font-weight:800;font-size:clamp(1.6rem,4.6vw,3rem);line-height:1.16;
+  letter-spacing:-.045em;margin:0;max-width:17ch}
+.hero h2 em{font-style:normal;color:var(--orange);white-space:nowrap}
+.hero .btns{display:flex;flex-wrap:wrap;gap:10px}
+.hero .btn{font-family:var(--kr);font-weight:800;font-size:14px;letter-spacing:-.02em;padding:13px 22px;
+  border-radius:4px;text-decoration:none;background:var(--orange);color:var(--navy);border:1px solid transparent}
+.hero .btn.ghost{background:transparent;color:var(--cream);border-color:var(--line-inv)}
+.hero .meta{display:flex;flex-wrap:wrap;gap:6px 22px;padding-top:var(--s2);
+  border-top:1px solid var(--line-inv);color:var(--cream-dim);margin:0}
+
+/* light-ground treatments flip the ink, nothing else */
+.hero.on-light{background:var(--cream);color:var(--navy)}
+.hero.on-light .eyebrow{color:var(--orange-ink)}
+.hero.on-light .date span{color:var(--orange-ink)}
+.hero.on-light h2 em{color:var(--orange-ink)}
+.hero.on-light .btn{background:var(--navy);color:var(--cream)}
+.hero.on-light .btn.ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+.hero.on-light .meta{border-top-color:var(--line);color:var(--navy-dim)}
+
+/* ============ the nine grounds ============ */
+.bgl,.bgl2{position:absolute;inset:0;z-index:1;pointer-events:none}
+.bgl2{z-index:2}
+.hero img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:0}
+
+/* 1 · flat */
+.t-flat .bgl,.t-flat .bgl2{display:none}
+
+/* 2 · grain — analog warmth, the ground stops being a flat plane */
+.t-grain .bgl{background-image:var(--grain);opacity:.34;mix-blend-mode:overlay}
+
+/* 3 · halftone — risograph print, dots thin out toward the top */
+.t-halftone .bgl{
+  background-image:radial-gradient(circle,rgba(255,154,31,.62) 2.2px,transparent 2.4px);
+  background-size:12px 12px;
+  -webkit-mask-image:linear-gradient(200deg,transparent 2%,#000 62%);
+          mask-image:linear-gradient(200deg,transparent 2%,#000 62%)}
+
+/* 4 · blueprint — technical, measured, everything on a grid */
+.t-blueprint .bgl{
+  background-image:
+    linear-gradient(rgba(244,240,230,.075) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(244,240,230,.075) 1px,transparent 1px);
+  background-size:52px 52px}
+.t-blueprint .bgl2{
+  background-image:
+    linear-gradient(rgba(255,154,31,.22) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,154,31,.22) 1px,transparent 1px);
+  background-size:260px 260px}
+
+/* 5 · contour — the path motif the brand guide asks for, as land */
+.t-contour .bgl{opacity:.5}
+.t-contour svg{width:100%;height:100%}
+.t-contour svg path{fill:none;stroke:var(--orange);stroke-width:1.1}
+
+/* 6 · duotone — the town itself, reduced to the two brand inks.
+   blend modes give beige here; the channel map is the only honest way to
+   land exactly on #0F1E34 and #FF9A1F */
+.t-duotone{background:var(--navy)}
+.t-duotone img.photo{filter:url(#duotone) contrast(1.06)}
+.t-duotone .bgl{display:none}
+.t-duotone .bgl2{background:linear-gradient(180deg,
+    rgba(15,30,52,.34) 0%, rgba(15,30,52,.60) 34%,
+    rgba(15,30,52,.90) 52%, rgba(15,30,52,.93) 100%)}
+
+/* 7 · paper — letterpress, the page you are handed at the door */
+.t-paper .bgl{background-image:var(--grain);opacity:.5;mix-blend-mode:multiply}
+.t-paper .bgl2{background:radial-gradient(120% 90% at 50% 40%,transparent 52%,rgba(15,30,52,.13) 100%)}
+
+/* 8 · stripe — poster hoarding, loudest of the nine */
+.t-stripe .bgl{background:repeating-linear-gradient(52deg,
+  var(--orange) 0 78px, var(--cream) 78px 156px);opacity:.92}
+.t-stripe .mid,.t-stripe .mast,.t-stripe .meta{background:var(--cream)}
+.t-stripe .mid{padding:clamp(1.2rem,3vw,2rem);border:2px solid var(--navy)}
+.t-stripe .mast,.t-stripe .meta{padding:10px 14px}
+
+/* 9 · emblem — the mark itself becomes the room */
+.t-emblem .bgl{background:url("../assets/emblem/icon-orange-tp.png") no-repeat right -14% center/auto 150%;
+  opacity:.11}
+
+/* ============ chips + swatches ============ */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:var(--s3) 0}
+.chips button{font:inherit;font-size:13px;font-weight:700;padding:10px 15px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line);background:var(--white);color:var(--navy);transition:background .16s,border-color .16s,color .16s}
+.chips button:hover{border-color:var(--navy)}
+.chips button[aria-pressed="true"]{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+
+.grid{display:grid;gap:16px;margin:var(--s4) 0 0}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+.sw{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white);
+  display:flex;flex-direction:column;text-align:left;font:inherit;cursor:pointer;padding:0;
+  transition:border-color .16s,transform .16s}
+.sw:hover{border-color:var(--navy);transform:translateY(-2px)}
+.sw .tile{position:relative;height:120px;overflow:hidden;isolation:isolate;background:var(--navy)}
+.sw .tile.on-light{background:var(--cream)}
+.sw .tile img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sw .cap{padding:14px 16px}
+.sw .cap h3{font-family:var(--kr);font-weight:800;font-size:1rem;letter-spacing:-.03em;margin:0}
+.sw .cap .en{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-ink);margin:0 0 5px}
+.sw .cap p{font-size:13px;line-height:1.8;color:var(--navy-dim);margin:7px 0 0;font-family:var(--kr)}
+
+.note{margin:var(--s4) 0 clamp(3rem,8vw,5rem);padding:20px 24px;border:1px dashed var(--line);
+  border-radius:8px;font-size:14px;line-height:1.9;color:var(--navy-dim);max-width:72ch}
+.note b{color:var(--navy);display:block;margin-bottom:6px}
+.back{display:inline-block;font-size:13px;font-weight:700;color:var(--navy)}
+@media (prefers-reduced-motion:reduce){.sw{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="duotone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0
+                                         0.2126 0.7152 0.0722 0 0
+                                         0.2126 0.7152 0.0722 0 0
+                                         0 0 0 1 0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.059 1.000"/>
+      <feFuncG type="table" tableValues="0.118 0.604"/>
+      <feFuncB type="table" tableValues="0.204 0.122"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+<div class="wrap">
+
+<header>
+  <p class="label" style="color:var(--orange-ink);margin:0 0 12px">Ground Study · 배경 비교</p>
+  <h1>색도 폰트도 그대로.<br>배경만 바꿉니다.</h1>
+  <p class="intro">
+    아홉 개 모두 <b>네이비 · 오렌지 · 크림</b>만 쓰고, 폰트도 Bebas Neue + Pretendard로 동일합니다.
+    바뀌는 건 바탕 처리 하나뿐인데 인상은 전혀 달라집니다. 눌러서 같은 히어로에 바로 적용해 보세요.
+  </p>
+  <div class="chips" id="chips" role="group" aria-label="배경 처리 선택"></div>
+</header>
+
+<section class="hero t-flat" id="hero">
+  <img class="photo" id="photo" src="../assets/photos/sanford-clock.webp" alt="" hidden>
+  <div class="bgl" id="bgl" aria-hidden="true"></div>
+  <div class="bgl2" aria-hidden="true"></div>
+
+  <div class="mast">
+    <span class="lockup"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY.CHURCH</b></span>
+    <span class="label">Sunday 6PM</span>
+  </div>
+
+  <div class="mid">
+    <p class="eyebrow label">First Gathering · 첫 예배</p>
+    <p class="date mono">09.27<span>.2026</span></p>
+    <h2>하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h2>
+    <div class="btns">
+      <a class="btn" href="#">처음 오시나요? →</a>
+      <a class="btn ghost" href="#">교회 소개</a>
+    </div>
+  </div>
+
+  <p class="meta label">
+    <span>Sanford, Seminole County, FL</span><span>Member of CRCNA</span>
+  </p>
+</section>
+
+<div class="grid" id="grid"></div>
+
+<div class="note">
+  <b>브랜드 가이드와의 관계</b>
+  9항은 과한 그라디언트와 드롭섀도를 금지하고, 13항은 "길·페이지·이어지는 이야기"를 뜻하는 <b style="display:inline">흐르는 선</b>을
+  아주 절제해서 쓰라고 합니다. 그래서 <b style="display:inline">등고선</b>은 가이드가 직접 요구한 모티프이고,
+  <b style="display:inline">사선 줄무늬</b>는 가장 크게 벗어납니다.
+  그라디언트는 듀오톤과 종이의 가독성 확보용으로만 썼습니다.
+</div>
+
+<a class="back" href="index.html">← 시안 목록으로</a>
+</div>
+
+<script>
+var CONTOUR =
+  '<svg viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">' +
+  (function(){
+    var d='';
+    for(var i=0;i<9;i++){
+      var y=90+i*68, a=26+i*5, f=1.1+i*0.14;
+      d+='<path d="M0 '+y;
+      for(var x=0;x<=1200;x+=40){
+        var yy=y+Math.sin((x/1200)*Math.PI*2*f+i*0.8)*a+Math.sin((x/1200)*Math.PI*5*f)*a*0.25;
+        d+=' L'+x+' '+yy.toFixed(1);
+      }
+      d+='"/>';
+    }
+    return d;
+  })() + '</svg>';
+
+var GROUNDS = [
+  {id:'flat',      en:'Flat',      ko:'단색',       tone:'dark',  photo:false,
+   note:'기준. 네이비 한 판. 타이포만으로 승부하는 가장 조용한 바탕.'},
+  {id:'grain',     en:'Grain',     ko:'그레인',     tone:'dark',  photo:false,
+   note:'필름 입자. 평면이던 바탕에 온도가 생기고 인쇄물처럼 만져지는 느낌.'},
+  {id:'halftone',  en:'Halftone',  ko:'하프톤',     tone:'dark',  photo:false,
+   note:'리소그래프 망점. 아래로 갈수록 촘촘해져 젊고 인쇄물다운 인상.'},
+  {id:'blueprint', en:'Blueprint', ko:'설계 격자',  tone:'dark',  photo:false,
+   note:'모눈 위에 얹힌 화면. 정직하고 계획된 인상 — 개척 단계와 잘 맞음.'},
+  {id:'contour',   en:'Contour',   ko:'등고선',     tone:'dark',  photo:false,
+   note:'가이드 13항의 길·흐름 모티프를 지형으로. 아홉 중 가장 브랜드에 가까움.'},
+  {id:'duotone',   en:'Duotone',   ko:'듀오톤',     tone:'dark',  photo:true,
+   note:'샌포드 실사진을 브랜드 두 색으로만 환원. 장소가 곧 배경이 됨.'},
+  {id:'paper',     en:'Paper',     ko:'종이',       tone:'light', photo:false,
+   note:'크림 종이에 섬유 결과 은은한 비네트. 문 앞에서 건네받는 주보의 질감.'},
+  {id:'stripe',    en:'Stripe',    ko:'사선 줄무늬',tone:'light', photo:false,
+   note:'포스터 광고판. 아홉 중 가장 시끄럽고 가장 어림. 가이드에서 제일 멀리 감.'},
+  {id:'emblem',    en:'Emblem',    ko:'엠블럼',     tone:'dark',  photo:false,
+   note:'S 마크를 화면 밖까지 키워 방 자체로. 브랜드 자산만으로 만든 바탕.'}
+];
+
+var hero = document.getElementById('hero');
+var photo = document.getElementById('photo');
+var bgl = document.getElementById('bgl');
+
+function paint(el, g, layer){
+  el.className = (el === hero ? 'hero' : 'tile') + ' t-' + g.id + (g.tone === 'light' ? ' on-light' : '');
+  layer.innerHTML = (g.id === 'contour') ? CONTOUR : '';
+}
+
+function apply(g){
+  paint(hero, g, bgl);
+  photo.hidden = !g.photo;
+  [].forEach.call(document.querySelectorAll('#chips button'), function(b){
+    b.setAttribute('aria-pressed', String(b.dataset.id === g.id));
+  });
+}
+
+var chips = document.getElementById('chips');
+GROUNDS.forEach(function(g, i){
+  var b = document.createElement('button');
+  b.type = 'button'; b.dataset.id = g.id;
+  b.textContent = g.ko + ' · ' + g.en;
+  b.setAttribute('aria-pressed', String(i === 0));
+  b.addEventListener('click', function(){ apply(g); });
+  chips.appendChild(b);
+});
+
+var grid = document.getElementById('grid');
+GROUNDS.forEach(function(g){
+  var card = document.createElement('button');
+  card.type = 'button'; card.className = 'sw';
+  card.setAttribute('aria-label', g.ko + ' 배경을 히어로에 적용');
+
+  var tile = document.createElement('div');
+  if(g.photo){
+    var im = document.createElement('img');
+    im.className = 'photo'; im.src = '../assets/photos/sanford-clock.webp'; im.alt = '';
+    im.loading = 'lazy';
+    tile.appendChild(im);
+  }
+  var l1 = document.createElement('div'); l1.className = 'bgl';
+  var l2 = document.createElement('div'); l2.className = 'bgl2';
+  tile.append(l1, l2);
+  paint(tile, g, l1);
+
+  var cap = document.createElement('div'); cap.className = 'cap';
+  var en = document.createElement('p'); en.className = 'en'; en.textContent = g.en;
+  var h3 = document.createElement('h3'); h3.textContent = g.ko;
+  var p = document.createElement('p'); p.textContent = g.note;
+  cap.append(en, h3, p);
+
+  card.append(tile, cap);
+  card.addEventListener('click', function(){
+    apply(g);
+    hero.scrollIntoView({block:'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+  grid.appendChild(card);
+});
+
+apply(GROUNDS[0]);
+</script>
+</body>
+</html>

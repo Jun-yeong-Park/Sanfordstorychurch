@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 I: STORYLINE</title>
+<style>
+body{background:var(--cream);color:var(--navy)}
+.stage{position:relative;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;
+  padding:var(--pad);gap:var(--s3);overflow:hidden}
+#line{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.stage > *:not(#line){position:relative;z-index:1}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2)}
+.lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lock img{width:28px}
+.lock b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.lock b i{font-style:normal;color:var(--orange-ink)}
+.mid{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);min-width:0}
+h1{font-family:var(--kr);font-weight:800;font-size:clamp(2.1rem,7.4vw,5rem);line-height:1.13;
+  letter-spacing:-.05em;margin:0;max-width:16ch}
+h1 em{font-style:normal;color:var(--orange-ink);white-space:nowrap}
+.sub{font-family:var(--kr);font-size:16px;line-height:1.9;color:var(--navy-dim);max-width:36ch;margin:0}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.foot{display:flex;flex-wrap:wrap;gap:6px 26px;padding-top:var(--s2);
+  border-top:1px solid var(--hair-dark);color:var(--navy-dim)}
+.foot b{color:var(--navy)}
+/* the type sits on a soft plate so the moving line never eats the text */
+.mid::before{content:"";position:absolute;inset:-22px -26px;background:var(--cream);
+  filter:blur(26px);opacity:.86;z-index:-1;border-radius:24px}
+</style>
+</head>
+<body>
+<div class="stage">
+  <canvas id="line" aria-hidden="true"></canvas>
+
+  <div class="mast">
+    <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+    <span class="label" style="color:var(--navy-dim)">Sunday 6PM · Sanford, FL</span>
+  </div>
+
+  <div class="mid">
+    <p class="label" style="color:var(--orange-ink);margin:0">The story is still being written <span class="kr" style="color:var(--navy-dim)">· 계속 쓰이는 이야기</span></p>
+    <h1 class="kr">하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h1>
+    <p class="sub">주일 저녁 6시. 편한 옷으로 오셔서 함께 예배하고, 예배가 끝나면 한 상에 둘러앉습니다.</p>
+    <div class="acts">
+      <a class="btn btn-navy" href="#">처음 오시나요? →</a>
+      <a class="btn btn-ghost-dark" href="#">교회 소개</a>
+    </div>
+  </div>
+
+  <div class="foot label">
+    <span><b>First Gathering</b></span><span class="mono">2026.09.27</span>
+    <span>Member of CRCNA</span><span class="mono" id="dday">D–23</span>
+  </div>
+</div>
+<a class="study" href="index.html"><b>I</b> STORYLINE — 히어로 시안 · 목록으로</a>
+<script>
+(function(){
+  var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+  function dd(){var l=T-Date.now();
+    document.getElementById('dday').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+  dd();setInterval(dd,60000);
+
+  // brand-guide 13: a flowing path standing for the story God keeps writing.
+  var cv=document.getElementById('line'), ctx=cv.getContext('2d');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,dpr=1,t=0,raf=0;
+
+  var BANDS=[
+    {amp:.14, freq:1.5, speed:.00022, w:2.4, a:.95, off:0},
+    {amp:.10, freq:2.2, speed:.00031, w:1.4, a:.55, off:1.7},
+    {amp:.19, freq:1.1, speed:.00016, w:1.0, a:.34, off:3.4}
+  ];
+
+  function size(){
+    dpr=Math.min(devicePixelRatio||1, 2);
+    W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    for(var b=0;b<BANDS.length;b++){
+      var s=BANDS[b];
+      ctx.beginPath();
+      for(var x=0;x<=W;x+=6){
+        var p=x/W;
+        var y=H*0.52
+            + Math.sin(p*Math.PI*s.freq + now*s.speed + s.off) * H*s.amp
+            + Math.sin(p*Math.PI*s.freq*2.6 + now*s.speed*1.6 + s.off) * H*s.amp*0.28;
+        x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle='rgba(255,154,31,'+s.a+')';
+      ctx.lineWidth=s.w; ctx.lineCap='round'; ctx.stroke();
+    }
+  }
+
+  function loop(ts){ t=ts; draw(ts); raf=requestAnimationFrame(loop); }
+
+  function start(){ if(!raf && !reduce) raf=requestAnimationFrame(loop); }
+  function stop(){ if(raf){ cancelAnimationFrame(raf); raf=0; } }
+
+  size(); draw(reduce ? 4200 : 0);          // reduced motion still gets a real drawn line
+  if(!reduce) start();
+  addEventListener('resize',function(){ size(); draw(t||4200); },{passive:true});
+  document.addEventListener('visibilitychange',function(){ document.hidden ? stop() : start(); });
+})();
+</script>
+</body>
+</html>

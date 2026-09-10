@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="_hero.css">
+<title>스토리교회 — 안 G: CUTOUT</title>
+<style>
+body{background:var(--cream);color:var(--navy)}
+.stage{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:var(--pad);gap:var(--s3)}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);
+  padding-bottom:14px;border-bottom:1px solid var(--hair-dark)}
+.mast .lock{display:flex;align-items:center;gap:10px;text-decoration:none}
+.mast img{width:27px}
+.mast b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:400}
+.mast b i{font-style:normal;color:var(--orange-ink)}
+.mast .right{display:none;gap:18px;color:var(--navy-dim)}
+@media(min-width:640px){.mast .right{display:flex}}
+.mast .right a{text-decoration:none}
+.mast .right a:hover{color:var(--navy)}
+.mid{display:flex;flex-direction:column;justify-content:center;gap:var(--s3);min-width:0}
+/* the cutout: the word is a window onto Sanford */
+.cut{font-family:var(--display);font-size:clamp(5.5rem,26vw,22rem);line-height:.78;letter-spacing:-.02em;
+  margin:0;color:var(--navy)}
+@supports (-webkit-background-clip:text) or (background-clip:text){
+  .cut{background-image:linear-gradient(rgba(15,30,52,.58),rgba(15,30,52,.58)),url("../assets/photos/sanford-clock.webp");
+    background-size:cover;background-position:center 42%;
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+}
+.cut .thin{display:block;font-family:var(--kr);font-weight:800;font-size:.17em;letter-spacing:-.045em;
+  line-height:1.2;color:var(--navy);background:none;-webkit-text-fill-color:var(--navy);margin-top:.12em}
+.cut .thin em{font-style:normal;color:var(--orange-ink)}
+.foot{display:grid;gap:var(--s3);padding-top:var(--s2);border-top:1px solid var(--hair-dark)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;color:var(--navy-dim)}
+.facts b{color:var(--navy)}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+@media(min-width:900px){
+  .foot{grid-template-columns:1fr auto;align-items:center}
+  .facts{gap:8px 36px}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="mast">
+    <a class="lock" href="#"><img src="../assets/emblem/icon-orange-tp.png" alt=""><b>SANFORD STORY<i>.</i>CHURCH</b></a>
+    <div class="right label"><a href="#">교회 소개</a><a href="#">예배</a><a href="#" style="color:var(--navy)">처음 오시나요?</a></div>
+  </div>
+
+  <div class="mid">
+    <p class="label" style="color:var(--orange-ink);margin:0">2 Corinthians 3:3 <span class="kr" style="color:var(--navy-dim)">· 우리는 그분의 살아있는 편지</span></p>
+    <h1 class="cut">STORY
+      <span class="thin">하나님의 이야기가 <em>당신의 삶</em>에서<br>시작됩니다.</span>
+    </h1>
+  </div>
+
+  <div class="foot">
+    <p class="facts label" style="margin:0">
+      <span><b>Sunday 6PM</b></span><span>Sanford, Seminole County, FL</span>
+      <span>First Gathering <b class="mono">2026.09.27</b></span><span class="mono" id="dday">D–23</span>
+    </p>
+    <div class="acts">
+      <a class="btn btn-navy" href="#">처음 오시나요? →</a>
+      <a class="btn btn-ghost-dark" href="#">교회 소개</a>
+    </div>
+  </div>
+</div>
+<a class="study" href="index.html"><b>G</b> CUTOUT — 히어로 시안 · 목록으로</a>
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('dday').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 안 N: TERMINAL</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* palette: phosphor. no photography anywhere — the screen is the whole surface. */
+:root{
+  --bg:#0A0D10; --amber:#FFB000; --dim:#7A8390; --rule:#1B2229; --white:#D8DEE6;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --kr:"IBM Plex Sans KR",system-ui,sans-serif;
+  --pad:clamp(16px,4vw,44px);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--white);font-family:var(--mono);
+  font-size:14px;line-height:1.75;word-break:keep-all;overflow:hidden;
+  font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--amber);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.screen{height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:var(--pad);gap:clamp(14px,3vh,28px)}
+.chrome{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;
+  padding-bottom:10px;border-bottom:1px solid var(--rule);color:var(--dim);font-size:12px}
+.chrome .who{color:var(--amber)}
+.body{display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2.4vh,22px);min-height:0;overflow:auto}
+.prompt{color:var(--dim);font-size:13px;margin:0}
+.prompt b{color:var(--amber);font-weight:500}
+
+/* the readout is the headline; there is no hero sentence in the usual place */
+.rows{margin:0;border-top:1px solid var(--rule)}
+.rows div{display:grid;grid-template-columns:1fr;gap:2px 20px;padding:8px 0;border-bottom:1px solid var(--rule)}
+.rows dt{color:var(--dim);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.rows dd{margin:0;color:var(--white)}
+.rows dd em{font-style:normal;color:var(--amber)}
+.rows .kr{font-family:var(--kr);font-weight:500}
+
+.say{font-family:var(--kr);font-weight:600;font-size:clamp(1.15rem,3.4vw,1.9rem);line-height:1.5;
+  letter-spacing:-.03em;margin:0;max-width:26ch;color:var(--white)}
+.say em{font-style:normal;color:var(--amber)}
+
+.cmd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0}
+.cmd a{font-family:var(--kr);font-weight:600;font-size:15px;text-decoration:none;
+  border:1px solid var(--amber);color:var(--amber);padding:9px 16px}
+.cmd a:hover{background:var(--amber);color:var(--bg)}
+.cmd a.ghost{border-color:var(--rule);color:var(--dim)}
+.cmd a.ghost:hover{border-color:var(--white);background:transparent;color:var(--white)}
+.caret{display:inline-block;width:9px;height:1.05em;background:var(--amber);
+  vertical-align:-.18em;animation:blink 1.15s steps(1,end) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+.status{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;
+  padding-top:10px;border-top:1px solid var(--rule);color:var(--dim);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase}
+.status .ok::before{content:"● ";color:var(--amber)}
+
+@media(min-width:720px){ .rows div{grid-template-columns:190px 1fr;align-items:baseline} }
+@media (prefers-reduced-motion:reduce){ .caret{animation:none} }
+</style>
+</head>
+<body>
+<h1 class="sr-only">스토리교회 — 2026년 9월 27일 주일 저녁 6시, 플로리다 샌포드 한인 개척교회</h1>
+
+<div class="screen">
+  <div class="chrome">
+    <span class="who">sanford-story-church</span>
+    <span>seminole-county.fl.us · est 1857 crcna</span>
+  </div>
+
+  <div class="body">
+    <p class="prompt">$ <b>status</b> --church</p>
+
+    <dl class="rows">
+      <div><dt>service</dt><dd>Sunday <em>18:00</em> EST <span class="kr" style="color:var(--dim)">· 주일 저녁 6시</span></dd></div>
+      <div><dt>location</dt><dd>Sanford, Seminole County, Florida</dd></div>
+      <div><dt>launch</dt><dd><em>2026-09-27</em></dd></div>
+      <div><dt>countdown</dt><dd><em id="cd">--</em></dd></div>
+      <div><dt>denomination</dt><dd>CRCNA</dd></div>
+      <div><dt>dress_code</dt><dd class="kr">캐주얼</dd></div>
+      <div><dt>after_service</dt><dd class="kr">원형 테이블 · 식탁 교제</dd></div>
+    </dl>
+
+    <p class="prompt" style="margin-top:6px">$ <b>cat</b> why.txt</p>
+    <p class="say">하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</p>
+
+    <p class="prompt">$ <span class="caret" aria-hidden="true"></span></p>
+    <p class="cmd">
+      <a href="#">처음 오시나요?</a>
+      <a class="ghost" href="#">교회 소개</a>
+    </p>
+  </div>
+
+  <div class="status">
+    <span class="ok">accepting new people</span>
+    <span>sunday project ministry inc.</span>
+    <span id="clock">--:-- EST</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+  function p(n){return n<10?'0'+n:''+n}
+  function up(){
+    var l=T-Date.now();
+    document.getElementById('cd').textContent = l<=0 ? '00d 00h 00m 00s'
+      : Math.floor(l/864e5)+'d '+p(Math.floor(l/36e5)%24)+'h '+p(Math.floor(l/6e4)%60)+'m '+p(Math.floor(l/1e3)%60)+'s';
+    document.getElementById('clock').textContent = new Intl.DateTimeFormat('en-US',
+      {timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date())+' EST';
+  }
+  up(); setInterval(up,1000);
+})();
+</script>
+</body>
+</html>

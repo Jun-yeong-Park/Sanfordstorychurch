@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 안 O: ATLAS</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* palette: survey paper, chart ink, one signal red for the pin. */
+:root{
+  --paper:#EFEAE0; --ink:#12212B; --ink-dim:#5C6B75; --signal:#C8102E;
+  --grid:rgba(18,33,43,.14); --grid-2:rgba(18,33,43,.28);
+  --sans:"Space Grotesk",system-ui,sans-serif;
+  --kr:"IBM Plex Sans KR",system-ui,sans-serif;
+  --pad:clamp(16px,3.4vw,38px);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  word-break:keep-all;overflow:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tnum{font-variant-numeric:tabular-nums}
+
+.chart{position:relative;height:100%;overflow:hidden}
+/* the sheet: survey grid + contour water lines, drawn not photographed */
+.grid{position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid-2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
+  background-size:26px 26px,26px 26px,130px 130px,130px 130px}
+.water{position:absolute;inset:0;width:100%;height:100%}
+.water path{fill:none;stroke:var(--ink);stroke-width:1;opacity:.16}
+.water .fill{fill:rgba(18,33,43,.045);stroke:none}
+
+/* edge rulers — the frame reads as a chart, not a webpage */
+.ruler{position:absolute;display:flex;color:var(--ink-dim);font-size:9px;letter-spacing:.1em}
+.ruler.x{top:0;left:0;right:0;height:22px;align-items:center;gap:0;
+  border-bottom:1px solid var(--grid-2);background:rgba(239,234,224,.82)}
+.ruler.y{top:0;bottom:0;left:0;width:24px;flex-direction:column;justify-content:space-between;
+  align-items:center;padding:26px 0 12px;border-right:1px solid var(--grid-2);background:rgba(239,234,224,.82)}
+.ruler.x span{flex:1;padding-left:6px;border-left:1px solid var(--grid-2)}
+.ruler.y span{writing-mode:vertical-rl}
+
+/* the pin: real coordinates from the church's own metadata */
+.pin{position:absolute;left:58%;top:44%;transform:translate(-50%,-100%);z-index:3}
+.pin .dot{width:13px;height:13px;border-radius:50%;background:var(--signal);
+  border:2px solid var(--paper);margin:0 auto;position:relative;z-index:2}
+.pin .ping{position:absolute;left:50%;top:6px;width:13px;height:13px;border-radius:50%;
+  border:1px solid var(--signal);transform:translate(-50%,-50%);
+  animation:ping 3.4s cubic-bezier(.2,.7,.3,1) infinite}
+@keyframes ping{0%{opacity:.9;transform:translate(-50%,-50%) scale(1)}
+  70%,100%{opacity:0;transform:translate(-50%,-50%) scale(6.5)}}
+.pin .stem{width:1px;height:52px;background:var(--signal);margin:0 auto}
+.pin .tip{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--signal);text-align:center;margin-bottom:5px;white-space:nowrap}
+
+/* the field card — all the human information, none of it centred */
+.card{position:absolute;left:calc(24px + var(--pad));bottom:var(--pad);z-index:4;
+  width:min(92vw - var(--pad),27rem);background:var(--paper);
+  border:1.5px solid var(--ink);padding:clamp(16px,3vw,26px)}
+.card .head{display:flex;justify-content:space-between;gap:12px;font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);
+  padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--grid-2)}
+.card .head b{color:var(--signal)}
+.card h2{font-family:var(--kr);font-weight:700;font-size:clamp(1.25rem,3.6vw,1.75rem);
+  line-height:1.45;letter-spacing:-.035em;margin:0}
+.card h2 em{font-style:normal;color:var(--signal)}
+.card dl{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:13px}
+.card dt{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-dim);padding-top:3px}
+.card dd{margin:0;font-family:var(--kr);font-weight:600}
+.card .go{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--kr);
+  font-weight:700;font-size:14px;text-decoration:none;background:var(--ink);color:var(--paper);
+  padding:12px 18px}
+.card .go:hover{background:var(--signal)}
+
+.legend{position:absolute;right:var(--pad);top:calc(22px + var(--pad));z-index:4;text-align:right;
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);line-height:2}
+.legend b{display:block;color:var(--ink)}
+
+@media (max-width:720px){
+  .pin{left:52%;top:30%}
+  .legend{font-size:9px}
+}
+@media (prefers-reduced-motion:reduce){ .pin .ping{animation:none;opacity:.35} }
+</style>
+</head>
+<body>
+<h1 class="sr-only">스토리교회 — 플로리다 샌포드 한인 개척교회. 2026년 9월 27일 주일 저녁 6시 첫 예배.</h1>
+
+<div class="chart">
+  <div class="grid" aria-hidden="true"></div>
+  <svg class="water" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+    <path class="fill" d="M0 610 C 180 566, 360 640, 545 600 S 900 556, 1200 604 L1200 800 L0 800 Z"/>
+    <path d="M0 610 C 180 566, 360 640, 545 600 S 900 556, 1200 604"/>
+    <path d="M0 648 C 190 606, 380 676, 560 638 S 910 596, 1200 642"/>
+    <path d="M0 686 C 200 648, 400 712, 575 676 S 920 636, 1200 680"/>
+  </svg>
+
+  <div class="ruler x" aria-hidden="true">
+    <span>81°18'W</span><span>81°17'W</span><span>81°16'W</span><span>81°15'W</span><span>81°14'W</span>
+  </div>
+  <div class="ruler y" aria-hidden="true">
+    <span>28°49'N</span><span>28°48'N</span><span>28°47'N</span>
+  </div>
+
+  <div class="pin">
+    <p class="tip">Story Church</p>
+    <span class="ping" aria-hidden="true"></span>
+    <span class="dot"></span>
+    <span class="stem"></span>
+  </div>
+
+  <div class="legend" aria-hidden="true">
+    <b>Lake Monroe</b>
+    Sanford · Seminole Co.
+    <b class="tnum">28.8028 N · 81.2731 W</b>
+  </div>
+
+  <div class="card">
+    <p class="head"><span>Field Card · 01</span><b class="tnum" id="cd">D–23</b></p>
+    <h2>하나님의 이야기가 <em>당신의 삶</em>에서 시작됩니다.</h2>
+    <dl>
+      <dt>When</dt><dd>주일 오후 6시 <span class="tnum" style="color:var(--ink-dim)">(Sun 18:00)</span></dd>
+      <dt>Where</dt><dd>Sanford, Seminole County, FL</dd>
+      <dt>Opens</dt><dd class="tnum">2026. 09. 27</dd>
+      <dt>Body</dt><dd>CRCNA 소속</dd>
+    </dl>
+    <a class="go" href="#">찾아오는 길 →</a>
+  </div>
+</div>
+
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('cd').textContent=l<=0?'TODAY':'D–'+Math.floor(l/864e5)}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

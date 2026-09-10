@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스토리교회 — 안 M: CATALOGUE</title>
+<link rel="icon" href="../assets/favicon/favicon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hahmlet:wght@300;500&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* palette: gallery white and ink. no accent colour at all — the restraint is the point. */
+:root{
+  --paper:#FBFAF7; --ink:#171716; --ink-dim:#6B6B66; --hair:#DEDCD5;
+  --serif:"Instrument Serif",Georgia,serif;
+  --kr:"Hahmlet",serif;
+  --sans:"Archivo",system-ui,sans-serif;
+  --edge:clamp(16px,3.4vw,42px);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  word-break:keep-all;overflow:hidden}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* everything hugs the edges; the middle is deliberately, expensively empty */
+.sheet{position:relative;height:100%;padding:var(--edge)}
+.corner{position:absolute;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  line-height:1.9;color:var(--ink-dim)}
+.tl{top:var(--edge);left:var(--edge)}
+.tr{top:var(--edge);right:var(--edge);text-align:right}
+.corner b{color:var(--ink);font-weight:500;display:block}
+
+/* one small plate, placed off the optical centre like a catalogue figure */
+.plate{position:absolute;top:clamp(96px,26vh,220px);right:clamp(var(--edge),16vw,190px);
+  width:clamp(120px,20vw,208px)}
+.plate img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) contrast(1.06);display:block}
+.plate figcaption{margin-top:7px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-dim);line-height:1.8}
+
+/* the title sits low-left, catalogue-cover fashion */
+.title{position:absolute;left:var(--edge);bottom:calc(var(--edge) + 46px);max-width:min(88vw,30rem)}
+.title .en{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,11vw,7rem);line-height:.94;
+  letter-spacing:-.02em;margin:0}
+.title .en i{font-style:italic;color:var(--ink-dim)}
+.title .ko{font-family:var(--kr);font-weight:500;font-size:clamp(1rem,2.6vw,1.35rem);line-height:1.8;
+  letter-spacing:-.02em;margin:clamp(12px,2vh,20px) 0 0}
+.title .ko span{color:var(--ink-dim);font-weight:300}
+
+.foot{position:absolute;left:var(--edge);right:var(--edge);bottom:var(--edge);
+  display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline;justify-content:space-between;
+  padding-top:11px;border-top:1px solid var(--hair);
+  font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
+.foot a{text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px}
+.foot a:hover{color:var(--ink-dim);border-color:var(--ink-dim)}
+.foot .run{font-variant-numeric:tabular-nums}
+
+@media (max-width:640px){
+  .plate{top:auto;bottom:calc(var(--edge) + 210px);right:var(--edge);width:104px}
+  .title{bottom:calc(var(--edge) + 52px)}
+}
+</style>
+</head>
+<body>
+<h1 class="sr-only">스토리교회 — 2026년 9월 27일 개척, 플로리다 샌포드 한인교회</h1>
+
+<div class="sheet">
+  <div class="corner tl">
+    <b>Sanford Story Church</b>
+    스토리교회
+  </div>
+  <div class="corner tr">
+    <b>Opening 27 Sept 2026</b>
+    Sundays, 6PM · ongoing
+  </div>
+
+  <figure class="plate">
+    <img src="../assets/photos/sanford-clock.webp" alt="플로리다 샌포드 다운타운의 시계탑" loading="lazy">
+    <figcaption>Fig. 1<br>Downtown Sanford, FL</figcaption>
+  </figure>
+
+  <div class="title">
+    <p class="en">Story,<br><i>still</i> being<br>written</p>
+    <p class="ko">하나님의 이야기가 당신의 삶에서 시작됩니다.<br>
+      <span>플로리다 샌포드에서 시작되는 한인 개척교회.</span></p>
+  </div>
+
+  <div class="foot">
+    <span>Seminole County, Florida</span>
+    <span>Christian Reformed Church in North America</span>
+    <span class="run" id="run">2026.09.27 —</span>
+    <a href="#">처음 오시는 분 안내</a>
+  </div>
+</div>
+
+<script>
+var T=new Date('2026-09-27T18:00:00-04:00').getTime();
+function up(){var l=T-Date.now();
+  document.getElementById('run').textContent =
+    l<=0 ? '2026.09.27 —' : '2026.09.27 — opens in ' + Math.floor(l/864e5) + ' days'}
+up();setInterval(up,60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* Shared brand tokens for the hero studies (D–G). Concepts A–C stay self-contained. */
+:root{
+  --navy:#0F1E34; --orange:#FF9A1F; --cream:#F4F0E6; --stone:#D7D9DD; --white:#fff;
+  --orange-ink:#8A4B00;   /* orange-family text on light — 5.98:1 */
+  --cream-dim:#B9BFC9;    /* muted text on navy — 9.06:1 */
+  --navy-dim:#4A5768;     /* muted text on cream — 6.4:1 */
+  --hair:rgba(244,240,230,.18); --hair-dark:rgba(15,30,52,.16);
+  --display:"Bebas Neue",sans-serif;
+  --body:"Montserrat","Pretendard Variable",Pretendard,sans-serif;
+  --kr:"Pretendard Variable",Pretendard,"Montserrat",sans-serif;
+  --s1:.5rem; --s2:1rem; --s3:2rem; --s4:4rem;
+  --pad:20px;
+}
+@media(min-width:900px){:root{--pad:40px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--body);font-size:17px;line-height:1.7;overflow-x:hidden;
+  word-break:keep-all;   /* Korean wraps on word boundaries, never mid-word */
+  overflow-wrap:anywhere; /* ...but a long unbroken token still can't overflow */
+  padding-bottom:34px}    /* clearance for the concept ribbon */
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.kr{font-family:var(--kr)}
+.mono{font-variant-numeric:tabular-nums}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 25px;border-radius:4px;text-decoration:none;
+  font-family:var(--kr);font-weight:800;font-size:15px;letter-spacing:-.02em;border:1px solid transparent;
+  transition:background .18s,color .18s,border-color .18s,transform .12s}
+.btn:active{transform:translateY(1px)}
+.btn-orange{background:var(--orange);color:var(--navy)}
+.btn-orange:hover{background:var(--cream)}
+.btn-navy{background:var(--navy);color:var(--cream)}
+.btn-navy:hover{background:var(--orange);color:var(--navy)}
+.btn-ghost-light{border-color:var(--hair);color:var(--cream)}
+.btn-ghost-light:hover{border-color:var(--orange);color:var(--orange)}
+.btn-ghost-dark{border-color:var(--hair-dark);color:var(--navy)}
+.btn-ghost-dark:hover{background:var(--navy);color:var(--cream)}
+/* concept ribbon — these files are hero studies, not full pages */
+.study{position:fixed;left:0;bottom:0;z-index:90;display:flex;align-items:center;gap:10px;
+  background:var(--navy);color:var(--cream);padding:8px 14px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-top:2px solid var(--orange)}
+.study b{color:var(--orange)}
+.study:hover{background:#16294a}
