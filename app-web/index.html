@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F1E34">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Story">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="assets/icon-192.png">
+<title>스토리교회 · Story App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header id="top">
+  <img class="mark" src="assets/mark.png" alt="">
+  <span class="wordmark">SANFORD <em>STORY</em> CHURCH</span>
+  <span id="topIssue"></span>
+</header>
+
+<main id="view"></main>
+
+<nav id="tabs">
+  <a href="#bulletin" data-tab="bulletin"><svg viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 0 1 2 2v14a1.5 1.5 0 0 0-1.5-1.5H4zM20 4h-7a2 2 0 0 0-2 2v14a1.5 1.5 0 0 1 1.5-1.5H20z"/></svg>주보</a>
+  <a href="#notes" data-tab="notes"><svg viewBox="0 0 24 24"><path d="M4 20l4.5-1 10-10-3.5-3.5-10 10zM14 6.5l3.5 3.5 2-2a1.5 1.5 0 0 0 0-2.1L18.1 4.5a1.5 1.5 0 0 0-2.1 0z"/></svg>노트</a>
+  <a href="#wall" data-tab="wall"><svg viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/></svg>나눔</a>
+  <a href="#church" data-tab="church"><svg viewBox="0 0 24 24"><path d="M12 2v3M10 4h4M5 21v-9l7-5 7 5v9h-5v-5h-4v5z"/></svg>교회</a>
+</nav>
+
+<input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
+
+<script src="config.js"></script>
+<script src="data/bulletin.js"></script>
+<script src="db.js"></script>
+<script src="wall.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "스토리교회",
+    "slug": "sanford-story-church",
+    "scheme": "storychurch",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F0E6"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.sanfordstorychurch.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "종이 주보와 손으로 적은 메모를 찍어 노트에 저장합니다.",
+        "NSPhotoLibraryUsageDescription": "주보 사진을 노트에 첨부합니다.",
+        "NSCalendarsFullAccessUsageDescription": "교회 일정을 내 캘린더에 추가합니다."
+      }
+    },
+    "android": {
+      "package": "com.sanfordstorychurch.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "종이 주보와 손으로 적은 메모를 찍어 노트에 저장합니다."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#0F1E34"
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "교회 일정을 내 캘린더에 추가합니다."
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Sanford Story Church — 말씀 노트 작성 안내</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --orange: #FF9A1F; --navy: #0F1E34; --cream: #F4F0E6; --gray: #D7D9DD;
+    --ink: #0F1E34; --ink-dim: rgba(15,30,52,.62);
+    --display: "Bebas Neue", sans-serif; --en: "Montserrat", sans-serif;
+    --ko: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e9e6df; font-family: var(--ko); color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  #bar { position: sticky; top: 0; z-index: 9; display: flex; gap: 10px; align-items: center;
+    padding: 10px 16px; background: var(--navy); color: var(--cream); font: 600 12px/1 var(--en); letter-spacing: .12em; }
+  #bar b { font-family: var(--display); font-size: 20px; letter-spacing: .04em; font-weight: 400; margin-right: auto; }
+  #bar button { font: 700 11px/1 var(--en); letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px;
+    border: 1px solid var(--orange); background: var(--orange); color: var(--navy); border-radius: 4px; cursor: pointer; }
+  #bar span { font-family: var(--ko); font-weight: 500; letter-spacing: 0; opacity: .8; }
+
+  #sheets { display: flex; flex-direction: column; align-items: center; padding: 28px 16px 60px; }
+  .sheet { width: 297mm; height: 210mm; display: flex; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,.18); position: relative; }
+  .sheet::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed rgba(15,30,52,.25); pointer-events: none; }
+  .sheet-label { position: absolute; top: -18px; left: 0; font: 600 10px/1 var(--en); letter-spacing: .18em; color: var(--ink-dim); text-transform: uppercase; }
+
+  /* ---------- A5 page ---------- */
+  .page { width: 148.5mm; height: 210mm; padding: 11mm 10mm 9mm; background: #fff; overflow: hidden; display: flex; flex-direction: column; position: relative; }
+  .head { display: flex; align-items: flex-start; justify-content: space-between; }
+  .head .eyebrow { font: 600 7pt/1 var(--en); letter-spacing: .2em; text-transform: uppercase; color: var(--orange); }
+  .head .display { font-family: var(--display); font-size: 22pt; line-height: .95; letter-spacing: .01em; margin-top: 1.6mm; }
+  .head .ko { font-weight: 700; font-size: 9.5pt; color: var(--ink-dim); margin-top: 1.2mm; }
+  .head img { width: 22mm; margin-top: .5mm; }
+  .intro { margin-top: 2.6mm; padding: 2mm 0 2.4mm; border-top: .45mm solid var(--navy); border-bottom: 1px solid var(--gray); }
+  .intro p { font-size: 7.8pt; line-height: 1.5; }
+  .intro p.en { font-family: var(--en); font-size: 6.6pt; color: var(--ink-dim); margin-top: .8mm; }
+
+  .steps { display: flex; flex-direction: column; margin-top: 1mm; flex: 1; }
+  .step { display: grid; grid-template-columns: 9mm 1fr; column-gap: 2.5mm; padding: 2.3mm 0; border-bottom: 1px dashed var(--gray); }
+  .step:last-child { border-bottom: 0; }
+  .step .n { font-family: var(--display); font-size: 17pt; line-height: .9; color: var(--orange); padding-top: .4mm; }
+  .step .t { display: flex; align-items: baseline; gap: 2mm; }
+  .step .t .nm { font-family: var(--display); font-size: 13.5pt; line-height: 1; letter-spacing: .03em; }
+  .step .t .ko { font-weight: 700; font-size: 8pt; color: var(--ink-dim); }
+  .step .q { margin-top: 1mm; font-size: 7.6pt; line-height: 1.45; font-weight: 500; }
+  .step .q .en { display: block; font-family: var(--en); font-size: 6.4pt; font-weight: 500; color: var(--ink-dim); margin-top: .3mm; }
+  .step .ex { margin-top: 1.2mm; padding-left: 2.6mm; border-left: .7mm solid var(--orange); font-size: 6.8pt; line-height: 1.4; color: var(--ink-dim); }
+  .step .ex b { font: 600 5.8pt/1 var(--en); letter-spacing: .16em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: .7mm; }
+  .step .ex .en { display: block; font-family: var(--en); font-size: 6.2pt; margin-top: .5mm; }
+
+  .foot { margin-top: auto; padding-top: 2mm; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .foot .l { font-size: 6.6pt; line-height: 1.5; color: var(--ink-dim); }
+  .foot .l b { color: var(--navy); font-weight: 700; }
+  .foot .r { font: 600 6.3pt/1.4 var(--en); letter-spacing: .1em; color: var(--orange); text-align: right; text-transform: uppercase; }
+  .foot .r small { display: block; font-family: var(--ko); font-weight: 500; letter-spacing: 0; color: var(--ink-dim); text-transform: none; font-size: 6.3pt; }
+
+  @page { size: A4 landscape; margin: 0; }
+  @media print {
+    html, body { background: #fff; }
+    #bar { display: none; }
+    #sheets { padding: 0; }
+    .sheet { box-shadow: none; page-break-after: always; }
+    .sheet::after { border-color: rgba(15,30,52,.35); }
+    .sheet-label { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="bar">
+  <b>SERMON NOTE GUIDE</b>
+  <span>A4 가로 1장 → 반 잘라 A5 두 장 · 주보에 끼워 배부</span>
+  <button onclick="window.print()">Print</button>
+</div>
+
+<div id="sheets">
+  <div class="sheet">
+    <div class="sheet-label">A4 landscape · 2-up · cut along dashed line</div>
+    <div class="page" id="p"></div>
+    <div class="page" id="p2"></div>
+  </div>
+</div>
+
+<template id="tpl">
+  <div class="head">
+    <div>
+      <div class="eyebrow">How to use your sermon note</div>
+      <div class="display">SERMON NOTE GUIDE</div>
+      <div class="ko">말씀 노트 작성 안내</div>
+    </div>
+    <img src="assets/logo-navy.svg" alt="Sanford Story Church">
+  </div>
+  <div class="intro">
+    <p>스토리교회의 말씀 노트는 네 개의 이야기로 이루어져 있습니다. 하나님의 이야기에서 시작해, 나의 이야기와 깊어진 이야기를 지나, 우리의 이야기로 완성됩니다. 매주 한 칸씩, 짧아도 좋으니 나의 말로 적어 보세요.</p>
+    <p class="en">Our sermon note has four stories: it begins with God's story, moves through my story and a deeper story, and is completed in our story. Each week, write a few lines in your own words.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div>
+      <div>
+        <div class="t"><span class="nm">HIS STORY</span><span class="ko">하나님의 이야기</span></div>
+        <div class="q">오늘 말씀을 통해 발견한 하나님은 어떤 분이신가요? 그분의 이야기를 기록해 보세요.<span class="en">Who is God, as you discovered Him in today's message? Write down His story.</span></div>
+        <div class="ex"><b>Example</b>"오늘 본문에서 예수님은 실패한 베드로를 포기하지 않으시고, 먼저 찾아와 회복시켜 주시는 분임을 깨달았다."<span class="en">"I realized that Jesus does not give up on Peter when he fails, but seeks him out first to restore him."</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">02</div>
+      <div>
+        <div class="t"><span class="nm">MY STORY</span><span class="ko">나의 이야기</span></div>
+        <div class="q">오늘 말씀에 비추어 내 삶을 돌아보세요. 하나님이 지금 나에게 무엇을 말씀하고 계신가요?<span class="en">Look at your life in the light of today's message. What is God saying to you right now?</span></div>
+        <div class="ex"><b>Example</b>"이번 주 직장에서 억울하고 힘든 일이 있었지만, 불평하기보다 먼저 기도하며 주님이 주시는 평안을 선택하기로 다짐했다."<span class="en">"I faced an unfair, difficult situation at work this week. Instead of complaining, I decided to pray first and choose the peace God gives."</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">03</div>
+      <div>
+        <div class="t"><span class="nm">DEEP STORY</span><span class="ko">깊어진 이야기</span></div>
+        <div class="q">오늘 말씀은 내 삶에 어떤 질문을 던지고 있나요? 그 질문 앞에서 내가 내려놓을 것과 붙들 것, 하나님께 드리는 나의 결단을 적어 보세요.<span class="en">What question does today's message ask of your life? Write what you will lay down, what you will hold on to, and the commitment you make before God.</span></div>
+        <div class="ex"><b>Example</b>"'나는 정말 하나님을 신뢰하는가?' 이 질문 앞에서, 결과를 내 손으로 통제하려는 마음을 내려놓고 주님의 때를 신뢰하기로 결단한다."<span class="en">"'Do I truly trust God?' Before this question, I lay down my need to control the outcome and choose to trust His timing."</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">04</div>
+      <div>
+        <div class="t"><span class="nm">OUR STORY</span><span class="ko">우리의 이야기</span></div>
+        <div class="q">테이블에서 서로의 이야기를 들어 보세요. 함께 나눈 은혜와 기도 제목, 우리가 함께 만들어 갈 이야기를 기록해 보세요.<span class="en">Listen to one another's stories at the table. Write down what was shared, the prayer requests, and the story we are building together.</span></div>
+        <div class="ex"><b>Example</b>"모임에서 나눈 지체의 기도 제목을 적어 두고, 이번 한 주간 매일 그를 위해 중보기도 하겠다."<span class="en">"I wrote down a group member's prayer request and will intercede for them every day this week."</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="l"><b>샌포드 스토리교회 SANFORD STORY CHURCH</b><br>God's Story begins in your life · 하나님의 이야기가 당신의 삶에서 시작됩니다</div>
+    <div class="r">Know Jesus · Make Jesus Known · Live a Jesus Life<small>예수님을 알고, 예수님을 전하고, 예수로 사는 삶</small></div>
+  </div>
+</template>
+
+<script>
+  const t = document.getElementById('tpl').content;
+  document.getElementById('p').append(t.cloneNode(true));
+  document.getElementById('p2').append(t.cloneNode(true));
+</script>
+</body>
+</html>
