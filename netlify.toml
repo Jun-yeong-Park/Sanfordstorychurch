@@ -1,3 +1,13 @@
 # 웹사이트는 web/ 폴더만 배포한다 (앱·주보 소스는 배포 안 함)
 [build]
   publish = "web"
+
+# 앱 정책 페이지 짧은 주소
+[[redirects]]
+  from = "/privacy"
+  to = "/app/privacy.html"
+  status = 200
+[[redirects]]
+  from = "/terms"
+  to = "/app/terms.html"
+  status = 200

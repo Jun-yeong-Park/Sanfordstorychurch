@@ -6,7 +6,9 @@ import Constants from 'expo-constants';
 import TopBar from '@/components/TopBar';
 import Events from '@/components/Events';
 import { Body, Btn, Display, KV, SecHead, Section, Sub } from '@/components/ui';
-import { getProfile, setDisplayName, useAuth } from '@/lib/auth';
+import { deleteMyAccount, getProfile, setDisplayName, useAuth } from '@/lib/auth';
+import { listBlocked, unblockUser, type Blocked } from '@/lib/wall';
+import { PRIVACY_URL, TERMS_URL } from '@/lib/moderation';
 import { getBulletin } from '@/lib/bulletin';
 import { useLang } from '@/lib/i18n';
 import { isConfigured } from '@/lib/supabase';
@@ -22,10 +24,15 @@ export default function ChurchScreen() {
   const { lang, setLang, tr, L } = useLang();
   const { session, signOut } = useAuth();
   const [name, setName] = useState('');
-  const load = useCallback(() => { if (session) getProfile(session.user.id).then((p) => setName(p?.display_name ?? '')); }, [session]);
+  const [blocked, setBlocked] = useState<Blocked[]>([]);
+  const load = useCallback(() => { if (session) { getProfile(session.user.id).then((p) => setName(p?.display_name ?? '')); listBlocked().then(setBlocked).catch(() => {}); } }, [session]);
   useEffect(load, [load]);
 
   const link = (label: string, url: string) => <Text onPress={() => Linking.openURL(url)} style={s.link}>{label}</Text>;
+  const onDelete = () => Alert.alert(tr('계정 삭제'), tr('계정을 삭제하면 프로필, 노트 백업, 신고·차단 기록이 즉시 지워지고 되돌릴 수 없습니다. 기기에 있는 노트는 남습니다.'), [
+    { text: tr('취소'), style: 'cancel' },
+    { text: tr('계정 삭제'), style: 'destructive', onPress: async () => { try { await deleteMyAccount(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+  ]);
   const saveName = async () => {
     if (!session) return;
     try { await setDisplayName(session.user.id, name.trim()); Alert.alert(tr('표시 이름'), tr('저장')); } catch (e) { Alert.alert('오류', (e as Error).message); }
@@ -86,7 +93,17 @@ export default function ChurchScreen() {
                 <Btn label={tr('저장')} small onPress={saveName} />
               </View>
               <Body dim size={12.5} style={{ marginTop: 8 }}>{lang === 'en' ? 'Shown on the Wall. Notes are backed up to your account.' : '나눔 벽에 표시됩니다. 노트는 이 계정에 백업됩니다.'}</Body>
-              <Btn label={tr('로그아웃')} variant="ghost" small onPress={signOut} style={{ alignSelf: 'flex-start', marginTop: 16 }} />
+              <Body bold size={14} style={{ marginTop: 18 }}>{tr('차단한 사용자')}</Body>
+              {blocked.length === 0 ? <Body dim size={12.5}>{tr('차단한 사용자가 없습니다')}</Body> : blocked.map((b) => (
+                <View key={b.blocked_id} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 6 }}>
+                  <Body dim size={12.5} style={{ flex: 1 }}>{b.blocked_id.slice(0, 8)}… · {b.created_at.slice(0, 10)}</Body>
+                  <Btn label={tr('차단 해제')} variant="ghost" small onPress={async () => { await unblockUser(b.blocked_id); load(); }} />
+                </View>
+              ))}
+              <View style={{ flexDirection: 'row', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
+                <Btn label={tr('로그아웃')} variant="ghost" small onPress={signOut} />
+                <Btn label={tr('계정 삭제')} variant="ghost" small onPress={onDelete} style={{ borderColor: '#B91C1C' }} />
+              </View>
             </View>
           ) : (
             <View>
@@ -94,6 +111,10 @@ export default function ChurchScreen() {
               <Btn label={tr('로그인 (이메일 코드)')} onPress={() => router.push('/signin')} style={{ alignSelf: 'flex-start', marginTop: 12 }} />
             </View>
           )}
+          <View style={{ flexDirection: 'row', gap: 16, marginTop: 20 }}>
+            <Pressable onPress={() => Linking.openURL(PRIVACY_URL)}><Body size={13} style={s.link}>{tr('개인정보 처리방침')}</Body></Pressable>
+            <Pressable onPress={() => Linking.openURL(TERMS_URL)}><Body size={13} style={s.link}>{tr('이용약관')}</Body></Pressable>
+          </View>
           <Body bold size={14} style={{ marginTop: 22 }}>{tr('언어')} · Language</Body>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
             {(['ko', 'en'] as const).map((l) => (

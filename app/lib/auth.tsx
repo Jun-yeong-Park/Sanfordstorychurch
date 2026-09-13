@@ -40,6 +40,12 @@ export async function getProfile(userId: string): Promise<Profile | null> {
   const { data } = await supabase.from('profiles').select('id, display_name').eq('id', userId).maybeSingle();
   return (data as Profile | null) ?? null;
 }
+/** 계정 삭제 (Apple 5.1.1) — 서버의 delete_my_account() 가 auth.users 행을 지운다 */
+export async function deleteMyAccount() {
+  const { error } = await supabase.rpc('delete_my_account');
+  if (error) throw new Error(error.message);
+  await supabase.auth.signOut();
+}
 export async function setDisplayName(userId: string, name: string) {
   const { error } = await supabase.from('profiles').update({ display_name: name }).eq('id', userId);
   if (error) throw new Error(error.message);

@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">= 18.8.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "PUT_SUPABASE_URL_HERE",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "PUT_SUPABASE_ANON_KEY_HERE"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "PUT_SUPABASE_URL_HERE",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "PUT_SUPABASE_ANON_KEY_HERE"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "apfnd161@naver.com",
+        "ascAppId": "PUT_ASC_APP_ID_HERE"
+      }
+    }
+  }
+}

@@ -3,27 +3,36 @@
     "name": "스토리교회",
     "slug": "sanford-story-church",
     "scheme": "storychurch",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#F4F0E6"
-    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.sanfordstorychurch.app",
       "infoPlist": {
         "NSCameraUsageDescription": "종이 주보와 손으로 적은 메모를 찍어 노트에 저장합니다.",
         "NSPhotoLibraryUsageDescription": "주보 사진을 노트에 첨부합니다.",
-        "NSCalendarsFullAccessUsageDescription": "교회 일정을 내 캘린더에 추가합니다."
-      }
+        "NSCalendarsFullAccessUsageDescription": "교회 일정을 내 캘린더에 추가합니다.",
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleLocalizations": [
+          "ko",
+          "en"
+        ],
+        "CFBundleDevelopmentRegion": "ko"
+      },
+      "buildNumber": "1"
     },
     "android": {
-      "package": "com.sanfordstorychurch.app"
+      "package": "com.sanfordstorychurch.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -40,7 +49,8 @@
       [
         "expo-notifications",
         {
-          "color": "#0F1E34"
+          "icon": "./assets/icon.png",
+          "color": "#FF9A1F"
         }
       ],
       [
@@ -48,7 +58,25 @@
         {
           "calendarPermission": "교회 일정을 내 캘린더에 추가합니다."
         }
-      ]
-    ]
+      ],
+      "expo-audio",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#F4F0E6"
+        }
+      ],
+      "expo-asset"
+    ],
+    "owner": "sundayproject",
+    "extra": {
+      "eas": {
+        "projectId": "0200ab46-1db5-4e6a-93a7-8e18ed176f70"
+      },
+      "router": {}
+    }
   }
 }

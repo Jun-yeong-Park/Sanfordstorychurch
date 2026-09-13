@@ -10,7 +10,8 @@ import { c } from '@/lib/theme';
 export default function SignInScreen() {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
-  const [step, setStep] = useState<'email' | 'code'>('email');
+  const [step, setStep] = useState<'email' | 'code' | 'password'>('email');
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
@@ -33,6 +34,16 @@ export default function SignInScreen() {
     router.back();
   };
 
+  const signInPw = async () => {
+    const e = email.trim().toLowerCase();
+    if (!/^\S+@\S+\.\S+$/.test(e) || !password) return Alert.alert('이메일과 비밀번호를 입력해 주세요');
+    setBusy(true);
+    const { error } = await supabase.auth.signInWithPassword({ email: e, password });
+    setBusy(false);
+    if (error) return Alert.alert('로그인하지 못했어요', error.message);
+    router.back();
+  };
+
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: c.cream }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Section tone="beige" style={{ paddingTop: top + 14 }}>
@@ -45,6 +56,14 @@ export default function SignInScreen() {
           <View>
             <TextInput value={email} onChangeText={setEmail} placeholder="이메일 주소" placeholderTextColor={c.inkDim} keyboardType="email-address" autoCapitalize="none" autoComplete="email" autoCorrect={false} editable={!busy} onSubmitEditing={sendCode} returnKeyType="send" style={s.input} />
             <Btn label={busy ? '보내는 중…' : '코드 받기'} onPress={sendCode} disabled={busy} style={{ marginTop: 14 }} />
+            <Pressable onPress={() => setStep('password')} style={{ marginTop: 18, alignSelf: 'center' }}><Body dim size={13} style={{ textDecorationLine: 'underline' }}>비밀번호로 로그인 · Sign in with password</Body></Pressable>
+          </View>
+        ) : step === 'password' ? (
+          <View>
+            <TextInput value={email} onChangeText={setEmail} placeholder="이메일 주소" placeholderTextColor={c.inkDim} keyboardType="email-address" autoCapitalize="none" autoComplete="email" autoCorrect={false} editable={!busy} style={s.input} />
+            <TextInput value={password} onChangeText={setPassword} placeholder="비밀번호 · Password" placeholderTextColor={c.inkDim} secureTextEntry autoCapitalize="none" editable={!busy} onSubmitEditing={signInPw} returnKeyType="done" style={s.input} />
+            <Btn label={busy ? '확인 중…' : '로그인'} onPress={signInPw} disabled={busy} style={{ marginTop: 14 }} />
+            <Btn label="이메일 코드로 로그인" variant="ghost" onPress={() => setStep('email')} disabled={busy} style={{ marginTop: 10 }} />
           </View>
         ) : (
           <View>

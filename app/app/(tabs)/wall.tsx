@@ -1,6 +1,6 @@
 // 나눔 벽 — 은혜 나눔 · 기도 부탁, 아멘. 서버 모드에선 글쓰기에 로그인 필요.
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import TopBar from '@/components/TopBar';
 import { Body, Btn, Empty, SecHead, Section } from '@/components/ui';
@@ -8,7 +8,8 @@ import { getProfile, useAuth } from '@/lib/auth';
 import { getBulletin, issueId } from '@/lib/bulletin';
 import { useLang } from '@/lib/i18n';
 import { getNote } from '@/lib/store';
-import { addPost, amen, amened, getName, listPosts, remote, setName, type Post } from '@/lib/wall';
+import { acceptEula, addPost, amen, amened, blockUser, deletePost, eulaAccepted, getName, listPosts, remote, reportPost, setName, type Post } from '@/lib/wall';
+import { REPORT_REASONS, TERMS_URL, containsBlockedWords } from '@/lib/moderation';
 import { c } from '@/lib/theme';
 
 const fmtTime = (iso: string) => new Date(iso).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -16,8 +17,10 @@ const fmtTime = (iso: string) => new Date(iso).toLocaleString('ko-KR', { month: 
 export default function WallScreen() {
   const D = getBulletin();
   const router = useRouter();
-  const { tr } = useLang();
+  const { lang, tr } = useLang();
   const { session } = useAuth();
+  const [showEula, setShowEula] = useState(false);
+  const myId = remote ? session?.user.id ?? null : 'me';
   const { from, kind: kindParam } = useLocalSearchParams<{ from?: string; kind?: string }>();
   const [kind, setKind] = useState<Post['kind']>('share');
   const [name, setNameState] = useState('');
@@ -53,6 +56,8 @@ export default function WallScreen() {
     const author = name.trim(), text = body.trim();
     if (!author) return Alert.alert(tr('이름'), remote ? '교회 탭 → 내 계정에서 표시 이름을 정해 주세요.' : '이름을 적어주세요');
     if (!text) return Alert.alert('내용을 적어주세요');
+    if (containsBlockedWords(text) || containsBlockedWords(author)) return Alert.alert('', lang === 'en' ? 'Your post contains inappropriate language and cannot be posted.' : '부적절한 표현이 포함되어 있어 올릴 수 없습니다.');
+    if (!(await eulaAccepted())) { setShowEula(true); return; }   // 첫 글 전 약관 동의
     setBusy(true);
     try {
       await addPost({ kind, author, body: text, issue: issueId(D) });
@@ -61,6 +66,35 @@ export default function WallScreen() {
       await load();
     } catch (e) { Alert.alert('올리지 못했어요', (e as Error).message); }
     setBusy(false);
+  };
+  const onMenu = (p: Post) => {
+    const mine = !!myId && p.user_id === myId;
+    if (mine) {
+      return Alert.alert(tr('내 글 삭제'), tr('이 글을 삭제할까요?'), [
+        { text: tr('취소'), style: 'cancel' },
+        { text: tr('삭제'), style: 'destructive', onPress: async () => { try { await deletePost(p.id); await load(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+      ]);
+    }
+    Alert.alert(p.author, undefined, [
+      { text: tr('신고하기'), onPress: () => onReport(p) },
+      ...(p.user_id ? [{ text: tr('작성자 차단'), style: 'destructive' as const, onPress: () => onBlock(p) }] : []),
+      { text: tr('취소'), style: 'cancel' },
+    ]);
+  };
+  const onReport = (p: Post) => {
+    Alert.alert(tr('신고하기'), tr('신고 이유를 골라주세요'), [
+      ...REPORT_REASONS.map((r) => ({ text: lang === 'en' ? r.en : r.ko, onPress: async () => {
+        try { await reportPost(p, r.key); Alert.alert('', tr('신고가 접수되었습니다. 이 글은 바로 숨겨지며 24시간 안에 검토합니다.')); await load(); }
+        catch (e) { Alert.alert('오류', (e as Error).message); }
+      } })),
+      { text: tr('취소'), style: 'cancel' },
+    ]);
+  };
+  const onBlock = (p: Post) => {
+    Alert.alert(tr('작성자 차단'), tr('이 사용자를 차단할까요? 이 사용자의 글이 더 이상 보이지 않습니다.'), [
+      { text: tr('취소'), style: 'cancel' },
+      { text: tr('작성자 차단'), style: 'destructive', onPress: async () => { try { await blockUser(p.user_id!); await load(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+    ]);
   };
   const onAmen = async (p: Post) => {
     if (done.has(p.id)) return;
@@ -111,6 +145,7 @@ export default function WallScreen() {
                 <Text style={[s.chip, p.kind === 'prayer' && { backgroundColor: c.orange, color: c.navy }]}>{p.kind === 'prayer' ? tr('기도 부탁') : tr('은혜 나눔')}</Text>
                 <Body bold size={13}>{p.author}</Body>
                 <Body dim size={13}>{fmtTime(p.created_at)}</Body>
+                <Pressable onPress={() => onMenu(p)} hitSlop={10} style={s.more}><Text style={s.moreT}>{myId && p.user_id === myId ? '✕' : '⋯'}</Text></Pressable>
               </View>
               <Body size={15} style={{ marginTop: 8, lineHeight: 25 }}>{p.body}</Body>
               <Pressable onPress={() => onAmen(p)} style={[s.amen, done.has(p.id) && s.amenOn]}>
@@ -120,6 +155,33 @@ export default function WallScreen() {
           ))}
         </Section>
       </ScrollView>
+
+      {/* 첫 글 전 약관(EULA) 동의 — Apple 1.2 */}
+      <Modal visible={showEula} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowEula(false)}>
+        <View style={{ flex: 1, backgroundColor: c.cream }}>
+          <Section tone="beige" style={{ paddingTop: 26 }}>
+            <SecHead en="COMMUNITY RULES" ko={tr('나눔 벽 이용 약속')} />
+          </Section>
+          <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 40 }}>
+            {lang === 'en' ? (
+              <>
+                <Body bold size={15}>Zero tolerance for objectionable content.</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>The Story Wall is for sharing grace and prayer requests among members. Profanity, hate speech, sexual content, threats, spam, or sharing others' private information is strictly prohibited.</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>You can report any post with the ⋯ menu and block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: hello@sanfordstorychurch.com</Body>
+              </>
+            ) : (
+              <>
+                <Body bold size={15}>부적절한 콘텐츠는 허용하지 않습니다 (무관용).</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com</Body>
+              </>
+            )}
+            <Pressable onPress={() => Linking.openURL(TERMS_URL)} style={{ marginTop: 16 }}><Body size={14} style={{ textDecorationLine: 'underline', textDecorationColor: c.orange }}>{tr('이용약관 보기')} ↗</Body></Pressable>
+            <Btn label={tr('동의하고 계속')} onPress={async () => { try { await acceptEula(); setShowEula(false); await post(); } catch (e) { Alert.alert('오류', (e as Error).message); } }} style={{ marginTop: 26 }} />
+            <Btn label={tr('취소')} variant="ghost" onPress={() => setShowEula(false)} style={{ marginTop: 10 }} />
+          </ScrollView>
+        </View>
+      </Modal>
     </KeyboardAvoidingView>
   );
 }
@@ -136,4 +198,6 @@ const s = StyleSheet.create({
   amen: { alignSelf: 'flex-start', marginTop: 10, paddingVertical: 7, paddingHorizontal: 12, borderRadius: 4, borderWidth: 1.5, borderColor: c.gray },
   amenOn: { borderColor: c.orange, backgroundColor: 'rgba(255,154,31,0.15)' },
   amenT: { fontSize: 13, fontWeight: '600', color: c.inkDim },
+  more: { marginLeft: 'auto', width: 30, height: 26, alignItems: 'center', justifyContent: 'center' },
+  moreT: { fontSize: 16, color: c.inkDim, fontWeight: '700' },
 });
