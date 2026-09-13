@@ -15,7 +15,7 @@ export function Eyebrow({ children, style }: { children: ReactNode; style?: Styl
 }
 
 export function Display({ children, size = 30, color = c.ink, style }: { children: ReactNode; size?: number; color?: string; style?: StyleProp<TextStyle> }) {
-  return <Text style={[{ fontFamily: f.display, fontSize: size, lineHeight: size * 1.0, color, letterSpacing: size * 0.01 }, style]}>{children}</Text>;
+  return <Text style={[{ fontFamily: f.display, fontSize: size, lineHeight: size * 1.12, color, letterSpacing: size * 0.01 }, style]}>{children}</Text>;
 }
 
 /** "STORY FLOW  예배의 흐름" 식 섹션 머리 */

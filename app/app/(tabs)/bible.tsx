@@ -98,7 +98,7 @@ export default function BibleScreen() {
 
       {/* 현재 위치 (탭하면 책/장 선택) */}
       <View style={s.where}>
-        <Display size={28} style={{ flex: 1, flexWrap: 'wrap' }}>{title}</Display>
+        <Display size={28} style={{ flex: 1, flexWrap: 'wrap', lineHeight: 40, paddingTop: 2 }}>{title}</Display>
         <Pressable onPress={() => setShowNav(true)} style={({ pressed }) => [s.navBtn, pressed && { opacity: 0.6 }]} hitSlop={6}>
           <Text style={s.navBtnT}>{tr('책 · 장 선택')} ▾</Text>
         </Pressable>
@@ -174,7 +174,7 @@ function Sheet({ title, ko, onClose, children }: { title: string; ko: string; on
   return (
     <View style={{ flex: 1, backgroundColor: c.cream }}>
       <View style={s.sheetH}>
-        <Display size={24}>{title}</Display><Text style={s.whereHint}>{ko}</Text>
+        <Display size={24} style={{ lineHeight: 34 }}>{title}</Display><Text style={s.whereHint}>{ko}</Text>
         <Pressable onPress={onClose} hitSlop={10} style={{ marginLeft: 'auto' }}><Text style={{ fontSize: 18, color: c.ink }}>✕</Text></Pressable>
       </View>
       {children}
