@@ -18,6 +18,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index"  options={{ title: tr('주보'), tabBarIcon: ({ color }) => <Icon name="bulletin" color={color} /> }} />
       <Tabs.Screen name="notes"  options={{ title: tr('노트'), tabBarIcon: ({ color }) => <Icon name="notes" color={color} /> }} />
+      <Tabs.Screen name="bible"  options={{ title: tr('성경'), tabBarIcon: ({ color }) => <Icon name="bible" color={color} /> }} />
       <Tabs.Screen name="wall"   options={{ title: tr('나눔'), tabBarIcon: ({ color }) => <Icon name="wall" color={color} /> }} />
       <Tabs.Screen name="church" options={{ title: tr('교회'), tabBarIcon: ({ color }) => <Icon name="church" color={color} /> }} />
     </Tabs>

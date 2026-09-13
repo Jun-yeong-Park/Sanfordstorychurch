@@ -72,3 +72,58 @@ export function getVerses(r: Ref, lang: 'ko' | 'en'): Verse[] {
   }
   return out;
 }
+
+// ---------- 성경 탭용: 장 수 · 장 읽기 · 검색 ----------
+export const VERSIONS = [
+  { id: 'ko' as const, abbr: '개역개정', name: '개역개정판', credit: '개역개정 · 대한성서공회' },
+  { id: 'en' as const, abbr: 'NIV', name: 'New International Version', credit: 'Holy Bible, New International Version® · Biblica' },
+];
+export type Lang = 'ko' | 'en';
+
+const chapterCache: Partial<Record<Lang, number[]>> = {};
+/** 책별 장 수 (index = book nr). 데이터에서 한 번만 센다. */
+export function chapterCounts(lang: Lang): number[] {
+  if (chapterCache[lang]) return chapterCache[lang]!;
+  const d = data(lang);
+  const counts = new Array(67).fill(0);
+  if (lang === 'ko') {
+    const byAbbr = new Map(BOOKS.map((b) => [b.abbr, b.nr]));
+    for (const k of Object.keys(d)) {
+      const m = /^([^\d]+)(\d+):/.exec(k);
+      if (!m) continue;
+      const nr = byAbbr.get(m[1]);
+      if (nr) counts[nr] = Math.max(counts[nr], +m[2]);
+    }
+  } else {
+    for (const k of Object.keys(d)) {
+      const [nr, ch] = k.split(':').map(Number);
+      counts[nr] = Math.max(counts[nr], ch);
+    }
+  }
+  return (chapterCache[lang] = counts);
+}
+
+export type SearchHit = { key: string; ref: string; text: string; book: number; chapter: number; verse: number; lang: Lang };
+/** 단순 포함 검색. 결과는 성경 순서, 최대 limit. */
+export function searchVerses(q: string, langs: Lang[], limit = 200): SearchHit[] {
+  const kw = q.trim();
+  if (!kw) return [];
+  const out: SearchHit[] = [];
+  const kwLower = kw.toLowerCase();
+  for (const lang of langs) {
+    const d = data(lang);
+    for (const k of Object.keys(d)) {
+      const text = d[k];
+      if (!(lang === 'en' ? text.toLowerCase().includes(kwLower) : text.includes(kw))) continue;
+      let book: number, chapter: number, verse: number;
+      if (lang === 'ko') {
+        const m = /^([^\d]+)(\d+):(\d+)$/.exec(k); if (!m) continue;
+        book = BOOKS.find((b) => b.abbr === m[1])?.nr ?? 0; chapter = +m[2]; verse = +m[3];
+      } else { [book, chapter, verse] = k.split(':').map(Number); }
+      if (!book) continue;
+      out.push({ key: lang + k, ref: refLabel({ book, chapter, from: verse }, lang), text, book, chapter, verse, lang });
+      if (out.length >= limit) return out;
+    }
+  }
+  return out;
+}

@@ -29,7 +29,9 @@ const EN: Record<string, string> = {
   '내 계정': 'My Account', '로그인 (이메일 코드)': 'Sign in (email code)', '로그아웃': 'Sign out', '표시 이름': 'Display name', '언어': 'Language',
   '주일': 'Sunday', '개역개정': 'KRV', '장 전체 보기': 'Whole chapter', '구절만 보기': 'Passage only',
   '지난 주보가 없습니다': 'No past bulletins yet',
-  '말씀 노트': 'Sermon Note', '예배의 흐름': 'Story Flow', '기도 제목 · 함께 기도해 주세요': 'Prayer request · pray with us',
+  '말씀 노트': 'Sermon Note', '성경': 'Bible', '공유': 'Share', '번역본': 'Version', '책 · 장 선택': 'Book · Chapter', '북마크': 'Bookmarks', '검색': 'Search',
+  '단어나 구절을 입력하세요': 'Search words or a reference', '검색 결과가 없습니다': 'No results', '북마크가 없습니다. 절을 길게 누르면 저장됩니다.': 'No bookmarks yet. Long-press a verse to save it.',
+  '구약': 'Old Testament', '신약': 'New Testament', '이전 장': 'Prev', '다음 장': 'Next', '예배의 흐름': 'Story Flow', '기도 제목 · 함께 기도해 주세요': 'Prayer request · pray with us',
   '나눔 벽에 기도 부탁 올리기': 'Post prayer request to the Wall', '헌금 보고': 'Offering Report', '합계': 'Total',
 };
 

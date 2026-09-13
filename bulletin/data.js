@@ -49,13 +49,13 @@ window.BULLETIN = {
     {
       tag: "02", name: "YOUR STORY", sub: "Reflection & Sharing · 말씀 적용", subEn: "Reflection & Sharing",
       items: [
-        { name: "말씀 적용 · 나눔", nameEn: "Reflect & Share", detail: "노트 작성 후 옆자리 분과 나눔 (10분) · 스태프가 함께합니다", detailEn: "Write your note, then share with the person next to you (10 min)", by: "다 같이" },
+        { name: "말씀 적용 · 나눔", nameEn: "Reflect & Share", detail: "노트 작성 후 옆자리 분과 나눔 (10분)", detailEn: "Write your note, then share with the person next to you (10 min)", by: "다 같이" },
       ],
     },
     {
       tag: "03", name: "DEEP STORY", sub: "Response & Blessing · 결단", subEn: "Response & Blessing",
       items: [
-        { name: "결단 찬양 · 봉헌", nameEn: "Response Songs · Offering", detail: "2곡 · 기도 카드 · 나눈 분과 함께 기도", detailEn: "2 songs · prayer card · pray with your partner", by: "허강현", songs: [] },
+        { name: "결단 찬양 · 봉헌", nameEn: "Response Songs · Offering", detail: "", detailEn: "", by: "허강현", songs: [] },
         { name: "기도", nameEn: "Prayer", detail: "", by: "정경원 목사" },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사" },
       ],

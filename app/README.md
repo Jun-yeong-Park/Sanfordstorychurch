@@ -6,7 +6,7 @@ Expo Router + Supabase — `~/develop/sinang`(faith-tracker) 와 같은 스택.
 ```
 app/
 ├── app/                # 화면 (expo-router)
-│   ├── (tabs)/         # 주보 index · 노트 notes · 나눔 wall · 교회 church
+│   ├── (tabs)/         # 주보 index · 노트 notes · 성경 bible · 나눔 wall · 교회 church
 │   ├── note/[issue]    # 말씀 노트 — 인쇄 주보 P3 와 같은 His / My / Deep Story 3단 + 기도 카드 (자동 저장, 사진·손글씨, 공유)
 │   ├── draw/[issue]    # 손글씨 캔버스 → PNG 첨부
 │   ├── bible/[ref]     # 성경 본문 (개역개정 / NIV, 장 전체 보기)
@@ -39,6 +39,7 @@ npx expo start     # 2) iPhone 의 Expo Go 앱으로 QR 스캔 → 실기기에�
 - 노트·사진·손글씨는 **기기에만** 저장 (AsyncStorage + 앱 문서 폴더). 서버로 올리는 건 사용자가 [나눔]·[공유]를 누를 때만.
 
 ## 기능별 메모
+- **성경 탭**: 선데이프로젝트 앱과 같은 방식 — 개역개정/NIV, 책→장 선택, 절 탭 형광 + 공유, 길게 눌러 북마크, 글자 크기, 검색, 마지막 위치 기억 (`app/(tabs)/bible.tsx`). 번역본을 더 넣으려면 `~/develop/SundayProject/assets/*_flat.json` 을 `assets/bible/` 에 복사하고 `lib/bible.ts VERSIONS` 에 추가.
 - **성경 본문**: `sermon.scripture`, 예배 순서의 구절, 다음 주 본문을 탭하면 열림. 파서(`lib/bible.ts parseRef`)는 `고린도후서 3:1–6` `고후 3:3` `시편 100편` `2 Corinthians 3:1-6` `Psalm 100` 을 읽습니다.
 - **설교 다시 듣기**: data.js `sermon.video`(YouTube 링크 → 앱으로 열기) / `sermon.audio`(mp3 → 앱 안에서 재생). 주보 설교 섹션과 노트 편집 화면 상단에 같이 나옵니다.
 - **인쇄 주보와 맞추기**: 앱 주보 탭은 인쇄판 4면(표지 → Story Flow 4부 → 오늘의 말씀 → 설교 → 소식 → 모임/기도 → 다음 주/섬김/헌금 보고 → 연락처)을 그대로 세로로 따라갑니다. 노트 3단 질문 문구는 `lib/store.ts NOTE_STEPS` 와 `bulletin/index.html pageNotes()` 에 같이 있으니 바꿀 땐 둘 다 고치세요.
