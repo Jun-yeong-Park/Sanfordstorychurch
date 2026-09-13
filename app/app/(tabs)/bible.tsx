@@ -97,10 +97,12 @@ export default function BibleScreen() {
       </View>
 
       {/* 현재 위치 (탭하면 책/장 선택) */}
-      <Pressable onPress={() => setShowNav(true)} style={s.where}>
-        <Display size={28}>{title}</Display>
-        <Text style={s.whereHint}>{tr('책 · 장 선택')} ▾</Text>
-      </Pressable>
+      <View style={s.where}>
+        <Display size={28} style={{ flex: 1, flexWrap: 'wrap' }}>{title}</Display>
+        <Pressable onPress={() => setShowNav(true)} style={({ pressed }) => [s.navBtn, pressed && { opacity: 0.6 }]} hitSlop={6}>
+          <Text style={s.navBtnT}>{tr('책 · 장 선택')} ▾</Text>
+        </Pressable>
+      </View>
 
       <ScrollView ref={listRef} contentContainerStyle={{ paddingHorizontal: 22, paddingTop: 6, paddingBottom: 120 }}>
         {verses.map((v) => {
@@ -230,7 +232,9 @@ const s = StyleSheet.create({
   chipT: { fontSize: 12, fontWeight: '700', color: c.ink },
   iconBtn: { width: 34, height: 32, borderRadius: 4, alignItems: 'center', justifyContent: 'center' },
   iconT: { fontSize: 13, fontWeight: '700', color: c.ink },
-  where: { flexDirection: 'row', alignItems: 'baseline', gap: 10, paddingHorizontal: 22, paddingTop: 16, paddingBottom: 8 },
+  where: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 22, paddingTop: 14, paddingBottom: 8 },
+  navBtn: { flexShrink: 0, paddingVertical: 9, paddingHorizontal: 13, borderRadius: 6, borderWidth: 1.5, borderColor: c.navy, backgroundColor: c.white },
+  navBtnT: { fontSize: 14, fontWeight: '700', color: c.ink },
   whereHint: { fontSize: 12.5, fontWeight: '600', color: c.inkDim },
   verse: { flexDirection: 'row', gap: 10, paddingVertical: 5, paddingHorizontal: 6, marginHorizontal: -6, borderRadius: 6 },
   verseOn: { backgroundColor: c.orangeSoft },
