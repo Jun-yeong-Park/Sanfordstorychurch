@@ -38,12 +38,12 @@ export const BULLETIN = {
       tag: "01", name: "HIS STORY", sub: "Welcome & Word · 복음의 중심", subEn: "Welcome & Word",
       items: [
         { name: "예배로의 부름", nameEn: "Call to Worship", detail: "웰컴", detailEn: "Welcome", by: "스태프 (로테이션)" },
-        // 앱 전용: songs — 곡별 링크. url 을 비우면 앱에서 유튜브 검색으로 열립니다.
+        // 앱 전용: songs — 이번 주 찬양. artist(선택) · url(유튜브, 비우면 앱에서 검색으로 열림). 앱 주보 탭 "이번 주 찬양"에 모아 보임.
         { name: "찬양", nameEn: "Praise", detail: "주의 이름 높이며 · 은혜 · 예수 이름으로", detailEn: "3–4 songs", by: "허강현",
           songs: [
-            { title: "주의 이름 높이며", url: "" },
-            { title: "은혜", url: "" },
-            { title: "예수 이름으로", url: "" },
+            { title: "주의 이름 높이며", artist: "", url: "" },
+            { title: "은혜", artist: "", url: "" },
+            { title: "예수 이름으로", artist: "", url: "" },
           ] },
         { name: "말씀", nameEn: "Sermon", detail: "하나님의 이야기가 당신의 삶에서 시작됩니다", detailEn: "God's Story Begins in Your Life", by: "정경원 목사" },
       ],
@@ -51,13 +51,13 @@ export const BULLETIN = {
     {
       tag: "02", name: "YOUR STORY", sub: "Reflection & Sharing · 말씀 적용", subEn: "Reflection & Sharing",
       items: [
-        { name: "말씀 적용 · 나눔", nameEn: "Reflect & Share", detail: "노트 작성 후 옆자리 분과 나눔 (10분) · 스태프가 함께합니다", detailEn: "Write your note, then share with the person next to you (10 min)", by: "다 같이" },
+        { name: "말씀 적용 · 나눔", nameEn: "Reflect & Share", detail: "노트 작성 후 옆자리 분과 나눔 (10분)", detailEn: "Write your note, then share with the person next to you (10 min)", by: "다 같이" },
       ],
     },
     {
       tag: "03", name: "DEEP STORY", sub: "Response & Blessing · 결단", subEn: "Response & Blessing",
       items: [
-        { name: "결단 찬양 · 봉헌", nameEn: "Response Songs · Offering", detail: "2곡 · 기도 카드 · 나눈 분과 함께 기도", detailEn: "2 songs · prayer card · pray with your partner", by: "허강현", songs: [] },
+        { name: "결단 찬양 · 봉헌", nameEn: "Response Songs · Offering", detail: "", detailEn: "", by: "허강현", songs: [] },
         { name: "기도", nameEn: "Prayer", detail: "", by: "정경원 목사" },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사" },
       ],

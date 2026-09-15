@@ -49,7 +49,7 @@ bulletin/
 ## 앱(../app) 전용 필드
 같은 `data.js`를 성도용 앱도 읽습니다. 인쇄판은 아래 필드를 무시합니다.
 - 영어 모드: `…En` 필드 (`serviceEn`, `nameEn`, `detailEn`, `titleEn`, `bodyEn`, `descEn`, `whenEn`, `roleEn`, `excerptEn`, `excerptRefEn`, `prayersEn`, `nextWeek.*En`, `givingEn`). 비우면 한글이 그대로 보입니다.
-- 찬양 콘티: 예배 순서 항목에 `songs: [{ title, url }]`. 앱에서 곡마다 ▶ 버튼이 붙고, `url` 이 비면 유튜브 검색으로 열립니다.
+- 찬양 콘티: 예배 순서 항목에 `songs: [{ title, artist, url }]`. 앱 주보 탭 상단 "이번 주 찬양"에 모든 항목의 곡이 모여 보이고(찬양 · 결단 찬양), 예배 순서에도 곡마다 ▶ 가 붙습니다. `url` 이 비면 유튜브 검색으로 열립니다.
 - 설교 다시 듣기: `sermon.video` (YouTube 링크), `sermon.audio` (mp3 주소).
 - 일정: `events[]` — `date`(YYYY-MM-DD) `time`(HH:MM) `durationMin` `title/titleEn` `place/placeEn` `desc/descEn`. 앱 교회 탭에서 "내 캘린더에 추가".
 - 말씀 노트: 앱의 노트 화면은 인쇄판 P3 와 같은 His / My / Deep Story 3단 + 기도 카드 구조입니다 (질문 문구는 index.html · app 양쪽에 고정).

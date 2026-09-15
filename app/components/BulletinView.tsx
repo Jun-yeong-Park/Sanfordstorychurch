@@ -8,7 +8,7 @@ import { parseRef } from '@/lib/bible';
 import { useLang } from '@/lib/i18n';
 import { c, f } from '@/lib/theme';
 
-type Song = { title: string; url?: string };
+type Song = { title: string; artist?: string; url?: string };
 const money = (n: number) => '$' + n.toLocaleString('en-US');
 /** 예배 순서 항목의 찬양 콘티 (data.js `songs`). 없으면 빈 배열. */
 const songsOf = (item: object): Song[] => ((item as { songs?: Song[] }).songs ?? []).filter((x) => x?.title);
@@ -20,6 +20,10 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
   const openRef = (ref: string) => router.push({ pathname: '/bible/[ref]', params: { ref } });
   const scripture = L(D.sermon, 'scripture');
   const prayers = (lang === 'en' && D.prayersEn?.length ? D.prayersEn : D.prayers) ?? [];
+
+  const openSong = (song: Song) => Linking.openURL(song.url || 'https://www.youtube.com/results?search_query=' + encodeURIComponent(song.title + ' 찬양'));
+  // 이번 주 찬양 — 예배 순서에서 songs 가 있는 항목을 모두 모은다 (찬양 · 결단 찬양)
+  const praise = D.order.flatMap((p) => p.items.filter((i) => songsOf(i).length).map((i) => ({ label: L(i, 'name'), songs: songsOf(i) })));
 
   /** 성경 구절로 읽히는 텍스트는 탭하면 본문이 열린다 */
   const RefText = ({ text, dim, size = 13 }: { text: string; dim?: boolean; size?: number }) =>
@@ -52,6 +56,29 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
         </View>
       </Section>
 
+      {/* 이번 주 찬양 */}
+      {praise.length > 0 && (
+        <Section tone="white">
+          <SecHead en="THIS WEEK'S PRAISE" ko={tr('이번 주 찬양')} />
+          {praise.map((g, gi) => (
+            <View key={gi} style={{ marginTop: gi ? 14 : 0 }}>
+              {praise.length > 1 && <Eyebrow style={{ marginBottom: 6 }}>{t(g.label)}</Eyebrow>}
+              {g.songs.map((song, j) => (
+                <Pressable key={j} onPress={() => openSong(song)} style={({ pressed }) => [s.praiseRow, pressed && { opacity: 0.6 }]}>
+                  <View style={s.praisePlay}><Text style={s.praisePlayT}>▶</Text></View>
+                  <View style={{ flex: 1 }}>
+                    <Body bold size={15.5}>{song.title}</Body>
+                    {!!song.artist && <Body dim size={13}>{song.artist}</Body>}
+                  </View>
+                  <Text style={s.praiseHint}>{song.url ? 'YouTube ↗' : tr('검색') + ' ↗'}</Text>
+                </Pressable>
+              ))}
+            </View>
+          ))}
+          <Body dim size={12} style={{ marginTop: 12 }}>{tr('탭하면 유튜브에서 들을 수 있어요. 가사는 예배 중 화면으로 함께 봅니다.')}</Body>
+        </Section>
+      )}
+
       {/* P2 예배 순서 */}
       <Section>
         <SecHead en="STORY FLOW" ko={tr('예배의 흐름')} />
@@ -69,7 +96,7 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
                   <Body bold size={14.5}>{t(L(i, 'name'))}</Body>
                   {!!i.detail && !songsOf(i).length && <RefText text={L(i, 'detail')} dim />}
                   {songsOf(i).map((song, j) => (
-                    <Pressable key={j} onPress={() => Linking.openURL(song.url || 'https://www.youtube.com/results?search_query=' + encodeURIComponent(song.title + ' 찬양'))} style={s.song}>
+                    <Pressable key={j} onPress={() => openSong(song)} style={s.song}>
                       <Text style={s.songPlay}>▶</Text>
                       <Body size={13.5} style={{ flex: 1 }}>{song.title}</Body>
                       {!song.url && <Text style={s.songHint}>YouTube ↗</Text>}
@@ -180,6 +207,10 @@ const s = StyleSheet.create({
   item: { flexDirection: 'row', gap: 12, paddingVertical: 9, borderBottomWidth: 1, borderBottomColor: c.line, borderStyle: 'dotted' },
   refLink: { textDecorationLine: 'underline', textDecorationColor: c.orange },
   song: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 4 },
+  praiseRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: c.gray },
+  praisePlay: { width: 38, height: 38, borderRadius: 19, backgroundColor: c.orange, alignItems: 'center', justifyContent: 'center' },
+  praisePlayT: { color: c.navy, fontSize: 14, fontWeight: '700', marginLeft: 2 },
+  praiseHint: { fontFamily: f.en, fontSize: 9.5, letterSpacing: 1, color: c.inkDim },
   songPlay: { color: c.orange, fontSize: 10, width: 14 },
   songHint: { fontFamily: f.en, fontSize: 9, letterSpacing: 1, color: c.inkDim },
   ref: { textAlign: 'right', fontFamily: f.en, fontSize: 11, letterSpacing: 1.5, marginTop: 12, color: c.orange },

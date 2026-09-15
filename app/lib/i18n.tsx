@@ -36,7 +36,7 @@ const EN: Record<string, string> = {
   '나눔 벽 이용 약속': 'Story Wall Community Rules', '동의하고 계속': 'Agree and continue', '이용약관 보기': 'View Terms of Use', '개인정보 처리방침': 'Privacy Policy', '이용약관': 'Terms of Use',
   '계정 삭제': 'Delete account', '계정을 삭제하면 프로필, 노트 백업, 신고·차단 기록이 즉시 지워지고 되돌릴 수 없습니다. 기기에 있는 노트는 남습니다.': 'Deleting your account permanently removes your profile, note backup, and report/block records. Notes on this device remain.',
   '비밀번호로 로그인': 'Sign in with password', '코드로 로그인': 'Sign in with email code', '비밀번호': 'Password', '로그인': 'Sign in',
-  '말씀 노트': 'Sermon Note', '성경': 'Bible', '공유': 'Share', '번역본': 'Version', '책 · 장 선택': 'Book · Chapter', '북마크': 'Bookmarks', '검색': 'Search',
+  '말씀 노트': 'Sermon Note', '이번 주 찬양': "This Week's Praise", '탭하면 유튜브에서 들을 수 있어요. 가사는 예배 중 화면으로 함께 봅니다.': 'Tap to listen on YouTube. Lyrics are shown on screen during worship.', '성경': 'Bible', '공유': 'Share', '번역본': 'Version', '책 · 장 선택': 'Book · Chapter', '북마크': 'Bookmarks', '검색': 'Search',
   '단어나 구절을 입력하세요': 'Search words or a reference', '검색 결과가 없습니다': 'No results', '북마크가 없습니다. 절을 길게 누르면 저장됩니다.': 'No bookmarks yet. Long-press a verse to save it.',
   '구약': 'Old Testament', '신약': 'New Testament', '이전 장': 'Prev', '다음 장': 'Next', '예배의 흐름': 'Story Flow', '기도 제목 · 함께 기도해 주세요': 'Prayer request · pray with us',
   '나눔 벽에 기도 부탁 올리기': 'Post prayer request to the Wall', '헌금 보고': 'Offering Report', '합계': 'Total',
