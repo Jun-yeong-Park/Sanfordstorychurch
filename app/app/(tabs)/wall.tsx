@@ -23,6 +23,7 @@ export default function WallScreen() {
   const myId = remote ? session?.user.id ?? null : 'me';
   const { from, kind: kindParam } = useLocalSearchParams<{ from?: string; kind?: string }>();
   const [kind, setKind] = useState<Post['kind']>('share');
+  const [anon, setAnon] = useState(false);
   const [name, setNameState] = useState('');
   const [body, setBody] = useState('');
   const [posts, setPosts] = useState<Post[] | null>(null);
@@ -53,15 +54,15 @@ export default function WallScreen() {
   }, [from, kindParam]);
 
   const post = async () => {
-    const author = name.trim(), text = body.trim();
+    const author = anon ? tr('익명') : name.trim(), text = body.trim();
     if (!author) return Alert.alert(tr('이름'), remote ? '교회 탭 → 내 계정에서 표시 이름을 정해 주세요.' : '이름을 적어주세요');
     if (!text) return Alert.alert('내용을 적어주세요');
     if (containsBlockedWords(text) || containsBlockedWords(author)) return Alert.alert('', lang === 'en' ? 'Your post contains inappropriate language and cannot be posted.' : '부적절한 표현이 포함되어 있어 올릴 수 없습니다.');
     if (!(await eulaAccepted())) { setShowEula(true); return; }   // 첫 글 전 약관 동의
     setBusy(true);
     try {
-      await addPost({ kind, author, body: text, issue: issueId(D) });
-      if (!remote) await setName(author);
+      await addPost({ kind, author, body: text, issue: issueId(D), anonymous: anon });
+      if (!remote && !anon) await setName(author);
       setBody('');
       await load();
     } catch (e) { Alert.alert('올리지 못했어요', (e as Error).message); }
@@ -75,7 +76,7 @@ export default function WallScreen() {
         { text: tr('삭제'), style: 'destructive', onPress: async () => { try { await deletePost(p.id); await load(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
       ]);
     }
-    Alert.alert(p.author, undefined, [
+    Alert.alert(p.anonymous ? tr('익명') : p.author, undefined, [
       { text: tr('신고하기'), onPress: () => onReport(p) },
       ...(p.user_id ? [{ text: tr('작성자 차단'), style: 'destructive' as const, onPress: () => onBlock(p) }] : []),
       { text: tr('취소'), style: 'cancel' },
@@ -122,8 +123,13 @@ export default function WallScreen() {
                     <Text style={[s.kindT, kind === k && { color: c.navy }]}>{k === 'share' ? tr('은혜 나눔') : tr('기도 부탁')}</Text>
                   </Pressable>
                 ))}
+                <Pressable onPress={() => setAnon(!anon)} style={[s.kind, { marginLeft: 'auto' }, anon && s.anonOn]}>
+                  <Text style={[s.kindT, anon && { color: c.cream }]}>{anon ? '🙈 ' : ''}{tr('익명')}</Text>
+                </Pressable>
               </View>
-              {remote
+              {anon
+                ? <Body dim size={13} style={{ paddingVertical: 8 }}>{tr('익명으로 올라갑니다. 이름은 보이지 않지만 신고·차단은 가능합니다.')}</Body>
+                : remote
                 ? <Body dim size={13} style={{ paddingVertical: 8 }}>{name || '(표시 이름 없음 — 교회 탭 → 내 계정)'}</Body>
                 : <TextInput value={name} onChangeText={setNameState} placeholder={tr('이름')} placeholderTextColor={c.inkDim} maxLength={20} style={s.input} />}
               <TextInput value={body} onChangeText={setBody} placeholder={tr('오늘 말씀에서 받은 은혜 한 가지, 또는 함께 기도할 제목')} placeholderTextColor={c.inkDim} maxLength={1000} multiline style={[s.input, s.area]} />
@@ -143,7 +149,7 @@ export default function WallScreen() {
             <View key={p.id} style={s.post}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <Text style={[s.chip, p.kind === 'prayer' && { backgroundColor: c.orange, color: c.navy }]}>{p.kind === 'prayer' ? tr('기도 부탁') : tr('은혜 나눔')}</Text>
-                <Body bold size={13}>{p.author}</Body>
+                <Body bold size={13} dim={!!p.anonymous}>{p.anonymous ? '🙈 ' + tr('익명') : p.author}</Body>
                 <Body dim size={13}>{fmtTime(p.created_at)}</Body>
                 <Pressable onPress={() => onMenu(p)} hitSlop={10} style={s.more}><Text style={s.moreT}>{myId && p.user_id === myId ? '✕' : '⋯'}</Text></Pressable>
               </View>
@@ -167,13 +173,13 @@ export default function WallScreen() {
               <>
                 <Body bold size={15}>Zero tolerance for objectionable content.</Body>
                 <Body size={14.5} style={{ marginTop: 10 }}>The Story Wall is for sharing grace and prayer requests among members. Profanity, hate speech, sexual content, threats, spam, or sharing others' private information is strictly prohibited.</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>You can report any post with the ⋯ menu and block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: hello@sanfordstorychurch.com</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>Anonymous posts follow the same rules. You can report any post with the ⋯ menu and block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: hello@sanfordstorychurch.com</Body>
               </>
             ) : (
               <>
                 <Body bold size={15}>부적절한 콘텐츠는 허용하지 않습니다 (무관용).</Body>
                 <Body size={14.5} style={{ marginTop: 10 }}>나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com</Body>
               </>
             )}
             <Pressable onPress={() => Linking.openURL(TERMS_URL)} style={{ marginTop: 16 }}><Body size={14} style={{ textDecorationLine: 'underline', textDecorationColor: c.orange }}>{tr('이용약관 보기')} ↗</Body></Pressable>
@@ -190,6 +196,7 @@ const s = StyleSheet.create({
   compose: { backgroundColor: c.white, borderWidth: 1, borderColor: c.gray, borderRadius: 8, padding: 16 },
   kind: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 4, borderWidth: 1.5, borderColor: c.gray },
   kindOn: { backgroundColor: c.orange, borderColor: c.orange },
+  anonOn: { backgroundColor: c.navy, borderColor: c.navy },
   kindT: { fontSize: 13, fontWeight: '600', color: c.inkDim },
   input: { borderBottomWidth: 1.5, borderBottomColor: c.gray, paddingVertical: 10, fontSize: 15, color: c.ink },
   area: { minHeight: 90, textAlignVertical: 'top', lineHeight: 22 },

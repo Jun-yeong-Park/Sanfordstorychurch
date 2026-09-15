@@ -188,21 +188,26 @@ function Navigator({ pos, counts, onPick, onClose }: { pos: Pos; counts: number[
   const [book, setBook] = useState<number | null>(null);
   const name = (nr: number) => (pos.lang === 'ko' ? BOOKS[nr - 1].ko : BOOKS[nr - 1].en);
   if (book === null) {
+    // 목차형 리스트 — 약어 · 이름 · 장 수. 현재 책은 주황 표시.
     const group = (label: string, from: number, to: number) => (
       <View key={label}>
-        <Eyebrow style={{ marginTop: 18, marginBottom: 8 }}>{label}</Eyebrow>
-        <View style={s.grid}>
-          {BOOKS.slice(from - 1, to).map((b) => (
-            <Pressable key={b.nr} onPress={() => setBook(b.nr)} style={[s.bookBtn, b.nr === pos.book && s.bookOn]}>
-              <Text style={[s.bookT, b.nr === pos.book && { color: c.navy }]}>{pos.lang === 'ko' ? b.ko : b.en}</Text>
+        <Eyebrow style={{ marginTop: 22, marginBottom: 6, paddingHorizontal: 20 }}>{label}</Eyebrow>
+        {BOOKS.slice(from - 1, to).map((b) => {
+          const on = b.nr === pos.book;
+          return (
+            <Pressable key={b.nr} onPress={() => setBook(b.nr)} style={({ pressed }) => [s.bookRow, on && s.bookRowOn, pressed && { backgroundColor: c.beige }]}>
+              <Text style={[s.bookAbbr, on && { color: c.navy }]}>{pos.lang === 'ko' ? b.abbr : b.enAbbr}</Text>
+              <Text style={[s.bookName, on && { fontWeight: '700' }]}>{pos.lang === 'ko' ? b.ko : b.en}</Text>
+              <Text style={s.bookCount}>{counts[b.nr]}{pos.lang === 'ko' ? '장' : ''}</Text>
+              <Text style={s.bookChev}>›</Text>
             </Pressable>
-          ))}
-        </View>
+          );
+        })}
       </View>
     );
     return (
       <Sheet title="BOOKS" ko={tr('책 · 장 선택')} onClose={onClose}>
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
           {group(tr('구약') + ' · Old Testament', 1, 39)}
           {group(tr('신약') + ' · New Testament', 40, 66)}
         </ScrollView>
@@ -245,6 +250,12 @@ const s = StyleSheet.create({
   bookBtn: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 4, backgroundColor: c.white, borderWidth: 1, borderColor: c.gray },
   bookOn: { backgroundColor: c.orange, borderColor: c.orange },
   bookT: { fontSize: 13.5, fontWeight: '600', color: c.ink },
+  bookRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 20, borderBottomWidth: 1, borderBottomColor: c.gray, borderLeftWidth: 4, borderLeftColor: 'transparent' },
+  bookRowOn: { borderLeftColor: c.orange, backgroundColor: c.white },
+  bookAbbr: { width: 44, fontFamily: f.en, fontSize: 12, letterSpacing: 0.5, color: c.orange, fontWeight: '700' },
+  bookName: { flex: 1, fontSize: 16, color: c.ink },
+  bookCount: { fontSize: 12.5, color: c.inkDim },
+  bookChev: { fontSize: 18, color: c.gray, marginLeft: 4 },
   chBtn: { width: 52, height: 44, borderRadius: 4, backgroundColor: c.white, borderWidth: 1, borderColor: c.gray, alignItems: 'center', justifyContent: 'center' },
   chT: { fontFamily: f.display, fontSize: 18, color: c.ink },
   card: { backgroundColor: c.white, borderWidth: 1, borderColor: c.gray, borderRadius: 8, padding: 14, marginBottom: 10 },

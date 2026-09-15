@@ -29,6 +29,7 @@ const EN: Record<string, string> = {
   '내 계정': 'My Account', '로그인 (이메일 코드)': 'Sign in (email code)', '로그아웃': 'Sign out', '표시 이름': 'Display name', '언어': 'Language',
   '주일': 'Sunday', '개역개정': 'KRV', '장 전체 보기': 'Whole chapter', '구절만 보기': 'Passage only',
   '지난 주보가 없습니다': 'No past bulletins yet',
+  '익명': 'Anonymous', '익명으로 올라갑니다. 이름은 보이지 않지만 신고·차단은 가능합니다.': 'Posted anonymously. Your name is hidden, but the post can still be reported or blocked.',
   '신고하기': 'Report', '작성자 차단': 'Block user', '내 글 삭제': 'Delete my post', '취소': 'Cancel', '삭제': 'Delete',
   '신고 이유를 골라주세요': 'Why are you reporting this?', '신고가 접수되었습니다. 이 글은 바로 숨겨지며 24시간 안에 검토합니다.': 'Report received. The post is hidden now and will be reviewed within 24 hours.',
   '이 사용자를 차단할까요? 이 사용자의 글이 더 이상 보이지 않습니다.': "Block this user? You won't see their posts anymore.", '차단됨': 'Blocked', '차단 해제': 'Unblock', '차단한 사용자': 'Blocked users', '차단한 사용자가 없습니다': 'No blocked users',

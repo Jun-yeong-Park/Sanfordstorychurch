@@ -14,6 +14,7 @@ export type Post = {
   created_at: string;
   user_id?: string | null;
   hidden?: boolean;
+  anonymous?: boolean;
 };
 export const remote = isConfigured;
 const LOCAL = 'wall.local.v1';
@@ -32,7 +33,7 @@ export async function listPosts(): Promise<Post[]> {
   fail(error);
   return data as Post[];
 }
-export async function addPost(p: Pick<Post, 'kind' | 'author' | 'body' | 'issue'>): Promise<Post> {
+export async function addPost(p: Pick<Post, 'kind' | 'author' | 'body' | 'issue'> & { anonymous?: boolean }): Promise<Post> {
   if (!remote) {
     const row: Post = { ...p, id: `${Date.now()}`, user_id: 'me', amen_count: 0, created_at: new Date().toISOString() };
     await saveLocal([...(await local()), row]);

@@ -61,6 +61,7 @@ create table if not exists posts (
   author      text not null check (char_length(author) between 1 and 20),
   body        text not null check (char_length(body) between 1 and 1000),
   issue       text,                          -- 주보 날짜 YYYY-MM-DD
+  anonymous   boolean not null default false,  -- 익명 글: 화면엔 '익명', user_id 는 남겨 신고·차단·삭제 가능
   amen_count  int  not null default 0,
   hidden      boolean not null default false, -- 신고 접수 시 true (관리자가 검토 후 false 로 되돌리거나 삭제)
   created_at  timestamptz not null default now()
@@ -91,7 +92,7 @@ create policy posts_read on posts for select to anon, authenticated using (
 create policy posts_insert on posts for insert to authenticated with check (auth.uid() = user_id and can_post());
 create policy posts_delete on posts for delete to authenticated using (auth.uid() = user_id);
 revoke insert, update, delete on posts from anon, authenticated;
-grant  insert (user_id, kind, author, body, issue) on posts to authenticated;
+grant  insert (user_id, kind, author, body, issue, anonymous) on posts to authenticated;
 grant  delete on posts to authenticated;
 
 create or replace function amen(post_id uuid) returns void
