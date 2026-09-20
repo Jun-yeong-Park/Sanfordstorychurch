@@ -167,7 +167,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/site.css?v=6">
 </head>
 <body>
 
@@ -339,6 +339,19 @@
   </div>
 </section>
 
+<!-- ============ THIS WEEK'S PRAISE — song list comes from ../bulletin/data.js ============ -->
+<section class="chapter" id="chPraise" hidden>
+  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
+  <div class="chapter-inner">
+    <div class="chapter-label rv">This Week's Praise</div>
+    <h2 class="display rv rv-2">
+      Sunday, <span id="praiseDate"></span><br><span class="accent">Songs We'll Sing Together</span>
+    </h2>
+    <p class="praise-sub rv rv-3">Have a listen ahead of time — we'd love to sing them with you. Worship led by <b>Kanghyeon Heo</b></p>
+    <ul class="praise-list rv rv-3" id="praiseList"></ul>
+  </div>
+</section>
+
 <!-- ============ WHO IS THIS FOR ============ -->
 <section class="chapter" id="chFor">
   <div class="chapter-inner">
@@ -424,6 +437,22 @@
   <div class="copyright">© Sanford Story Church</div>
 </footer>
 
+<!-- This week's praise popup — once a day, songs from ../bulletin/data.js -->
+<dialog class="praise-pop" id="praisePop" aria-labelledby="praisePopTitle">
+  <div class="pp-head">
+    <span class="pp-eyebrow">This Week's Praise</span>
+    <h3 id="praisePopTitle">Sunday Worship · <span id="praisePopDate"></span></h3>
+    <button class="pp-x" id="praisePopClose" aria-label="Close">&times;</button>
+  </div>
+  <ul class="praise-list" id="praisePopList"></ul>
+  <div class="pp-foot">
+    <button id="praisePopToday">Don't show again today</button>
+    <button class="pp-ok" id="praisePopOk">Close</button>
+  </div>
+</dialog>
+
 <script src="../js/site.js" defer></script>
+<script src="../bulletin/data.js" defer></script>
+<script src="../js/praise.js" defer></script>
 </body>
 </html>
