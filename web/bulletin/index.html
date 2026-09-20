@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F0E6">
+<title>주보 — 샌포드 스토리교회</title>
+<meta property="og:title" content="샌포드 스토리교회 주보">
+<meta property="og:description" content="이번 주 예배의 흐름 · 말씀 · 찬양 · 소식">
+<meta property="og:image" content="https://sanfordstorychurch.com/assets/logo/1.png">
+<link rel="icon" href="../assets/favicon/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon/favicon-128.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root { --orange:#FF9A1F; --navy:#0F1E34; --cream:#F4F0E6; --beige:#EAE3D2; --gray:#D7D9DD; --ink:#0F1E34; --dim:rgba(15,30,52,.6); --line:rgba(15,30,52,.18);
+    --display:"Bebas Neue",sans-serif; --en:"Montserrat",sans-serif; --ko:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--beige); color:var(--ink); font-family:var(--ko); font-size:16px; line-height:1.6; word-break:keep-all; }
+  a { color:inherit; text-decoration:none; }
+  #app { max-width:560px; margin:0 auto; background:var(--cream); min-height:100vh; }
+  header { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:calc(10px + env(safe-area-inset-top)) 18px 10px; background:var(--cream); border-bottom:1px solid var(--gray); }
+  header img { height:26px; width:auto; flex:none; }
+  header .word { font:400 17px/1 var(--display); letter-spacing:.08em; white-space:nowrap; }
+  header .word em { font-style:normal; color:var(--orange); }
+  header .date { margin-left:auto; font:600 10px/1 var(--en); letter-spacing:.12em; color:var(--dim); white-space:nowrap; }
+  section { padding:26px 20px; }
+  section.beige { background:var(--beige); } section.white { background:#fff; } section.orange { background:var(--orange); }
+  .eyebrow { font:600 11px/1 var(--en); letter-spacing:.18em; text-transform:uppercase; color:var(--orange); }
+  .orange .eyebrow { color:var(--navy); }
+  .display { font-family:var(--display); font-weight:400; line-height:1.05; letter-spacing:.01em; }
+  .h-sec { display:flex; align-items:baseline; gap:10px; margin-bottom:14px; }
+  .h-sec .display { font-size:30px; } .h-sec .ko { font-size:13px; font-weight:600; color:var(--dim); }
+  .dim { color:var(--dim); }
+  /* cover */
+  .cover { padding:30px 22px 26px; }
+  .cover .top { display:flex; justify-content:space-between; }
+  .cover .logo { width:68%; margin:28px auto 0; display:block; }
+  .cover .slogan { margin-top:32px; font-size:46px; } .cover .slogan em { font-style:normal; color:var(--orange); }
+  .cover .slogan-ko { margin-top:10px; font-size:14px; color:var(--dim); }
+  .cover .date { margin-top:26px; border-top:1.5px solid var(--navy); padding-top:16px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .cover .date .big { font-family:var(--display); font-size:30px; line-height:1; }
+  .cover .date .ko { font-size:13px; color:var(--dim); margin-top:4px; }
+  .cover .date .svc { text-align:right; font:600 11px/1.6 var(--en); letter-spacing:.12em; color:var(--orange); text-transform:uppercase; }
+  .cover .date .svc small { display:block; font-family:var(--ko); font-weight:400; letter-spacing:0; color:var(--dim); text-transform:none; font-size:13px; }
+  .cover .sermon { margin-top:18px; background:var(--orange); border-radius:6px; padding:14px 16px; }
+  .cover .sermon .t { font-size:18px; font-weight:700; line-height:1.35; } .cover .sermon .s { margin-top:5px; font-size:13.5px; color:rgba(15,30,52,.75); }
+  /* praise */
+  .song { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--gray); }
+  .song .play { width:38px; height:38px; border-radius:50%; background:var(--orange); color:var(--navy); display:grid; place-items:center; font-size:14px; font-weight:700; flex:none; }
+  .song b { display:block; font-size:15.5px; } .song small { display:block; color:var(--dim); font-size:13px; }
+  .song .hint { margin-left:auto; font:600 9.5px/1 var(--en); letter-spacing:.1em; color:var(--dim); white-space:nowrap; }
+  /* order */
+  .part { margin-top:18px; }
+  .part-h { display:flex; align-items:baseline; gap:8px; border-bottom:1.5px solid var(--navy); padding-bottom:6px; margin-bottom:4px; }
+  .part-h .tag, .part-h .nm { font-family:var(--display); font-size:24px; } .part-h .tag { color:var(--orange); }
+  .part-h .sub { margin-left:auto; font-size:11px; color:var(--dim); text-align:right; }
+  .it { display:flex; gap:12px; padding:9px 0; border-bottom:1px dotted var(--line); font-size:14.5px; }
+  .it .n { flex:1; } .it b { font-weight:700; } .it .d { display:block; font-size:13px; color:var(--dim); }
+  .it .by { font-size:13px; font-weight:600; white-space:nowrap; }
+  .it .mini { display:flex; align-items:center; gap:8px; padding:3px 0; font-size:13.5px; } .it .mini i { color:var(--orange); font-style:normal; font-size:10px; }
+  .verse p { font-size:15.5px; line-height:1.75; margin-top:12px; } .verse .ref { text-align:right; font:600 11px/1 var(--en); letter-spacing:.12em; margin-top:12px; }
+  .sermon-t { font-size:21px; font-weight:700; line-height:1.3; }
+  .news .item { display:grid; grid-template-columns:30px 1fr; gap:10px; padding:12px 0; border-bottom:1px dotted var(--line); font-size:14.5px; }
+  .news .item i { font:400 22px/1.2 var(--display); color:var(--orange); font-style:normal; } .news .item b { display:block; }
+  h4 { font:600 11px/1 var(--en); letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin:22px 0 8px; } h4:first-child { margin-top:0; }
+  .grp { font-size:14.5px; padding:9px 0; border-top:1px solid var(--line); } .grp span { display:block; color:var(--dim); font-size:13px; }
+  .kv div { display:flex; gap:12px; padding:7px 0; border-top:1px solid var(--line); font-size:14.5px; }
+  .kv div span:first-child { color:var(--dim); width:92px; flex:none; } .kv div span:last-child { font-weight:600; }
+  ul.pr { list-style:none; } ul.pr li { padding:8px 0 8px 16px; border-top:1px solid var(--line); position:relative; font-size:14.5px; }
+  ul.pr li::before { content:""; position:absolute; left:0; top:16px; width:7px; height:7px; background:var(--orange); }
+  .off { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--gray); border-radius:6px; overflow:hidden; background:#fff; }
+  .off div { padding:10px 12px; border-bottom:1px solid var(--gray); border-right:1px solid var(--gray); } .off small { display:block; font-size:11.5px; color:var(--dim); } .off b { font-size:17px; }
+  .off .total { background:var(--cream); } .off .total b { color:var(--orange); }
+  .foot { border-top:4px solid var(--orange); padding-bottom:40px; font-size:13px; line-height:1.7; }
+  .foot img { width:44%; margin-bottom:16px; } .foot em { font-style:normal; color:var(--orange); font-weight:600; }
+  .actions { display:flex; gap:8px; padding:0 20px 20px; background:var(--cream); flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:6px; border:1.5px solid var(--navy); font-size:13px; font-weight:700; background:transparent; color:var(--navy); cursor:pointer; font-family:var(--ko); }
+  .btn.primary { background:var(--orange); border-color:var(--orange); }
+  .refLink { text-decoration:underline; text-decoration-color:var(--orange); text-underline-offset:3px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="data.js"></script>
+<script>
+const D = window.BULLETIN;
+const t = s => (s ?? "").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, "");
+const yt = s => (s.url && s.url.trim()) || "https://www.youtube.com/results?search_query=" + encodeURIComponent(s.title + " 찬양");
+const bible = ref => "https://www.bible.com/search/bible?q=" + encodeURIComponent(ref);
+const songsOf = i => (i.songs || []).filter(x => x && x.title);
+const praise = D.order.flatMap(p => p.items.filter(i => songsOf(i).length).map(i => ({ label: i.name, songs: songsOf(i) })));
+const money = n => "$" + Number(n || 0).toLocaleString("en-US");
+const kv = rows => rows.map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join("");
+const c = D.church;
+
+document.getElementById("app").innerHTML = `
+<header><img src="mark.png" alt=""><span class="word">SANFORD <em>STORY</em> CHURCH</span><span class="date">${D.issue.dateEn.replace(/, \d{4}$/, "")}</span></header>
+
+<section class="cover">
+  <div class="top"><span class="eyebrow">${D.issue.label}</span><span class="eyebrow">${D.issue.volume}</span></div>
+  <img class="logo" src="logo.png" alt="Sanford Story Church">
+  <div class="display slogan">GOD'S STORY<br>BEGINS IN<br><em>YOUR LIFE.</em></div>
+  <div class="slogan-ko">${c.taglineKo}</div>
+  <div class="date"><div><div class="big">${D.issue.dateEn}</div><div class="ko">${D.issue.date}</div></div><div class="svc">Sunday Worship<small>${D.issue.service}</small></div></div>
+  <div class="sermon"><div class="t">${t(D.sermon.title)}</div><div class="s">${D.sermon.scripture} · ${D.sermon.preacher}</div></div>
+</section>
+<div class="actions">
+  <a class="btn primary" href="${bible(D.sermon.scripture)}" target="_blank" rel="noopener">📖 본문 읽기</a>
+  <a class="btn" href="주보-${D.issue.dateISO || ""}.pdf" download>인쇄용 PDF</a>
+  <a class="btn" href="/">웹사이트</a>
+</div>
+
+${praise.length ? `<section class="white">
+  <div class="h-sec"><span class="display">THIS WEEK'S PRAISE</span><span class="ko">이번 주 찬양</span></div>
+  ${praise.map(g => `${praise.length > 1 ? `<div class="eyebrow" style="margin:14px 0 6px">${t(g.label)}</div>` : ""}
+    ${g.songs.map(s => `<a class="song" href="${yt(s)}" target="_blank" rel="noopener"><span class="play">▶</span><span><b>${s.title}</b>${s.artist ? `<small>${s.artist}</small>` : ""}</span><span class="hint">${s.url ? "YOUTUBE ↗" : "검색 ↗"}</span></a>`).join("")}`).join("")}
+  <p class="dim" style="font-size:12px;margin-top:12px">탭하면 유튜브에서 들을 수 있어요.</p>
+</section>` : ""}
+
+<section>
+  <div class="h-sec"><span class="display">STORY FLOW</span><span class="ko">예배의 흐름</span></div>
+  <div class="eyebrow">${D.issue.dateEn} · ${D.issue.service}</div>
+  ${D.order.map(p => `<div class="part">
+    <div class="part-h"><span class="tag">${p.tag}</span><span class="nm">${p.name}</span><span class="sub">${p.sub}</span></div>
+    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
+  </div>`).join("")}
+</section>
+
+<section class="orange verse">
+  <div class="eyebrow">Today's Scripture · 오늘의 말씀</div>
+  <p>${t(D.sermon.excerpt)}</p>
+  <div class="ref"><a href="${bible(D.sermon.excerptRef)}" target="_blank" rel="noopener">${D.sermon.excerptRef} ›</a></div>
+</section>
+
+<section class="white">
+  <div class="h-sec"><span class="display">SERMON</span><span class="ko">오늘의 설교</span></div>
+  <div class="sermon-t">${t(D.sermon.title)}</div>
+  <p class="dim" style="font-size:14px;margin-top:6px"><a class="refLink" href="${bible(D.sermon.scripture)}" target="_blank" rel="noopener">${D.sermon.scripture}</a> · ${D.sermon.scriptureEn}<br>${D.sermon.preacher}</p>
+  ${D.sermon.video ? `<a class="btn" style="margin-top:14px" href="${D.sermon.video}" target="_blank" rel="noopener">▶ 설교 영상</a>` : ""}
+</section>
+
+<section class="news">
+  <div class="h-sec"><span class="display">STORY NEWS</span><span class="ko">교회 소식</span></div>
+  ${D.news.map((n, i) => `<div class="item"><i>${String(i + 1).padStart(2, "0")}</i><div><b>${t(n.title)}</b>${t(n.body)}</div></div>`).join("")}
+</section>
+
+<section class="beige">
+  <h4>Small Groups · 모임</h4>
+  ${D.groups.map(g => `<div class="grp"><b>${g.name}</b> · ${g.desc}<span>${g.when} · ${g.contact}</span></div>`).join("")}
+  <h4>Prayer · 기도 제목</h4><ul class="pr">${D.prayers.map(p => `<li>${t(p)}</li>`).join("")}</ul>
+</section>
+
+<section>
+  <h4>Next Week · 다음 주</h4>
+  <div class="kv">${kv([["날짜", D.nextWeek.date], ["본문", D.nextWeek.scripture], ["제목", t(D.nextWeek.title)], ["섬김", D.nextWeek.serving]])}</div>
+  <h4>Serving · 섬기는 분들</h4>
+  <div class="kv">${kv([...D.team, ...D.thisWeek].map(x => [x.role, x.name]))}</div>
+  ${D.offering ? `<h4>Offering · 헌금 보고 (${D.offering.week})</h4>
+  <div class="off">${D.offering.items.map(o => `<div><small>${o.name}</small><b>${money(o.amount)}</b></div>`).join("")}<div class="total"><small>합계 Total</small><b>${money(D.offering.items.reduce((a, o) => a + o.amount, 0))}</b></div></div>
+  <p class="dim" style="font-size:12px;margin-top:8px">${t(D.offering.note)}</p>` : ""}
+</section>
+
+<section class="beige foot">
+  <img src="logo.png" alt="">
+  <b>${c.nameKo} ${c.nameEn}</b><br>${c.address}<br>
+  <em>${c.web}</em> · ${c.instagram}<br>${c.email}<br>${c.giving}<br>
+  <span class="dim" style="font-size:12px">${c.legal}</span>
+</section>`;
+document.title = `주보 ${D.issue.date} — 샌포드 스토리교회`;
+</script>
+</body>
+</html>

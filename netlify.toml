@@ -11,3 +11,13 @@
   from = "/terms"
   to = "/app/terms.html"
   status = 200
+
+# 온라인 주보 QR: 항상 최신 주보. PDF 는 캐시 짧게
+[[redirects]]
+  from = "/bulletin"
+  to = "/bulletin/index.html"
+  status = 200
+[[headers]]
+  for = "/bulletin/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -35,3 +35,10 @@ if [ ! -f "말씀노트-안내.pdf" ]; then
     --virtual-time-budget=4000 "http://localhost:$PORT/note-guide.html" 2>/dev/null
   echo "✓ 말씀노트-안내.pdf"
 fi
+
+# 온라인 주보 (sanfordstorychurch.com/bulletin) — data.js 와 PDF 를 web/bulletin 으로. 그 다음 git push 하면 배포.
+mkdir -p ../web/bulletin
+cp data.js ../web/bulletin/data.js
+cp "$OUT" ../web/bulletin/
+find ../web/bulletin -name '주보-*.pdf' ! -name "$OUT" -delete
+echo "✓ web/bulletin 갱신 → cd .. && git add -A && git commit -m \"주보 $DATE\" && git push"

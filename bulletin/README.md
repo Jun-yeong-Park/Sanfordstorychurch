@@ -31,6 +31,13 @@ bulletin/
 ```
 → `주보-YYYY-MM-DD.pdf` (날짜는 `data.js` 의 `issue.dateISO`). 말씀노트 안내지 PDF는 없을 때만 같이 생성.
 
+## 온라인 주보 (QR)
+`./make.sh` 가 `web/bulletin/` 에 data.js 와 PDF 를 복사합니다. 그 뒤 push 하면 Netlify 가 배포:
+```bash
+cd ~/develop/sanford && git add -A && git commit -m "주보 $(date +%F)" && git push
+```
+→ https://sanfordstorychurch.com/bulletin (QR: `주보-QR.png` 포스터용 · `주보-QR-only.png` 인쇄 주보 삽입용). 링크는 매주 같고 내용만 바뀝니다.
+
 ## 면 구성
 
 | 면 | 내용 |
