@@ -9,7 +9,17 @@
 - 개인정보처리방침: https://sanfordstorychurch.com/privacy · 이용약관: https://sanfordstorychurch.com/terms (web/app/ — main push 시 Netlify 배포)
 - 스토어 문구: `store/STORE_LISTING.md` · 스크린샷: `store/screenshots/` (6.9")
 
-## 1. Supabase (10분)
+## 1. Supabase — 첫 출시는 주보 테이블만 (5분)
+로그인·나눔 서버는 나중에. 지금은 매주 주보를 앱으로 밀어 넣는 테이블 하나만 만듭니다.
+1. https://supabase.com → New project (이름 `sanford-story`, 리전 **US East**)
+2. **SQL Editor** → `supabase/bulletins-only.sql` 붙여넣고 Run
+3. **Project Settings → API** → `Project URL` 과 `anon public` 키 → `eas.json` 의 `PUT_SUPABASE_URL_HERE` / `PUT_SUPABASE_ANON_KEY_HERE` (preview·production 둘 다)
+4. 같은 화면의 `service_role` 키 → `app/.env.push` 에 (git 에 안 올라감). 매주 발행은 `WEEKLY.md`.
+5. `npm run push-bulletin` 한 번 실행해 첫 주보를 올려 둔다.
+
+App Store Connect 에서 **Sign-in required: NO**, 데모 계정 불필요. 나눔 벽은 "이 기기에만 저장" 모드로 나갑니다.
+
+## 1b. (나중에) 로그인·나눔 서버 켜기
 1. https://supabase.com → New project (이름 `sanford-story`, 리전 **US East**, DB 비밀번호 저장)
 2. **SQL Editor** → `supabase/schema.sql` 전체 붙여넣고 Run
 3. **Authentication → Providers → Email** 켜기. **Email Templates → Magic Link** 본문에 `{{ .Token }}` 넣기:
@@ -49,7 +59,7 @@ npx eas-cli submit --platform ios --latest    # Apple ID 로그인 프롬프트 
 ## 5. 제출 후
 - 신고 검토: Supabase → Table Editor → `reports`(pending) · `posts`(hidden=true). 24시간 안에 삭제하거나 `hidden=false` 로 복구. 정지: `profiles.is_banned=true`.
 - 매주 주보: `bulletin/data.js` 고치고 `SUPABASE_URL=… SUPABASE_SERVICE_KEY=… npm run push-bulletin` → 앱 업데이트 없이 반영.
-- JS 만 바뀐 수정은 나중에 `expo-updates` 붙이면 심사 없이 배포 가능 (아직 미설정).
+- 화면·문구 수정: `npx eas-cli update --channel production --message "…"` → 심사 없이 배포 (expo-updates 설정됨, WEEKLY.md).
 
 ## 리젝 방지 체크 (주은혜 앱에서 실제로 걸렸던 것)
 - [ ] 리뷰어 계정으로 로그인했을 때 **남이 쓴 글**이 있어서 ⋯(신고/차단)이 보이는가 → seed_review_demo.sql

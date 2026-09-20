@@ -12,14 +12,16 @@
       "env": {
         "EXPO_PUBLIC_SUPABASE_URL": "PUT_SUPABASE_URL_HERE",
         "EXPO_PUBLIC_SUPABASE_ANON_KEY": "PUT_SUPABASE_ANON_KEY_HERE"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_SUPABASE_URL": "PUT_SUPABASE_URL_HERE",
         "EXPO_PUBLIC_SUPABASE_ANON_KEY": "PUT_SUPABASE_ANON_KEY_HERE"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

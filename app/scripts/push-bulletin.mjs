@@ -4,8 +4,13 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+// .env.push (SUPABASE_URL / SUPABASE_SERVICE_KEY) 가 있으면 읽는다 — 환경변수가 우선
+try {
+  const envFile = readFileSync(join(dirname(fileURLToPath(import.meta.url)), '../.env.push'), 'utf8');
+  for (const line of envFile.split('\n')) { const m = /^\s*([A-Z_]+)\s*=\s*(.+?)\s*$/.exec(line); if (m && !process.env[m[1]]) process.env[m[1]] = m[2]; }
+} catch {}
 const { SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env;
-if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) { console.error('SUPABASE_URL, SUPABASE_SERVICE_KEY 환경변수가 필요합니다'); process.exit(1); }
+if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) { console.error('SUPABASE_URL, SUPABASE_SERVICE_KEY 가 필요합니다 — app/.env.push 에 넣으세요 (WEEKLY.md)'); process.exit(1); }
 
 const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), '../../bulletin/data.js'), 'utf8');
 const window = {};

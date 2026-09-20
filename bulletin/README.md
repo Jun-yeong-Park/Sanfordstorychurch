@@ -54,3 +54,4 @@ bulletin/
 - 일정: `events[]` — `date`(YYYY-MM-DD) `time`(HH:MM) `durationMin` `title/titleEn` `place/placeEn` `desc/descEn`. 앱 교회 탭에서 "내 캘린더에 추가".
 - 말씀 노트: 앱의 노트 화면은 인쇄판 P3 와 같은 His / My / Deep Story 3단 + 기도 카드 구조입니다 (질문 문구는 index.html · app 양쪽에 고정).
 - 성경 본문: `sermon.scripture`, 예배 순서의 성경 구절(`detail`)은 앱에서 탭하면 본문(개역개정/NIV)이 열립니다. 형식: `고린도후서 3:1–6`, `시편 100편`, `고후 3:3`.
+# jobo

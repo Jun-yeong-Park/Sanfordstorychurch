@@ -42,3 +42,4 @@ yarn-error.*
 
 # Supabase 키 (supabase/README.md)
 .env
+.env.push

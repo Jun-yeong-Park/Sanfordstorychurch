@@ -69,7 +69,8 @@
           "backgroundColor": "#F4F0E6"
         }
       ],
-      "expo-asset"
+      "expo-asset",
+      "expo-updates"
     ],
     "owner": "sundayproject",
     "extra": {
@@ -77,6 +78,13 @@
         "projectId": "0200ab46-1db5-4e6a-93a7-8e18ed176f70"
       },
       "router": {}
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0200ab46-1db5-4e6a-93a7-8e18ed176f70",
+      "fallbackToCacheTimeout": 0
     }
   }
 }
