@@ -8,7 +8,6 @@
   const songs = groups.flatMap(songsOf);
   if (!songs.length) return;
 
-  const by = groups.map(i => i.by).find(Boolean) || '';
   const date = ((B.issue && B.issue.date) || '').replace(/^\d{4}년\s*/, '');
   const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const yt = s => s.url || ('https://www.youtube.com/results?search_query=' + encodeURIComponent(s.title + ' ' + (s.artist || '') + ' 찬양'));
@@ -20,7 +19,6 @@
   // 홈 섹션
   document.getElementById('praiseList').innerHTML = rows;
   document.getElementById('praiseDate').textContent = date;
-  if (by) document.getElementById('praiseBy').innerHTML = ` 찬양 인도 <b>${esc(by)}</b>`;
   document.getElementById('chPraise').hidden = false;
 
   // 팝업 — "오늘 하루 보지 않기"는 로컬 날짜 기준
