@@ -35,13 +35,14 @@ window.BULLETIN = {
     {
       tag: "01", name: "HIS STORY", sub: "Welcome & Word · 복음의 중심", subEn: "Welcome & Word",
       items: [
-        { name: "예배로의 부름", nameEn: "Call to Worship", detail: "웰컴", detailEn: "Welcome", by: "스태프 (로테이션)" },
+        { name: "예배로의 부름", nameEn: "Call to Worship", detail: "웰컴", detailEn: "Welcome", by: "다 같이" },
         // 앱 전용: songs — 이번 주 찬양. artist(선택) · url(유튜브, 비우면 앱에서 검색으로 열림). 앱 주보 탭 "이번 주 찬양"에 모아 보임.
-        { name: "찬양", nameEn: "Praise", detail: "주의 이름 높이며 · 은혜 · 예수 이름으로", detailEn: "3–4 songs", by: "허강현",
+        { name: "찬양", nameEn: "Praise", detail: "합심 · 슬픈 마음 있는 사람 · 온 땅의 주인 · 우리 보좌 앞에 모였네", detailEn: "4 songs", by: "허강현",
           songs: [
-            { title: "주의 이름 높이며", artist: "", url: "" },
-            { title: "은혜", artist: "", url: "" },
-            { title: "예수 이름으로", artist: "", url: "" },
+            { title: "합심", artist: "", url: "https://www.youtube.com/watch?v=bLpFLJ2p60o" },
+            { title: "슬픈 마음 있는 사람", artist: "", url: "https://www.youtube.com/watch?v=hgbn4t-4Gwo" },
+            { title: "온 땅의 주인", artist: "", url: "https://youtu.be/To9WjSWeDB0" },
+            { title: "우리 보좌 앞에 모였네", artist: "", url: "https://youtu.be/kTfuRV8eGXk" },
           ] },
         { name: "말씀", nameEn: "Sermon", detail: "하나님의 이야기가 당신의 삶에서 시작됩니다", detailEn: "God's Story Begins in Your Life", by: "정경원 목사" },
       ],
@@ -63,8 +64,8 @@ window.BULLETIN = {
     {
       tag: "04", name: "OUR STORY", sub: "Fellowship · 신실한 공동체", subEn: "Fellowship",
       items: [
-        { name: "광고", nameEn: "Announcements", detail: "", by: "박준영" },
-        { name: "식탁 교제", nameEn: "Dinner Together", detail: "함께 저녁을 나눕니다", detailEn: "We share dinner together", by: "" },
+        { name: "광고", nameEn: "Announcements", detail: "", by: "정경원 목사" },
+        { name: "식탁 교제", nameEn: "Dinner Together", detail: "함께 저녁을 나눕니다", detailEn: "We share dinner together", by: "다 같이" },
       ],
     },
   ],
@@ -72,10 +73,8 @@ window.BULLETIN = {
   // 교회 소식
   news: [
     { title: "스토리교회 첫 예배", titleEn: "Our First Worship", body: "오늘 스토리교회의 첫 이야기가 시작됩니다. 함께해 주신 모든 분께 감사드립니다.", bodyEn: "Today the first story of Story Church begins. Thank you to everyone who joined us." },
-    { title: "Welcome Story", body: "처음 오신 분은 예배 후 웰컴 테이블에서 웰컴 키트(머그컵 · 드립백 · 손편지)를 받아가세요.", bodyEn: "First time here? Pick up a welcome kit (mug, drip coffee, handwritten note) at the welcome table after worship." },
     { title: "Pastor's Table", body: "다음 주일 예배 전 5:00PM, 새가족과 담임목사가 함께하는 식사 자리가 있습니다. 웰컴팀에 신청해 주세요.", bodyEn: "Next Sunday at 5:00 PM, newcomers share a meal with the pastor before worship. Sign up with the welcome team." },
     { title: "Coffee Break 런칭", titleEn: "Coffee Break Launch", body: "10월부터 평일 저녁 소그룹 'Coffee Break'가 시작됩니다. 장소는 샌포드 지역 카페, 자세한 안내는 다음 주에.", bodyEn: "Our weeknight small group 'Coffee Break' starts in October at a local Sanford café. Details next week." },
-    { title: "주차 안내", titleEn: "Parking", body: "건물 뒤편 주차장을 이용해 주세요. 장애인 주차 구역은 비워둡니다.", bodyEn: "Please use the lot behind the building and leave accessible spaces open." },
   ],
 
   // 소그룹 / 모임
@@ -95,7 +94,7 @@ window.BULLETIN = {
       { name: "감사헌금 Thanksgiving", amount: 0 },
       { name: "선교헌금 Mission", amount: 0 },
     ],
-    note: "재정 보고서는 분기별로 온 성도에게 공유됩니다. 문의: 허강현 (Ministry Coordinator)",
+    note: "재정 보고서는 분기별로 온 성도에게 공유됩니다. 문의: 허강현",
   },
 
   nextWeek: {
@@ -105,32 +104,32 @@ window.BULLETIN = {
     scriptureEn: "2 Corinthians 3:7–18",
     title: "수건을 벗은 얼굴로",
     titleEn: "With Unveiled Faces",
-    serving: "찬양 허강현 · 웰컴 (순번) · 친교 (순번)",
-    servingEn: "Praise: Kanghyeon Heo · Welcome (rotation) · Fellowship (rotation)",
+    serving: "찬양 허강현 · 웰컴 박준영 · 친교 섬김팀",
+    servingEn: "Praise: Kanghyeon Heo · Welcome: Junyeong Park · Fellowship: serving team",
   },
 
   // 기도 제목
   prayers: [
     "샌포드 지역의 3040 가정과 비행학교 학생들에게 복음이 전해지도록",
-    "코어팀의 건강과 순번 사역이 지치지 않도록",
+    "섬김팀의 건강과 섬김이 지치지 않도록",
     "예배 장소와 재정이 필요에 따라 채워지도록",
   ],
   prayersEn: [
     "That the gospel reaches young families and flight-school students in Sanford",
-    "For the core team's health and strength in their rotating service",
+    "For the serving team's health and strength",
     "That a worship space and finances are provided as needed",
   ],
 
   // 섬기는 분들
   team: [
     { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 Kyong Won Jung" },
-    { role: "Campus Coordinator", name: "박준영 Junyeong Park" },
-    { role: "Ministry Coordinator", name: "허강현 Kanghyeon Heo" },
+    { role: "코디네이터", roleEn: "Coordinator", name: "박준영 Junyeong Park" },
+    { role: "전도", roleEn: "Outreach", name: "허강현 Kanghyeon Heo" },
   ],
   thisWeek: [
     { role: "찬양 인도", roleEn: "Worship Lead", name: "허강현" },
     { role: "웰컴", roleEn: "Welcome", name: "박준영" },
-    { role: "친교 셋업", roleEn: "Fellowship Setup", name: "코어팀" },
+    { role: "친교 셋업", roleEn: "Fellowship Setup", name: "섬김팀" },
   ],
 
   // 앱 전용: 일정 (교회 탭 · "내 캘린더에 추가"). date: YYYY-MM-DD, time: HH:MM (24h), durationMin: 분

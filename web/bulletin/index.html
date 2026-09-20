@@ -77,12 +77,25 @@
   .actions { display:flex; gap:8px; padding:0 20px 20px; background:var(--cream); flex-wrap:wrap; }
   .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:6px; border:1.5px solid var(--navy); font-size:13px; font-weight:700; background:transparent; color:var(--navy); cursor:pointer; font-family:var(--ko); }
   .btn.primary { background:var(--orange); border-color:var(--orange); }
-  .refLink { text-decoration:underline; text-decoration-color:var(--orange); text-underline-offset:3px; }
+  .refLink { text-decoration:underline; text-decoration-color:var(--orange); text-underline-offset:3px; cursor:pointer; }
+  /* 본문 팝업 */
+  #pop { position:fixed; inset:0; z-index:50; background:rgba(15,30,52,.55); display:none; align-items:flex-end; justify-content:center; }
+  #pop.on { display:flex; }
+  #pop .sheet { width:100%; max-width:560px; max-height:88vh; background:var(--cream); border-radius:16px 16px 0 0; display:flex; flex-direction:column; }
+  #pop .hd { display:flex; align-items:center; gap:10px; padding:18px 20px 12px; background:var(--beige); border-radius:16px 16px 0 0; }
+  #pop .hd .display { font-size:26px; line-height:1.1; flex:1; }
+  #pop .hd button { width:36px; height:36px; border:0; background:transparent; font-size:22px; color:var(--ink); cursor:pointer; }
+  #pop .body { overflow:auto; padding:18px 20px calc(30px + env(safe-area-inset-bottom)); }
+  #pop .v { display:flex; gap:10px; margin-bottom:10px; font-size:17px; line-height:1.75; }
+  #pop .v i { font:400 17px/1.75 var(--display); color:var(--orange); font-style:normal; width:24px; text-align:right; flex:none; }
+  #pop .cr { font-size:11.5px; color:var(--dim); margin-top:22px; }
+  .foot-links { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script src="data.js"></script>
+<script src="verses.js"></script>
 <script>
 const D = window.BULLETIN;
 const t = s => (s ?? "").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, "");
@@ -106,9 +119,7 @@ document.getElementById("app").innerHTML = `
   <div class="sermon"><div class="t">${t(D.sermon.title)}</div><div class="s">${D.sermon.scripture} · ${D.sermon.preacher}</div></div>
 </section>
 <div class="actions">
-  <a class="btn primary" href="${bible(D.sermon.scripture)}" target="_blank" rel="noopener">📖 본문 읽기</a>
-  <a class="btn" href="주보-${D.issue.dateISO || ""}.pdf" download>인쇄용 PDF</a>
-  <a class="btn" href="/">웹사이트</a>
+  <a class="btn primary" href="#" onclick="return openRef(D.sermon.scripture)">📖 본문 읽기</a>
 </div>
 
 ${praise.length ? `<section class="white">
@@ -123,20 +134,20 @@ ${praise.length ? `<section class="white">
   <div class="eyebrow">${D.issue.dateEn} · ${D.issue.service}</div>
   ${D.order.map(p => `<div class="part">
     <div class="part-h"><span class="tag">${p.tag}</span><span class="nm">${p.name}</span><span class="sub">${p.sub}</span></div>
-    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
+    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${window.VERSES && VERSES[i.detail] ? `<a class="refLink" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">${t(i.detail)} ›</a>` : t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
   </div>`).join("")}
 </section>
 
 <section class="orange verse">
   <div class="eyebrow">Today's Scripture · 오늘의 말씀</div>
   <p>${t(D.sermon.excerpt)}</p>
-  <div class="ref"><a href="${bible(D.sermon.excerptRef)}" target="_blank" rel="noopener">${D.sermon.excerptRef} ›</a></div>
+  <div class="ref"><a href="#" onclick="return openRef(D.sermon.excerptRef)">${D.sermon.excerptRef} ›</a></div>
 </section>
 
 <section class="white">
   <div class="h-sec"><span class="display">SERMON</span><span class="ko">오늘의 설교</span></div>
   <div class="sermon-t">${t(D.sermon.title)}</div>
-  <p class="dim" style="font-size:14px;margin-top:6px"><a class="refLink" href="${bible(D.sermon.scripture)}" target="_blank" rel="noopener">${D.sermon.scripture}</a> · ${D.sermon.scriptureEn}<br>${D.sermon.preacher}</p>
+  <p class="dim" style="font-size:14px;margin-top:6px"><a class="refLink" href="#" onclick="return openRef(D.sermon.scripture)">${D.sermon.scripture}</a> · ${D.sermon.scriptureEn}<br>${D.sermon.preacher}</p>
   ${D.sermon.video ? `<a class="btn" style="margin-top:14px" href="${D.sermon.video}" target="_blank" rel="noopener">▶ 설교 영상</a>` : ""}
 </section>
 
@@ -153,7 +164,7 @@ ${praise.length ? `<section class="white">
 
 <section>
   <h4>Next Week · 다음 주</h4>
-  <div class="kv">${kv([["날짜", D.nextWeek.date], ["본문", D.nextWeek.scripture], ["제목", t(D.nextWeek.title)], ["섬김", D.nextWeek.serving]])}</div>
+  <div class="kv">${kv([["날짜", D.nextWeek.date], ["본문", window.VERSES && VERSES[D.nextWeek.scripture] ? `<a class="refLink" href="#" onclick="return openRef('${D.nextWeek.scripture}')">${D.nextWeek.scripture} ›</a>` : D.nextWeek.scripture], ["제목", t(D.nextWeek.title)], ["섬김", D.nextWeek.serving]])}</div>
   <h4>Serving · 섬기는 분들</h4>
   <div class="kv">${kv([...D.team, ...D.thisWeek].map(x => [x.role, x.name]))}</div>
   ${D.offering ? `<h4>Offering · 헌금 보고 (${D.offering.week})</h4>
@@ -166,8 +177,25 @@ ${praise.length ? `<section class="white">
   <b>${c.nameKo} ${c.nameEn}</b><br>${c.address}<br>
   <em>${c.web}</em> · ${c.instagram}<br>${c.email}<br>${c.giving}<br>
   <span class="dim" style="font-size:12px">${c.legal}</span>
-</section>`;
+  <div class="foot-links">
+    <a class="btn" href="주보-${D.issue.dateISO || ""}.pdf" download>인쇄용 PDF</a>
+    <a class="btn" href="/">웹사이트</a>
+  </div>
+</section>
+<div id="pop" onclick="if(event.target===this)closeRef()"><div class="sheet"><div class="hd"><span class="display" id="popT"></span><button onclick="closeRef()" aria-label="닫기">✕</button></div><div class="body" id="popB"></div></div></div>`;
 document.title = `주보 ${D.issue.date} — 샌포드 스토리교회`;
+
+// ---- 본문 팝업 (verses.js: 개역개정 발췌). 데이터에 없으면 bible.com 으로 ----
+function openRef(ref) {
+  const v = window.VERSES && VERSES[ref];
+  if (!v) { window.open(bible(ref), "_blank", "noopener"); return false; }
+  document.getElementById("popT").textContent = v.label;
+  document.getElementById("popB").innerHTML = v.verses.map(([n, tx]) => `<div class="v"><i>${n}</i><span>${tx}</span></div>`).join("") + `<div class="cr">개역개정 · 대한성서공회</div>`;
+  document.getElementById("pop").classList.add("on"); document.body.style.overflow = "hidden";
+  return false;
+}
+function closeRef() { document.getElementById("pop").classList.remove("on"); document.body.style.overflow = ""; }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeRef(); });
 </script>
 </body>
 </html>
