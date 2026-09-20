@@ -162,7 +162,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css">
+<link rel="stylesheet" href="styles/site.css?v=6">
 </head>
 <body>
 
@@ -346,6 +346,19 @@
   </div>
 </section>
 
+<!-- ============ THIS WEEK'S PRAISE — 곡 목록은 bulletin/data.js 가 원본 ============ -->
+<section class="chapter" id="chPraise" hidden>
+  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
+  <div class="chapter-inner">
+    <div class="chapter-label rv">This Week's Praise</div>
+    <h2 class="display rv rv-2">
+      <span id="praiseDate"></span> 주일,<br><span class="accent">함께 부를 찬양</span>
+    </h2>
+    <p class="praise-sub rv rv-3">미리 들어보고 오세요. 탭하면 유튜브로 열립니다.<span id="praiseBy"></span></p>
+    <ul class="praise-list rv rv-3" id="praiseList"></ul>
+  </div>
+</section>
+
 <!-- ============ WHO IS THIS FOR ============ -->
 <section class="chapter" id="chFor">
   <div class="chapter-inner">
@@ -432,6 +445,22 @@
   <div class="copyright">© 스토리교회 · Story Church Sanford</div>
 </footer>
 
+<!-- 이번 주 찬양 팝업 — 하루 한 번, 곡은 bulletin/data.js -->
+<dialog class="praise-pop" id="praisePop" aria-labelledby="praisePopTitle">
+  <div class="pp-head">
+    <span class="pp-eyebrow">This Week's Praise</span>
+    <h3 id="praisePopTitle"><span id="praisePopDate"></span> 주일 예배 찬양</h3>
+    <button class="pp-x" id="praisePopClose" aria-label="닫기">&times;</button>
+  </div>
+  <ul class="praise-list" id="praisePopList"></ul>
+  <div class="pp-foot">
+    <button id="praisePopToday">오늘 하루 보지 않기</button>
+    <button class="pp-ok" id="praisePopOk">닫기</button>
+  </div>
+</dialog>
+
 <script src="js/site.js" defer></script>
+<script src="bulletin/data.js" defer></script>
+<script src="js/praise.js" defer></script>
 </body>
 </html>
