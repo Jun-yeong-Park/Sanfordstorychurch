@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-20T18:31:08Z",
-  "etag": "5c6d2f47fa6b07b23654179a4a6cc396-ssl",
-  "siteLastCommit": "2026-09-19 22:28:48 -0500 온라인 주보: sanfordstorychurch.com/bulletin (QR) — make.sh 가 web/bulletin 갱신"
+  "checkedAt": "2026-09-21T19:19:50Z",
+  "etag": "61c51657a91aac951f8d33c9d3ed7e81-ssl",
+  "siteLastCommit": "2026-09-21 13:59:15 -0500 빌드 준비: 로그인 없는 첫 출시용 eas.json, 수정가이드.md"
 }

@@ -21,7 +21,7 @@ export default function ChurchScreen() {
   const D = getBulletin();
   const ch = D.church;
   const router = useRouter();
-  const { lang, setLang, tr, L } = useLang();
+  const { lang, setLang, tr, sub, L } = useLang();
   const { session, signOut } = useAuth();
   const [name, setName] = useState('');
   const [blocked, setBlocked] = useState<Blocked[]>([]);
@@ -31,11 +31,11 @@ export default function ChurchScreen() {
   const link = (label: string, url: string) => <Text onPress={() => Linking.openURL(url)} style={s.link}>{label}</Text>;
   const onDelete = () => Alert.alert(tr('계정 삭제'), tr('계정을 삭제하면 프로필, 노트 백업, 신고·차단 기록이 즉시 지워지고 되돌릴 수 없습니다. 기기에 있는 노트는 남습니다.'), [
     { text: tr('취소'), style: 'cancel' },
-    { text: tr('계정 삭제'), style: 'destructive', onPress: async () => { try { await deleteMyAccount(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+    { text: tr('계정 삭제'), style: 'destructive', onPress: async () => { try { await deleteMyAccount(); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); } } },
   ]);
   const saveName = async () => {
     if (!session) return;
-    try { await setDisplayName(session.user.id, name.trim()); Alert.alert(tr('표시 이름'), tr('저장')); } catch (e) { Alert.alert('오류', (e as Error).message); }
+    try { await setDisplayName(session.user.id, name.trim()); Alert.alert(tr('표시 이름'), tr('저장')); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); }
   };
 
   return (
@@ -56,12 +56,12 @@ export default function ChurchScreen() {
           <SecHead en="VISIT" ko={tr('예배 안내')} />
           <KV rows={[
             [tr('예배'), L(D.issue, 'service')],
-            [tr('장소'), link(ch.address, 'https://maps.apple.com/?q=' + encodeURIComponent(ch.address))],
+            [tr('장소'), link(L(ch, 'address'), 'https://maps.apple.com/?q=' + encodeURIComponent(ch.address))],
             [tr('이메일'), link(ch.email, 'mailto:' + ch.email)],
             [tr('헌금'), L(ch, 'giving')],
             [tr('소속'), ch.legal],
           ]} />
-          <Body dim size={12} style={{ marginTop: 14 }}>{lang === 'en' ? 'Website last updated' : '웹사이트 마지막 업데이트'} {meta.siteLastCommit.slice(0, 10)}</Body>
+          <Body dim size={12} style={{ marginTop: 14 }}>{tr('웹사이트 마지막 업데이트')} {meta.siteLastCommit.slice(0, 10)}</Body>
         </Section>
 
         <Section tone="beige">
@@ -70,20 +70,20 @@ export default function ChurchScreen() {
         </Section>
 
         <Section>
-          <Sub first>Small Groups · {tr('모임')}</Sub>
+          <Sub first>{sub('Small Groups', '모임')}</Sub>
           {D.groups.map((g) => (
             <View key={g.name} style={s.grp}>
               <Body size={14.5}><Text style={{ fontWeight: '700' }}>{g.name}</Text> · {L(g, 'desc')}</Body>
-              <Body dim size={13}>{L(g, 'when')} · {g.contact}</Body>
+              <Body dim size={13}>{L(g, 'when')} · {L(g, 'contact')}</Body>
             </View>
           ))}
-          <Sub>Serving · {tr('섬기는 분들')}</Sub><KV rows={D.team.map((x) => [L(x, 'role'), x.name] as [string, string])} />
+          <Sub>{sub('Serving', '섬기는 분들')}</Sub><KV rows={D.team.map((x) => [L(x, 'role'), L(x, 'name')] as [string, string])} />
         </Section>
 
         <Section tone="beige">
           <SecHead en="MY ACCOUNT" ko={tr('내 계정')} />
           {!isConfigured ? (
-            <Body dim size={13.5}>{lang === 'en' ? 'Sign-in is off until the church server is connected.' : '교회 서버(Supabase)가 연결되면 로그인이 열립니다.'}</Body>
+            <Body dim size={13.5}>{tr('교회 서버(Supabase)가 연결되면 로그인이 열립니다.')}</Body>
           ) : session ? (
             <View>
               <Body dim size={13}>{session.user.email}</Body>
@@ -92,7 +92,7 @@ export default function ChurchScreen() {
                 <TextInput value={name} onChangeText={setName} maxLength={20} placeholder={tr('이름')} placeholderTextColor={c.inkDim} style={s.input} />
                 <Btn label={tr('저장')} small onPress={saveName} />
               </View>
-              <Body dim size={12.5} style={{ marginTop: 8 }}>{lang === 'en' ? 'Shown on the Wall. Notes are backed up to your account.' : '나눔 벽에 표시됩니다. 노트는 이 계정에 백업됩니다.'}</Body>
+              <Body dim size={12.5} style={{ marginTop: 8 }}>{tr('나눔 벽에 표시됩니다. 노트는 이 계정에 백업됩니다.')}</Body>
               <Body bold size={14} style={{ marginTop: 18 }}>{tr('차단한 사용자')}</Body>
               {blocked.length === 0 ? <Body dim size={12.5}>{tr('차단한 사용자가 없습니다')}</Body> : blocked.map((b) => (
                 <View key={b.blocked_id} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 6 }}>
@@ -107,7 +107,7 @@ export default function ChurchScreen() {
             </View>
           ) : (
             <View>
-              <Body dim size={13.5}>{lang === 'en' ? 'Sign in to post on the Wall and back up your notes.' : '나눔 글쓰기와 노트 백업에 로그인이 필요해요.'}</Body>
+              <Body dim size={13.5}>{tr('나눔 글쓰기와 노트 백업에 로그인이 필요해요.')}</Body>
               <Btn label={tr('로그인 (이메일 코드)')} onPress={() => router.push('/signin')} style={{ alignSelf: 'flex-start', marginTop: 12 }} />
             </View>
           )}
@@ -115,7 +115,7 @@ export default function ChurchScreen() {
             <Pressable onPress={() => Linking.openURL(PRIVACY_URL)}><Body size={13} style={s.link}>{tr('개인정보 처리방침')}</Body></Pressable>
             <Pressable onPress={() => Linking.openURL(TERMS_URL)}><Body size={13} style={s.link}>{tr('이용약관')}</Body></Pressable>
           </View>
-          <Body bold size={14} style={{ marginTop: 22 }}>{tr('언어')} · Language</Body>
+          <Body bold size={14} style={{ marginTop: 22 }}>Language · 언어</Body>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
             {(['ko', 'en'] as const).map((l) => (
               <Pressable key={l} onPress={() => setLang(l)} style={[s.chip, lang === l && s.chipOn]}><Text style={[s.chipT, lang === l && { color: c.navy }]}>{l === 'ko' ? '한국어' : 'English'}</Text></Pressable>

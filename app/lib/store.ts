@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Directory, File, Paths } from 'expo-file-system';
 import { getBulletin, issueId } from '@/lib/bulletin';
 import { isConfigured, supabase } from '@/lib/supabase';
+import { trx } from '@/lib/i18n';
 
 export type Note = {
   issue: string;            // YYYY-MM-DD
@@ -125,13 +126,13 @@ export async function removeAttachment(a: Attachment) {
 
 export function noteToText(n: Note): string {
   const L = [n.title, `${n.scripture} · ${n.preacher} · ${n.issue}`, ''];
-  for (const st of NOTE_STEPS) { const v = n.text[st.key]; if (v) L.push(`${st.n}. ${st.en} · ${st.ko}`, v, ''); }
+  for (const st of NOTE_STEPS) { const v = n.text[st.key]; if (v) L.push(`${st.n}. ${st.en} · ${trx(st.ko)}`, v, ''); }
   // 구버전 노트 (개요별 칸 · 자유 노트 · Story Card)
   n.outline.forEach((pt, i) => { const v = n.text['o' + i]; if (v) L.push(pt, v, ''); });
-  if (n.text.free) L.push('노트', n.text.free, '');
+  if (n.text.free) L.push(trx('노트'), n.text.free, '');
   if (n.text.story) L.push('My Story Card · 오늘의 결단', n.text.story, '');
-  if (n.text.followup) L.push('결단 돌아보기', n.text.followup, '');
-  if (n.text.prayer) L.push('기도 카드 · 기도 제목', n.text.prayer, '');
-  L.push('— 샌포드 스토리교회 Story App');
+  if (n.text.followup) L.push(trx('결단 돌아보기'), n.text.followup, '');
+  if (n.text.prayer) L.push(trx('기도 카드 · 기도 제목'), n.text.prayer, '');
+  L.push('— Sanford Story Church · Story App');
   return L.join('\n');
 }

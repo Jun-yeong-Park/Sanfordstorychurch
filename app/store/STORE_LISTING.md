@@ -3,8 +3,9 @@
 ## 기본
 | 항목 | 값 |
 |---|---|
-| 이름 | 스토리교회 Story Church |
-| 부제 (30자) | 주보 · 말씀노트 · 나눔 · 성경 |
+| 이름 | Story Church – Sanford |
+| 기본 언어 (Primary) | **English (U.S.)** — 한국어는 추가 로컬라이제이션으로 같은 문구 입력 |
+| 부제 (30자) | Bulletin · Notes · Bible · Wall  (ko: 주보 · 말씀노트 · 성경 · 나눔) |
 | 번들 ID | com.sanfordstorychurch.app |
 | 카테고리 | Lifestyle (보조: Reference) |
 | 연령 | 4+ |
@@ -13,7 +14,7 @@
 | 지원 URL | https://sanfordstorychurch.com |
 | 마케팅 URL | https://sanfordstorychurch.com |
 | 저작권 | © 2026 Sanford Story Church (Sunday Project Ministry Inc.) |
-| 키워드 (100자) | 스토리교회,샌포드,한인교회,주보,설교노트,성경,개역개정,NIV,기도,교회,Sanford,Korean church |
+| 키워드 (100자) | church,bulletin,sermon notes,bible,NIV,prayer,Sanford,Korean church,스토리교회,주보,성경 |
 
 ## 설명 (한국어)
 샌포드 스토리교회 성도들을 위한 앱입니다. 하나님의 이야기가 당신의 삶에서 시작됩니다.
@@ -54,31 +55,22 @@ Sign in with a one-time email code, no password. Notes and photos stay on your d
 ## App Privacy (앱 개인정보) — "Data Linked to You"
 | 데이터 | 용도 | 수집 여부 |
 |---|---|---|
-| Email Address | App Functionality (로그인) | 예 · 사용자에게 연결됨 |
-| Name (표시 이름) | App Functionality | 예 · 사용자에게 연결됨 |
-| User Content (나눔 글, 노트 텍스트 백업) | App Functionality | 예 · 사용자에게 연결됨 |
-| Photos | — | **아니오** (기기에만 저장, 서버 전송 없음) |
-| Location / Contacts / Identifiers / Usage Data / Diagnostics | — | 아니오 |
-추적(Tracking): 없음.
+| (v1.0.0 로그인 없음) | — | **"Data Not Collected"** 선택 — 서버 전송 없음, 노트·사진·나눔 글 모두 기기에만 저장 |
+추적(Tracking): 없음. (나중에 Supabase 로그인 붙이면 Email·Name·User Content 를 "App Functionality · Linked to you" 로 갱신)
 
 ## 심사 메모 (App Review Information → Notes) — 그대로 붙여넣기
+**Sign-in required: NO.** (v1.0.0 은 로그인 없음 — 데모 계정 불필요)
 ```
-Story App is a members app for Sanford Story Church (Sanford, FL). All tabs work without signing in; sign-in is only required to post on the Story Wall (user-generated content) and to back up notes.
+Story Church is the members app for Sanford Story Church (Sanford, FL), a Korean-American church plant. The app is English by default; Korean is available under Church → Language.
 
-DEMO ACCOUNTS (tap Church tab → My Account → "Sign in (email code)" → "Sign in with password"):
-  member@sanfordstorychurch.com / StoryMember2026!
-  reviewer@sanfordstorychurch.com / StoryReview2026!
-Please use the MEMBER account first: the Wall already contains posts by other users, so the ⋯ menu (Report / Block user) is visible on them. Your own posts show ✕ (Delete my post) instead.
+No account or sign-in is required. All features work offline with bundled content:
+- Bulletin: this week's order of worship, praise songs (links open YouTube), scripture, sermon, news, prayer, next week.
+- Notes: personal sermon notes with photo/handwriting attachments, stored only on the device.
+- Bible: Korean Revised Version and NIV, bundled offline.
+- Wall: in this version posts are saved on the device only (no server, no user-generated content shared between users). A notice at the top of the tab says so. The report/block/terms flow is included for a future server-connected release.
+- Church: service info, events (add to calendar), small groups, language setting.
 
-UGC safeguards (Guideline 1.2):
-- Terms of Use with zero-tolerance policy must be accepted before the first post (modal). Full terms: https://sanfordstorychurch.com/terms
-- Client + server profanity filter blocks objectionable posts.
-- Report: ⋯ → Report → reason. Reported posts are hidden immediately and reviewed by church staff within 24 hours (hello@sanfordstorychurch.com).
-- Block: ⋯ → Block user. Blocked users' posts disappear at once. Manage in Church → My Account → Blocked users → Unblock.
-- Delete own post: ✕ on your post.
-- Account deletion (Guideline 5.1.1): Church → My Account → Delete account (removes the account server-side).
-
-Permissions are requested only when the user taps the related button: camera/photos (attach a bulletin photo to a note), calendar (add a church event), notifications (Wednesday reminder of the user's own commitment).
+Permissions are requested only when the user taps the related button: camera/photos (attach a bulletin photo to a note), calendar (add a church event), notifications (Wednesday reminder of the user's own commitment). No tracking, no analytics, no ads.
 ```
 
 ## 스크린샷 (6.9" 1320×2868) — store/screenshots/

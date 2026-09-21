@@ -16,7 +16,7 @@ const songsOf = (item: object): Song[] => ((item as { songs?: Song[] }).songs ??
 export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; isCurrent: boolean; header?: React.ReactNode }) {
   const issue = issueId(D);
   const router = useRouter();
-  const { lang, tr, L } = useLang();
+  const { lang, tr, sub, L } = useLang();
   const openRef = (ref: string) => router.push({ pathname: '/bible/[ref]', params: { ref } });
   const scripture = L(D.sermon, 'scripture');
   const prayers = (lang === 'en' && D.prayersEn?.length ? D.prayersEn : D.prayers) ?? [];
@@ -52,7 +52,7 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
         </View>
         <View style={s.sermonBox}>
           <Text style={s.sermonT}>{t(L(D.sermon, 'title'))}</Text>
-          <Body dim size={13.5} style={{ marginTop: 5 }}>{scripture} · {D.sermon.preacher}</Body>
+          <Body dim size={13.5} style={{ marginTop: 5 }}>{scripture} · {lang === 'ko' ? D.sermon.preacher : D.team[0]?.nameEn ? 'Pastor ' + D.team[0].nameEn : D.sermon.preacher}</Body>
         </View>
       </Section>
 
@@ -103,7 +103,7 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
                     </Pressable>
                   ))}
                 </View>
-                {!!i.by && <Body size={13} bold>{t(i.by)}</Body>}
+                {!!i.by && <Body size={13} bold>{t(L(i, 'by'))}</Body>}
               </View>
             ))}
           </View>
@@ -121,7 +121,7 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
       <Section tone="white">
         <SecHead en="SERMON" ko={tr('오늘의 설교')} />
         <Text style={s.sermonTitle}>{t(L(D.sermon, 'title'))}</Text>
-        <Body dim size={14} style={{ marginTop: 6 }}>{lang === 'ko' ? `${D.sermon.scripture} · ${D.sermon.scriptureEn}` : D.sermon.scriptureEn}{'\n'}{D.sermon.preacher}</Body>
+        <Body dim size={14} style={{ marginTop: 6 }}>{lang === 'ko' ? `${D.sermon.scripture} · ${D.sermon.scriptureEn}` : D.sermon.scriptureEn}{'\n'}{lang === 'ko' ? D.sermon.preacher : D.team[0]?.nameEn ? 'Pastor ' + D.team[0].nameEn : D.sermon.preacher}</Body>
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
           <Btn label={'📖  ' + tr('본문 읽기')} variant="ghost" onPress={() => openRef(D.sermon.scripture)} style={{ flex: 1 }} />
           <Btn label={'✍️  ' + tr('말씀 노트')} onPress={() => router.push(`/note/${issue}`)} style={{ flex: 1 }} disabled={!isCurrent} />
@@ -144,14 +144,14 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
       </Section>
 
       <Section tone="beige">
-        <Sub first>Small Groups · {tr('모임')}</Sub>
+        <Sub first>{sub('Small Groups', '모임')}</Sub>
         {D.groups.map((g) => (
           <View key={g.name} style={[s.grp, { borderTopColor: c.line }]}>
             <Body size={14.5}><Text style={{ fontWeight: '700' }}>{g.name}</Text> · {L(g, 'desc')}</Body>
-            <Body dim size={13}>{L(g, 'when')} · {g.contact}</Body>
+            <Body dim size={13}>{L(g, 'when')} · {L(g, 'contact')}</Body>
           </View>
         ))}
-        <Sub>Prayer · {tr('기도 제목')}</Sub>
+        <Sub>{sub('Prayer', '기도 제목')}</Sub>
         {prayers.map((p, i) => (
           <View key={i} style={[s.pr, { borderTopColor: c.line }]}>
             <View style={s.prDot} />
@@ -161,20 +161,20 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
       </Section>
 
       <Section>
-        <Sub first>Next Week · {tr('다음 주')}</Sub>
+        <Sub first>{sub('Next Week', '다음 주')}</Sub>
         <KV rows={[[tr('날짜'), L(D.nextWeek, 'date')], [tr('본문'), <RefText text={L(D.nextWeek, 'scripture')} size={14.5} />], [tr('제목'), t(L(D.nextWeek, 'title'))], [tr('섬김'), L(D.nextWeek, 'serving')]]} />
-        <Sub>Serving · {tr('섬기는 분들')}</Sub>
-        <KV rows={[...D.team, ...D.thisWeek].map((x) => [L(x, 'role'), x.name] as [string, string])} />
+        <Sub>{sub('Serving', '섬기는 분들')}</Sub>
+        <KV rows={[...D.team, ...D.thisWeek].map((x) => [L(x, 'role'), L(x, 'name')] as [string, string])} />
         {!!D.offering && (
           <>
-            <Sub>Offering · {tr('헌금 보고')} ({D.offering.week})</Sub>
+            <Sub>{sub('Offering', '헌금 보고')} ({L(D.offering, 'week')})</Sub>
             <View style={s.offRow}>
               {D.offering.items.map((o) => (
-                <View key={o.name} style={s.offCell}><Text style={s.offName}>{o.name}</Text><Text style={s.offAmt}>{money(o.amount)}</Text></View>
+                <View key={o.name} style={s.offCell}><Text style={s.offName}>{L(o, 'name')}</Text><Text style={s.offAmt}>{money(o.amount)}</Text></View>
               ))}
-              <View style={[s.offCell, s.offTotal]}><Text style={s.offName}>{tr('합계')} Total</Text><Text style={[s.offAmt, { color: c.orange }]}>{money(D.offering.items.reduce((a, o) => a + o.amount, 0))}</Text></View>
+              <View style={[s.offCell, s.offTotal]}><Text style={s.offName}>{lang === 'ko' ? '합계 Total' : 'Total'}</Text><Text style={[s.offAmt, { color: c.orange }]}>{money(D.offering.items.reduce((a, o) => a + o.amount, 0))}</Text></View>
             </View>
-            <Body dim size={12} style={{ marginTop: 8 }}>{t(D.offering.note)}</Body>
+            <Body dim size={12} style={{ marginTop: 8 }}>{t(L(D.offering, 'note'))}</Body>
           </>
         )}
       </Section>
@@ -182,8 +182,8 @@ export default function BulletinView({ D, isCurrent, header }: { D: Bulletin; is
       <Section tone="beige" style={{ paddingBottom: 34, borderTopWidth: 4, borderTopColor: c.orange }}>
         <Image source={require('@/assets/logo-on-light.png')} style={[s.logo, { width: '44%', height: 60, marginTop: 0, marginBottom: 16, alignSelf: 'flex-start' }]} resizeMode="contain" />
         <Body size={13} style={{ lineHeight: 22 }}>
-          <Text style={{ fontWeight: '700' }}>{D.church.nameKo} {D.church.nameEn}</Text>{'\n'}
-          {D.church.address}{'\n'}
+          <Text style={{ fontWeight: '700' }}>{lang === 'ko' ? D.church.nameKo + ' ' : ''}{D.church.nameEn}</Text>{'\n'}
+          {L(D.church, 'address')}{'\n'}
           <Text style={{ color: c.orange, fontWeight: '600' }}>{D.church.web}</Text> · {D.church.instagram}{'\n'}
           {D.church.email}{'\n'}{L(D.church, 'giving')}
         </Body>

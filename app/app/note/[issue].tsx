@@ -49,7 +49,7 @@ export default function NoteScreen() {
 
   const pick = async (camera: boolean) => {
     const perm = camera ? await ImagePicker.requestCameraPermissionsAsync() : await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!perm.granted) return Alert.alert('권한이 필요해요', '설정에서 카메라/사진 접근을 허용해 주세요.');
+    if (!perm.granted) return Alert.alert(tr('권한이 필요해요'), tr('설정에서 카메라/사진 접근을 허용해 주세요.'));
     const opts: ImagePicker.ImagePickerOptions = { mediaTypes: ['images'], quality: 0.7 };
     const r = camera ? await ImagePicker.launchCameraAsync(opts) : await ImagePicker.launchImageLibraryAsync(opts);
     if (r.canceled) return;
@@ -57,9 +57,9 @@ export default function NoteScreen() {
     setAtts(await listAttachments(issue));
   };
   const del = async (a: Attachment) => {
-    Alert.alert('첨부 삭제', '이 첨부를 삭제할까요?', [
-      { text: '취소', style: 'cancel' },
-      { text: '삭제', style: 'destructive', onPress: async () => { await removeAttachment(a); setViewing(null); setAtts(await listAttachments(issue)); } },
+    Alert.alert(tr('첨부 삭제'), tr('이 첨부를 삭제할까요?'), [
+      { text: tr('취소'), style: 'cancel' },
+      { text: tr('삭제'), style: 'destructive', onPress: async () => { await removeAttachment(a); setViewing(null); setAtts(await listAttachments(issue)); } },
     ]);
   };
 
@@ -80,12 +80,12 @@ export default function NoteScreen() {
         <Section tone="beige" style={{ paddingTop: top + 14 }}>
           <Pressable onPress={() => router.back()}><Eyebrow>← My Notes · {issue}</Eyebrow></Pressable>
           <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10, marginTop: 8 }}>
-            <Display size={26}>SERMON NOTE</Display><Text style={{ fontSize: 13, fontWeight: '600', color: c.inkDim }}>{tr('말씀 노트')}</Text>
+            <Display size={26}>SERMON NOTE</Display>{lang === 'ko' && <Text style={{ fontSize: 13, fontWeight: '600', color: c.inkDim }}>{tr('말씀 노트')}</Text>}
           </View>
-          <Body bold size={19} style={{ marginTop: 6, lineHeight: 26 }}>{note.title || tr('말씀 노트')}</Body>
+          <Body bold size={19} style={{ marginTop: 6, lineHeight: 26 }}>{(isCur && lang === 'en' && D.sermon.titleEn) || note.title || tr('말씀 노트')}</Body>
           {!!note.scripture && (
             <Pressable disabled={!scriptureRef} onPress={() => router.push({ pathname: '/bible/[ref]', params: { ref: scriptureRef! } })}>
-              <Body dim size={13.5} style={[{ marginTop: 4 }, scriptureRef && { textDecorationLine: 'underline', textDecorationColor: c.orange }]}>📖 {note.scripture} · {note.preacher}</Body>
+              <Body dim size={13.5} style={[{ marginTop: 4 }, scriptureRef && { textDecorationLine: 'underline', textDecorationColor: c.orange }]}>📖 {(isCur && lang === 'en' && D.sermon.scriptureEn) || note.scripture} · {isCur && lang === 'en' && D.team[0]?.nameEn ? 'Pastor ' + D.team[0].nameEn : note.preacher}</Body>
             </Pressable>
           )}
           {isCur && <SermonMedia video={D.sermon.video} audio={D.sermon.audio} />}
@@ -145,7 +145,7 @@ export default function NoteScreen() {
               {atts.map((a) => (
                 <Pressable key={a.id} onPress={() => setViewing(a)} style={s.th}>
                   <Image source={{ uri: a.uri }} style={{ width: '100%', height: '100%' }} />
-                  <Text style={s.thTag}>{a.kind === 'photo' ? '사진' : '손글씨'}</Text>
+                  <Text style={s.thTag}>{a.kind === 'photo' ? tr('사진') : tr('손글씨')}</Text>
                 </Pressable>
               ))}
             </View>
@@ -162,8 +162,8 @@ export default function NoteScreen() {
         <View style={{ flex: 1, backgroundColor: c.beige, paddingTop: top }}>
           {viewing && <Image source={{ uri: viewing.uri }} style={{ flex: 1, margin: 12 }} resizeMode="contain" />}
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16, paddingBottom: 30 }}>
-            <Btn label="삭제" variant="ghost" small onPress={() => viewing && del(viewing)} />
-            <Btn label="닫기" small onPress={() => setViewing(null)} />
+            <Btn label={tr('삭제')} variant="ghost" small onPress={() => viewing && del(viewing)} />
+            <Btn label={tr('닫기')} small onPress={() => setViewing(null)} />
           </View>
         </View>
       </Modal>

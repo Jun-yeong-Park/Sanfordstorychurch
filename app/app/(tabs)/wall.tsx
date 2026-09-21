@@ -55,9 +55,9 @@ export default function WallScreen() {
 
   const post = async () => {
     const author = anon ? tr('익명') : name.trim(), text = body.trim();
-    if (!author) return Alert.alert(tr('이름'), remote ? '교회 탭 → 내 계정에서 표시 이름을 정해 주세요.' : '이름을 적어주세요');
-    if (!text) return Alert.alert('내용을 적어주세요');
-    if (containsBlockedWords(text) || containsBlockedWords(author)) return Alert.alert('', lang === 'en' ? 'Your post contains inappropriate language and cannot be posted.' : '부적절한 표현이 포함되어 있어 올릴 수 없습니다.');
+    if (!author) return Alert.alert(tr('이름'), remote ? tr('교회 탭 → 내 계정에서 표시 이름을 정해 주세요.') : tr('이름을 적어주세요'));
+    if (!text) return Alert.alert(tr('내용을 적어주세요'));
+    if (containsBlockedWords(text) || containsBlockedWords(author)) return Alert.alert('', tr('부적절한 표현이 포함되어 있어 올릴 수 없습니다.'));
     if (!(await eulaAccepted())) { setShowEula(true); return; }   // 첫 글 전 약관 동의
     setBusy(true);
     try {
@@ -65,7 +65,7 @@ export default function WallScreen() {
       if (!remote && !anon) await setName(author);
       setBody('');
       await load();
-    } catch (e) { Alert.alert('올리지 못했어요', (e as Error).message); }
+    } catch (e) { Alert.alert(tr('올리지 못했어요'), (e as Error).message); }
     setBusy(false);
   };
   const onMenu = (p: Post) => {
@@ -73,7 +73,7 @@ export default function WallScreen() {
     if (mine) {
       return Alert.alert(tr('내 글 삭제'), tr('이 글을 삭제할까요?'), [
         { text: tr('취소'), style: 'cancel' },
-        { text: tr('삭제'), style: 'destructive', onPress: async () => { try { await deletePost(p.id); await load(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+        { text: tr('삭제'), style: 'destructive', onPress: async () => { try { await deletePost(p.id); await load(); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); } } },
       ]);
     }
     Alert.alert(p.anonymous ? tr('익명') : p.author, undefined, [
@@ -86,7 +86,7 @@ export default function WallScreen() {
     Alert.alert(tr('신고하기'), tr('신고 이유를 골라주세요'), [
       ...REPORT_REASONS.map((r) => ({ text: lang === 'en' ? r.en : r.ko, onPress: async () => {
         try { await reportPost(p, r.key); Alert.alert('', tr('신고가 접수되었습니다. 이 글은 바로 숨겨지며 24시간 안에 검토합니다.')); await load(); }
-        catch (e) { Alert.alert('오류', (e as Error).message); }
+        catch (e) { Alert.alert(tr('오류'), (e as Error).message); }
       } })),
       { text: tr('취소'), style: 'cancel' },
     ]);
@@ -94,14 +94,14 @@ export default function WallScreen() {
   const onBlock = (p: Post) => {
     Alert.alert(tr('작성자 차단'), tr('이 사용자를 차단할까요? 이 사용자의 글이 더 이상 보이지 않습니다.'), [
       { text: tr('취소'), style: 'cancel' },
-      { text: tr('작성자 차단'), style: 'destructive', onPress: async () => { try { await blockUser(p.user_id!); await load(); } catch (e) { Alert.alert('오류', (e as Error).message); } } },
+      { text: tr('작성자 차단'), style: 'destructive', onPress: async () => { try { await blockUser(p.user_id!); await load(); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); } } },
     ]);
   };
   const onAmen = async (p: Post) => {
     if (done.has(p.id)) return;
     setDone(new Set([...done, p.id]));
     setPosts((ps) => ps?.map((x) => (x.id === p.id ? { ...x, amen_count: x.amen_count + 1 } : x)) ?? null);
-    try { await amen(p.id); } catch (e) { Alert.alert('오류', (e as Error).message); }
+    try { await amen(p.id); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); }
   };
 
   return (
@@ -112,7 +112,7 @@ export default function WallScreen() {
           <SecHead en="STORY WALL" ko={tr('은혜 나눔 · 기도')} />
           {!remote && (
             <View style={s.banner}>
-              <Body size={13}><Text style={{ fontWeight: '700' }}>{tr('지금은 이 기기에만 저장됩니다.')}</Text> 교회 서버(Supabase)를 연결하면 교회 전체가 함께 봅니다 (app/supabase/README.md).</Body>
+              <Body size={13}><Text style={{ fontWeight: '700' }}>{tr('지금은 이 기기에만 저장됩니다.')}</Text> {tr('교회 서버(Supabase)를 연결하면 교회 전체가 함께 봅니다 (app/supabase/README.md).')}</Body>
             </View>
           )}
           {canPost ? (
@@ -130,7 +130,7 @@ export default function WallScreen() {
               {anon
                 ? <Body dim size={13} style={{ paddingVertical: 8 }}>{tr('익명으로 올라갑니다. 이름은 보이지 않지만 신고·차단은 가능합니다.')}</Body>
                 : remote
-                ? <Body dim size={13} style={{ paddingVertical: 8 }}>{name || '(표시 이름 없음 — 교회 탭 → 내 계정)'}</Body>
+                ? <Body dim size={13} style={{ paddingVertical: 8 }}>{name || tr('(표시 이름 없음 — 교회 탭 → 내 계정)')}</Body>
                 : <TextInput value={name} onChangeText={setNameState} placeholder={tr('이름')} placeholderTextColor={c.inkDim} maxLength={20} style={s.input} />}
               <TextInput value={body} onChangeText={setBody} placeholder={tr('오늘 말씀에서 받은 은혜 한 가지, 또는 함께 기도할 제목')} placeholderTextColor={c.inkDim} maxLength={1000} multiline style={[s.input, s.area]} />
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>
@@ -169,21 +169,11 @@ export default function WallScreen() {
             <SecHead en="COMMUNITY RULES" ko={tr('나눔 벽 이용 약속')} />
           </Section>
           <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 40 }}>
-            {lang === 'en' ? (
-              <>
-                <Body bold size={15}>Zero tolerance for objectionable content.</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>The Story Wall is for sharing grace and prayer requests among members. Profanity, hate speech, sexual content, threats, spam, or sharing others' private information is strictly prohibited.</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>Anonymous posts follow the same rules. You can report any post with the ⋯ menu and block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: hello@sanfordstorychurch.com</Body>
-              </>
-            ) : (
-              <>
-                <Body bold size={15}>부적절한 콘텐츠는 허용하지 않습니다 (무관용).</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com</Body>
-              </>
-            )}
+            <Body bold size={15}>{tr('부적절한 콘텐츠는 허용하지 않습니다 (무관용).')}</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>{tr('나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.')}</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>{tr('익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com')}</Body>
             <Pressable onPress={() => Linking.openURL(TERMS_URL)} style={{ marginTop: 16 }}><Body size={14} style={{ textDecorationLine: 'underline', textDecorationColor: c.orange }}>{tr('이용약관 보기')} ↗</Body></Pressable>
-            <Btn label={tr('동의하고 계속')} onPress={async () => { try { await acceptEula(); setShowEula(false); await post(); } catch (e) { Alert.alert('오류', (e as Error).message); } }} style={{ marginTop: 26 }} />
+            <Btn label={tr('동의하고 계속')} onPress={async () => { try { await acceptEula(); setShowEula(false); await post(); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); } }} style={{ marginTop: 26 }} />
             <Btn label={tr('취소')} variant="ghost" onPress={() => setShowEula(false)} style={{ marginTop: 10 }} />
           </ScrollView>
         </View>

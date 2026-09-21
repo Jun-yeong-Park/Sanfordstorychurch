@@ -2,6 +2,7 @@
 // 신고·차단·삭제·약관 동의는 Apple Guideline 1.2 (UGC) 요건 — supabase/schema.sql 참조
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { EULA_VERSION } from '@/lib/moderation';
+import { trx } from '@/lib/i18n';
 import { isConfigured, supabase } from '@/lib/supabase';
 
 export type Post = {
@@ -24,7 +25,7 @@ const EULA_LOCAL = 'wall.eula';
 
 const local = async (): Promise<Post[]> => { try { return JSON.parse((await AsyncStorage.getItem(LOCAL)) ?? '[]'); } catch { return []; } };
 const saveLocal = (rows: Post[]) => AsyncStorage.setItem(LOCAL, JSON.stringify(rows));
-const fail = (e: { message: string } | null) => { if (e) throw new Error(e.message.includes('부적절') ? e.message : '나눔 서버 오류: ' + e.message); };
+const fail = (e: { message: string } | null) => { if (e) throw new Error(e.message.includes('부적절') ? trx('부적절한 표현이 포함되어 있어 올릴 수 없습니다.') : trx('나눔 서버 오류: ') + e.message); };
 const uid = async () => (await supabase.auth.getSession()).data.session?.user.id ?? null;
 
 export async function listPosts(): Promise<Post[]> {
@@ -40,7 +41,7 @@ export async function addPost(p: Pick<Post, 'kind' | 'author' | 'body' | 'issue'
     return row;
   }
   const id = await uid();
-  if (!id) throw new Error('로그인이 필요해요');
+  if (!id) throw new Error(trx('로그인이 필요해요'));
   const { data, error } = await supabase.from('posts').insert({ ...p, user_id: id }).select().single();
   fail(error);
   return data as Post;
@@ -80,13 +81,13 @@ export async function acceptEula() {
 export async function reportPost(p: Post, reason: string, note?: string) {
   if (!remote) return saveLocal((await local()).map((x) => (x.id === p.id ? { ...x, hidden: true } : x)));
   const id = await uid();
-  if (!id) throw new Error('로그인이 필요해요');
+  if (!id) throw new Error(trx('로그인이 필요해요'));
   fail((await supabase.from('reports').insert({ reporter_id: id, post_id: p.id, reported_user_id: p.user_id ?? null, reason, note: note ?? null })).error);
 }
 export async function blockUser(userId: string) {
   if (!remote) return saveLocal((await local()).map((x) => (x.user_id === userId ? { ...x, hidden: true } : x)));
   const id = await uid();
-  if (!id) throw new Error('로그인이 필요해요');
+  if (!id) throw new Error(trx('로그인이 필요해요'));
   fail((await supabase.from('blocks').insert({ blocker_id: id, blocked_id: userId })).error);
 }
 export type Blocked = { blocked_id: string; created_at: string };

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "스토리교회",
+    "name": "Story Church",
     "slug": "sanford-story-church",
     "scheme": "storychurch",
     "version": "1.0.0",
@@ -11,15 +11,16 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.sanfordstorychurch.app",
       "infoPlist": {
-        "NSCameraUsageDescription": "종이 주보와 손으로 적은 메모를 찍어 노트에 저장합니다.",
-        "NSPhotoLibraryUsageDescription": "주보 사진을 노트에 첨부합니다.",
-        "NSCalendarsFullAccessUsageDescription": "교회 일정을 내 캘린더에 추가합니다.",
+        "NSCameraUsageDescription": "Take a photo of the paper bulletin or your handwritten notes to attach to your sermon note.",
+        "NSPhotoLibraryUsageDescription": "Attach a bulletin photo to your sermon note.",
+        "NSCalendarsFullAccessUsageDescription": "Add church events to your calendar.",
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleLocalizations": [
-          "ko",
-          "en"
+          "en",
+          "ko"
         ],
-        "CFBundleDevelopmentRegion": "ko"
+        "CFBundleDevelopmentRegion": "en",
+        "CFBundleDisplayName": "Story Church"
       },
       "buildNumber": "1"
     },
@@ -43,7 +44,8 @@
       [
         "expo-image-picker",
         {
-          "cameraPermission": "종이 주보와 손으로 적은 메모를 찍어 노트에 저장합니다."
+          "cameraPermission": "Take a photo of the paper bulletin or your handwritten notes to attach to your sermon note.",
+          "photosPermission": "Attach a bulletin photo to your sermon note."
         }
       ],
       [
@@ -56,7 +58,7 @@
       [
         "expo-calendar",
         {
-          "calendarPermission": "교회 일정을 내 캘린더에 추가합니다."
+          "calendarPermission": "Add church events to your calendar."
         }
       ],
       "expo-audio",

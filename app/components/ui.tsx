@@ -20,10 +20,12 @@ export function Display({ children, size = 30, color = c.ink, style }: { childre
 
 /** "STORY FLOW  예배의 흐름" 식 섹션 머리 */
 export function SecHead({ en, ko }: { en: string; ko: string }) {
+  // 영어 모드에서 부제가 영어(=제목과 중복)이면 생략
+  const showKo = /[가-힣]/.test(ko);
   return (
     <View style={s.secHead}>
       <Display color={c.ink}>{en}</Display>
-      <Text style={[s.secKo, { color: c.inkDim }]}>{ko}</Text>
+      {showKo && <Text style={[s.secKo, { color: c.inkDim }]}>{ko}</Text>}
     </View>
   );
 }

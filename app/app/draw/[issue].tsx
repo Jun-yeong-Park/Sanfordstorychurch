@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Line, Path } from 'react-native-svg';
 import { captureRef } from 'react-native-view-shot';
 import { addAttachment } from '@/lib/store';
+import { useLang } from '@/lib/i18n';
 import { c } from '@/lib/theme';
 
 type Stroke = { color: string; width: number; pts: [number, number][] };
@@ -16,6 +17,7 @@ export default function DrawScreen() {
   const { issue } = useLocalSearchParams<{ issue: string }>();
   const router = useRouter();
   const { top, bottom } = useSafeAreaInsets();
+  const { tr } = useLang();
   const [strokes, setStrokes] = useState<Stroke[]>([]);
   const [color, setColor] = useState(c.navy);
   const [thick, setThick] = useState(false);
@@ -44,11 +46,11 @@ export default function DrawScreen() {
       const uri = await captureRef(paper, { format: 'png', quality: 1, result: 'tmpfile' });
       await addAttachment(issue, 'drawing', uri);
       router.back();
-    } catch (e) { Alert.alert('저장하지 못했어요', (e as Error).message); setBusy(false); }
+    } catch (e) { Alert.alert(tr('저장하지 못했어요'), (e as Error).message); setBusy(false); }
   };
   const cancel = () => {
     if (!strokes.length) return router.back();
-    Alert.alert('나가기', '저장하지 않고 나갈까요?', [{ text: '취소', style: 'cancel' }, { text: '나가기', style: 'destructive', onPress: () => router.back() }]);
+    Alert.alert(tr('나가기'), tr('저장하지 않고 나갈까요?'), [{ text: tr('취소'), style: 'cancel' }, { text: tr('나가기'), style: 'destructive', onPress: () => router.back() }]);
   };
 
   const Tool = ({ on, onPress, children, style }: { on?: boolean; onPress: () => void; children: React.ReactNode; style?: object }) => (
@@ -62,13 +64,13 @@ export default function DrawScreen() {
       <View style={[s.tools, { paddingTop: top + 8 }]}>
         <Tool on={color === c.navy} onPress={() => setColor(c.navy)}><View style={[s.sw, { backgroundColor: c.navy }]} /></Tool>
         <Tool on={color === c.orange} onPress={() => setColor(c.orange)}><View style={[s.sw, { backgroundColor: c.orange }]} /></Tool>
-        <Tool on={color === ERASE} onPress={() => setColor(ERASE)}><Text style={s.toolT}>지움</Text></Tool>
-        <Tool on={thick} onPress={() => setThick(!thick)}><Text style={s.toolT}>굵게</Text></Tool>
+        <Tool on={color === ERASE} onPress={() => setColor(ERASE)}><Text style={s.toolT}>{tr('지움')}</Text></Tool>
+        <Tool on={thick} onPress={() => setThick(!thick)}><Text style={s.toolT}>{tr('굵게')}</Text></Tool>
         <View style={{ flex: 1 }} />
         <Tool onPress={() => setStrokes((st) => st.slice(0, -1))}><Text style={[s.toolT, { fontSize: 18 }]}>↶</Text></Tool>
-        <Tool onPress={() => strokes.length && Alert.alert('모두 지우기', '전부 지울까요?', [{ text: '취소', style: 'cancel' }, { text: '지우기', style: 'destructive', onPress: () => setStrokes([]) }])}><Text style={s.toolT}>전체</Text></Tool>
+        <Tool onPress={() => strokes.length && Alert.alert(tr('모두 지우기'), tr('전부 지울까요?'), [{ text: tr('취소'), style: 'cancel' }, { text: tr('전체'), style: 'destructive', onPress: () => setStrokes([]) }])}><Text style={s.toolT}>{tr('전체')}</Text></Tool>
         <Tool onPress={cancel}><Text style={[s.toolT, { fontSize: 16 }]}>✕</Text></Tool>
-        <Pressable onPress={save} disabled={busy} style={[s.tool, s.save, busy && { opacity: 0.5 }]}><Text style={[s.toolT, { color: c.navy, fontWeight: '700' }]}>저장</Text></Pressable>
+        <Pressable onPress={save} disabled={busy} style={[s.tool, s.save, busy && { opacity: 0.5 }]}><Text style={[s.toolT, { color: c.navy, fontWeight: '700' }]}>{tr('저장')}</Text></Pressable>
       </View>
 
       <View
