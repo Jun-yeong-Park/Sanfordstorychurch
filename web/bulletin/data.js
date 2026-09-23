@@ -15,10 +15,10 @@ window.BULLETIN = {
   },
 
   sermon: {
-    title: "하나님의 이야기가 당신의 삶에서 시작됩니다",
-    titleEn: "GOD'S STORY BEGINS IN YOUR LIFE",
-    scripture: "고린도후서 3:1–6",
-    scriptureEn: "2 Corinthians 3:1–6",
+    title: "러브레터",
+    titleEn: "LOVE LETTER",
+    scripture: "고린도후서 3:1–3",
+    scriptureEn: "2 Corinthians 3:1–3",
     preacher: "정경원 목사",
     // P2 하단 '오늘의 말씀' 박스
     excerpt: "너희는 우리로 말미암아 나타난 그리스도의 편지니 이는 먹으로 쓴 것이 아니요 오직 살아 계신 하나님의 영으로 쓴 것이며 돌판에 쓴 것이 아니요 오직 육의 마음판에 쓴 것이라",
@@ -44,7 +44,7 @@ window.BULLETIN = {
             { title: "온 땅의 주인", artist: "", url: "https://youtu.be/To9WjSWeDB0" },
             { title: "우리 보좌 앞에 모였네", artist: "", url: "https://youtu.be/kTfuRV8eGXk" },
           ] },
-        { name: "말씀", nameEn: "Sermon", detail: "하나님의 이야기가 당신의 삶에서 시작됩니다", detailEn: "God's Story Begins in Your Life", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
+        { name: "말씀", nameEn: "Sermon", detail: "러브레터", detailEn: "Love Letter", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
     {

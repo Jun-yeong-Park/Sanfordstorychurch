@@ -23,26 +23,4 @@
   document.getElementById('praiseList').innerHTML = rows;
   document.getElementById('praiseDate').textContent = date;
   document.getElementById('chPraise').hidden = false;
-
-  // 팝업 — "오늘 하루 보지 않기"는 로컬 날짜 기준
-  const pop = document.getElementById('praisePop');
-  if (!pop || typeof pop.showModal !== 'function') return;
-  document.getElementById('praisePopList').innerHTML = rows;
-  document.getElementById('praisePopDate').textContent = date;
-
-  const KEY = 'praisePopHidden';
-  const d = new Date();
-  const today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-  let hidden = false;
-  try { hidden = localStorage.getItem(KEY) === today; } catch (e) {}
-
-  document.getElementById('praisePopClose').addEventListener('click', () => pop.close());
-  document.getElementById('praisePopOk').addEventListener('click', () => pop.close());
-  document.getElementById('praisePopToday').addEventListener('click', () => {
-    try { localStorage.setItem(KEY, today); } catch (e) {}
-    pop.close();
-  });
-  pop.addEventListener('click', e => { if (e.target === pop) pop.close(); });   // 바깥(백드롭) 클릭
-
-  if (!hidden) setTimeout(() => { if (!pop.open) pop.showModal(); }, 1400);
 })();

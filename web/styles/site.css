@@ -989,3 +989,142 @@ footer.site .copyright{
   background:var(--orange);color:var(--navy);
   font-size:13px;font-weight:800;letter-spacing:.06em;text-decoration:none;
 }
+
+/* ============================================
+   첫 예배 선물 (본문 + 팝업) — 9/27 이후 js/gift.js 가 내린다
+============================================ */
+#gift{
+  background:radial-gradient(120% 80% at 0% 0%,#FFF3DC 0%,var(--cream) 55%,var(--cream-2) 100%);
+  min-height:auto;padding:14vh clamp(20px,5vw,80px);
+}
+#gift[hidden]{display:none}
+.gift-inner{
+  max-width:1060px;text-align:left;
+  display:grid;gap:clamp(28px,5vw,56px);align-items:center;grid-template-columns:1fr;
+}
+@media(min-width:880px){.gift-inner{grid-template-columns:1fr 1fr}}
+.gift-art img{width:100%;height:auto;border-radius:14px;box-shadow:0 18px 50px rgba(42,29,15,.16)}
+#gift .chapter-label{display:block;color:var(--ink-dim);text-shadow:none;margin-bottom:24px}
+#gift .chapter-label::before,#gift .chapter-label::after{display:none}
+#gift .pillars-heading{text-align:left;font-size:clamp(28px,3.6vw,44px);line-height:1.24;color:var(--ink)}
+/* 크림 위 주황 '글자' 는 1.97:1 — 포스터처럼 글자는 진하게 두고 주황은 밑줄로만 쓴다 */
+#gift .pillars-heading .accent{color:var(--ink);position:relative;display:inline-block}
+#gift .pillars-heading .accent::after{
+  content:"";position:absolute;left:-.04em;right:-.04em;bottom:.02em;height:.16em;
+  background:var(--orange);border-radius:99px;z-index:-1;
+}
+.gift-lead{margin-top:20px;font-size:16px;line-height:1.8;color:var(--ink-dim)}
+.gift-lead b{color:var(--ink);font-weight:800}
+.gift-info{margin-top:30px;display:grid;gap:2px;background:rgba(42,29,15,.14)}
+@media(min-width:520px){.gift-info{grid-template-columns:1fr 1fr}}
+.gift-info > div{background:var(--cream);padding:18px 20px}
+.gift-info dt{
+  font-family:var(--body);font-size:11px;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--ink-dim);
+}
+.gift-info dd{
+  margin-top:9px;font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;
+  font-size:clamp(17px,2vw,20px);line-height:1.4;color:var(--ink);
+}
+.gift-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.gift-cta .btn{background:var(--navy);color:var(--cream);border-color:var(--navy);padding:16px 24px}
+.gift-cta .btn.primary{background:var(--orange);color:var(--navy);border-color:var(--orange)}
+
+/* ---- 첫 예배 일정 띠 (bulletin/data.js) ---- */
+.firstband{background:var(--navy-2);padding:clamp(38px,6vw,60px) clamp(20px,5vw,80px)}
+.firstband[hidden]{display:none}
+.fb-inner{
+  max-width:1060px;margin:0 auto;
+  display:grid;gap:clamp(20px,3vw,40px);grid-template-columns:1fr;
+}
+@media(min-width:820px){.fb-inner{grid-template-columns:auto 1fr auto}}
+.fb-cell{display:flex;flex-direction:column;gap:9px;min-width:0}
+@media(min-width:820px){
+  .fb-cell + .fb-cell{padding-left:clamp(20px,3vw,40px);border-left:1px solid rgba(245,239,228,.16)}
+}
+.fb-k{
+  font-family:var(--disp-ko);font-size:16px;font-weight:800;
+  letter-spacing:.02em;color:var(--orange-soft);
+}
+.fb-v{
+  font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;
+  font-size:clamp(25px,3.3vw,36px);line-height:1.28;color:var(--cream);
+}
+.fb-s{font-size:17px;line-height:1.6;color:rgba(245,239,228,.88)}
+.fb-map{text-decoration:underline;text-underline-offset:3px}
+.fb-map:hover{color:var(--orange-soft)}
+
+/* ---- 팝업 3개 (선물 · 찬양 · 장소) — 하나를 닫으면 다음이 뜬다 ---- */
+.pop{
+  margin:auto;border:0;padding:0;border-radius:18px;position:relative;
+  width:min(92vw,420px);max-height:88vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--cream);color:var(--ink);
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.pop::backdrop{background:rgba(20,16,10,.72)}
+.pop-x{
+  position:absolute;top:10px;right:10px;z-index:3;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(20,16,10,.55);color:var(--cream);font-size:24px;line-height:1;
+}
+.pop-x:hover{background:rgba(20,16,10,.82)}
+.pop-step{
+  position:absolute;top:18px;left:18px;z-index:3;
+  padding:5px 10px;border-radius:99px;background:var(--navy);   /* 반투명이면 크림 배경이 비쳐 4.12:1 로 떨어진다 */
+  font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--cream);
+}
+.pop-art{width:100%;height:auto;display:block;flex:none}
+.pop-body{padding:22px 22px 4px;text-align:center;overflow-y:auto}
+.pop-k{
+  display:block;margin-bottom:9px;
+  font-family:var(--body);font-size:11px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);
+}
+.pop-body h2{font-family:var(--disp-ko);font-weight:900;font-size:21px;letter-spacing:-.02em;color:var(--ink)}
+.pop-body p{margin-top:10px;font-size:14.5px;line-height:1.7;color:var(--ink-dim)}
+.pop-body p b{color:var(--ink);font-weight:800}
+.pop-addr{font-family:var(--disp-ko);font-weight:900;font-size:18px;line-height:1.5;color:var(--ink)}
+.pop-when{margin-top:18px;display:grid;gap:2px;background:rgba(42,29,15,.14);text-align:left}
+.pop-when > div{background:var(--cream);padding:12px 14px;display:flex;justify-content:space-between;gap:12px}
+.pop-when dt{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim)}
+.pop-when dd{font-family:var(--disp-ko);font-weight:800;font-size:14px;color:var(--ink);text-align:right}
+.pop-btn{margin:18px 0 4px;padding:13px 20px;font-size:12px;background:var(--orange);color:var(--navy);border-color:var(--orange)}
+.pop-songs{margin:4px 22px 16px;--pr-fg:var(--ink);--pr-dim:var(--ink-dim);--pr-line:rgba(42,29,15,.14);overflow-y:auto}
+.pop-songs li:first-child .song-row{border-top:0}
+.pop-songs .song-row{padding:13px 0}
+.pop-songs .song-row:hover{background:transparent}
+.pop-foot{
+  flex:none;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:14px 22px 18px;border-top:1px solid rgba(42,29,15,.12);background:var(--cream);
+}
+.pop-foot [data-today]{font-size:13px;font-weight:600;color:var(--ink-dim);text-decoration:underline;text-underline-offset:3px}
+.pop-next{
+  padding:12px 22px;border-radius:8px;
+  background:var(--orange);color:var(--navy);font-size:13px;font-weight:800;letter-spacing:.06em;
+}
+
+/* ---- 장소 팝업: 약도 + 주소 ---- */
+.pop--place .plc-map{flex:none;position:relative;background:var(--navy)}
+.plc-map svg{display:block;width:100%;height:auto}
+.plc-map .plc-t{
+  font-family:var(--body);font-size:10px;font-weight:700;
+  letter-spacing:.22em;fill:rgba(245,239,228,.62);
+}
+.plc-map .plc-t--o{fill:#FFB868}
+.plc-map figcaption{
+  padding:9px 16px;background:var(--navy);
+  font-size:11.5px;letter-spacing:.02em;color:rgba(245,239,228,.62);text-align:center;
+}
+.plc-addr{
+  margin-top:14px;display:flex;flex-direction:column;gap:5px;align-items:center;
+  padding:16px 14px;border-radius:12px;
+  background:var(--cream-2);border:1px solid rgba(42,29,15,.12);
+}
+.plc-addr b{
+  font-family:var(--disp-en);font-weight:900;letter-spacing:.01em;
+  font-size:clamp(23px,6vw,29px);line-height:1;color:var(--ink);
+}
+.plc-addr .plc-unit{color:var(--ink-dim)}
+.plc-addr span{font-size:14px;font-weight:600;color:var(--ink-dim)}
+.pop--place .pop-when{margin-top:14px}
