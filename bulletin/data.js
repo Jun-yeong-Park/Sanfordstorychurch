@@ -59,7 +59,7 @@ window.BULLETIN = {
           songs: [{ title: "우리 보좌 앞에 모였네", artist: "", url: "https://youtu.be/kTfuRV8eGXk" }] },
         { name: "기도", nameEn: "Prayer", detail: "", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
         { name: "파송 찬양", nameEn: "Sending Song", detail: "The Blessing", detailEn: "The Blessing", by: "허강현", byEn: "Kanghyeon Heo",
-          songs: [{ title: "The Blessing", artist: "", url: "" }] },
+          songs: [{ title: "The Blessing", artist: "", url: "https://youtu.be/mDK9ZrhJA34" }] },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
