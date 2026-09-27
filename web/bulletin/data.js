@@ -73,6 +73,7 @@ window.BULLETIN = {
   // 교회 소식
   news: [
     { title: "스토리교회 첫 예배", titleEn: "Our First Worship", body: "오늘 스토리교회의 첫 이야기가 시작됩니다. 함께해 주신 모든 분께 감사드립니다.", bodyEn: "Today the first story of Story Church begins. Thank you to everyone who joined us." },
+    { title: "첫 예배 선물", titleEn: "A Gift for You", body: "첫 예배에 오신 분들께 스토리교회 로고가 들어간 티셔츠와 머그컵을 드립니다. 예배 후 웰컴 테이블에서 받아가세요.", bodyEn: "Everyone at our first worship receives a Story Church T-shirt and mug. Pick yours up at the welcome table after worship." },
   ],
 
   // 다음 주 예고
