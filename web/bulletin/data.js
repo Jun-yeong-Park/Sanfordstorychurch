@@ -73,15 +73,6 @@ window.BULLETIN = {
   // 교회 소식
   news: [
     { title: "스토리교회 첫 예배", titleEn: "Our First Worship", body: "오늘 스토리교회의 첫 이야기가 시작됩니다. 함께해 주신 모든 분께 감사드립니다.", bodyEn: "Today the first story of Story Church begins. Thank you to everyone who joined us." },
-    { title: "Pastor's Table", body: "다음 주일 예배 전 5:00PM, 새가족과 담임목사가 함께하는 식사 자리가 있습니다. 웰컴팀에 신청해 주세요.", bodyEn: "Next Sunday at 5:00 PM, newcomers share a meal with the pastor before worship. Sign up with the welcome team." },
-    { title: "Coffee Break 런칭", titleEn: "Coffee Break Launch", body: "10월부터 평일 저녁 소그룹 'Coffee Break'가 시작됩니다. 장소는 샌포드 지역 카페, 자세한 안내는 다음 주에.", bodyEn: "Our weeknight small group 'Coffee Break' starts in October at a local Sanford café. Details next week." },
-  ],
-
-  // 소그룹 / 모임
-  groups: [
-    { name: "Coffee Break", desc: "누구나 오는 열린 소그룹", descEn: "Open small group for anyone", when: "평일 저녁 · 지역 카페", whenEn: "Weeknights · local café", contact: "박준영", contactEn: "Junyeong Park" },
-    { name: "222 Discipleship", desc: "1:1 · 1:2 제자훈련", descEn: "1-on-1 · 1-on-2 discipleship", when: "개별 약속", whenEn: "By appointment", contact: "정경원 목사", contactEn: "Pastor Jung" },
-    { name: "PRS", desc: "Public Reading of Scripture · 성경 함께 읽기", descEn: "Public Reading of Scripture", when: "준비 중", whenEn: "Coming soon", contact: "박준영", contactEn: "Junyeong Park" },
   ],
 
   // 다음 주 예고
@@ -99,16 +90,6 @@ window.BULLETIN = {
     noteEn: "A financial report is shared with the whole congregation quarterly. Contact: Kanghyeon Heo",
   },
 
-  nextWeek: {
-    date: "10월 4일",
-    dateEn: "October 4",
-    scripture: "고린도후서 3:7–18",
-    scriptureEn: "2 Corinthians 3:7–18",
-    title: "수건을 벗은 얼굴로",
-    titleEn: "With Unveiled Faces",
-    serving: "찬양 허강현 · 웰컴 박준영 · 친교 섬김팀",
-    servingEn: "Praise: Kanghyeon Heo · Welcome: Junyeong Park · Fellowship: serving team",
-  },
 
   // 기도 제목
   prayers: [
@@ -125,8 +106,8 @@ window.BULLETIN = {
   // 섬기는 분들
   team: [
     { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 Kyong Won Jung", nameEn: "Kyong Won Jung" },
+    { role: "전도사", roleEn: "Pastor", name: "허강현 Kanghyeon Heo", nameEn: "Kanghyeon Heo" },
     { role: "코디네이터", roleEn: "Coordinator", name: "박준영 Junyeong Park", nameEn: "Junyeong Park" },
-    { role: "전도", roleEn: "Outreach", name: "허강현 Kanghyeon Heo", nameEn: "Kanghyeon Heo" },
   ],
   thisWeek: [
     { role: "찬양 인도", roleEn: "Worship Lead", name: "허강현", nameEn: "Kanghyeon Heo" },
@@ -136,17 +117,17 @@ window.BULLETIN = {
 
   // 앱 전용: 일정 (교회 탭 · "내 캘린더에 추가"). date: YYYY-MM-DD, time: HH:MM (24h), durationMin: 분
   events: [
-    { date: "2026-09-27", time: "18:00", durationMin: 120, title: "스토리교회 첫 예배", titleEn: "Story Church Launch Sunday", place: "예배 장소", placeEn: "Worship venue", desc: "함께 저녁을 나눕니다.", descEn: "Dinner together after worship." },
-    { date: "2026-10-04", time: "17:00", durationMin: 60, title: "Pastor's Table", titleEn: "Pastor's Table", place: "예배 장소", placeEn: "Worship venue", desc: "새가족과 담임목사의 식사 자리. 웰컴팀에 신청.", descEn: "Newcomers dine with the pastor. Sign up with the welcome team." },
-    { date: "2026-10-04", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "예배 장소", placeEn: "Worship venue", desc: "고린도후서 3:7–18 · 수건을 벗은 얼굴로", descEn: "2 Corinthians 3:7–18 · With Unveiled Faces" },
+    { date: "2026-09-27", time: "18:00", durationMin: 120, title: "스토리교회 첫 예배", titleEn: "Story Church Launch Sunday", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "함께 저녁을 나눕니다.", descEn: "Dinner together after worship." },
+    { date: "2026-10-04", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "", descEn: "" },
+    { date: "2026-10-11", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "", descEn: "" },
   ],
 
   church: {
     nameKo: "샌포드 스토리교회",
     nameEn: "SANFORD STORY CHURCH",
     legal: "Sunday Project Ministry Inc. · CRCNA",
-    address: "예배 장소 주소 입력  ·  Sanford, FL 32771",
-    addressEn: "Worship venue address TBD  ·  Sanford, FL 32771",
+    address: "4942 FL-46 #1026, Sanford, FL 32771",
+    addressEn: "4942 FL-46 #1026, Sanford, FL 32771",
     web: "sanfordstorychurch.com",
     instagram: "@sundayproject_fl",
     email: "hello@sanfordstorychurch.com",

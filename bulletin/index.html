@@ -120,19 +120,25 @@
   .notes .tear .nm span.d { flex: .5; }
 
   /* ---------- P4 News ---------- */
+  .news .body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; padding-bottom: 3mm; }
   .news .list { margin-top: 1mm; }
   .news .item { display: grid; grid-template-columns: 4.5mm 1fr; gap: 2mm; padding: 1mm 0; border-bottom: .3mm dotted rgba(15,30,52,.18); font-size: 8pt; line-height: 1.4; word-break: keep-all; }
   .news .item i { font: 400 11pt/1 var(--display); color: var(--orange); }
   .news .item b { display: block; font-weight: 700; margin-bottom: .3mm; }
   .news .two { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 2.4mm; }
   .news h4 { font: 600 7.5pt/1 var(--en); letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.4mm; }
-  .news .grp { font-size: 7.8pt; line-height: 1.4; padding: 1mm 0; border-top: .3mm solid rgba(15,30,52,.15); }
-  .news .grp b { font-weight: 700; }
-  .news .grp span { display: block; color: var(--ink-dim); }
+  .news .ev { font-size: 7.8pt; line-height: 1.4; padding: 1mm 0; border-top: .3mm solid rgba(15,30,52,.15); display: flex; gap: 2.5mm; }
+  .news .ev b { font-weight: 700; white-space: nowrap; }
+  .news .ev span { color: var(--ink-dim); }
   .news .kv { font-size: 7.8pt; line-height: 1.5; }
   .news .kv div { display: flex; gap: 2mm; padding: .45mm 0; border-top: .3mm solid rgba(15,30,52,.15); }
   .news .kv div span:first-child { color: var(--ink-dim); width: 29mm; flex: none; }
   .news .kv div span:last-child { font-weight: 600; }
+  .news .qr { display: flex; gap: 3mm; align-items: center; border-top: .3mm solid rgba(15,30,52,.15); padding-top: 1.6mm; }
+  .news .qr img { width: 20mm; height: 20mm; flex: none; }
+  .news .qr b { display: block; font-size: 7.8pt; font-weight: 700; line-height: 1.35; }
+  .news .qr span { display: block; font-size: 7pt; color: var(--ink-dim); margin-top: .6mm; line-height: 1.4; }
+  .news .qr em { display: block; font: 600 6.1pt/1.4 var(--en); color: var(--orange); font-style: normal; margin-top: 1mm; }
   .news .off { margin-top: 2.2mm; }
   .news .off .row { display: grid; grid-template-columns: repeat(5, 1fr); border-top: .3mm solid rgba(15,30,52,.15); border-bottom: .3mm solid rgba(15,30,52,.15); }
   .news .off .c { padding: 1.4mm 0 1.4mm 2mm; border-left: .3mm solid rgba(15,30,52,.15); }
@@ -249,7 +255,14 @@ function pageNotes() {
 // ---------------- P4 소식 ----------------
 function pageNews() {
   const news = D.news.map((n, i) => `<div class="item"><i>${String(i + 1).padStart(2, "0")}</i><div><b>${n.title}</b>${n.body}</div></div>`).join("");
-  const groups = D.groups.map(g => `<div class="grp"><b>${g.name}</b> · ${g.desc}<span>${g.when} · ${g.contact}</span></div>`).join("");
+  const KO_DAY = ["일", "월", "화", "수", "목", "금", "토"];
+  const cal = D.events.map(e => {
+    const [y, m, dd] = e.date.split("-").map(Number);
+    const day = KO_DAY[new Date(Date.UTC(y, m - 1, dd)).getUTCDay()];
+    const [hh, mi] = e.time.split(":").map(Number);
+    const ampm = hh < 12 ? "오전" : "오후", h12 = hh % 12 || 12;
+    return `<div class="ev"><b>${m}/${dd} (${day})</b><span>${ampm} ${h12}:${String(mi).padStart(2, "0")} · ${e.title}</span></div>`;
+  }).join("");
   const kv = (rows) => rows.map(r => `<div><span>${r.role}</span><span>${r.name}</span></div>`).join("");
   const prayers = D.prayers.map(p => `<li>${p}</li>`).join("");
   const money = (n) => "$" + n.toLocaleString("en-US");
@@ -257,24 +270,25 @@ function pageNews() {
     + `<div class="c total"><small>합계 Total</small><b>${money(D.offering.items.reduce((a, o) => a + o.amount, 0))}</b></div>`;
   return `<section class="page news">
     <div class="h-sec"><span class="display">STORY NEWS</span><span class="ko">교회 소식</span></div>
+    <div class="body">
     <div class="list">${news}</div>
     <div class="two">
-      <div><h4>Small Groups · 모임</h4>${groups}</div>
+      <div><h4>Calendar · 일정</h4><div class="cal">${cal}</div></div>
       <div><h4>Prayer · 기도 제목</h4><ul class="pr">${prayers}</ul></div>
     </div>
     <div class="two">
-      <div><h4>Next Week · 다음 주</h4><div class="kv">${kv([
-        { role: "날짜", name: D.nextWeek.date },
-        { role: "본문", name: D.nextWeek.scripture },
-        { role: "제목", name: D.nextWeek.title },
-        { role: "섬김", name: D.nextWeek.serving },
-      ])}</div></div>
       <div><h4>Serving · 섬기는 분들</h4><div class="kv">${kv([...D.team, ...D.thisWeek])}</div></div>
+      <div><h4>Online · 온라인 주보</h4>
+        <div class="qr"><img src="assets/qr.png" alt="">
+          <div><b>이번 주 주보를 폰으로</b><span>찬양 듣기 · 성경 본문 · 예배 순서</span><em>sanfordstorychurch.com/bulletin</em></div>
+        </div>
+      </div>
     </div>
     <div class="off">
       <h4>Offering · 헌금 보고 (${D.offering.week})</h4>
       <div class="row">${offering}</div>
       <div class="note">${D.offering.note}</div>
+    </div>
     </div>
     <div class="foot">
       <img src="assets/emblem.png" alt="">

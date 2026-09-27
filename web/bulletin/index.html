@@ -157,14 +157,12 @@ ${praise.length ? `<section class="white">
 </section>
 
 <section class="beige">
-  <h4>Small Groups · 모임</h4>
-  ${D.groups.map(g => `<div class="grp"><b>${g.name}</b> · ${g.desc}<span>${g.when} · ${g.contact}</span></div>`).join("")}
+  <h4>Calendar · 일정</h4>
+  ${(D.events || []).map(e => { const [y, m, dd] = e.date.split("-").map(Number); const day = ["일","월","화","수","목","금","토"][new Date(Date.UTC(y, m - 1, dd)).getUTCDay()]; const [hh, mi] = e.time.split(":").map(Number); return `<div class="grp"><b>${m}/${dd} (${day})</b> · ${t(e.title)}<span>${hh < 12 ? "오전" : "오후"} ${hh % 12 || 12}:${String(mi).padStart(2, "0")}${e.place ? " · " + t(e.place) : ""}</span></div>`; }).join("")}
   <h4>Prayer · 기도 제목</h4><ul class="pr">${D.prayers.map(p => `<li>${t(p)}</li>`).join("")}</ul>
 </section>
 
 <section>
-  <h4>Next Week · 다음 주</h4>
-  <div class="kv">${kv([["날짜", D.nextWeek.date], ["본문", window.VERSES && VERSES[D.nextWeek.scripture] ? `<a class="refLink" href="#" onclick="return openRef('${D.nextWeek.scripture}')">${D.nextWeek.scripture} ›</a>` : D.nextWeek.scripture], ["제목", t(D.nextWeek.title)], ["섬김", D.nextWeek.serving]])}</div>
   <h4>Serving · 섬기는 분들</h4>
   <div class="kv">${kv([...D.team, ...D.thisWeek].map(x => [x.role, x.name]))}</div>
   ${D.offering ? `<h4>Offering · 헌금 보고 (${D.offering.week})</h4>
