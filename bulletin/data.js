@@ -37,12 +37,11 @@ window.BULLETIN = {
       items: [
         { name: "예배로의 부름", nameEn: "Call to Worship", detail: "웰컴", detailEn: "Welcome", by: "다 같이", byEn: "All" },
         // 앱 전용: songs — 이번 주 찬양. artist(선택) · url(유튜브, 비우면 앱에서 검색으로 열림). 앱 주보 탭 "이번 주 찬양"에 모아 보임.
-        { name: "찬양", nameEn: "Praise", detail: "합심 · 슬픈 마음 있는 사람 · 온 땅의 주인 · 우리 보좌 앞에 모였네", detailEn: "4 songs", by: "허강현", byEn: "Kanghyeon Heo",
+        { name: "찬양", nameEn: "Praise", detail: "합심 · 슬픈 마음 있는 사람 · 온 땅의 주인", detailEn: "3 songs", by: "허강현", byEn: "Kanghyeon Heo",
           songs: [
             { title: "합심", artist: "", url: "https://www.youtube.com/watch?v=bLpFLJ2p60o" },
             { title: "슬픈 마음 있는 사람", artist: "", url: "https://www.youtube.com/watch?v=hgbn4t-4Gwo" },
             { title: "온 땅의 주인", artist: "", url: "https://youtu.be/To9WjSWeDB0" },
-            { title: "우리 보좌 앞에 모였네", artist: "", url: "https://youtu.be/kTfuRV8eGXk" },
           ] },
         { name: "말씀", nameEn: "Sermon", detail: "러브레터", detailEn: "Love Letter", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
@@ -56,8 +55,11 @@ window.BULLETIN = {
     {
       tag: "03", name: "DEEP STORY", sub: "Response & Blessing · 결단", subEn: "Response & Blessing",
       items: [
-        { name: "결단 찬양 · 봉헌", nameEn: "Response Songs · Offering", detail: "", detailEn: "", by: "허강현", byEn: "Kanghyeon Heo", songs: [] },
+        { name: "결단 찬양 · 봉헌", nameEn: "Response Song · Offering", detail: "우리 보좌 앞에 모였네", detailEn: "우리 보좌 앞에 모였네", by: "허강현", byEn: "Kanghyeon Heo",
+          songs: [{ title: "우리 보좌 앞에 모였네", artist: "", url: "https://youtu.be/kTfuRV8eGXk" }] },
         { name: "기도", nameEn: "Prayer", detail: "", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
+        { name: "파송 찬양", nameEn: "Sending Song", detail: "The Blessing", detailEn: "The Blessing", by: "허강현", byEn: "Kanghyeon Heo",
+          songs: [{ title: "The Blessing", artist: "", url: "" }] },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
@@ -132,8 +134,8 @@ window.BULLETIN = {
     web: "sanfordstorychurch.com",
     instagram: "@sundayproject_fl",
     email: "hello@sanfordstorychurch.com",
-    giving: "헌금: Zelle  hello@sanfordstorychurch.com  ·  현장 헌금함",
-    givingEn: "Giving: Zelle  hello@sanfordstorychurch.com  ·  offering box on site",
+    giving: "헌금: Zelle  sanfordstorychurch0927@gmail.com<br>수표: \"Sanford Story Church\" 앞 · 7000 Winegard Rd, Orlando FL 32809 우편<br>계좌 이체(Fifth Third Bank)는 별도로 안내드립니다",
+    givingEn: "Giving: Zelle  sanfordstorychurch0927@gmail.com<br>Check: payable to \"Sanford Story Church\", mailed to 7000 Winegard Rd, Orlando FL 32809<br>Bank transfer: Fifth Third Bank account details available on request",
     tagline: "God's Story begins in your life.",
     taglineKo: "하나님의 이야기가 당신의 삶에서 시작됩니다.",
   },
