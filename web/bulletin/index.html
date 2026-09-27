@@ -77,6 +77,7 @@
   .actions { display:flex; gap:8px; padding:0 20px 20px; background:var(--cream); flex-wrap:wrap; }
   .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 16px; border-radius:6px; border:1.5px solid var(--navy); font-size:13px; font-weight:700; background:transparent; color:var(--navy); cursor:pointer; font-family:var(--ko); }
   .btn.primary { background:var(--orange); border-color:var(--orange); }
+  .refBtn { display:inline-flex; align-items:center; margin:4px 0 0 8px; padding:5px 10px; border-radius:6px; background:var(--orange); color:var(--navy); font-size:12px; font-weight:700; }
   .refLink { text-decoration:underline; text-decoration-color:var(--orange); text-underline-offset:3px; cursor:pointer; }
   /* 본문 팝업 */
   #pop { position:fixed; inset:0; z-index:50; background:rgba(15,30,52,.55); display:none; align-items:flex-end; justify-content:center; }
@@ -134,7 +135,7 @@ ${praise.length ? `<section class="white">
   <div class="eyebrow">${D.issue.dateEn} · ${D.issue.service}</div>
   ${D.order.map(p => `<div class="part">
     <div class="part-h"><span class="tag">${p.tag}</span><span class="nm">${p.name}</span><span class="sub">${p.sub}</span></div>
-    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${window.VERSES && VERSES[i.detail] ? `<a class="refLink" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">${t(i.detail)} ›</a>` : t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
+    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${window.VERSES && VERSES[i.detail] ? `<a class="refLink" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">${t(i.detail)} ›</a><a class="refBtn" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">📖 본문 보기</a>` : t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
   </div>`).join("")}
 </section>
 
