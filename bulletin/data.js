@@ -20,6 +20,7 @@ window.BULLETIN = {
     scripture: "고린도후서 3:1–3",
     scriptureEn: "2 Corinthians 3:1–3",
     preacher: "정경원 목사",
+    preacherEn: "Pastor Kyong Won Jung",
     // P2 하단 '오늘의 말씀' 박스
     excerpt: "너희는 우리로 말미암아 나타난 그리스도의 편지니 이는 먹으로 쓴 것이 아니요 오직 살아 계신 하나님의 영으로 쓴 것이며 돌판에 쓴 것이 아니요 오직 육의 마음판에 쓴 것이라",
     excerptRef: "고후 3:3",
@@ -132,7 +133,7 @@ window.BULLETIN = {
     address: "4942 FL-46 #1026, Sanford, FL 32771",
     addressEn: "4942 FL-46 #1026, Sanford, FL 32771",
     web: "sanfordstorychurch.com",
-    instagram: "@sundayproject_fl",
+    instagram: "@storychurch_sanford",
     email: "hello@sanfordstorychurch.com",
     giving: "헌금: Zelle  sanfordstorychurch0927@gmail.com<br>수표: \"Sanford Story Church\" 앞 · 7000 Winegard Rd, Orlando FL 32809 우편<br>계좌 이체(Fifth Third Bank)는 별도로 안내드립니다",
     givingEn: "Giving: Zelle  sanfordstorychurch0927@gmail.com<br>Check: payable to \"Sanford Story Church\", mailed to 7000 Winegard Rd, Orlando FL 32809<br>Bank transfer: Fifth Third Bank account details available on request",

@@ -6,13 +6,15 @@
   const LAUNCH = new Date('2026-09-27T18:00:00-04:00').getTime();
   const before = Date.now() < LAUNCH;
   const set = (id, text) => { const el = document.getElementById(id); if (el && text) el.textContent = text; };
+  const en = document.documentElement.lang === 'en';
+  const titleCase = t => (t || '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());   // "LOVE LETTER" → "Love Letter"
 
-  // 첫 예배 일정 띠
+  // 첫 예배 일정 띠 (영어 페이지는 …En 값)
   if (B.issue && B.sermon){
-    set('fbDate', (B.issue.date || '').replace(/^\d{4}년\s*/, ''));
-    set('fbTime', B.issue.service);
-    set('fbTitle', B.sermon.title);
-    set('fbMeta', [B.sermon.scripture, B.sermon.preacher].filter(Boolean).join(' · '));
+    set('fbDate', en ? titleCase((B.issue.dateEn || '').replace(/, \d{4}$/, '')) : (B.issue.date || '').replace(/^\d{4}년\s*/, ''));
+    set('fbTime', en ? B.issue.serviceEn : B.issue.service);
+    set('fbTitle', en ? titleCase(B.sermon.titleEn) : B.sermon.title);
+    set('fbMeta', (en ? [B.sermon.scriptureEn, B.sermon.preacherEn] : [B.sermon.scripture, B.sermon.preacher]).filter(Boolean).join(' · '));
     const band = document.getElementById('firstband');
     if (band) band.hidden = false;
   }
@@ -43,7 +45,7 @@
     const step = d.querySelector('.pop-step');
     if (step) step.textContent = (n + 1) + ' / ' + queue.length;
     const next = d.querySelector('.pop-next');
-    if (next && n === queue.length - 1) next.textContent = '닫기';
+    if (next && n === queue.length - 1) next.textContent = en ? 'Close' : '닫기';
   });
 
   const KEY = 'homePopHidden';

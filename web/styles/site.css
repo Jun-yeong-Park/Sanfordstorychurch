@@ -963,33 +963,6 @@ footer.site .copyright{
   color:var(--pr-dim);white-space:nowrap;
 }
 
-/* 팝업 */
-.praise-pop{
-  margin:auto;   /* 전역 *{margin:0} 리셋이 dialog 의 가운데 정렬(margin:auto)을 지우므로 되살림 */
-  border:0;padding:0;border-radius:18px;overflow:hidden;
-  width:min(92vw,440px);max-height:86vh;
-  background:var(--cream);color:var(--ink);
-  box-shadow:0 30px 80px rgba(0,0,0,.45);
-}
-.praise-pop::backdrop{background:rgba(20,16,10,.7)}
-.praise-pop .pp-head{position:relative;padding:26px 64px 18px 26px;background:var(--cream-2)}
-.pp-eyebrow{display:block;font-size:10.5px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-dim)}
-.pp-eyebrow::before{content:"";display:inline-block;width:18px;height:2px;background:var(--orange);vertical-align:middle;margin-right:10px}  /* 주황은 크림 위에서 글자로 못 씀(1.8:1) — 선으로만 */
-.praise-pop h3{margin-top:8px;font-family:var(--disp-ko);font-weight:900;font-size:22px;letter-spacing:-.02em;line-height:1.2}
-.pp-x{position:absolute;top:18px;right:16px;width:40px;height:40px;border-radius:50%;font-size:28px;line-height:1;color:var(--ink)}
-.pp-x:hover{background:rgba(42,29,15,.08)}
-.praise-pop .praise-list{margin:0;padding:4px 26px;--pr-fg:var(--ink);--pr-dim:var(--ink-dim);--pr-line:rgba(42,29,15,.14)}
-.praise-pop .praise-list li:first-child .song-row{border-top:0}
-.praise-pop .song-row{padding:14px 0}
-.praise-pop .song-row:hover{background:transparent}
-.pp-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 26px 22px}
-.pp-foot button{font-size:13px;font-weight:600;color:var(--ink-dim);text-decoration:underline;text-underline-offset:3px}
-.pp-foot .pp-ok{
-  padding:12px 22px;border-radius:8px;
-  background:var(--orange);color:var(--navy);
-  font-size:13px;font-weight:800;letter-spacing:.06em;text-decoration:none;
-}
-
 /* ============================================
    첫 예배 선물 (본문 + 팝업) — 9/27 이후 js/gift.js 가 내린다
 ============================================ */

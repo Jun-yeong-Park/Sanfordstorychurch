@@ -21,3 +21,25 @@
   for = "/bulletin/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# 내부 문서(작업 메모 · 브랜드 가이드)는 저장소에만 두고 사이트에서는 404
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/404"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/README.md"
+  to = "/404"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/.gitignore"
+  to = "/404"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/docs/*"
+  to = "/404"
+  status = 404
+  force = true

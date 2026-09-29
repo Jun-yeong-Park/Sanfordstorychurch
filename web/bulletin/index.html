@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F4F0E6">
 <title>주보 — 샌포드 스토리교회</title>
+<meta name="description" content="샌포드 스토리교회(Sanford Story Church) 온라인 주보 — 이번 주 예배 순서 · 말씀 · 찬양 · 교회 소식. 매주 주일 오후 6시, 4942 FL-46 #1026, Sanford, FL 32771.">
+<link rel="canonical" href="https://sanfordstorychurch.com/bulletin">
 <meta property="og:title" content="샌포드 스토리교회 주보">
 <meta property="og:description" content="이번 주 예배의 흐름 · 말씀 · 찬양 · 소식">
 <meta property="og:image" content="https://sanfordstorychurch.com/assets/logo/1.png">
@@ -21,9 +23,9 @@
   #app { max-width:560px; margin:0 auto; background:var(--cream); min-height:100vh; }
   header { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:calc(10px + env(safe-area-inset-top)) 18px 10px; background:var(--cream); border-bottom:1px solid var(--gray); }
   header img { height:26px; width:auto; flex:none; }
-  header .word { font:400 17px/1 var(--display); letter-spacing:.08em; white-space:nowrap; }
+  header .word { font:400 17px/1 var(--display); letter-spacing:.08em; white-space:nowrap; min-width:0; overflow:hidden; text-overflow:ellipsis; }
   header .word em { font-style:normal; color:var(--orange); }
-  header .date { margin-left:auto; font:600 10px/1 var(--en); letter-spacing:.12em; color:var(--dim); white-space:nowrap; }
+  header .date { flex:none; margin-left:auto; font:600 10px/1 var(--en); letter-spacing:.12em; color:var(--dim); white-space:nowrap; }
   section { padding:26px 20px; }
   section.beige { background:var(--beige); } section.white { background:#fff; } section.orange { background:var(--orange); }
   .eyebrow { font:600 11px/1 var(--en); letter-spacing:.18em; text-transform:uppercase; color:var(--orange); }

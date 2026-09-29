@@ -150,7 +150,7 @@ export const BULLETIN = {
     address: "예배 장소 주소 입력  ·  Sanford, FL 32771",
     addressEn: "Worship venue address TBD  ·  Sanford, FL 32771",
     web: "sanfordstorychurch.com",
-    instagram: "@sundayproject_fl",
+    instagram: "@storychurch_sanford",
     email: "hello@sanfordstorychurch.com",
     giving: "헌금: Zelle  hello@sanfordstorychurch.com  ·  현장 헌금함",
     givingEn: "Giving: Zelle  hello@sanfordstorychurch.com  ·  offering box on site",
