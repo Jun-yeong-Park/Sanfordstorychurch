@@ -43,63 +43,6 @@
     else state.ticking = false;
   }
 
-  (function(){
-    const target = new Date('2026-09-27T18:00:00-04:00').getTime();
-    const pad = n => String(Math.max(0,n)).padStart(2,'0');
-    const els = {D:document.getElementById('cdD'),H:document.getElementById('cdH'),M:document.getElementById('cdM'),S:document.getElementById('cdS')};
-    const prev = {D:null,H:null,M:null,S:null};
-    if (!els.D) return;
-
-    function set(key, val, animate){
-      const node = els[key];
-      const str = key==='D' ? String(val) : pad(val);
-      if (node.textContent !== str){
-        node.textContent = str;
-        if (animate && prev[key] !== null){
-          node.classList.remove('tick');
-          void node.offsetWidth;
-          node.classList.add('tick');
-        }
-        prev[key] = str;
-      }
-    }
-
-    function currentDiff(){ return Math.max(0, target - Date.now()); }
-
-    function liveTick(){
-      const diff = currentDiff();
-      set('D', Math.floor(diff/86400000), true);
-      set('H', Math.floor(diff%86400000/3600000), true);
-      set('M', Math.floor(diff%3600000/60000), true);
-      set('S', Math.floor(diff%60000/1000), true);
-    }
-
-    const finalDays = Math.floor(currentDiff()/86400000);
-    const startTime = performance.now();
-    const duration = 1600;
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (reduced || finalDays === 0){
-      liveTick();
-      setInterval(liveTick, 1000);
-      return;
-    }
-
-    function countUp(now){
-      const t = Math.min((now - startTime)/duration, 1);
-      const eased = 1 - Math.pow(1 - t, 4);
-      const cur = Math.round(eased * finalDays);
-      set('D', cur, false);
-      if (t < 1){
-        requestAnimationFrame(countUp);
-      } else {
-        liveTick();
-        setInterval(liveTick, 1000);
-      }
-    }
-    requestAnimationFrame(countUp);
-  })();
-
   const track = document.getElementById('marqueeTrack');
   if (track){
     const original = track.innerHTML;
