@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=14">
+<link rel="stylesheet" href="styles/site.css?v=17">
 </head>
 <body class="page">
 
@@ -84,7 +84,7 @@
     <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm1">예배와 말씀</button>
     <div class="tn-menu" id="tnm1" hidden>
       <a href="/worship.html">예배 안내</a>
-      <a href="/bulletin/bulletin.pdf" target="_blank" rel="noopener">주보 (PDF) ↗</a>
+      <a href="/bulletin.html">주보</a>
       <a href="/sermons.html">지난 설교</a>
     </div>
   </div>
@@ -127,7 +127,7 @@
     <a href="/about.html#crcna">CRCNA</a>
     <p class="dr-k">예배와 말씀</p>
     <a href="/worship.html">예배 안내</a>
-    <a href="/bulletin/bulletin.pdf" target="_blank" rel="noopener">주보 (PDF) ↗</a>
+    <a href="/bulletin.html">주보</a>
     <a href="/sermons.html">지난 설교</a>
     <p class="dr-k">신앙생활</p>
     <a href="/track.html">네 개의 이야기</a>
@@ -176,10 +176,56 @@
   </div>
 </section><section class="sec cream">
   <div class="sec-in">
-    <h2>하이델베르크 요리문답 제1문</h2>
-    <p><b>문 — 살아서나 죽어서나 당신의 유일한 위로는 무엇입니까?</b></p>
-    <p>답 — 나는 나의 것이 아니라, 몸도 영혼도, 살아서나 죽어서나 나의 신실하신 구주 예수 그리스도의 것입니다.</p>
-    <p>이 한 문답이 우리가 믿는 것의 요약입니다. 교회의 이름이 '스토리'인 이유이기도 합니다. 내 이야기가 내 것이 아니라 그분의 것이 될 때, 비로소 이야기가 시작됩니다.</p>
+    <h2>하이델베르크 요리문답</h2>
+    <p>1563년에 쓰인 문답입니다. 개혁교회가 400년 넘게 함께 외워온 고백이고,
+      스토리교회가 선 자리이기도 합니다. 몇 개만 옮겨봅니다.</p>
+
+    <div class="cat">
+      <div class="cat-track" id="catTrack">
+        <article class="cat-s">
+          <span class="cat-n">제 1 문</span>
+          <p class="cat-q">살아서나 죽어서나 당신의 유일한 위로는 무엇입니까?</p>
+          <p class="cat-a">나는 나의 것이 아닙니다. 몸도 영혼도, 살아서나 죽어서나
+            나의 신실하신 구주 예수 그리스도의 것입니다.</p>
+        </article>
+        <article class="cat-s">
+          <span class="cat-n">제 2 문</span>
+          <p class="cat-q">그 위로 안에서 살고 죽으려면 무엇을 알아야 합니까?</p>
+          <p class="cat-a">세 가지입니다. 내 죄가 얼마나 깊은지, 그로부터 어떻게 건져졌는지,
+            그리고 그 건지심에 어떻게 감사하며 살 것인지.</p>
+        </article>
+        <article class="cat-s">
+          <span class="cat-n">제 21 문</span>
+          <p class="cat-q">참된 믿음이란 무엇입니까?</p>
+          <p class="cat-a">하나님이 말씀에서 알려주신 것을 사실로 아는 것이며,
+            동시에 그분이 나에게도 그리하시리라는 마음 깊은 신뢰입니다.</p>
+        </article>
+        <article class="cat-s">
+          <span class="cat-n">제 32 문</span>
+          <p class="cat-q">당신은 왜 그리스도인이라 불립니까?</p>
+          <p class="cat-a">믿음으로 그리스도께 속한 사람이 되었기 때문입니다.
+            그래서 그분의 이름을 지니고, 그분의 일에 함께 참여합니다.</p>
+        </article>
+        <article class="cat-s">
+          <span class="cat-n">제 116 문</span>
+          <p class="cat-q">그리스도인에게 왜 기도가 필요합니까?</p>
+          <p class="cat-a">기도는 하나님이 우리에게 바라시는 감사의 가장 큰 부분이고,
+            구하는 사람에게 그분이 은혜를 주시기 때문입니다.</p>
+        </article>
+      </div>
+
+      <div class="cat-nav">
+        <button type="button" class="cat-b" id="catPrev" aria-label="이전">←</button>
+        <div class="cat-dots" id="catDots"></div>
+        <button type="button" class="cat-b" id="catNext" aria-label="다음">→</button>
+      </div>
+    </div>
+
+    <p class="note">원문을 그대로 옮긴 것이 아니라 <b>뜻을 줄여 적은 것</b>입니다.
+      전문은 <a class="inline-link" href="https://www.crcna.org/welcome/beliefs/confessions/heidelberg-catechism" target="_blank" rel="noopener">CRCNA 원문 ↗</a>에서 보실 수 있습니다.</p>
+
+    <p>이 고백이 교회 이름이 '스토리'인 이유이기도 합니다.
+      내 이야기가 내 것이 아니라 그분의 것이 될 때, 비로소 이야기가 시작됩니다.</p>
   </div>
 </section><section class="sec dark" id="crcna">
   <div class="sec-in">
@@ -202,10 +248,57 @@
     </svg>
     @storychurch_sanford
   </a>
+  <a class="yt" href="https://www.youtube.com/@SANFORDSTORYCHURCH" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M23 12s0-3.6-.46-5.3a2.76 2.76 0 0 0-1.94-1.95C18.88 4.3 12 4.3 12 4.3s-6.88 0-8.6.45A2.76 2.76 0 0 0 1.46 6.7 28.9 28.9 0 0 0 1 12a28.9 28.9 0 0 0 .46 5.3 2.76 2.76 0 0 0 1.94 1.95c1.72.45 8.6.45 8.6.45s6.88 0 8.6-.45a2.76 2.76 0 0 0 1.94-1.95C23 15.6 23 12 23 12z"/>
+      <path d="M9.75 15.02 15.5 12 9.75 8.98v6.04z" fill="#14100A"/>
+    </svg>
+    YouTube
+  </a>
   <div class="copyright">© 스토리교회 · Story Church Sanford</div>
 </footer>
 
 <script src="js/site.js?v=3" defer></script>
+<script>
+(function(){
+  var track = document.getElementById('catTrack');
+  if (!track) return;
+  var slides = [].slice.call(track.children);
+  var dots = document.getElementById('catDots');
+  var at = 0;
+  dots.innerHTML = slides.map(function(_, i){
+    return '<button type="button" class="cat-dot" aria-label="' + (i+1) + '번째"></button>';
+  }).join('');
+  var dotEls = [].slice.call(dots.children);
+  function go(n){
+    at = Math.max(0, Math.min(slides.length - 1, n));
+    track.scrollTo({ left: slides[at].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    paint();
+  }
+  function paint(){
+    dotEls.forEach(function(d, i){ d.classList.toggle('on', i === at); });
+    document.getElementById('catPrev').disabled = at === 0;
+    document.getElementById('catNext').disabled = at === slides.length - 1;
+  }
+  dotEls.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); }); });
+  document.getElementById('catPrev').addEventListener('click', function(){ go(at - 1); });
+  document.getElementById('catNext').addEventListener('click', function(){ go(at + 1); });
+  // 손가락으로 밀었을 때도 점이 따라오게
+  var t;
+  track.addEventListener('scroll', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var mid = track.scrollLeft + track.clientWidth / 2;
+      slides.forEach(function(s, i){
+        var l = s.offsetLeft - track.offsetLeft;
+        if (mid >= l && mid < l + s.offsetWidth) { at = i; }
+      });
+      paint();
+    }, 90);
+  }, { passive: true });
+  paint();
+})();
+</script>
 
 </body>
 </html>

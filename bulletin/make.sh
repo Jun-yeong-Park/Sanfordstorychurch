@@ -41,8 +41,9 @@ mkdir -p ../web/bulletin
 cp data.js ../web/bulletin/data.js
 node extract-verses.mjs
 cp "$OUT" ../web/bulletin/
-find ../web/bulletin -name '주보-*.pdf' ! -name "$OUT" -delete
-# 홈페이지 메뉴가 거는 고정 주소. 파일명에 날짜가 들어가면 매주 링크가 깨지므로
-# 항상 같은 이름으로 한 벌 더 둔다 (/bulletin/bulletin.pdf).
+# 게시판에 쌓아야 하므로 지난 주보를 지우지 않는다 (예전엔 최신 것만 남기고 지웠다).
+# 메뉴가 거는 고정 주소 — 파일명에 날짜가 들어가 매주 링크가 깨지는 걸 막는다.
 cp "$OUT" ../web/bulletin/bulletin.pdf
+# 게시판 목록(archive.js)에 이번 호를 올린다. 같은 날짜가 있으면 갈아끼운다.
+python3 update-archive.py "$DATE"
 echo "✓ web/bulletin 갱신 → cd .. && git add -A && git commit -m \"주보 $DATE\" && git push"

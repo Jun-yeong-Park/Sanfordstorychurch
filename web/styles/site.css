@@ -783,6 +783,18 @@ footer.site .ig{
 }
 footer.site .ig:hover{color:var(--orange)}
 footer.site .ig svg{width:16px;height:16px}
+footer.site .yt{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:28px;
+  font-family:var(--body);
+  font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(245,239,228,.8);
+  transition:color .3s ease;
+}
+footer.site .yt:hover{color:var(--orange)}
+footer.site .yt svg{width:17px;height:17px}
+footer.site .yt{margin-top:10px}
+
 footer.site .copyright{
   margin-top:34px;
   font-family:var(--body);
@@ -1073,33 +1085,33 @@ footer.site .copyright{
 /* ============================================
    메뉴 — 데스크탑 드롭다운 / 모바일 서랍
 ============================================ */
-.topnav{display:none;gap:clamp(10px,1.6vw,22px);align-items:center}
+.topnav{display:none;gap:clamp(14px,2vw,30px);align-items:center}
 @media(min-width:1000px){.topnav{display:inline-flex}}
 .tn-item{position:relative}
 .tn-top{
-  font-family:var(--body);font-size:12.5px;font-weight:700;letter-spacing:.06em;
-  color:rgba(245,239,228,.9);padding:8px 2px;border-bottom:1px solid transparent;
+  font-family:var(--disp-ko);font-size:16px;font-weight:800;letter-spacing:-.01em;
+  color:var(--cream);padding:9px 2px;border-bottom:1.5px solid transparent;
   text-shadow:0 1px 10px rgba(0,0,0,.6);transition:color .2s,border-color .2s;
 }
 .tn-top:hover,.tn-top[aria-expanded="true"]{color:var(--orange);border-bottom-color:var(--orange)}
 .tn-menu{
   position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
-  min-width:190px;padding:8px;border-radius:12px;
+  min-width:210px;padding:8px;border-radius:12px;
   background:rgba(20,16,10,.96);border:1px solid rgba(245,239,228,.16);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   box-shadow:0 18px 44px rgba(0,0,0,.45);display:grid;gap:2px;
 }
 .tn-menu[hidden]{display:none}
 .tn-menu a{
-  padding:10px 12px;border-radius:8px;white-space:nowrap;
-  font-size:13.5px;font-weight:600;color:rgba(245,239,228,.88);
+  padding:11px 13px;border-radius:8px;white-space:nowrap;
+  font-family:var(--disp-ko);font-size:15px;font-weight:700;color:rgba(245,239,228,.92);
 }
 .tn-menu a:hover{background:rgba(255,154,31,.14);color:var(--orange)}
 
 .tn-cta{
-  display:none;padding:10px 16px;border-radius:99px;
+  display:none;padding:11px 18px;border-radius:99px;
   background:var(--orange);color:var(--navy);
-  font-family:var(--body);font-size:11.5px;font-weight:800;letter-spacing:.1em;white-space:nowrap;
+  font-family:var(--disp-ko);font-size:14px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;
 }
 @media(min-width:1000px){.tn-cta{display:inline-block}}
 .tn-cta:hover{background:var(--cream)}
@@ -1246,3 +1258,64 @@ body.page .brand-bar{
   padding-top:14px;padding-bottom:14px;
 }
 body.page .tn-cta,body.page .menubtn{position:relative;z-index:61}
+
+/* ---- 주보 게시판 ---- */
+.board{list-style:none;display:grid;gap:2px;background:rgba(42,29,15,.14)}
+.board a{
+  background:var(--cream);padding:20px clamp(16px,3vw,24px);
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  column-gap:clamp(14px,3vw,24px);transition:background .2s;
+}
+.board a:hover{background:var(--cream-2)}
+.bd-d{text-align:center;min-width:58px}
+.bd-d b{display:block;font-family:var(--disp-en);font-weight:900;font-size:25px;line-height:1;color:var(--ink)}
+.bd-d span{display:block;margin-top:4px;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink-dim)}
+.bd-b{min-width:0}
+.bd-new{
+  display:inline-block;margin-bottom:6px;padding:3px 9px;border-radius:99px;
+  background:var(--orange);color:var(--navy);
+  font-size:10.5px;font-weight:800;letter-spacing:.08em;
+}
+.bd-b h3{font-family:var(--disp-ko);font-weight:900;font-size:clamp(17px,2.1vw,20px);line-height:1.3;color:var(--ink)}
+.bd-b p{margin-top:6px;font-size:14px;line-height:1.6;color:var(--ink-dim)}
+.bd-x{
+  font-family:var(--body);font-size:11px;font-weight:800;letter-spacing:.14em;
+  color:var(--ink-dim);white-space:nowrap;
+}
+.board a:hover .bd-x{color:var(--orange)}
+@media(max-width:520px){
+  .board a{grid-template-columns:auto 1fr;row-gap:8px}
+  .bd-x{grid-column:2;justify-self:start}
+}
+
+/* ---- 요리문답 슬라이드 ---- */
+.cat{margin-top:26px}
+.cat-track{
+  display:grid;grid-auto-flow:column;grid-auto-columns:100%;
+  gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;background:rgba(42,29,15,.14);
+}
+.cat-track::-webkit-scrollbar{display:none}
+.cat-s{scroll-snap-align:start;background:var(--cream);padding:clamp(24px,4vw,34px)}
+.cat-n{
+  display:inline-block;padding:5px 11px;border-radius:99px;
+  background:var(--orange);color:var(--navy);
+  font-family:var(--body);font-size:11px;font-weight:800;letter-spacing:.14em;
+}
+.cat-q{margin-top:16px;font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;
+  font-size:clamp(18px,2.3vw,23px);line-height:1.45;color:var(--ink)}
+.cat-a{margin-top:12px;font-size:15.5px;line-height:1.9;color:var(--ink-dim)}
+.cat-nav{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:16px}
+.cat-b{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(42,29,15,.24);
+  font-size:17px;color:var(--ink);background:var(--cream);
+}
+.cat-b:hover:not(:disabled){border-color:var(--orange);color:var(--orange)}
+.cat-b:disabled{opacity:.3;cursor:default}
+.cat-dots{display:flex;gap:8px}
+.cat-dot{width:9px;height:9px;border-radius:50%;background:rgba(42,29,15,.22);padding:0}
+.cat-dot.on{background:var(--orange)}
+
+/* ---- 예배 장소 지도 ---- */
+.mapwrap{margin-top:8px;border-radius:14px;overflow:hidden;border:1px solid rgba(42,29,15,.16);background:var(--cream-2)}
+.mapwrap iframe{display:block;width:100%;height:clamp(240px,42vw,380px);border:0}
