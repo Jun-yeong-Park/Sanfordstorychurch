@@ -42,4 +42,7 @@ cp data.js ../web/bulletin/data.js
 node extract-verses.mjs
 cp "$OUT" ../web/bulletin/
 find ../web/bulletin -name '주보-*.pdf' ! -name "$OUT" -delete
+# 홈페이지 메뉴가 거는 고정 주소. 파일명에 날짜가 들어가면 매주 링크가 깨지므로
+# 항상 같은 이름으로 한 벌 더 둔다 (/bulletin/bulletin.pdf).
+cp "$OUT" ../web/bulletin/bulletin.pdf
 echo "✓ web/bulletin 갱신 → cd .. && git add -A && git commit -m \"주보 $DATE\" && git push"
