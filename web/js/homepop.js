@@ -2,26 +2,31 @@
 // 모달은 한 번에 하나만 뜰 수 있으므로, 하나를 닫으면 다음이 뜨는 방식으로 셋을 차례로 보여준다.
 // bulletin/data.js 와 js/praise.js 다음에 실행된다.
 (function(){
+  // 주보가 이번 주 것인지 (지난 주보면 '이번 말씀'·'이번 주 찬양'을 띄우지 않는다)
+  function isFresh(B){
+    const iso = B && B.issue && B.issue.dateISO;
+    if (!iso) return false;
+    const t = new Date();
+    const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+    return iso >= today;
+  }
+
   const B = window.BULLETIN || {};
-  const LAUNCH = new Date('2026-09-27T18:00:00-04:00').getTime();
-  const before = Date.now() < LAUNCH;
   const set = (id, text) => { const el = document.getElementById(id); if (el && text) el.textContent = text; };
   const en = document.documentElement.lang === 'en';
   const titleCase = t => (t || '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());   // "LOVE LETTER" → "Love Letter"
 
   // 첫 예배 일정 띠 (영어 페이지는 …En 값)
   if (B.issue && B.sermon){
-    set('fbDate', en ? titleCase((B.issue.dateEn || '').replace(/, \d{4}$/, '')) : (B.issue.date || '').replace(/^\d{4}년\s*/, ''));
-    set('fbTime', en ? B.issue.serviceEn : B.issue.service);
     set('fbTitle', en ? titleCase(B.sermon.titleEn) : B.sermon.title);
     set('fbMeta', (en ? [B.sermon.scriptureEn, B.sermon.preacherEn] : [B.sermon.scripture, B.sermon.preacher]).filter(Boolean).join(' · '));
     const band = document.getElementById('firstband');
     if (band) band.hidden = false;
+    // 지난 주 주보가 그대로 남아 있는데 '이번 말씀'이라고 띄우면 거짓이 된다.
+    const w = document.getElementById('fbWord');
+    if (w && isFresh(B)) w.hidden = false;
   }
 
-  // 첫 예배가 지나면 선물 안내는 내린다 ("첫 예배에 오시는 분들께" 가 틀린 말이 되므로)
-  const giftSec = document.getElementById('gift');
-  if (giftSec) giftSec.hidden = !before;
 
   // 찬양 목록은 본문에 이미 그려져 있으니 그대로 가져온다 (같은 코드를 두 번 쓰지 않도록)
   const src = document.getElementById('praiseList');
@@ -29,15 +34,10 @@
   if (src && dst) dst.innerHTML = src.innerHTML;
 
   const queue = [
-    document.getElementById('popGift'),
-    dst && dst.children.length ? document.getElementById('popSongs') : null,
+    isFresh(B) && dst && dst.children.length ? document.getElementById('popSongs') : null,   // 지난 주 곡은 띄우지 않는다
     document.getElementById('popPlace'),
   ].filter(d => d && typeof d.showModal === 'function');
 
-  if (!before){
-    const g = document.getElementById('popGift');
-    if (g){ g.remove(); const k = queue.indexOf(g); if (k > -1) queue.splice(k, 1); }
-  }
   if (!queue.length) return;
 
   // 1 / 3, 2 / 3 … 남은 팝업 수에 맞춰 번호를 다시 매긴다

@@ -284,7 +284,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=11">
+<link rel="stylesheet" href="styles/site.css?v=14">
 </head>
 <body>
 
@@ -307,14 +307,74 @@
       </span>
     </a>
   </div>
+<nav class="topnav" aria-label="메뉴">
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm0">교회 소개</button>
+    <div class="tn-menu" id="tnm0" hidden>
+      <a href="/about.html">우리가 믿는 것</a>
+      <a href="/people.html">섬기는 사람들</a>
+      <a href="/about.html#crcna">CRCNA</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm1">예배와 말씀</button>
+    <div class="tn-menu" id="tnm1" hidden>
+      <a href="/worship.html">예배 안내</a>
+      <a href="/bulletin">주보</a>
+      <a href="/sermons.html">지난 설교</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm2">신앙생활</button>
+    <div class="tn-menu" id="tnm2" hidden>
+      <a href="/track.html">네 개의 이야기</a>
+      <a href="/baptism.html">세례와 신앙고백</a>
+      <a href="/serve.html">섬김팀</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm3">나눔과 참여</button>
+    <div class="tn-menu" id="tnm3" hidden>
+      <a href="/events.html">일정</a>
+      <a href="/giving.html">헌금</a>
+      <a href="mailto:hello@sanfordstorychurch.com">문의</a>
+    </div>
+  </div>
+</nav>
   <div class="brand-bar-right">
     <div class="lang-switch" aria-label="Language">
       <a href="/" class="active" aria-current="page" hreflang="ko">KO</a>
       <span class="sep">·</span>
       <a href="/en/" hreflang="en">EN</a>
     </div>
-    <div class="status"><span class="dot"></span><span class="label">09.27.2026 · Sun 6PM</span></div>
+    <div class="status"><span class="dot"></span><span class="label">주일 저녁 6시 · Sun 6PM</span></div>
+      <a class="tn-cta" href="/visit.html">처음 오시는 분</a>
+    <button type="button" class="menubtn" id="menubtn" aria-expanded="false" aria-controls="drawer">MENU</button>
   </div>
+</div>
+
+
+<div class="drawer" id="drawer" hidden>
+  <button type="button" class="drawer-x" id="drawerClose" aria-label="닫기">&times;</button>
+  <nav aria-label="전체 메뉴">
+    <p class="dr-k">교회 소개</p>
+    <a href="/about.html">우리가 믿는 것</a>
+    <a href="/people.html">섬기는 사람들</a>
+    <a href="/about.html#crcna">CRCNA</a>
+    <p class="dr-k">예배와 말씀</p>
+    <a href="/worship.html">예배 안내</a>
+    <a href="/bulletin">주보</a>
+    <a href="/sermons.html">지난 설교</a>
+    <p class="dr-k">신앙생활</p>
+    <a href="/track.html">네 개의 이야기</a>
+    <a href="/baptism.html">세례와 신앙고백</a>
+    <a href="/serve.html">섬김팀</a>
+    <p class="dr-k">나눔과 참여</p>
+    <a href="/events.html">일정</a>
+    <a href="/giving.html">헌금</a>
+    <a href="mailto:hello@sanfordstorychurch.com">문의</a>
+    <a class="dr-cta" href="/visit.html">처음 오시는 분 →</a>
+  </nav>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -327,8 +387,19 @@
     <div class="reveal" id="reveal">
       <h1 class="sr-only">스토리교회 · Sanford Story Church — 플로리다 샌포드 한인교회 · 올랜도·레이크메리·센트럴 플로리다 한국어 예배 공동체 · 매주 주일 오후 6시 · 4942 FL-46 #1026, Sanford, FL 32771</h1>
       <img class="logo-lockup" src="assets/logo/1.png" alt="Sanford Story Church 스토리교회 로고 — 샌포드 한인교회">
-      <p class="reveal-headline">새로운 이야기가<br><span class="accent">샌포드</span>에서 시작됩니다.</p>
-      <div class="reveal-details">September 27 · 2026 · Sanford, Florida</div>
+      <p class="reveal-headline">하나님의 이야기가<br><span class="accent">당신의 삶</span>에서 시작됩니다.</p>
+      <div class="reveal-details">Sanford, Florida</div>
+
+      <!-- 날짜를 박아두지 않는다. js/site.js 가 다음 주일을 계산한다 -->
+      <div class="reveal-next" aria-label="이번 주일 예배">
+        <div class="rn-kicker"><span class="live-dot"></span>이번 주일 예배 · This Sunday</div>
+        <div class="rn-line">
+          <span class="rn-date" id="nextDate">주일</span>
+          <span class="rn-sep">·</span>
+          <span class="rn-time">저녁 6시</span>
+        </div>
+        <a class="rn-place" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771 · 길찾기 ↗</a>
+      </div>
     </div>
   </div>
 </section>
@@ -339,31 +410,19 @@
 </div>
 
 <!-- ============ MARQUEE TICKER ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack">
-    <!-- item content is duplicated by JS to make a seamless loop -->
-    <div class="marquee-item">
-      First Gathering <span class="dot"></span>
-      <span class="dim">첫 예배</span> <span class="dot"></span>
-      09.27.2026 <span class="dot"></span>
-      Sunday 6PM <span class="dot"></span>
-      Sanford · FL <span class="dot"></span>
-      <span class="dim">Story Church</span> <span class="dot"></span>
-      Planting 2026 <span class="dot"></span>
-    </div>
-  </div>
+
 </div>
 
-<!-- ============ 첫 예배 일정 · 말씀 — bulletin/data.js 가 원본 ============ -->
+<!-- ============ 예배 안내 띠 — 말씀은 bulletin/data.js 가 원본 ============ -->
 <section class="firstband" id="firstband" hidden>
   <div class="fb-inner">
     <div class="fb-cell">
-      <span class="fb-k">첫 예배</span>
-      <b class="fb-v" id="fbDate"></b>
-      <span class="fb-s" id="fbTime"></span>
+      <span class="fb-k">예배</span>
+      <b class="fb-v">주일 저녁 6시</b>
+      <span class="fb-s">매주</span>
     </div>
-    <div class="fb-cell">
-      <span class="fb-k">말씀</span>
+    <div class="fb-cell" id="fbWord" hidden>
+      <span class="fb-k">이번 말씀</span>
       <b class="fb-v" id="fbTitle"></b>
       <span class="fb-s" id="fbMeta"></span>
     </div>
@@ -375,29 +434,7 @@
   </div>
 </section>
 
-<!-- ============ 첫 예배 선물 — 9/27 이 지나면 js/gift.js 가 숨긴다 ============ -->
-<section class="chapter gift" id="gift" hidden>
-  <div class="chapter-inner gift-inner">
-    <figure class="gift-art rv">
-      <img src="assets/promo/launch-gift.webp" width="1254" height="1254" loading="lazy" decoding="async"
-           alt="첫 예배 선물 안내 — 스토리교회 로고가 들어간 검정 티셔츠와 흰 머그컵. 9월 27일 주일 오후 6시, 4942 FL-46 #1026, Sanford, FL 32771.">
-    </figure>
-    <div class="gift-copy">
-      <div class="chapter-label rv">Launch Sunday</div>
-      <h2 class="pillars-heading rv rv-2">첫 예배에 함께하시는 분들께<br><span class="accent">작은 선물</span>을 드립니다.</h2>
-      <p class="gift-lead rv rv-3">스토리교회 로고가 들어간 <b>티셔츠</b>와 <b>머그컵</b>을 준비했습니다.<br>
-        9월 27일 첫 예배에 오시는 분들께 드립니다.</p>
-      <dl class="gift-info rv rv-4">
-        <div><dt>언제</dt><dd>9월 27일 (주일)<br>오후 6시</dd></div>
-        <div><dt>어디서</dt><dd>4942 FL-46 #1026<br>Sanford, FL 32771</dd></div>
-      </dl>
-      <div class="gift-cta rv rv-5">
-        <a class="btn primary" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">방문 알려주기 <span class="arrow">→</span></a>
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">길찾기 ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ============ THIS WEEK'S PRAISE — 곡 목록은 bulletin/data.js 가 원본 ============ -->
 <section class="chapter" id="chPraise" hidden>
@@ -514,14 +551,14 @@
 <section class="chapter" id="chFor">
   <div class="chapter-inner">
     <p class="for-hero rv rv-2">
-      샌포드에서 시작되는<br><span class="accent">새로운 이야기.</span>
+      샌포드에서 이어지는<br><span class="accent">새로운 이야기.</span>
     </p>
     <p class="for-tail rv rv-3">
-      그 <b>시작의 자리</b>에<br>당신을 초대합니다.
+      그 <b>이야기의 자리</b>에<br>당신을 초대합니다.
     </p>
     <div class="for-cta rv rv-4">
       <a class="btn primary" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">
-        9월 27일, 함께하기 <span class="arrow">→</span>
+        주일 예배 함께하기 <span class="arrow">→</span>
       </a>
     </div>
   </div>
@@ -584,7 +621,8 @@
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <img class="mark" src="assets/logo/1.png" alt="Sanford Story Church 스토리교회 · 샌포드 한인교회 로고">
-  <div class="foot-when">Planting 2026<span class="sep">·</span>Sanford, Florida</div>
+  <div class="foot-when">주일 저녁 6시<span class="sep">·</span>Sanford, Florida</div>
+  <a class="foot-addr" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771</a>
   <a class="ig" href="https://instagram.com/storychurch_sanford" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="4"/>
@@ -599,21 +637,7 @@
 <!-- 팝업 3개 — 선물 · 찬양 · 장소. 하나를 닫으면 다음이 뜬다.
      (모달은 한 번에 하나만 뜰 수 있어 겹쳐 띄우면 서로를 가린다)
      선물 팝업은 9/27 오후 6시가 지나면 js/homepop.js 가 건너뛴다. -->
-<dialog class="pop" id="popGift" aria-labelledby="popGiftTitle">
-  <button class="pop-x" data-close aria-label="닫기">&times;</button>
-  <span class="pop-step">1 / <span class="pop-total"></span></span>
-  <img class="pop-art" src="assets/promo/launch-gift.webp" width="1254" height="1254"
-       alt="첫 예배 선물 안내 — 스토리교회 로고가 들어간 검정 티셔츠와 흰 머그컵.">
-  <div class="pop-body">
-    <h2 id="popGiftTitle">첫 예배에 오시는 분들께</h2>
-    <p>스토리교회 로고가 들어간 <b>티셔츠</b>와 <b>머그컵</b>을 드립니다.</p>
-    <a class="btn primary pop-btn" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">방문 알려주기 →</a>
-  </div>
-  <div class="pop-foot">
-    <button type="button" data-today>오늘 하루 보지 않기</button>
-    <button type="button" class="pop-next" data-close>다음 →</button>
-  </div>
-</dialog>
+
 
 <dialog class="pop" id="popSongs" aria-labelledby="popSongsTitle">
   <button class="pop-x" data-close aria-label="닫기">&times;</button>
@@ -672,8 +696,7 @@
     <h2 id="popPlaceTitle">예배 장소</h2>
     <p class="plc-addr"><b>4942 FL-46 <span class="plc-unit">#1026</span></b><span>Sanford, FL 32771</span></p>
     <dl class="pop-when">
-      <div><dt>첫 예배</dt><dd>9월 27일 (주일) 오후 6시</dd></div>
-      <div><dt>매주</dt><dd>주일 저녁 6시</dd></div>
+      <div><dt>매주 주일</dt><dd>저녁 6시 · 한국어 예배</dd></div>
     </dl>
     <a class="btn primary pop-btn" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">길찾기 ↗</a>
   </div>
@@ -684,9 +707,9 @@
   </div>
 </dialog>
 
-<script src="js/site.js" defer></script>
+<script src="js/site.js?v=2" defer></script>
 <script src="bulletin/data.js?v=2" defer></script>
-<script src="js/praise.js?v=3" defer></script>
-<script src="js/homepop.js?v=5" defer></script>
+<script src="js/praise.js?v=4" defer></script>
+<script src="js/homepop.js?v=7" defer></script>
 </body>
 </html>

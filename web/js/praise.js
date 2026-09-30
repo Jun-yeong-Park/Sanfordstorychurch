@@ -22,5 +22,10 @@
   // 홈 섹션
   document.getElementById('praiseList').innerHTML = rows;
   document.getElementById('praiseDate').textContent = date;
-  document.getElementById('chPraise').hidden = false;
+  // 지난 주보가 남아 있으면 '이번 주 찬양'이 아니므로 띄우지 않는다
+  const t = new Date();
+  const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+  if (B.issue && B.issue.dateISO && B.issue.dateISO >= today){
+    document.getElementById('chPraise').hidden = false;
+  }
 })();

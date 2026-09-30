@@ -284,7 +284,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=11">
+<link rel="stylesheet" href="../styles/site.css?v=13">
 </head>
 <body>
 
@@ -297,14 +297,74 @@
       <small>Sanford · FL</small>
     </span>
   </a>
+<nav class="topnav" aria-label="메뉴">
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm0">About</button>
+    <div class="tn-menu" id="tnm0" hidden>
+      <a href="/about.html">What We Believe</a>
+      <a href="/people.html">Our Team</a>
+      <a href="/about.html#crcna">CRCNA</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm1">Worship</button>
+    <div class="tn-menu" id="tnm1" hidden>
+      <a href="/worship.html">Service Info</a>
+      <a href="/bulletin">Bulletin</a>
+      <a href="/sermons.html">Past Sermons</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm2">Grow</button>
+    <div class="tn-menu" id="tnm2" hidden>
+      <a href="/track.html">Four Stories</a>
+      <a href="/baptism.html">Baptism</a>
+      <a href="/serve.html">Serve</a>
+    </div>
+  </div>
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm3">Connect</button>
+    <div class="tn-menu" id="tnm3" hidden>
+      <a href="/events.html">Events</a>
+      <a href="/giving.html">Giving</a>
+      <a href="mailto:hello@sanfordstorychurch.com">Contact</a>
+    </div>
+  </div>
+</nav>
   <div class="brand-bar-right">
     <div class="lang-switch" aria-label="Language">
       <a href="/" hreflang="ko">KO</a>
       <span class="sep">·</span>
       <a href="/en/" class="active" aria-current="page" hreflang="en">EN</a>
     </div>
-    <div class="status"><span class="dot"></span><span class="label">09.27.2026 · Sun 6PM</span></div>
+    <div class="status"><span class="dot"></span><span class="label">Sundays · 6PM</span></div>
+      <a class="tn-cta" href="/visit.html">I'm New</a>
+    <button type="button" class="menubtn" id="menubtn" aria-expanded="false" aria-controls="drawer">MENU</button>
   </div>
+</div>
+
+
+<div class="drawer" id="drawer" hidden>
+  <button type="button" class="drawer-x" id="drawerClose" aria-label="닫기">&times;</button>
+  <nav aria-label="전체 메뉴">
+    <p class="dr-k">About</p>
+    <a href="/about.html">What We Believe</a>
+    <a href="/people.html">Our Team</a>
+    <a href="/about.html#crcna">CRCNA</a>
+    <p class="dr-k">Worship</p>
+    <a href="/worship.html">Service Info</a>
+    <a href="/bulletin">Bulletin</a>
+    <a href="/sermons.html">Past Sermons</a>
+    <p class="dr-k">Grow</p>
+    <a href="/track.html">Four Stories</a>
+    <a href="/baptism.html">Baptism</a>
+    <a href="/serve.html">Serve</a>
+    <p class="dr-k">Connect</p>
+    <a href="/events.html">Events</a>
+    <a href="/giving.html">Giving</a>
+    <a href="mailto:hello@sanfordstorychurch.com">Contact</a>
+    <a class="dr-cta" href="/visit.html">I'm New →</a>
+  </nav>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -317,8 +377,19 @@
     <div class="reveal" id="reveal">
       <h1 class="sr-only">Sanford Story Church — Korean church in Sanford, Florida · Serving Orlando, Lake Mary and Central Florida · Sunday worship 6:00 PM · 4942 FL-46 #1026, Sanford, FL 32771</h1>
       <img class="logo-lockup" src="../assets/logo/1.png" alt="Sanford Story Church logo">
-      <p class="reveal-headline">A new story begins<br>in <span class="accent">Sanford</span>.</p>
-      <div class="reveal-details">September 27 · 2026 · Sanford, Florida</div>
+      <p class="reveal-headline">God's story begins<br>in <span class="accent">your life</span>.</p>
+      <div class="reveal-details">Sanford, Florida</div>
+
+      <!-- 날짜를 박아두지 않는다. js/site.js 가 다음 주일을 계산한다 -->
+      <div class="reveal-next" aria-label="This Sunday">
+        <div class="rn-kicker"><span class="live-dot"></span>This Sunday</div>
+        <div class="rn-line">
+          <span class="rn-date" id="nextDate">Sunday</span>
+          <span class="rn-sep">·</span>
+          <span class="rn-time">6:00 PM</span>
+        </div>
+        <a class="rn-place" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771 · Directions ↗</a>
+      </div>
     </div>
   </div>
 </section>
@@ -329,17 +400,7 @@
 </div>
 
 <!-- ============ MARQUEE TICKER ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-item">
-      First Gathering <span class="dot"></span>
-      <span class="dim">Sunday 6PM</span> <span class="dot"></span>
-      09.27.2026 <span class="dot"></span>
-      Sanford · FL <span class="dot"></span>
-      <span class="dim">Story Church</span> <span class="dot"></span>
-      Planting 2026 <span class="dot"></span>
-    </div>
-  </div>
+
 </div>
 
 <!-- ============ SUNDAY WORSHIP · SERMON · LOCATION — ../bulletin/data.js is the source ============ -->
@@ -347,11 +408,11 @@
   <div class="fb-inner">
     <div class="fb-cell">
       <span class="fb-k">Sunday Worship</span>
-      <b class="fb-v" id="fbDate"></b>
-      <span class="fb-s" id="fbTime"></span>
+      <b class="fb-v">Sundays 6:00 PM</b>
+      <span class="fb-s">Every week</span>
     </div>
-    <div class="fb-cell">
-      <span class="fb-k">Sermon</span>
+    <div class="fb-cell" id="fbWord" hidden>
+      <span class="fb-k">This Week</span>
       <b class="fb-v" id="fbTitle"></b>
       <span class="fb-s" id="fbMeta"></span>
     </div>
@@ -547,7 +608,8 @@
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <img class="mark" src="../assets/logo/1.png" alt="Sanford Story Church logo">
-  <div class="foot-when">Planting 2026<span class="sep">·</span>Sanford, Florida</div>
+  <div class="foot-when">Sundays 6PM<span class="sep">·</span>Sanford, Florida</div>
+  <a class="foot-addr" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771</a>
   <a class="ig" href="https://instagram.com/storychurch_sanford" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="3" width="18" height="18" rx="4"/>
@@ -627,9 +689,9 @@
   </div>
 </dialog>
 
-<script src="../js/site.js" defer></script>
+<script src="../js/site.js?v=2" defer></script>
 <script src="../bulletin/data.js?v=2" defer></script>
-<script src="../js/praise.js?v=3" defer></script>
-<script src="../js/homepop.js?v=5" defer></script>
+<script src="../js/praise.js?v=4" defer></script>
+<script src="../js/homepop.js?v=7" defer></script>
 </body>
 </html>
