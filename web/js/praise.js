@@ -13,19 +13,18 @@
     ? ((B.issue && B.issue.dateEn) || '').replace(/, \d{4}$/, '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase())   // "SEPTEMBER 27, 2026" → "September 27"
     : ((B.issue && B.issue.date) || '').replace(/^\d{4}년\s*/, '');
   const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const yt = s => s.url || ('https://www.youtube.com/results?search_query=' + encodeURIComponent(s.title + ' ' + (s.artist || '') + ' 찬양'));
-  const rows = songs.map(s => `<li><a class="song-row" href="${esc(yt(s))}" target="_blank" rel="noopener">
-    <span class="play" aria-hidden="true">▶</span>
-    <span class="t">${esc(s.title)}${s.artist ? `<small>${esc(s.artist)}</small>` : ''}</span>
-    <span class="hint">${s.url ? 'YouTube ↗' : (en ? 'Search ↗' : '검색 ↗')}</span></a></li>`).join('');
+  // 링크가 있는 곡만 누를 수 있게 한다. 없으면 번호만 붙인 줄로 (누를 수 없는데
+  // ▶ 를 띄우거나 검색으로 보내면 엉뚱한 영상으로 가기 때문)
+  const body = s => `<span class="t">${esc(s.title)}${s.artist ? `<small>${esc(s.artist)}</small>` : ''}</span>`;
+  const rows = songs.map((s, i) => s.url
+    ? `<li><a class="song-row" href="${esc(s.url)}" target="_blank" rel="noopener">
+    <span class="play" aria-hidden="true">▶</span>${body(s)}
+    <span class="hint">YouTube ↗</span></a></li>`
+    : `<li><div class="song-row song-row--plain">
+    <span class="play play--n" aria-hidden="true">${i + 1}</span>${body(s)}</div></li>`).join('');
 
   // 홈 섹션
   document.getElementById('praiseList').innerHTML = rows;
   document.getElementById('praiseDate').textContent = date;
-  // 지난 주보가 남아 있으면 '이번 주 찬양'이 아니므로 띄우지 않는다
-  const t = new Date();
-  const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
-  if (B.issue && B.issue.dateISO && B.issue.dateISO >= today){
-    document.getElementById('chPraise').hidden = false;
-  }
+  document.getElementById('chPraise').hidden = false;
 })();

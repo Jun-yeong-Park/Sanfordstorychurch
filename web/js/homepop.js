@@ -22,9 +22,11 @@
     set('fbMeta', (en ? [B.sermon.scriptureEn, B.sermon.preacherEn] : [B.sermon.scripture, B.sermon.preacher]).filter(Boolean).join(' · '));
     const band = document.getElementById('firstband');
     if (band) band.hidden = false;
-    // 지난 주 주보가 그대로 남아 있는데 '이번 말씀'이라고 띄우면 거짓이 된다.
+    // 지난 주 주보가 남아 있거나 설교가 아직 안 정해졌으면 '이번 말씀' 칸을 띄우지 않는다
+    // (빈 칸이 뜨는 것보다 아예 없는 편이 낫다)
     const w = document.getElementById('fbWord');
-    if (w && isFresh(B)) w.hidden = false;
+    const hasSermon = !!(en ? B.sermon.titleEn : B.sermon.title);
+    if (w && isFresh(B) && hasSermon) w.hidden = false;
   }
 
 
@@ -34,7 +36,7 @@
   if (src && dst) dst.innerHTML = src.innerHTML;
 
   const queue = [
-    isFresh(B) && dst && dst.children.length ? document.getElementById('popSongs') : null,   // 지난 주 곡은 띄우지 않는다
+    dst && dst.children.length ? document.getElementById('popSongs') : null,   // 찬양은 항상 띄운다
     document.getElementById('popPlace'),
   ].filter(d => d && typeof d.showModal === 'function');
 
