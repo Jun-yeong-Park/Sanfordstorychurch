@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=22">
+<link rel="stylesheet" href="styles/site.css?v=23">
 </head>
 <body class="page">
 
@@ -150,8 +150,22 @@
 
 <section class="sec cream">
   <div class="sec-in">
+    <div class="cal-head">
+      <button type="button" class="cal-nav" id="calPrev" aria-label="이전 달">←</button>
+      <h2 id="calTitle">—</h2>
+      <button type="button" class="cal-nav" id="calNext" aria-label="다음 달">→</button>
+    </div>
+
+    <div class="cal" role="grid" aria-labelledby="calTitle">
+      <div class="cal-dow" aria-hidden="true">
+        <span class="sun">일</span><span>월</span><span>화</span><span>수</span>
+        <span>목</span><span>금</span><span class="sat">토</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
     <ul class="ev" id="evList"></ul>
-    <p class="note" id="evNone" hidden>등록된 일정이 없습니다. <a class="inline-link" href="mailto:hello@sanfordstorychurch.com">문의하기</a></p>
+    <p class="note" id="evNone" hidden>이 달에는 등록된 일정이 없습니다.</p>
   </div>
 </section>
 
@@ -178,19 +192,89 @@
 </footer>
 
 <script src="js/site.js?v=3" defer></script>
-<script src="bulletin/data.js?v=4" defer></script>
+<script src="bulletin/data.js?v=5" defer></script>
 <script>
-(function(){var B=window.BULLETIN;var box=document.getElementById('evList');if(!B||!box)return;
-var esc=function(t){return String(t||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var t=new Date(),today=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
-var ev=(B.events||[]).filter(function(e){return e&&e.date&&e.date>=today}).sort(function(a,b){return a.date<b.date?-1:1});
-if(!ev.length){document.getElementById('evNone').hidden=false;return;}
-box.innerHTML=ev.map(function(e){
- var d=new Date(e.date+'T00:00:00'),wd=['일','월','화','수','목','금','토'][d.getDay()];
- var hm=(e.time||'').split(':'),h=+hm[0],ap=h<12?'오전':'오후',h12=h%12||12;
- return '<li><div class="ev-d"><b>'+(d.getMonth()+1)+'.'+d.getDate()+'</b><span>'+wd+'요일</span></div>'
-  +'<div class="ev-b"><h3>'+esc(e.title)+'</h3><p>'+ap+' '+h12+'시'+(e.place?' · '+esc(e.place):'')+'</p>'
-  +(e.desc?'<p class="ev-x">'+esc(e.desc)+'</p>':'')+'</div></li>';}).join('');})();
+addEventListener('DOMContentLoaded', function(){
+  var B = window.BULLETIN;
+  var grid = document.getElementById('calGrid');
+  if (!B || !grid) return;
+  var esc = function(t){ return String(t||'').replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+  var iso = function(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); };
+
+  var listed = (B.events || []).filter(function(e){ return e && e.date; });
+  var have = {};
+  listed.forEach(function(e){ have[e.date] = true; });
+
+  // 주일 예배는 매주 있으므로 달력에서는 그 달의 모든 주일을 채운다.
+  // data.js 에 따로 적힌 날(특별 순서 등)은 그쪽을 쓴다.
+  function eventsOf(year, month){
+    var out = listed.filter(function(e){
+      var d = new Date(e.date+'T00:00:00');
+      return d.getFullYear() === year && d.getMonth() === month;
+    });
+    var d = new Date(year, month, 1);
+    while (d.getMonth() === month){
+      if (d.getDay() === 0 && !have[iso(d)]){
+        out.push({ date: iso(d), time: '18:00', title: '주일 예배',
+                   place: '4942 FL-46 #1026, Sanford', desc: '' });
+      }
+      d.setDate(d.getDate()+1);
+    }
+    return out.sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+  }
+
+  var today = new Date(); today.setHours(0,0,0,0);
+  var view = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  function render(){
+    var y = view.getFullYear(), m = view.getMonth();
+    document.getElementById('calTitle').textContent = y + '년 ' + (m+1) + '월';
+    var ev = eventsOf(y, m);
+    var byDay = {};
+    ev.forEach(function(e){ (byDay[e.date] = byDay[e.date] || []).push(e); });
+
+    var first = new Date(y, m, 1);
+    var start = new Date(first); start.setDate(1 - first.getDay());   // 그 주 일요일부터
+    var cells = '';
+    for (var i = 0; i < 42; i++){
+      var d = new Date(start); d.setDate(start.getDate() + i);
+      var key = iso(d);
+      var cls = ['cal-c'];
+      if (d.getMonth() !== m) cls.push('out');
+      if (key === iso(today)) cls.push('today');
+      if (byDay[key]) cls.push('has');
+      cells += '<div class="' + cls.join(' ') + '"><span class="n">' + d.getDate() + '</span>'
+             + (byDay[key] ? '<span class="dot" aria-hidden="true"></span>' : '') + '</div>';
+      if (i >= 34 && d.getMonth() !== m && d.getDay() === 6) break;    // 빈 줄은 그리지 않는다
+    }
+    grid.innerHTML = cells;
+
+    var box = document.getElementById('evList');
+    document.getElementById('evNone').hidden = ev.length > 0;
+    box.innerHTML = ev.map(function(e){
+      var d = new Date(e.date+'T00:00:00');
+      var wd = ['일','월','화','수','목','금','토'][d.getDay()];
+      var hm = (e.time||'').split(':'), h = +hm[0];
+      var ap = h < 12 ? '오전' : '오후', h12 = h % 12 || 12;
+      var past = d < today;
+      return '<li' + (past ? ' class="past"' : '') + '>'
+        + '<div class="ev-d"><b>' + (d.getMonth()+1) + '.' + d.getDate() + '</b><span>' + wd + '요일</span></div>'
+        + '<div class="ev-b"><h3>' + esc(e.title) + '</h3><p>' + ap + ' ' + h12 + '시'
+        + (e.place ? ' · ' + esc(e.place) : '') + '</p>'
+        + (e.desc ? '<p class="ev-x">' + esc(e.desc) + '</p>' : '') + '</div></li>';
+    }).join('');
+  }
+
+  document.getElementById('calPrev').addEventListener('click', function(){
+    view.setMonth(view.getMonth() - 1); render();
+  });
+  document.getElementById('calNext').addEventListener('click', function(){
+    view.setMonth(view.getMonth() + 1); render();
+  });
+  render();
+});
 </script>
 </body>
 </html>

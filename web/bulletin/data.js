@@ -112,9 +112,9 @@ window.BULLETIN = {
 
   // 섬기는 분들
   team: [
-    { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 Kyong Won Jung", nameEn: "Kyong Won Jung" },
-    { role: "전도사", roleEn: "Pastor", name: "허강현 Kanghyeon Heo", nameEn: "Kanghyeon Heo" },
-    { role: "코디네이터", roleEn: "Coordinator", name: "박준영 Junyeong Park", nameEn: "Junyeong Park" },
+    { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 목사", nameEn: "Pastor Kyong Won Jung" },
+    { role: "전도사", roleEn: "Pastor", name: "허강현 전도사", nameEn: "Kanghyeon Heo" },
+    { role: "코디네이터", roleEn: "Coordinator", name: "박준영 형제", nameEn: "Junyeong Park" },
   ],
   thisWeek: [
     { role: "찬양 인도", roleEn: "Worship Lead", name: "허강현", nameEn: "Kanghyeon Heo" },

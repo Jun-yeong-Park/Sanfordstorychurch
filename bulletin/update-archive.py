@@ -27,7 +27,12 @@ if os.path.exists(out):
         items = json.loads(m.group(1))
 
 items = [x for x in items if x.get('dateISO') != iso]      # 같은 날짜는 갈아끼운다
-items.append(entry)
+# PDF 가 실제로 있을 때만 게시판에 올린다 (없는 파일로 가는 링크를 만들지 않기 위해)
+pdf_path = os.path.join(here, '..', 'web', entry['pdf'].lstrip('/'))
+if os.path.exists(pdf_path):
+    items.append(entry)
+else:
+    print('! %s PDF 가 아직 없어 게시판에 올리지 않음' % iso)
 items.sort(key=lambda x: x.get('dateISO', ''), reverse=True)
 
 with open(out, 'w', encoding='utf-8') as f:

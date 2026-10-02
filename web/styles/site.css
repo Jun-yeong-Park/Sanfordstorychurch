@@ -1408,3 +1408,36 @@ body.page .tn-cta,body.page .menubtn{position:relative;z-index:61}
   background:transparent;color:var(--pr-dim);
   box-shadow:inset 0 0 0 1.5px currentColor;
 }
+
+/* ---- 일정 달력 ---- */
+.cal-head{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,26px);margin-bottom:22px}
+.cal-head h2{margin:0;min-width:clamp(140px,22vw,190px);text-align:center;font-size:clamp(20px,2.6vw,26px)}
+.cal-nav{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(42,29,15,.24);
+  font-size:17px;color:var(--ink);background:var(--cream);flex:none;
+}
+.cal-nav:hover{border-color:var(--orange);color:var(--orange)}
+.cal{border:1px solid rgba(42,29,15,.16);border-radius:14px;overflow:hidden;background:var(--cream)}
+.cal-dow,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-dow{background:var(--cream-2);border-bottom:1px solid rgba(42,29,15,.14)}
+.cal-dow span{
+  padding:11px 0;text-align:center;
+  font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--ink-dim);
+}
+.cal-dow .sun{color:#B4442A}
+.cal-dow .sat{color:#2F5C8A}
+.cal-c{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  aspect-ratio:1;border-right:1px solid rgba(42,29,15,.08);border-bottom:1px solid rgba(42,29,15,.08);
+}
+.cal-c:nth-child(7n){border-right:0}
+.cal-c .n{font-family:var(--disp-en);font-weight:700;font-size:clamp(13px,1.6vw,16px);color:var(--ink)}
+.cal-c.out .n{color:rgba(42,29,15,.28)}
+.cal-c.has{background:rgba(255,154,31,.1)}
+.cal-c.has .n{font-weight:900}
+.cal-c .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.cal-c.today{box-shadow:inset 0 0 0 2px var(--orange)}
+.cal-c.today .n{color:var(--ink)}
+@media(min-width:620px){.cal-c{aspect-ratio:auto;min-height:74px}}
+.ev{margin-top:26px}
+.ev li.past{opacity:.45}
