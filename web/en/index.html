@@ -284,7 +284,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=24">
+<link rel="stylesheet" href="../styles/site.css?v=25">
 </head>
 <body>
 
@@ -628,77 +628,13 @@
   <div class="copyright">© Sanford Story Church</div>
 </footer>
 
-<!-- Popups — this week's songs, then location. Closing one opens the next (js/homepop.js). -->
-<dialog class="pop" id="popSongs" aria-labelledby="popSongsTitle">
-  <button class="pop-x" data-close aria-label="Close">&times;</button>
-  <span class="pop-step">1 / <span class="pop-total"></span></span>
-  <div class="pop-body">
-    <span class="pop-k">This Week's Praise</span>
-    <h2 id="popSongsTitle">Songs for This Sunday</h2>
-    <p>Have a listen ahead of time — we'd love to sing them with you.</p>
-  </div>
-  <ul class="praise-list pop-songs" id="popSongsList"></ul>
-  <div class="pop-foot">
-    <button type="button" data-today>Don't show again today</button>
-    <button type="button" class="pop-next" data-close>Next →</button>
-  </div>
-</dialog>
 
-<dialog class="pop pop--place" id="popPlace" aria-labelledby="popPlaceTitle">
-  <button class="pop-x" data-close aria-label="Close">&times;</button>
-  <span class="pop-step">2 / <span class="pop-total"></span></span>
 
-  <figure class="plc-map">
-    <svg viewBox="0 0 420 190" role="img" aria-label="Sketch map of Sanford: Lake Monroe to the north; the church is near where I-4 meets FL-46. Not to scale — use the Directions button.">
-      <defs>
-        <pattern id="plcGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-          <path d="M30 0H0V30" fill="none" stroke="rgba(245,239,228,.07)" stroke-width="1"/>
-        </pattern>
-        <radialGradient id="plcGlow">
-          <stop offset="0%" stop-color="#FF9A1F" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#FF9A1F" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <rect width="420" height="190" fill="#14100A"/>
-      <rect width="420" height="190" fill="url(#plcGrid)"/>
 
-      <path d="M0 40 C90 22 150 50 226 40 C300 30 360 46 420 34 L420 0 L0 0 Z" fill="rgba(245,239,228,.08)"/>
-      <path d="M0 40 C90 22 150 50 226 40 C300 30 360 46 420 34" fill="none" stroke="rgba(245,239,228,.28)" stroke-width="1.6"/>
-      <text x="210" y="22" class="plc-t" text-anchor="middle">LAKE MONROE</text>
-
-      <path d="M-10 168 C110 150 190 104 300 74 C350 60 392 54 430 50" fill="none" stroke="rgba(245,239,228,.30)" stroke-width="7" stroke-linecap="round"/>
-      <text x="44" y="150" class="plc-t">I-4</text>
-
-      <path d="M0 116 C120 112 250 120 420 112" fill="none" stroke="#FF9A1F" stroke-width="4.5" stroke-linecap="round"/>
-      <text x="330" y="136" class="plc-t plc-t--o">FL-46</text>
-
-      <circle cx="243" cy="118" r="34" fill="url(#plcGlow)"/>
-      <path d="M243 98 c-8 0 -14 6 -14 14 c0 10 14 24 14 24 s14 -14 14 -24 c0 -8 -6 -14 -14 -14 z"
-            fill="#FF9A1F" stroke="#14100A" stroke-width="2"/>
-      <circle cx="243" cy="112" r="4.6" fill="#14100A"/>
-    </svg>
-    <figcaption>Sketch only · tap Directions below for the route</figcaption>
-  </figure>
-
-  <div class="pop-body">
-    <span class="pop-k">Where</span>
-    <h2 id="popPlaceTitle">Where We Meet</h2>
-    <p class="plc-addr"><b>4942 FL-46 <span class="plc-unit">#1026</span></b><span>Sanford, FL 32771</span></p>
-    <dl class="pop-when">
-      <div><dt>Every Sunday</dt><dd>6:00 PM · Worship in Korean</dd></div>
-    </dl>
-    <a class="btn primary pop-btn" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">Directions ↗</a>
-  </div>
-
-  <div class="pop-foot">
-    <button type="button" data-today>Don't show again today</button>
-    <button type="button" class="pop-next" data-close>Close</button>
-  </div>
-</dialog>
 
 <script src="../js/site.js?v=2" defer></script>
 <script src="../bulletin/data.js?v=2026-10-04" defer></script>
 <script src="../js/praise.js?v=5" defer></script>
-<script src="../js/homepop.js?v=9" defer></script>
+<script src="../js/homeband.js?v=9" defer></script>
 </body>
 </html>
