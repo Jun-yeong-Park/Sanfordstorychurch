@@ -43,9 +43,9 @@ window.BULLETIN = {
         // 앱 전용: songs — 이번 주 찬양. artist(선택) · url(유튜브, 비우면 앱에서 검색으로 열림). 앱 주보 탭 "이번 주 찬양"에 모아 보임.
         { name: "찬양", nameEn: "Praise", detail: "함께 지어져 가네 · 내 마음 다해 · 내가 어둠 속에서 헤멜 때에도", detailEn: "3 songs", by: "허강현", byEn: "Kanghyeon Heo",
           songs: [
-            { title: "함께 지어져 가네", artist: "", url: "" },
-            { title: "내 마음 다해", artist: "", url: "" },
-            { title: "내가 어둠 속에서 헤멜 때에도", artist: "", url: "" },
+            { title: "함께 지어져 가네", artist: "", url: "https://youtu.be/TtH4qHWdTto" },
+            { title: "내 마음 다해", artist: "", url: "https://youtu.be/RltIZ0J6_yA" },
+            { title: "내가 어둠 속에서 헤멜 때에도", artist: "", url: "https://youtu.be/hy-FXBSsHYw" },
           ] },
         { name: "말씀", nameEn: "Sermon", detail: "", detailEn: "", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
@@ -60,10 +60,10 @@ window.BULLETIN = {
       tag: "03", name: "DEEP STORY", sub: "Response & Blessing · 결단", subEn: "Response & Blessing",
       items: [
         { name: "결단 찬양 · 봉헌", nameEn: "Response Song · Offering", detail: "삶의 예배", detailEn: "삶의 예배", by: "허강현", byEn: "Kanghyeon Heo",
-          songs: [{ title: "삶의 예배", artist: "", url: "" }] },
+          songs: [{ title: "삶의 예배", artist: "", url: "https://youtu.be/_DGUe5aZR9o" }] },
         { name: "기도", nameEn: "Prayer", detail: "", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
         { name: "파송 찬양", nameEn: "Sending Song", detail: "The Blessing", detailEn: "The Blessing", by: "허강현", byEn: "Kanghyeon Heo",
-          songs: [{ title: "The Blessing", artist: "", url: "" }] },
+          songs: [{ title: "The Blessing", artist: "", url: "https://youtu.be/mDK9ZrhJA34" }] },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },

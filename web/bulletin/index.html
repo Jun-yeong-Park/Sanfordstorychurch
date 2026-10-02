@@ -93,6 +93,9 @@
   #pop .v i { font:400 17px/1.75 var(--display); color:var(--orange); font-style:normal; width:24px; text-align:right; flex:none; }
   #pop .cr { font-size:11.5px; color:var(--dim); margin-top:22px; }
   .foot-links { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .song--plain { cursor:default; }
+  .song--plain .play { background:transparent; color:var(--dim); box-shadow:inset 0 0 0 1.5px currentColor; font-weight:700; }
+  .mini--plain { color:inherit; }
 </style>
 </head>
 <body>
@@ -102,7 +105,6 @@
 <script>
 const D = window.BULLETIN;
 const t = s => (s ?? "").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, "");
-const yt = s => (s.url && s.url.trim()) || "https://www.youtube.com/results?search_query=" + encodeURIComponent(s.title + " 찬양");
 const bible = ref => "https://www.bible.com/search/bible?q=" + encodeURIComponent(ref);
 const songsOf = i => (i.songs || []).filter(x => x && x.title);
 const praise = D.order.flatMap(p => p.items.filter(i => songsOf(i).length).map(i => ({ label: i.name, songs: songsOf(i) })));
@@ -119,7 +121,7 @@ document.getElementById("app").innerHTML = `
   <div class="display slogan">GOD'S STORY<br>BEGINS IN<br><em>YOUR LIFE.</em></div>
   <div class="slogan-ko">${c.taglineKo}</div>
   <div class="date"><div><div class="big">${D.issue.dateEn}</div><div class="ko">${D.issue.date}</div></div><div class="svc">Sunday Worship<small>${D.issue.service}</small></div></div>
-  <div class="sermon"><div class="t">${t(D.sermon.title)}</div><div class="s">${D.sermon.scripture} · ${D.sermon.preacher}</div></div>
+  ${D.sermon.title ? `<div class="sermon"><div class="t">${t(D.sermon.title)}</div><div class="s">${[D.sermon.scripture, D.sermon.preacher].filter(Boolean).join(" · ")}</div></div>` : ""}
 </section>
 <div class="actions">
   <a class="btn primary" href="#" onclick="return openRef(D.sermon.scripture)">📖 본문 읽기</a>
@@ -128,7 +130,12 @@ document.getElementById("app").innerHTML = `
 ${praise.length ? `<section class="white">
   <div class="h-sec"><span class="display">THIS WEEK'S PRAISE</span><span class="ko">이번 주 찬양</span></div>
   ${praise.map(g => `${praise.length > 1 ? `<div class="eyebrow" style="margin:14px 0 6px">${t(g.label)}</div>` : ""}
-    ${g.songs.map(s => `<a class="song" href="${yt(s)}" target="_blank" rel="noopener"><span class="play">▶</span><span><b>${s.title}</b>${s.artist ? `<small>${s.artist}</small>` : ""}</span><span class="hint">${s.url ? "YOUTUBE ↗" : "검색 ↗"}</span></a>`).join("")}`).join("")}
+    ${g.songs.map((s, i) => {
+      const body = `<span class="play">${s.url ? "▶" : i + 1}</span><span><b>${s.title}</b>${s.artist ? `<small>${s.artist}</small>` : ""}</span>`;
+      return s.url
+        ? `<a class="song" href="${s.url}" target="_blank" rel="noopener">${body}<span class="hint">YOUTUBE ↗</span></a>`
+        : `<div class="song song--plain">${body}</div>`;
+    }).join("")}`).join("")}
   <p class="dim" style="font-size:12px;margin-top:12px">탭하면 유튜브에서 들을 수 있어요.</p>
 </section>` : ""}
 
@@ -137,7 +144,7 @@ ${praise.length ? `<section class="white">
   <div class="eyebrow">${D.issue.dateEn} · ${D.issue.service}</div>
   ${D.order.map(p => `<div class="part">
     <div class="part-h"><span class="tag">${p.tag}</span><span class="nm">${p.name}</span><span class="sub">${p.sub}</span></div>
-    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => `<a class="mini" href="${yt(s)}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>`).join("") : i.detail ? `<span class="d">${window.VERSES && VERSES[i.detail] ? `<a class="refLink" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">${t(i.detail)} ›</a><a class="refBtn" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">📖 본문 보기</a>` : t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
+    ${p.items.map(i => `<div class="it"><span class="n"><b>${t(i.name)}</b>${songsOf(i).length ? songsOf(i).map(s => s.url ? `<a class="mini" href="${s.url}" target="_blank" rel="noopener"><i>▶</i>${s.title}</a>` : `<span class="mini mini--plain">${s.title}</span>`).join("") : i.detail ? `<span class="d">${window.VERSES && VERSES[i.detail] ? `<a class="refLink" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">${t(i.detail)} ›</a><a class="refBtn" href="#" onclick="return openRef('${i.detail.replace(/'/g, "\\'")}')">📖 본문 보기</a>` : t(i.detail)}</span>` : ""}</span>${i.by ? `<span class="by">${t(i.by)}</span>` : ""}</div>`).join("")}
   </div>`).join("")}
 </section>
 

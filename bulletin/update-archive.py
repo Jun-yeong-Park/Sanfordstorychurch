@@ -43,15 +43,23 @@ print('✓ web/bulletin/archive.js — %d호' % len(items))
 
 # 주보가 바뀔 때마다 data.js/archive.js 의 주소도 바뀌어야 한다.
 # 버전을 손으로 올리지 않으면, 이미 방문한 사람 브라우저는 지난주 것을 계속 보여준다.
-import glob
-stamp = iso
+import glob, hashlib
+# 날짜만 쓰면 같은 주 안에서 내용을 고쳤을 때 주소가 그대로여서 캐시가 안 풀린다.
+# 파일 내용 해시를 붙여, data.js/archive.js 가 바뀌면 반드시 주소도 바뀌게 한다.
+def short_hash(path):
+    with open(path, 'rb') as f:
+        return hashlib.sha256(f.read()).hexdigest()[:8]
+web_bulletin = os.path.join(here, '..', 'web', 'bulletin')
+stamp = iso + '.' + short_hash(os.path.join(web_bulletin, 'data.js'))
+astamp = iso + '.' + short_hash(out)
 pages = glob.glob(os.path.join(here, '..', 'web', '*.html')) + \
         glob.glob(os.path.join(here, '..', 'web', 'en', '*.html'))
 changed = 0
 for page in pages:
     t = open(page, encoding='utf-8').read()
-    t2 = re.sub(r'(bulletin/(?:data|archive)\.js)\?v=[^"\']*', r'\1?v=' + stamp, t)
+    t2 = re.sub(r'(bulletin/data\.js)\?v=[^"\']*', r'\1?v=' + stamp, t)
+    t2 = re.sub(r'(bulletin/archive\.js)\?v=[^"\']*', r'\1?v=' + astamp, t2)
     if t2 != t:
         open(page, 'w', encoding='utf-8').write(t2)
         changed += 1
-print('✓ 캐시 버전 %s 로 갱신 — %d개 페이지' % (stamp, changed))
+print('✓ 캐시 버전 data=%s archive=%s — %d개 페이지' % (stamp, astamp, changed))
