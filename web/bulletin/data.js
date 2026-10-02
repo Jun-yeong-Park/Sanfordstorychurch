@@ -15,20 +15,17 @@ window.BULLETIN = {
   },
 
   sermon: {
-    // TODO 10/4 설교 제목·본문을 받으면 채울 것.
-    //      비어 있으면 홈페이지의 '이번 말씀' 칸이 뜨지 않는다.
-    //      (지난 호: "러브레터" / 고린도후서 3:1–3)
-    title: "",
-    titleEn: "",
-    scripture: "",
-    scriptureEn: "",
+    title: "하나님의 첫 이야기",
+    titleEn: "GOD'S FIRST STORY",
+    scripture: "창세기 1:1",
+    scriptureEn: "Genesis 1:1",
     preacher: "정경원 목사",
     preacherEn: "Pastor Kyong Won Jung",
     // P2 하단 '오늘의 말씀' 박스
-    excerpt: "너희는 우리로 말미암아 나타난 그리스도의 편지니 이는 먹으로 쓴 것이 아니요 오직 살아 계신 하나님의 영으로 쓴 것이며 돌판에 쓴 것이 아니요 오직 육의 마음판에 쓴 것이라",
-    excerptRef: "고후 3:3",
-    excerptEn: "You show that you are a letter from Christ, the result of our ministry, written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts.",
-    excerptRefEn: "2 Cor 3:3",
+    excerpt: "태초에 하나님이 천지를 창조하시니라",
+    excerptRef: "창세기 1:1",
+    excerptEn: "In the beginning God created the heavens and the earth.",
+    excerptRefEn: "Genesis 1:1",
     // 앱 전용: 설교 다시 듣기. 유튜브 링크 / mp3 주소. 없으면 "" 로 두세요.
     video: "",
     audio: "",
@@ -47,7 +44,7 @@ window.BULLETIN = {
             { title: "내 마음 다해", artist: "", url: "https://youtu.be/RltIZ0J6_yA" },
             { title: "내가 어둠 속에서 헤멜 때에도", artist: "", url: "https://youtu.be/hy-FXBSsHYw" },
           ] },
-        { name: "말씀", nameEn: "Sermon", detail: "", detailEn: "", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
+        { name: "말씀", nameEn: "Sermon", detail: "하나님의 첫 이야기", detailEn: "God's First Story", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
     {
@@ -78,8 +75,12 @@ window.BULLETIN = {
 
   // 교회 소식
   news: [
-    { title: "스토리교회 첫 예배", titleEn: "Our First Worship", body: "오늘 스토리교회의 첫 이야기가 시작됩니다. 함께해 주신 모든 분께 감사드립니다.", bodyEn: "Today the first story of Story Church begins. Thank you to everyone who joined us." },
-    { title: "첫 예배 선물", titleEn: "A Gift for You", body: "첫 예배에 오신 분들께 스토리교회 로고가 들어간 티셔츠와 머그컵을 드립니다. 예배 후 웰컴 테이블에서 받아가세요.", bodyEn: "Everyone at our first worship receives a Story Church T-shirt and mug. Pick yours up at the welcome table after worship." },
+    { title: "친구와 함께 오세요", titleEn: "Bring a Friend",
+      body: "곁에 있는 한 사람을 떠올려 보세요. 설득하지 않으셔도 됩니다. \"같이 가볼래?\" 한마디면 충분합니다.",
+      bodyEn: "Think of one person near you. You don't need to persuade anyone — \"want to come with me?\" is enough." },
+    { title: "섬길 자리가 있습니다", titleEn: "A Place to Serve",
+      body: "찬양 · 미디어 · 웰컴 · 친교. 한 자리만 맡아 주셔도 됩니다. 섬기고 싶으신 분은 알려주세요.",
+      bodyEn: "Worship, media, welcome, hospitality. One place is enough — let us know if you'd like to serve." },
   ],
 
   // 다음 주 예고
