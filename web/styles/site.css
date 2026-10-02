@@ -1367,3 +1367,13 @@ body.page .tn-cta,body.page .menubtn{position:relative;z-index:61}
   display:block;margin-top:9px;
   font-size:13px;line-height:1.55;color:var(--ink-dim);
 }
+
+/* 찬양 전체 재생 */
+.praise-all{
+  display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+  padding:13px 22px;border-radius:99px;
+  background:var(--orange);color:var(--navy);
+  font-family:var(--disp-ko);font-weight:800;font-size:14px;letter-spacing:-.01em;
+}
+.praise-all:hover{background:var(--cream)}
+.praise-all[hidden]{display:none}

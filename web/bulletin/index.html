@@ -96,6 +96,8 @@
   .song--plain { cursor:default; }
   .song--plain .play { background:transparent; color:var(--dim); box-shadow:inset 0 0 0 1.5px currentColor; font-weight:700; }
   .mini--plain { color:inherit; }
+  .playall { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:12px 20px;
+    border-radius:99px; background:var(--orange); color:var(--navy); font-weight:700; font-size:14px; }
 </style>
 </head>
 <body>
@@ -107,6 +109,7 @@ const D = window.BULLETIN;
 const t = s => (s ?? "").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, "");
 const bible = ref => "https://www.bible.com/search/bible?q=" + encodeURIComponent(ref);
 const songsOf = i => (i.songs || []).filter(x => x && x.title);
+const vidId = u => { const m = String(u || "").match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/); return m ? m[1] : null; };
 const praise = D.order.flatMap(p => p.items.filter(i => songsOf(i).length).map(i => ({ label: i.name, songs: songsOf(i) })));
 const money = n => "$" + Number(n || 0).toLocaleString("en-US");
 const kv = rows => rows.map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join("");
@@ -136,6 +139,12 @@ ${praise.length ? `<section class="white">
         ? `<a class="song" href="${s.url}" target="_blank" rel="noopener">${body}<span class="hint">YOUTUBE ↗</span></a>`
         : `<div class="song song--plain">${body}</div>`;
     }).join("")}`).join("")}
+  ${(() => {
+    const ids = praise.flatMap(g => g.songs).map(x => vidId(x.url)).filter(Boolean);
+    return ids.length > 1
+      ? `<a class="playall" href="https://www.youtube.com/watch_videos?video_ids=${ids.join(",")}" target="_blank" rel="noopener">전체 재생 ↗</a>`
+      : "";
+  })()}
   <p class="dim" style="font-size:12px;margin-top:12px">탭하면 유튜브에서 들을 수 있어요.</p>
 </section>` : ""}
 

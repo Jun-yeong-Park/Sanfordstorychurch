@@ -26,5 +26,18 @@
   // 홈 섹션
   document.getElementById('praiseList').innerHTML = rows;
   document.getElementById('praiseDate').textContent = date;
+  // 전체 재생 — 영상 ID 를 모아 유튜브 임시 재생목록 주소를 만든다.
+  // 주소를 박아두지 않으므로 주보의 곡이 바뀌면 재생목록도 따라 바뀐다.
+  const idOf = u => {
+    const m = String(u).match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
+    return m ? m[1] : null;
+  };
+  const ids = songs.map(s => idOf(s.url)).filter(Boolean);
+  const all = document.getElementById('praiseAll');
+  if (all && ids.length > 1){
+    all.href = 'https://www.youtube.com/watch_videos?video_ids=' + ids.join(',');
+    all.hidden = false;
+  }
+
   document.getElementById('chPraise').hidden = false;
 })();
