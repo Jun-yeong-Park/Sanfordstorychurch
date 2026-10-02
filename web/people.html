@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=23">
+<link rel="stylesheet" href="styles/site.css?v=24">
 </head>
 <body class="page">
 
@@ -177,12 +177,13 @@
 </footer>
 
 <script src="js/site.js?v=3" defer></script>
-<script src="bulletin/data.js?v=5" defer></script>
+<script src="bulletin/data.js?v=6" defer></script>
 <script>
 addEventListener('DOMContentLoaded',function(){var B=window.BULLETIN;if(!B||!B.team)return;
 var esc=function(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 document.getElementById('peopleList').innerHTML=B.team.filter(function(m){return m&&m.name}).map(function(m){
- return '<li><b class="p-name">'+esc(m.name)+'</b></li>'}).join('');});
+ return '<li><b class="p-name">'+esc(m.name)+'</b>'
+  +(m.edu?'<span class="p-edu">'+esc(m.edu)+'</span>':'')+'</li>'}).join('');});
 </script>
 </body>
 </html>

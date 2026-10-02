@@ -1441,3 +1441,7 @@ body.page .tn-cta,body.page .menubtn{position:relative;z-index:61}
 @media(min-width:620px){.cal-c{aspect-ratio:auto;min-height:74px}}
 .ev{margin-top:26px}
 .ev li.past{opacity:.45}
+.p-edu{
+  display:block;margin-top:9px;
+  font-size:13px;line-height:1.55;color:var(--ink-dim);
+}

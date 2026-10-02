@@ -112,8 +112,10 @@ window.BULLETIN = {
 
   // 섬기는 분들
   team: [
-    { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 목사", nameEn: "Pastor Kyong Won Jung" },
-    { role: "전도사", roleEn: "Pastor", name: "허강현 전도사", nameEn: "Kanghyeon Heo" },
+    { role: "담임목사", roleEn: "Lead Pastor", name: "정경원 목사", nameEn: "Pastor Kyong Won Jung",
+      edu: "리폼드신학교(RTS) M.Div.", eduEn: "M.Div., Reformed Theological Seminary" },
+    { role: "전도사", roleEn: "Pastor", name: "허강현 전도사", nameEn: "Kanghyeon Heo",
+      edu: "칼빈신학교 M.Div.", eduEn: "M.Div., Calvin Theological Seminary" },
     { role: "코디네이터", roleEn: "Coordinator", name: "박준영 형제", nameEn: "Junyeong Park" },
   ],
   thisWeek: [
