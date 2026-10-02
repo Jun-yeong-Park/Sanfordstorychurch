@@ -40,3 +40,18 @@ with open(out, 'w', encoding='utf-8') as f:
     f.write('window.BULLETIN_ARCHIVE = ' + json.dumps(items, ensure_ascii=False, indent=2) + ';\n')
 
 print('✓ web/bulletin/archive.js — %d호' % len(items))
+
+# 주보가 바뀔 때마다 data.js/archive.js 의 주소도 바뀌어야 한다.
+# 버전을 손으로 올리지 않으면, 이미 방문한 사람 브라우저는 지난주 것을 계속 보여준다.
+import glob
+stamp = iso
+pages = glob.glob(os.path.join(here, '..', 'web', '*.html')) + \
+        glob.glob(os.path.join(here, '..', 'web', 'en', '*.html'))
+changed = 0
+for page in pages:
+    t = open(page, encoding='utf-8').read()
+    t2 = re.sub(r'(bulletin/(?:data|archive)\.js)\?v=[^"\']*', r'\1?v=' + stamp, t)
+    if t2 != t:
+        open(page, 'w', encoding='utf-8').write(t2)
+        changed += 1
+print('✓ 캐시 버전 %s 로 갱신 — %d개 페이지' % (stamp, changed))
