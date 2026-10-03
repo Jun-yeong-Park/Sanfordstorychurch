@@ -121,6 +121,7 @@
 
   /* ---------- P4 News ---------- */
   .news .body { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; padding-bottom: 3mm; }
+  .news { padding-bottom: 0; }   /* 하단 절취선을 P3 기도 카드와 같은 높이로 */
   .news .list { margin-top: 1mm; }
   .news .item { display: grid; grid-template-columns: 4.5mm 1fr; gap: 2mm; padding: 1mm 0; border-bottom: .3mm dotted rgba(15,30,52,.18); font-size: 8pt; line-height: 1.4; word-break: keep-all; }
   .news .item i { font: 400 11pt/1 var(--display); color: var(--orange); }
@@ -151,7 +152,7 @@
   .news ul.pr { list-style: none; font-size: 7.8pt; line-height: 1.45; }
   .news ul.pr li { padding: .6mm 0 .6mm 3.2mm; border-top: .3mm solid rgba(15,30,52,.15); position: relative; word-break: keep-all; }
   .news ul.pr li::before { content: ""; position: absolute; left: 0; top: 2.6mm; width: 1.6mm; height: 1.6mm; background: var(--orange); }
-  .news .foot { flex: none; margin: auto -10mm 0; height: var(--tear); padding: 2mm 10mm 0; border-top: .4mm dashed var(--navy); display: flex; gap: 4mm; align-items: center; position: relative; }
+  .news .foot { flex: none; margin: auto -10mm 0; height: var(--tear); padding: 3mm 10mm 4mm; border-top: .4mm dashed var(--navy); display: flex; gap: 4mm; align-items: center; position: relative; }
   .news .foot::before { content: "기도 카드 뒷면 · Prayer Card"; position: absolute; top: .6mm; right: 10mm; font-size: 5.8pt; font-weight: 600; color: var(--ink-dim); }
   .news .foot img { height: 10mm; }
   .news .foot .info { font-size: 7pt; line-height: 1.55; color: var(--ink-dim); }
