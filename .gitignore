@@ -8,3 +8,7 @@ public/
 /*.png
 # 주보 PDF 는 make.sh 로 다시 만든다
 bulletin/*.pdf
+# SNS: 카드뉴스 PNG/zip 은 sns/make.py 로 다시 만든다, 영상은 용량이 커서 안 올림
+sns/*/카드뉴스/
+sns/*/*.zip
+sns/**/*.mp4
