@@ -278,15 +278,17 @@
 <link rel="preload" as="image" href="../assets/logo/2.png">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=28">
+<link rel="stylesheet" href="../styles/site.css?v=29">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ FIXED TOP BAR ============ -->
 <div class="brand-bar">
@@ -371,14 +373,15 @@
 <section class="hero" id="hero">
   <div class="hero-sticky" id="top">
     <div class="hero-bg hero-bg--reel" id="heroBg">
-      <video class="hero-video" muted playsinline preload="auto" aria-hidden="true"></video>
+      <video class="hero-video" muted playsinline preload="auto" poster="../assets/video/hero-poster.jpg" aria-hidden="true"></video>
     </div>
+    <button type="button" class="hero-pause" id="heroPause" aria-pressed="false" aria-label="Pause background video"><span class="hp-pause" aria-hidden="true">❚❚</span><span class="hp-play" aria-hidden="true">▶</span></button>
     <div class="hero-tint"></div>
     <img class="hero-mark" src="../assets/emblem/icon-orange-tp.png" alt="">
 
     <div class="reveal" id="reveal">
       <h1 class="sr-only">Sanford Story Church — Korean church in Sanford, Florida · Serving Orlando, Lake Mary and Central Florida · Sunday worship 6:00 PM · 4942 FL-46 #1026, Sanford, FL 32771</h1>
-      <img class="logo-lockup" src="../assets/logo/1.png" alt="Sanford Story Church logo">
+      <img class="logo-lockup" src="../assets/logo/1.png" width="5400" height="1996" fetchpriority="high" alt="Sanford Story Church logo">
       <p class="reveal-headline">God's story begins<br>in <span class="accent">your life</span>.</p>
       <div class="reveal-details">Sanford, Florida</div>
 
@@ -407,11 +410,12 @@
 
 <!-- ============ SUNDAY WORSHIP · SERMON · LOCATION — ../bulletin/data.js is the source ============ -->
 <!-- ============ THIS WEEK — 말씀·찬양·주보는 bulletin/data.js (js/home.js). 쇼츠·카드뉴스는 실제 올라간 것만 ============ -->
+<main id="main">
 <section class="week" id="week" aria-label="This week">
   <div class="week-head">
     <span class="week-k"><span class="live-dot"></span>This Week</span>
     <h2>This Week's <span class="accent">Story</span></h2>
-    <span class="week-hint">Swipe →</span>
+    <div class="week-nav"><button type="button" class="week-btn" data-dir="-1" aria-label="Previous">←</button><button type="button" class="week-btn" data-dir="1" aria-label="Next">→</button></div>
   </div>
   <div class="week-track">
     <a class="wk wk--word" href="/bulletin">
@@ -427,22 +431,22 @@
       <span class="wk-go">Listen ahead ↓</span>
     </a>
     <a class="wk wk--media" href="https://www.youtube.com/shorts/N3nfJGGfhXU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/N3nfJGGfhXU/oar2.jpg" alt="" loading="lazy">
+      <img src="https://i.ytimg.com/vi/N3nfJGGfhXU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
       <span class="wk-over"><span class="wk-k">Shorts · Sermon</span><b class="wk-t">God's First Story<br>Genesis 1:1</b></span>
       <span class="wk-play">▶</span>
     </a>
     <a class="wk wk--media" href="https://www.youtube.com/shorts/uzmxJPI2iBM" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/uzmxJPI2iBM/oar2.jpg" alt="" loading="lazy">
+      <img src="https://i.ytimg.com/vi/uzmxJPI2iBM/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
       <span class="wk-over"><span class="wk-k">Shorts · Recap</span><b class="wk-t">Sunday Worship · Oct 4</b></span>
       <span class="wk-play">▶</span>
     </a>
     <a class="wk wk--media" href="https://www.youtube.com/shorts/u7ti0u2WbCU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/u7ti0u2WbCU/oar2.jpg" alt="" loading="lazy">
+      <img src="https://i.ytimg.com/vi/u7ti0u2WbCU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
       <span class="wk-over"><span class="wk-k">Shorts · Sermon</span><b class="wk-t">Who Is God to You?</b></span>
       <span class="wk-play">▶</span>
     </a>
     <a class="wk wk--media wk--card" href="https://www.instagram.com/storychurch_sanford/p/DeAMLI2oBR-/" target="_blank" rel="noopener">
-      <img src="../assets/preview/card-0927.png" alt="" loading="lazy">
+      <img src="../assets/preview/card-0927.png" width="640" height="800" alt="" loading="lazy">
       <span class="wk-over"><span class="wk-k">Cards · Instagram</span><b class="wk-t">You Are a Letter from Christ</b></span>
     </a>
     <a class="wk wk--pdf" href="/bulletin/bulletin.pdf" target="_blank" rel="noopener">
@@ -474,7 +478,7 @@
   <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
   <div class="chapter-inner">
     <blockquote class="verse rv rv-2">
-      "You show that you are a letter from Christ, the result of our ministry, written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts."
+      “You show that you are a letter from Christ, the result of our ministry, written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts.”
       <cite class="verse-cite">— 2 Corinthians 3:3</cite>
     </blockquote>
     <h2 class="display living rv rv-3">
@@ -643,13 +647,15 @@
   </div>
 </section>
 
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer class="site">
   <img class="mark" src="../assets/logo/1.png" alt="Sanford Story Church logo">
   <div class="foot-when">Sundays 6PM<span class="sep">·</span>Sanford, Florida</div>
   <a class="foot-addr" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771</a>
   <a class="ig" href="https://instagram.com/storychurch_sanford" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="4"/>
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/>
@@ -689,6 +695,6 @@
 <script src="../js/site.js?v=2" defer></script>
 <script src="../bulletin/data.js?v=2026-10-11.e638cfd4" defer></script>
 <script src="../js/praise.js?v=7" defer></script>
-<script src="../js/home.js?v=1" defer></script>
+<script src="../js/home.js?v=2" defer></script>
 </body>
 </html>
