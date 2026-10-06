@@ -58,6 +58,18 @@ em{{font-style:normal;font-weight:800;color:{ORANGE}}}.og em{{color:{NAVY}}}
 .verse .vq{{position:absolute;left:80px;right:80px;top:330px;font-size:58px;font-weight:700;line-height:1.5;letter-spacing:-.03em}}
 .verse .vq:before{{content:'“';display:block;font-family:'Bebas Neue';font-size:220px;line-height:.6;color:{ORANGE};margin-bottom:10px}}
 .verse .src{{position:absolute;left:80px;bottom:190px;font-size:32px;font-weight:700;color:{ORANGE}}}
+/* 숫자 */
+.nums h1{{font-size:112px}}
+.rows{{position:absolute;left:80px;right:80px;top:590px;list-style:none}}
+.rows li{{position:relative;display:flex;align-items:center;height:112px;padding-bottom:14px}}
+.rows .n{{width:250px;flex:none;font-family:'Bebas Neue';font-size:112px;line-height:1;color:{ORANGE}}}
+.rows .n small{{font-family:Pretendard;font-weight:700;font-size:36px;margin-left:6px}}
+.cr .rows .n{{color:{NAVY}}}
+.rows .n.word{{font-family:Pretendard;font-weight:800;font-size:66px;letter-spacing:-.04em}}
+.rows b{{display:block;font-size:40px;font-weight:800}}
+.rows span{{display:block;font-size:28px;font-weight:500;opacity:.75;margin-top:2px}}
+.rows i{{position:absolute;left:0;bottom:6px;height:6px;border-radius:3px;background:{ORANGE};opacity:.85}}
+.rows i.far{{right:-80px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,{ORANGE} 60%,transparent)}}
 /* CTA */
 .cta h1{{font-size:120px;top:300px}}
 .hand{{position:absolute;left:520px;top:470px;font-family:'Nanum Pen Script';color:{ORANGE};font-size:64px;transform:rotate(-4deg)}}
@@ -102,8 +114,26 @@ def parse(path):
     return head, cards
 
 
+def rows(items):
+    """항목: 13년 | 요셉 | 애굽의 총리가 되기까지 → 큰 숫자 + 길이 막대.
+    막대 길이는 숫자에 비례(가장 큰 숫자 = 전체 폭), 숫자가 아니면(수천 년) 화면 끝까지 뻗는다."""
+    parsed = [[x.strip() for x in it.split("|")] + ["", ""] for it in items]
+    nums = [int(m.group()) for p in parsed if (m := re.match(r"\d+", p[0]))]
+    top = max(nums, default=1)
+    out = []
+    for n, who, what, *_ in parsed:
+        m = re.match(r"(\d+)(.*)", n)
+        if m:
+            big = f"<div class=n>{m.group(1)}<small>{html.escape(m.group(2))}</small></div>"
+            bar = f"<i style='width:{max(4, int(m.group(1)) / top * 100):.1f}%'></i>"
+        else:
+            big, bar = f"<div class='n word'>{html.escape(n)}</div>", "<i class=far></i>"
+        out.append(f"<li>{big}<div><b>{html.escape(who)}</b><span>{html.escape(what)}</span></div>{bar}</li>")
+    return "".join(out)
+
+
 def build(head, cards):
-    content = [c for c in cards if c["종류"] in ("카드", "구절")]
+    content = [c for c in cards if c["종류"] in ("카드", "구절", "숫자")]
     cta = next((c for c in cards if c["종류"] == "CTA"), None) or {}
     cta = {**DEFAULT_CTA, **{k: v for k, v in cta.items() if v}}
     total = len(content) + 2
@@ -126,14 +156,18 @@ def build(head, cards):
 
     # 크림 → 네이비 번갈아, 마지막 내용 카드는 오렌지
     # 오렌지 위에는 로고를 올리지 않는다(브랜드 가이드: 저대비 배경 금지) → 글자 워드마크
+    cream_only = head.get("배경") == "크림"  # 카드.txt 머리에 '배경: 크림' → 내용 카드에 남색 없이
     for i, c in enumerate(content):
-        bg = "og" if i == len(content) - 1 else ("cr" if i % 2 == 0 else "nv")
+        bg = "og" if i == len(content) - 1 else ("cr" if i % 2 == 0 or cream_only else "nv")
         top = {"cr": logo("logo-on-light.png"), "nv": logo("logo-on-navy.png"),
                "og": "<div class=wordmark>SANFORD STORY CHURCH</div>"}[bg]
         deco = "" if bg == "og" else PATH
         tag = f"<div class=sp>{html.escape(c.get('태그', ''))}</div>"
         if c["종류"] == "구절":
             page(f"{bg} verse", top, deco + tag + f"<div class=vq>{fmt(c.get('내용', ''))}</div><div class=src>{html.escape(c.get('출처', ''))}</div>")
+            continue
+        if c["종류"] == "숫자":
+            page(f"{bg} nums", top, tag + f"<h1>{fmt(c.get('제목', ''))}</h1><ul class=rows>{rows(c['항목'])}</ul>")
             continue
         title = c.get("제목", "")
         long = " class=long" if title.count("/") >= 3 else ""
