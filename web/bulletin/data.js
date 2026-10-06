@@ -5,27 +5,27 @@
 // ============================================================
 window.BULLETIN = {
   issue: {
-    volume: "VOL. 1  ·  NO. 2",
-    date: "2026년 10월 4일",
-    dateEn: "OCTOBER 4, 2026",
-    dateISO: "2026-10-04",       // make.sh 가 PDF 파일명에 씀
+    volume: "VOL. 1  ·  NO. 3",
+    date: "2026년 10월 11일",
+    dateEn: "OCTOBER 11, 2026",
+    dateISO: "2026-10-11",       // make.sh 가 PDF 파일명에 씀
     service: "주일 오후 6:00",
     serviceEn: "Sunday 6:00 PM",
     label: "SUNDAY WORSHIP",          // 특별한 주가 아니면 "SUNDAY WORSHIP"
   },
 
   sermon: {
-    title: "하나님의 첫 이야기",
-    titleEn: "GOD'S FIRST STORY",
-    scripture: "창세기 1:1",
-    scriptureEn: "Genesis 1:1",
+    title: "준비 중",
+    titleEn: "COMING SOON",
+    scripture: "",
+    scriptureEn: "",
     preacher: "정경원 목사",
     preacherEn: "Pastor Kyong Won Jung",
     // P2 하단 '오늘의 말씀' 박스
-    excerpt: "태초에 하나님이 천지를 창조하시니라",
-    excerptRef: "창세기 1:1",
-    excerptEn: "In the beginning God created the heavens and the earth.",
-    excerptRefEn: "Genesis 1:1",
+    excerpt: "",
+    excerptRef: "",
+    excerptEn: "",
+    excerptRefEn: "",
     // 앱 전용: 설교 다시 듣기. 유튜브 링크 / mp3 주소. 없으면 "" 로 두세요.
     video: "",
     audio: "",
@@ -38,13 +38,13 @@ window.BULLETIN = {
       items: [
         { name: "예배로의 부름", nameEn: "Call to Worship", detail: "웰컴", detailEn: "Welcome", by: "다 같이", byEn: "All" },
         // 앱 전용: songs — 이번 주 찬양. artist(선택) · url(유튜브, 비우면 앱에서 검색으로 열림). 앱 주보 탭 "이번 주 찬양"에 모아 보임.
-        { name: "찬양", nameEn: "Praise", detail: "함께 지어져 가네 · 내 마음 다해 · 내가 어둠 속에서 헤멜 때에도", detailEn: "3 songs", by: "허강현 전도사", byEn: "Pastor Kanghyeon Heo",
+        { name: "찬양", nameEn: "Praise", detail: "주를 바라보며 · 감사와 찬양 드리며 · 감사함으로", detailEn: "3 songs", by: "허강현 전도사", byEn: "Pastor Kanghyeon Heo",
           songs: [
-            { title: "함께 지어져 가네", artist: "", url: "https://youtu.be/TtH4qHWdTto" },
-            { title: "내 마음 다해", artist: "", url: "https://youtu.be/RltIZ0J6_yA" },
-            { title: "내가 어둠 속에서 헤멜 때에도", artist: "", url: "https://youtu.be/hy-FXBSsHYw" },
+            { title: "주를 바라보며", artist: "", url: "https://youtu.be/i8fTqz-k95Y" },
+            { title: "감사와 찬양 드리며", artist: "", url: "https://youtu.be/9T3Ea-jLVJA" },
+            { title: "감사함으로", artist: "", url: "https://youtu.be/jm_fUziwymg" },
           ] },
-        { name: "말씀", nameEn: "Sermon", detail: "하나님의 첫 이야기", detailEn: "God's First Story", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
+        { name: "말씀", nameEn: "Sermon", detail: "준비 중", detailEn: "Coming soon", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
     {
@@ -56,8 +56,8 @@ window.BULLETIN = {
     {
       tag: "03", name: "DEEP STORY", sub: "Response & Blessing · 결단", subEn: "Response & Blessing",
       items: [
-        { name: "결단 찬양 · 봉헌", nameEn: "Response Song · Offering", detail: "삶의 예배", detailEn: "삶의 예배", by: "허강현 전도사", byEn: "Pastor Kanghyeon Heo",
-          songs: [{ title: "삶의 예배", artist: "", url: "https://youtu.be/_DGUe5aZR9o" }] },
+        { name: "결단 찬양 · 봉헌", nameEn: "Response Song · Offering", detail: "주님 말씀하시면", detailEn: "주님 말씀하시면", by: "허강현 전도사", byEn: "Pastor Kanghyeon Heo",
+          songs: [{ title: "주님 말씀하시면", artist: "", url: "https://youtu.be/TyC4rhee2S8" }] },
         { name: "축도", nameEn: "Benediction", detail: "민수기 6:24–26", detailEn: "Numbers 6:24–26", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
         { name: "파송 찬양", nameEn: "Sending Song", detail: "The Blessing", detailEn: "The Blessing", by: "허강현 전도사", byEn: "Pastor Kanghyeon Heo",
           songs: [{ title: "The Blessing", artist: "", url: "https://youtu.be/mDK9ZrhJA34" }] },

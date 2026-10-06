@@ -1,6 +1,18 @@
 // 주보 게시판 목록. make.sh 가 주보를 만들 때마다 갱신한다.
 window.BULLETIN_ARCHIVE = [
   {
+    "dateISO": "2026-10-11",
+    "date": "2026년 10월 11일",
+    "dateEn": "OCTOBER 11, 2026",
+    "title": "준비 중",
+    "titleEn": "COMING SOON",
+    "scripture": "",
+    "scriptureEn": "",
+    "preacher": "정경원 목사",
+    "label": "SUNDAY WORSHIP",
+    "pdf": "/bulletin/주보-2026-10-11.pdf"
+  },
+  {
     "dateISO": "2026-10-04",
     "date": "2026년 10월 4일",
     "dateEn": "OCTOBER 4, 2026",
