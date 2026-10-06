@@ -40,4 +40,25 @@
   }
 
   document.getElementById('chPraise').hidden = false;
+
+  // 찬양 팝업 — 하루 한 번. '오늘 하루 보지 않기'를 누르면 그날은 다시 안 뜬다.
+  const pop = document.getElementById('praisePop');
+  if (!pop || typeof pop.showModal !== 'function') return;
+  document.getElementById('praisePopList').innerHTML = rows;
+  document.getElementById('praisePopDate').textContent = date;
+  const popAll = document.getElementById('praisePopAll');
+  if (all && !all.hidden){ popAll.href = all.href; popAll.hidden = false; }
+
+  const KEY = 'praisePopHidden';
+  const t = new Date();
+  const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+  try { if (localStorage.getItem(KEY) === today) return; } catch (e) {}
+
+  pop.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => pop.close()));
+  pop.querySelector('[data-today]').addEventListener('click', () => {
+    try { localStorage.setItem(KEY, today); } catch (e) {}
+    pop.close();
+  });
+  pop.addEventListener('click', e => { if (e.target === pop) pop.close(); });   // 바깥(백드롭) 클릭
+  setTimeout(() => pop.showModal(), 1200);
 })();

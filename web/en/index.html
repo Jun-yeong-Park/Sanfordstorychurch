@@ -284,7 +284,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=26">
+<link rel="stylesheet" href="../styles/site.css?v=27">
 </head>
 <body>
 
@@ -633,9 +633,25 @@
 
 
 
+<!-- Praise popup — once a day. Same songs as the section above (js/praise.js) -->
+<dialog class="pop" id="praisePop" aria-labelledby="praisePopTitle">
+  <button class="pop-x" data-close aria-label="Close">&times;</button>
+  <div class="pop-body">
+    <span class="pop-k">This Week's Praise</span>
+    <h2 id="praisePopTitle">Sunday, <span id="praisePopDate"></span> — Songs We'll Sing</h2>
+    <p>Have a listen ahead of time — we'd love to sing them with you.</p>
+    <ul class="praise-list" id="praisePopList"></ul>
+    <a class="praise-all" id="praisePopAll" hidden target="_blank" rel="noopener">Play all ↗</a>
+  </div>
+  <div class="pop-foot">
+    <button type="button" data-today>Don't show again today</button>
+    <button type="button" class="pop-ok" data-close>Close</button>
+  </div>
+</dialog>
+
 <script src="../js/site.js?v=2" defer></script>
 <script src="../bulletin/data.js?v=2026-10-11.e638cfd4" defer></script>
-<script src="../js/praise.js?v=6" defer></script>
+<script src="../js/praise.js?v=7" defer></script>
 <script src="../js/homeband.js?v=9" defer></script>
 </body>
 </html>

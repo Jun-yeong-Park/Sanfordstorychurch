@@ -284,7 +284,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=26">
+<link rel="stylesheet" href="styles/site.css?v=27">
 </head>
 <body>
 
@@ -683,9 +683,25 @@
 
 
 
+<!-- 찬양 팝업 — 하루 한 번. 곡은 위 섹션과 같은 목록 (js/praise.js) -->
+<dialog class="pop" id="praisePop" aria-labelledby="praisePopTitle">
+  <button class="pop-x" data-close aria-label="닫기">&times;</button>
+  <div class="pop-body">
+    <span class="pop-k">This Week's Praise</span>
+    <h2 id="praisePopTitle"><span id="praisePopDate"></span> 주일, 함께 부를 찬양</h2>
+    <p>미리 들어보고 같이 찬양하면 좋겠습니다.</p>
+    <ul class="praise-list" id="praisePopList"></ul>
+    <a class="praise-all" id="praisePopAll" hidden target="_blank" rel="noopener">전체 재생 ↗</a>
+  </div>
+  <div class="pop-foot">
+    <button type="button" data-today>오늘 하루 보지 않기</button>
+    <button type="button" class="pop-ok" data-close>닫기</button>
+  </div>
+</dialog>
+
 <script src="js/site.js?v=2" defer></script>
 <script src="bulletin/data.js?v=2026-10-11.e638cfd4" defer></script>
-<script src="js/praise.js?v=6" defer></script>
+<script src="js/praise.js?v=7" defer></script>
 <script src="js/homeband.js?v=9" defer></script>
 </body>
 </html>
