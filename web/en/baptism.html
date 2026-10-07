@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=56">
+<link rel="stylesheet" href="../styles/site.css?v=57">
 </head>
 <body class="page">
 
@@ -63,11 +63,20 @@
   </a>
 <nav class="topnav" aria-label="메뉴">
   <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnmNew">I'm New</button>
+    <div class="tn-menu" id="tnmNew" hidden>
+      <a href="/en/visit.html#flow">A Sunday Evening</a>
+      <a href="/en/visit.html#faq">Questions</a>
+      <a href="/en/visit.html#people">Who You'll Meet</a>
+      <a href="/en/visit.html#where">When &amp; Where</a>
+    </div>
+  </div>
+  <div class="tn-item">
     <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm0">About</button>
     <div class="tn-menu" id="tnm0" hidden>
       <a href="/en/about.html">What We Believe</a>
       <a href="/en/people.html">Our Team</a>
-      <a href="/about.html#crcna">CRCNA</a>
+      <a href="/en/about.html#crcna">CRCNA</a>
     </div>
   </div>
   <div class="tn-item">
@@ -111,10 +120,15 @@
 <div class="drawer" id="drawer" hidden>
   <button type="button" class="drawer-x" id="drawerClose" aria-label="닫기">&times;</button>
   <nav aria-label="전체 메뉴">
+    <p class="dr-k">I'm New</p>
+    <a href="/en/visit.html#flow">A Sunday Evening</a>
+    <a href="/en/visit.html#faq">Questions</a>
+    <a href="/en/visit.html#people">Who You'll Meet</a>
+    <a href="/en/visit.html#where">When &amp; Where</a>
     <p class="dr-k">About</p>
     <a href="/en/about.html">What We Believe</a>
     <a href="/en/people.html">Our Team</a>
-    <a href="/about.html#crcna">CRCNA</a>
+    <a href="/en/about.html#crcna">CRCNA</a>
     <p class="dr-k">Worship</p>
     <a href="/en/worship.html">Service Info</a>
     <a href="/en/bulletins.html">Bulletin</a>

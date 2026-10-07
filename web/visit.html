@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=56">
+<link rel="stylesheet" href="styles/site.css?v=57">
 </head>
 <body class="page">
 
@@ -72,6 +72,15 @@
     </a>
   </div>
 <nav class="topnav" aria-label="메뉴">
+  <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnmNew">처음 오셨나요</button>
+    <div class="tn-menu" id="tnmNew" hidden>
+      <a href="/visit.html#flow">주일 저녁은 이렇게</a>
+      <a href="/visit.html#faq">자주 묻는 질문</a>
+      <a href="/visit.html#people">맞이하는 사람들</a>
+      <a href="/visit.html#where">언제 · 어디서</a>
+    </div>
+  </div>
   <div class="tn-item">
     <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm0">교회 소개</button>
     <div class="tn-menu" id="tnm0" hidden>
@@ -121,6 +130,11 @@
 <div class="drawer" id="drawer" hidden>
   <button type="button" class="drawer-x" id="drawerClose" aria-label="닫기">&times;</button>
   <nav aria-label="전체 메뉴">
+    <p class="dr-k">처음 오셨나요</p>
+    <a href="/visit.html#flow">주일 저녁은 이렇게</a>
+    <a href="/visit.html#faq">자주 묻는 질문</a>
+    <a href="/visit.html#people">맞이하는 사람들</a>
+    <a href="/visit.html#where">언제 · 어디서</a>
     <p class="dr-k">교회 소개</p>
     <a href="/about.html">우리가 믿는 것</a>
     <a href="/people.html">섬기는 사람들</a>
@@ -148,9 +162,31 @@
   <p class="lead">아무 준비 없이 오셔도 됩니다. 그래도 궁금하실 만한 것들을 미리 적어두었습니다.</p>
 </header>
 
-<section class="sec cream">
+<nav class="toc" aria-label="이 페이지 목차">
+  <a href="#flow"><span>01</span>주일 저녁은 이렇게</a>
+  <a href="#faq"><span>02</span>자주 묻는 질문</a>
+  <a href="#people"><span>03</span>섬기는 사람</a>
+  <a href="#believe"><span>04</span>우리가 믿는 것</a>
+  <a href="#where"><span>05</span>언제 · 어디서</a>
+</nav>
+
+<section class="sec cream" id="flow">
   <div class="sec-in">
-    <h2>처음 오시면 어떤가요</h2>
+    <h2>주일 저녁은 이렇게 흘러갑니다</h2>
+    <p class="sec-lead">저녁 6시에 시작해 축도까지 <b>약 한 시간</b>입니다. 네 부분으로 이어집니다.</p>
+    <ol class="flow">
+      <li><span class="flow-n">01</span><div><b>His Story</b><small>예배로의 부름 · 찬양 · 말씀</small><p>함께 찬양하고, 정경원 목사가 그 주의 본문을 전합니다.</p></div></li>
+      <li><span class="flow-n">02</span><div><b>Your Story</b><small>말씀 적용 · 나눔 (10분)</small><p>들은 말씀을 노트에 적고, 옆자리 분과 짧게 나눕니다. 원하지 않으시면 듣기만 하셔도 됩니다.</p></div></li>
+      <li><span class="flow-n">03</span><div><b>Deep Story</b><small>결단 찬양 · 봉헌 · 축도 · 파송 찬양</small><p>말씀에 응답하는 찬양을 부르고, 축복의 기도로 예배를 마칩니다.</p></div></li>
+      <li><span class="flow-n">04</span><div><b>Our Story</b><small>광고 · 식탁 교제</small><p>짧은 소식을 나누고, 함께 저녁을 먹습니다. 바로 가셔도 괜찮습니다.</p></div></li>
+    </ol>
+    <p class="note">이번 주 찬양과 말씀은 <a class="inline-link" href="/bulletin">온라인 주보</a>에 미리 올려 둡니다.</p>
+  </div>
+</section>
+
+<section class="sec beige" id="faq">
+  <div class="sec-in">
+    <h2>자주 묻는 질문</h2>
     <dl class="qa">
       <div><dt>가면 어떤 분위기인가요?</dt>
         <dd>문 앞에서 맞아드립니다. 작은 교회라 새로 오신 분은 금방 알아봅니다.
@@ -160,7 +196,7 @@
       <div><dt>예배는 얼마나 걸리나요?</dt>
         <dd>저녁 6시에 시작해서 축도까지 <b>약 한 시간</b>입니다.
           10분쯤 일찍 오시면 자리를 잡고 인사 나누기에 넉넉합니다.
-          예배 후에는 함께 다과를 나눕니다. 바로 가셔도 괜찮습니다.</dd></div>
+          예배 후에는 함께 저녁을 나눕니다. 바로 가셔도 괜찮습니다.</dd></div>
 
       <div><dt>찬양은 어떤가요?</dt>
         <dd><b>허강현 전도사</b>가 인도합니다. 큰 밴드는 아니고 단출하지만,
@@ -187,7 +223,29 @@
         <dd>원하지 않으시면 하지 않습니다. 조용히 예배만 드리고 가셔도 괜찮습니다.</dd></div>
     </dl>
   </div>
-</section><section class="sec beige">
+</section>
+
+<section class="sec cream" id="people">
+  <div class="sec-in">
+    <h2>맞이하는 사람들</h2>
+    <ul class="mini-people">
+      <li><b>정경원 목사</b><span>담임 · 설교</span></li>
+      <li><b>허강현 전도사</b><span>찬양 인도</span></li>
+      <li><b>박준영 형제</b><span>코디네이터 · 웰컴</span></li>
+    </ul>
+    <p class="note"><a class="inline-link" href="/people.html">섬기는 사람들 더 보기 →</a></p>
+  </div>
+</section>
+
+<section class="sec beige" id="believe">
+  <div class="sec-in">
+    <h2>우리가 믿는 것</h2>
+    <p class="sec-lead">교회가 오래 지켜온 고백 위에 섭니다. 그 중심에는 언제나 복음이 있습니다. 스토리교회는 이 믿음을 네 가지 이야기로 붙듭니다 — <b>His Story · My Story · Deep Story · Our Story</b>.</p>
+    <div class="sec-cta"><a class="btn" href="/about.html">우리가 믿는 것 자세히 <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<section class="sec beige" id="where">
   <div class="sec-in">
     <h2>언제 · 어디서</h2>
     <div class="grid2">

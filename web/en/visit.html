@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=56">
+<link rel="stylesheet" href="../styles/site.css?v=57">
 </head>
 <body class="page">
 
@@ -63,11 +63,20 @@
   </a>
 <nav class="topnav" aria-label="메뉴">
   <div class="tn-item">
+    <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnmNew">I'm New</button>
+    <div class="tn-menu" id="tnmNew" hidden>
+      <a href="/en/visit.html#flow">A Sunday Evening</a>
+      <a href="/en/visit.html#faq">Questions</a>
+      <a href="/en/visit.html#people">Who You'll Meet</a>
+      <a href="/en/visit.html#where">When &amp; Where</a>
+    </div>
+  </div>
+  <div class="tn-item">
     <button type="button" class="tn-top" aria-expanded="false" aria-controls="tnm0">About</button>
     <div class="tn-menu" id="tnm0" hidden>
       <a href="/en/about.html">What We Believe</a>
       <a href="/en/people.html">Our Team</a>
-      <a href="/about.html#crcna">CRCNA</a>
+      <a href="/en/about.html#crcna">CRCNA</a>
     </div>
   </div>
   <div class="tn-item">
@@ -111,10 +120,15 @@
 <div class="drawer" id="drawer" hidden>
   <button type="button" class="drawer-x" id="drawerClose" aria-label="닫기">&times;</button>
   <nav aria-label="전체 메뉴">
+    <p class="dr-k">I'm New</p>
+    <a href="/en/visit.html#flow">A Sunday Evening</a>
+    <a href="/en/visit.html#faq">Questions</a>
+    <a href="/en/visit.html#people">Who You'll Meet</a>
+    <a href="/en/visit.html#where">When &amp; Where</a>
     <p class="dr-k">About</p>
     <a href="/en/about.html">What We Believe</a>
     <a href="/en/people.html">Our Team</a>
-    <a href="/about.html#crcna">CRCNA</a>
+    <a href="/en/about.html#crcna">CRCNA</a>
     <p class="dr-k">Worship</p>
     <a href="/en/worship.html">Service Info</a>
     <a href="/en/bulletins.html">Bulletin</a>
@@ -138,9 +152,31 @@
   <p class="lead">You can come just as you are. Here are the things people usually wonder about.</p>
 </header>
 
-<section class="sec cream">
+<nav class="toc" aria-label="On this page">
+  <a href="#flow"><span>01</span>A Sunday evening</a>
+  <a href="#faq"><span>02</span>Questions</a>
+  <a href="#people"><span>03</span>Who you'll meet</a>
+  <a href="#believe"><span>04</span>What we believe</a>
+  <a href="#where"><span>05</span>When &amp; where</a>
+</nav>
+
+<section class="sec cream" id="flow">
   <div class="sec-in">
-    <h2>What to expect</h2>
+    <h2>How a Sunday evening goes</h2>
+    <p class="sec-lead">We start at 6 PM and finish in <b>about an hour</b>, in four parts. Worship is in Korean.</p>
+    <ol class="flow">
+      <li><span class="flow-n">01</span><div><b>His Story</b><small>Call to worship · Songs · Message</small><p>We sing together, then Pastor Jung preaches from that week's passage.</p></div></li>
+      <li><span class="flow-n">02</span><div><b>Your Story</b><small>Reflect &amp; share (10 min)</small><p>Jot down what stood out and talk it over with the person next to you. Listening only is fine too.</p></div></li>
+      <li><span class="flow-n">03</span><div><b>Deep Story</b><small>Response song · Offering · Benediction · Sending song</small><p>We answer the Word in song and close with a blessing.</p></div></li>
+      <li><span class="flow-n">04</span><div><b>Our Story</b><small>Announcements · Dinner together</small><p>A few quick updates, then we eat together. Feel free to stay or head home.</p></div></li>
+    </ol>
+    <p class="note">This week's songs and message go up on the <a class="inline-link" href="/bulletin">online bulletin</a> ahead of time.</p>
+  </div>
+</section>
+
+<section class="sec beige" id="faq">
+  <div class="sec-in">
+    <h2>Questions people ask</h2>
     <dl class="qa">
       <div><dt>What is it like when I arrive?</dt>
         <dd>Someone will meet you at the door. We are a small church, so a new face is noticed right away —
@@ -166,7 +202,29 @@
         <dd>Only if you want to. You are welcome to sit, worship, and go.</dd></div>
     </dl>
   </div>
-</section><section class="sec beige">
+</section>
+
+<section class="sec cream" id="people">
+  <div class="sec-in">
+    <h2>Who you'll meet</h2>
+    <ul class="mini-people">
+      <li><b>Pastor Kyong Won Jung</b><span>Lead pastor · Preaching</span></li>
+      <li><b>Kanghyeon Heo</b><span>Worship leader</span></li>
+      <li><b>Junyeong Park</b><span>Coordinator · Welcome</span></li>
+    </ul>
+    <p class="note"><a class="inline-link" href="/en/people.html">Meet the team →</a></p>
+  </div>
+</section>
+
+<section class="sec beige" id="believe">
+  <div class="sec-in">
+    <h2>What we believe</h2>
+    <p class="sec-lead">We stand on the confessions the church has held for centuries, with the gospel at the center — held together in four stories: <b>His Story · My Story · Deep Story · Our Story</b>.</p>
+    <div class="sec-cta"><a class="btn" href="/en/about.html">Read more <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<section class="sec beige" id="where">
   <div class="sec-in">
     <h2>When &amp; where</h2>
     <div class="grid2">

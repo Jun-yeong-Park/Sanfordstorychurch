@@ -1694,3 +1694,25 @@ body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px)}
 .denom-note{padding-top:28px;padding-bottom:40px;border-top:1px solid rgba(42,29,15,.12)}
 .denom-note p{font-size:15px;line-height:1.75;color:var(--ink-dim)}
 .denom-note b{color:var(--ink)}
+
+/* visit — 목차 · 주일 순서 · 맞이하는 사람 */
+.toc{position:sticky;top:var(--bar-h,64px);z-index:5;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  padding:12px clamp(20px,5vw,80px);background:rgba(251,246,234,.96);border-bottom:1px solid rgba(42,29,15,.1);justify-content:center}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:none;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:99px;border:1px solid rgba(42,29,15,.18);font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
+.toc a span{font-family:var(--disp-en);font-weight:900;font-size:12px;background:var(--orange);color:var(--ink);border-radius:99px;padding:2px 6px}
+.toc a:hover{border-color:var(--ink)}
+#flow,#faq,#people,#believe,#where{scroll-margin-top:130px}
+.sec-lead{font-size:16.5px;line-height:1.8;color:var(--ink-dim);margin:-6px 0 22px}
+.sec-lead b{color:var(--ink)}
+.flow{list-style:none;padding:0;margin:0;display:grid;gap:2px;background:rgba(42,29,15,.12)}
+.flow li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:22px 20px;background:var(--cream)}
+.flow-n{font-family:var(--disp-en);font-weight:900;font-size:20px;color:var(--ink);background:var(--orange);border-radius:8px;height:40px;display:grid;place-items:center}
+.flow b{display:block;font-family:var(--disp-en);font-weight:900;font-size:21px;text-transform:uppercase;letter-spacing:-.01em;color:var(--ink)}
+.flow small{display:block;margin-top:2px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.flow p{margin-top:8px;font-size:15.5px;line-height:1.75;color:var(--ink-dim)}
+.mini-people{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mini-people li{padding:18px 20px;border-top:4px solid var(--orange);background:rgba(255,255,255,.45)}
+.mini-people b{display:block;font-family:var(--disp-ko);font-weight:900;font-size:19px;color:var(--ink)}
+.mini-people span{display:block;margin-top:4px;font-size:14.5px;color:var(--ink-dim)}
+@media(max-width:640px){.toc{justify-content:flex-start}.flow li{grid-template-columns:44px 1fr;padding:18px 14px}}
