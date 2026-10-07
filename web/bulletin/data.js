@@ -15,17 +15,17 @@ window.BULLETIN = {
   },
 
   sermon: {
-    title: "준비 중",
-    titleEn: "COMING SOON",
-    scripture: "",
-    scriptureEn: "",
+    title: "인간의 첫 이야기",
+    titleEn: "HUMANITY'S FIRST STORY",
+    scripture: "창세기 3:3-6",
+    scriptureEn: "Genesis 3:3–6",
     preacher: "정경원 목사",
     preacherEn: "Pastor Kyong Won Jung",
     // P2 하단 '오늘의 말씀' 박스
-    excerpt: "",
-    excerptRef: "",
-    excerptEn: "",
-    excerptRefEn: "",
+    excerpt: "여자가 그 나무를 본즉 먹음직도 하고 보암직도 하고 지혜롭게 할 만큼 탐스럽기도 한 나무인지라 여자가 그 열매를 따먹고 자기와 함께 있는 남편에게도 주매 그도 먹은지라",
+    excerptRef: "창세기 3:6",
+    excerptEn: "She took of its fruit, and ate; and she gave some to her husband with her, and he ate.",
+    excerptRefEn: "Genesis 3:6",
     // 앱 전용: 설교 다시 듣기. 유튜브 링크 / mp3 주소. 없으면 "" 로 두세요.
     video: "",
     audio: "",
@@ -44,7 +44,7 @@ window.BULLETIN = {
             { title: "감사와 찬양 드리며", artist: "", url: "https://youtu.be/9T3Ea-jLVJA" },
             { title: "감사함으로", artist: "", url: "https://youtu.be/jm_fUziwymg" },
           ] },
-        { name: "말씀", nameEn: "Sermon", detail: "준비 중", detailEn: "Coming soon", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
+        { name: "말씀", nameEn: "Sermon", detail: "인간의 첫 이야기", detailEn: "Humanity's First Story", by: "정경원 목사", byEn: "Pastor Kyong Won Jung" },
       ],
     },
     {
@@ -129,7 +129,7 @@ window.BULLETIN = {
   // 앱 전용: 일정 (교회 탭 · "내 캘린더에 추가"). date: YYYY-MM-DD, time: HH:MM (24h), durationMin: 분
   events: [
     { date: "2026-10-04", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "하나님의 첫 이야기 · 창세기 1:1", descEn: "God's First Story · Genesis 1:1" },
-    { date: "2026-10-11", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "", descEn: "" },
+    { date: "2026-10-11", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "인간의 첫 이야기 · 창세기 3:3-6", descEn: "Humanity's First Story · Genesis 3:3–6" },
     { date: "2026-10-18", time: "18:00", durationMin: 120, title: "주일 예배", titleEn: "Sunday Worship", place: "4942 FL-46 #1026, Sanford", placeEn: "4942 FL-46 #1026, Sanford", desc: "", descEn: "" },
   ],
 
