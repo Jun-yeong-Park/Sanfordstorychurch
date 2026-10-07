@@ -141,7 +141,7 @@ window.BULLETIN = {
     addressEn: "4942 FL-46 #1026, Sanford, FL 32771",
     web: "sanfordstorychurch.com",
     instagram: "@storychurch_sanford",
-    email: "hello@sanfordstorychurch.com",
+    email: "sanfordstorychurch@gmail.com",
     giving: "헌금: Zelle  sanfordstorychurch0927@gmail.com<br>수표: \"Sanford Story Church\" 앞 · 7000 Winegard Rd, Orlando FL 32809 우편<br>계좌 이체(Fifth Third Bank)는 별도로 안내드립니다",
     givingEn: "Giving: Zelle  sanfordstorychurch0927@gmail.com<br>Check: payable to \"Sanford Story Church\", mailed to 7000 Winegard Rd, Orlando FL 32809<br>Bank transfer: Fifth Third Bank account details available on request",
     tagline: "God's Story begins in your life.",

@@ -12,3 +12,4 @@ bulletin/*.pdf
 sns/*/카드뉴스/
 sns/*/*.zip
 sns/**/*.mp4
+.impeccable/

@@ -59,6 +59,11 @@
   })();
 
 
+  // 홈 로고를 누르면 편지를 처음부터(봉투부터) 다시 연다
+  document.querySelectorAll('a.bmark').forEach(a => a.addEventListener('click', () => {
+    try { sessionStorage.removeItem('envSeen'); } catch (e) {}
+  }));
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting){

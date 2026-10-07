@@ -285,10 +285,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=29">
+<link rel="stylesheet" href="styles/site.css?v=48">
 </head>
-<body>
+<body class="letter">
 <a class="skip" href="#main">본문으로 바로가기</a>
+<div class="desk" aria-hidden="true"></div>
+
 
 <!-- ============ FIXED TOP BAR ============ -->
 <div class="brand-bar">
@@ -339,7 +341,7 @@
     <div class="tn-menu" id="tnm3" hidden>
       <a href="/events.html">일정</a>
       <a href="/giving.html">헌금</a>
-      <a href="mailto:hello@sanfordstorychurch.com">문의</a>
+      <a href="mailto:sanfordstorychurch@gmail.com">문의</a>
     </div>
   </div>
 </nav>
@@ -374,290 +376,113 @@
     <p class="dr-k">나눔과 참여</p>
     <a href="/events.html">일정</a>
     <a href="/giving.html">헌금</a>
-    <a href="mailto:hello@sanfordstorychurch.com">문의</a>
+    <a href="mailto:sanfordstorychurch@gmail.com">문의</a>
     <a class="dr-cta" href="/visit.html">처음 오시는 분 →</a>
   </nav>
 </div>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="hero-sticky" id="top">
-    <div class="hero-bg hero-bg--reel" id="heroBg">
-      <video class="hero-video" muted playsinline preload="auto" poster="assets/video/hero-poster.jpg" aria-hidden="true"></video>
-    </div>
-    <button type="button" class="hero-pause" id="heroPause" aria-pressed="false" aria-label="배경 영상 멈춤"><span class="hp-pause" aria-hidden="true">❚❚</span><span class="hp-play" aria-hidden="true">▶</span></button>
-    <div class="hero-tint"></div>
-    <img class="hero-mark" src="assets/emblem/icon-orange-tp.png" alt="">
 
-    <div class="reveal" id="reveal">
-      <h1 class="sr-only">스토리교회 · Sanford Story Church — 플로리다 샌포드 한인교회 · 올랜도·레이크메리·센트럴 플로리다 한국어 예배 공동체 · 매주 주일 오후 6시 · 4942 FL-46 #1026, Sanford, FL 32771</h1>
-      <img class="logo-lockup" src="assets/logo/1.png" width="5400" height="1996" fetchpriority="high" alt="Sanford Story Church 스토리교회 로고 — 샌포드 한인교회">
-      <p class="reveal-headline">하나님의 이야기가<br><span class="accent">당신의 삶</span>에서 시작됩니다.</p>
-      <div class="reveal-details">Sanford, Florida</div>
-
-      <!-- 날짜를 박아두지 않는다. js/site.js 가 다음 주일을 계산한다 -->
-      <div class="reveal-next" aria-label="이번 주일 예배">
-        <div class="rn-kicker"><span class="live-dot"></span>이번 주일 예배 · This Sunday</div>
-        <div class="rn-line">
-          <span class="rn-date" id="nextDate">주일</span>
-          <span class="rn-sep">·</span>
-          <span class="rn-time">저녁 6시</span>
-        </div>
-        <a class="rn-place" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771 · 길찾기 ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="scroll-hint" id="scrollHint">
-  <span>Scroll</span>
-  <span class="line"></span>
-</div>
-
-<!-- ============ MARQUEE TICKER ============ -->
-
-</div>
-
-<!-- ============ 예배 안내 띠 — 말씀은 bulletin/data.js 가 원본 ============ -->
-<!-- ============ THIS WEEK — 말씀·찬양·주보는 bulletin/data.js (js/home.js). 쇼츠·카드뉴스는 실제 올라간 것만 ============ -->
+<div class="airmail airmail--top" aria-hidden="true"></div>
 <main id="main">
-<section class="week" id="week" aria-label="이번 주">
-  <div class="week-head">
-    <span class="week-k"><span class="live-dot"></span>This Week</span>
-    <h2>이번 주 <span class="accent">스토리</span></h2>
-    <div class="week-nav"><button type="button" class="week-btn" data-dir="-1" aria-label="이전">←</button><button type="button" class="week-btn" data-dir="1" aria-label="다음">→</button></div>
-  </div>
-  <div class="week-track">
-    <a class="wk wk--word" href="/bulletin">
-      <span class="wk-k">이번 주 말씀</span>
-      <b class="wk-t" id="wkSermon"></b>
-      <span class="wk-s" id="wkSermonMeta"></span>
-      <span class="wk-go">온라인 주보 →</span>
-    </a>
-    <a class="wk wk--songs" href="#chPraise">
-      <span class="wk-k">이번 주 찬양</span>
-      <b class="wk-t" id="wkSongs"></b>
-      <span class="wk-s" id="wkSongsMeta"></span>
-      <span class="wk-go">미리 듣기 ↓</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/N3nfJGGfhXU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/N3nfJGGfhXU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">쇼츠 · 지난 설교</span><b class="wk-t">하나님의 첫 이야기<br>창세기 1:1</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/uzmxJPI2iBM" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/uzmxJPI2iBM/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">쇼츠 · 리캡</span><b class="wk-t">10월 4일 주일예배</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/u7ti0u2WbCU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/u7ti0u2WbCU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">쇼츠 · 지난 설교</span><b class="wk-t">여러분에게 하나님은<br>어떤 분인가요?</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media wk--card" href="https://www.instagram.com/storychurch_sanford/p/DeAMLI2oBR-/" target="_blank" rel="noopener">
-      <img src="assets/preview/card-0927.png" width="640" height="800" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">카드뉴스 · 인스타그램</span><b class="wk-t">너희는 그리스도의 편지</b></span>
-    </a>
-    <a class="wk wk--pdf" href="/bulletin/bulletin.pdf" target="_blank" rel="noopener">
-      <span class="wk-k">주보</span>
-      <b class="wk-t" id="wkIssue">이번 주 주보</b>
-      <span class="wk-s">PDF 로 받기</span>
-      <span class="wk-go">열기 ↗</span>
-    </a>
+<!-- 봉투 — 첫 방문에 한 번. 스크롤하는 만큼 열린다 (js/letter.js 가 --p 0~1 을 준다). 같은 세션에선 건너뜀 -->
+<section class="intro" id="intro" hidden aria-label="편지 봉투">
+  <div class="intro-stage">
+    <button type="button" class="env-box" id="envBox" aria-label="편지 열기">
+      <span class="env-shadow"></span>
+      <span class="env-back"></span>
+      <span class="env-letter">
+        <span class="env-letter-head">샌포드에 사는 당신께,</span>
+        <span class="env-letter-sub">하나님의 이야기가 당신의 삶에서 시작됩니다.</span>
+      </span>
+      <span class="env-front"></span>
+      <span class="env-flap"><span class="env-flap-in"></span></span>
+      <span class="env-seal"><img class="seal-wax" src="assets/envelope/seal.webp" alt=""><img class="seal-mark" src="assets/emblem/mark-200.png" alt=""></span>
+      <span class="env-to"><span>To.</span><b>샌포드에 사는 당신께</b><small>4942 FL-46 #1026 · Sanford, Florida</small></span>
+    </button>
+    <p class="intro-hint">스크롤하면 편지가 열립니다 <span class="arrow">↓</span></p>
   </div>
 </section>
-
-<!-- ============ THIS WEEK'S PRAISE — 곡 목록은 bulletin/data.js 가 원본 ============ -->
-<section class="chapter" id="chPraise" hidden>
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <div class="chapter-label rv">This Week's Praise</div>
-    <h2 class="display rv rv-2">
-      <span id="praiseDate"></span> 주일,<br><span class="accent">함께 부를 찬양</span>
-    </h2>
-    <p class="praise-sub rv rv-3">미리 들어보고 같이 찬양하면 좋겠습니다. 찬양 인도 <b>허강현 전도사</b></p>
-    <ul class="praise-list rv rv-3" id="praiseList"></ul>
-    <a class="praise-all" id="praiseAll" hidden target="_blank" rel="noopener">전체 재생 ↗</a>
-  </div>
-</section>
-
-<!-- ============ BRAND SPLASH ============ -->
-<!-- ============ CHAPTER 01 ============ -->
-<section class="chapter" id="ch1">
-  <div class="chapter-bg" data-parallax="0.12"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      하나님은 <span class="accent">지금도</span><br>
-      이 도시와, 당신의 삶에,<br>
-      <span class="accent story-swipe">이야기</span>를 써 내려가고 계십니다.
-    </h2>
-  </div>
-</section>
-
-<!-- ============ SCRIPTURE ============ -->
-<section class="chapter" id="chScripture">
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <blockquote class="verse rv rv-2">
-      “너희는 우리로 말미암아 나타난 그리스도의 편지니 이는 먹으로 쓴 것이 아니요 오직 살아 계신 하나님의 영으로 쓴 것이며 또 돌판에 쓴 것이 아니요 오직 육의 마음판에 쓴 것이라.”
-      <cite class="verse-cite">— 고린도후서 3:3</cite>
-    </blockquote>
-    <h2 class="display living rv rv-3">
-      우리는 그분의<br><span class="accent">살아있는 이야기</span>입니다.
-    </h2>
-    <p class="body-manifesto rv rv-4">
-      복음은 나를 향한<br>
-      <b>하나님의 가장 <em>아름다운</em> 이야기</b>입니다.
-    </p>
-    <p class="body-manifesto rv rv-5" style="margin-top:28px">
-      우리는 <em>옛 이야기</em>를 끝내고,<br>
-      그리스도 안에서 완전히 새로워진<br>
-      ‘<b>하나님의 살아있는 편지</b>’로<br>
-      <em>다시 태어났습니다.</em>
-    </p>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 02 ============ -->
-<section class="chapter" id="ch2">
-  <div class="chapter-bg" data-parallax="0.10"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      여러분과 <span class="accent">함께</span>,<br>샌포드 지역에<br><span class="accent">새로운 교회</span>가<br>시작됩니다.
-    </h2>
-    <p class="body-manifesto rv rv-3">
-      <b>예수 그리스도</b>를 중심에 두고,<br>
-      <em>은혜</em>로 빚어지며,<br>
-      샌포드에서 하나님의 이야기의<br>
-      <em>일부</em>가 되어가는<br>
-      <b>신실한 공동체.</b>
-    </p>
-  </div>
-</section>
-
-<!-- ============ FOUR PILLARS ============ -->
-<section class="chapter" id="chPillars">
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <div class="top-center">
-      <h2 class="pillars-heading rv rv-2">스토리교회를 세우는<br><span class="accent">네 개의 기둥</span>.</h2>
-    </div>
-    <ol class="pillars">
-      <li class="rv rv-2">
-        <span class="pnum">01</span>
-        <h3>His Story<small>복음의 중심</small></h3>
-        <p>나를 구원하신 주님의 위대한 이야기. 모든 사역과 예배의 중심에 오직 예수 그리스도의 복음을 둡니다.</p>
-      </li>
-      <li class="rv rv-3">
-        <span class="pnum">02</span>
-        <h3>My Story<small>증인의 삶 · Living Story</small></h3>
-        <p>세상 속에서 내가 직접 살아내는 이야기. 우리는 관람객이 아니라, 주님의 이야기를 삶으로 증거하는 살아있는 증인입니다.</p>
-      </li>
-      <li class="rv rv-4">
-        <span class="pnum">03</span>
-        <h3>Deep Story<small>영성 훈련 · Spiritual Training</small></h3>
-        <p>말씀과 기도로 내면이 깊어지는 이야기. 성도 한 사람 한 사람을 주님의 충성스러운 제자로 세웁니다.</p>
-      </li>
-      <li class="rv rv-5">
-        <span class="pnum">04</span>
-        <h3>Our Story<small>신실한 공동체 · Faithful Community</small></h3>
-        <p>우리가 함께 모여 완성해 가는 이야기. 삶의 현장에서 그리스도의 성품과 복음을 선명하게 드러내는 신실한 공동체를 이룹니다.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ WHO IS THIS FOR ============ -->
-<section class="chapter" id="chFor">
-  <div class="chapter-inner">
-    <p class="for-hero rv rv-2">
-      샌포드에서 이어지는<br><span class="accent">새로운 이야기.</span>
-    </p>
-    <p class="for-tail rv rv-3">
-      그 <b>이야기의 자리</b>에<br>당신을 초대합니다.
-    </p>
-    <div class="for-cta rv rv-4">
-      <a class="btn primary" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">
-        주일 예배 함께하기 <span class="arrow">→</span>
-      </a>
+<article class="sheet lt" id="sheet" aria-label="스토리교회가 당신께 보내는 편지">
+  <h1 class="sr-only">스토리교회 · Sanford Story Church — 플로리다 샌포드 한인교회 · 매주 주일 오후 6시 · 4942 FL-46 #1026, Sanford, FL 32771</h1>
+  <div class="sheet-top">
+    <div class="lt-date"><span class="lt-from">Sanford, Florida</span><b id="letterDate">주일</b><span class="lt-sub">저녁 여섯 시, 함께 예배드리는 날</span></div>
+    <div class="postage" aria-hidden="true">
+      <div class="pstamp">
+        <img src="assets/photos/sanford-waterfront.jpg" alt="">
+        <span class="pstamp-top">Sanford · Florida</span>
+        <span class="pstamp-val">6<small>PM</small></span>
+        <span class="pstamp-bot">Story Church</span>
+      </div>
+      <svg class="postmark" viewBox="0 0 160 110" aria-hidden="true">
+        <circle cx="52" cy="55" r="44" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <circle cx="52" cy="55" r="35" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text x="52" y="50" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1.5">SANFORD</text>
+        <text x="52" y="64" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" id="postmarkDate">2026</text>
+        <path d="M100 38c10-6 20 6 30 0s20 6 28 0M100 55c10-6 20 6 30 0s20 6 28 0M100 72c10-6 20 6 30 0s20 6 28 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
     </div>
   </div>
-</section>
 
-<!-- ============ CHAPTER 03 — CTA ============ -->
-<section class="chapter" id="ch3">
-  <div class="chapter-bg"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      하나님의 이야기를<br><span class="accent">함께 써 내려가요.</span>
-    </h2>
-    <p class="cta-sub rv rv-3">
-      개척의 자리에 <span class="accent">동역자</span>를 모집합니다.
-    </p>
-    <div class="recruit rv rv-3">
-      <a class="recruit-card" href="https://forms.gle/AWhvv4ShUS9dLa7A9" target="_blank" rel="noopener">
-        <span class="rc-num">01</span>
-        <span class="rc-title">찬양팀 <small>Worship Team</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
-      <a class="recruit-card" href="https://docs.google.com/forms/u/2/d/e/1FAIpQLSfx3vyJKxm3ixhfoT4CRvCoW7EcD_wKn_njVPkHBbSzxcjFzg/viewform?usp=send_form" target="_blank" rel="noopener">
-        <span class="rc-num">02</span>
-        <span class="rc-title">미디어팀 <small>Media Team</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
-    </div>
-    <div class="inquiry-block rv rv-4">
-      <div class="inquiry-label"><span class="line"></span>General Inquiry<span class="line"></span></div>
-      <a class="recruit-card recruit-card--inquiry" href="mailto:sanfordstorychurch@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%AC%B8%EC%9D%98">
-        <span class="rc-num">✉</span>
-        <span class="rc-title">그 외 문의사항 <small>이메일로 연락하기</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
+  <p class="greet reveal-line">샌포드에 사는 당신께,</p>
+  <p class="lead reveal-line">하나님의 이야기가<br><span class="u">당신의 삶</span>에서 시작됩니다.</p>
+  <p class="reveal-line">안녕하세요. 스토리교회입니다. 2026년 가을, 샌포드에 문을 연 한인교회입니다. 매주 주일 저녁 여섯 시에 모여 함께 찬양하고, 말씀을 듣고, 둘러앉아 그 말씀을 나눈 뒤 저녁을 같이 먹습니다.</p>
+  <p class="reveal-line">교회 이름은 고린도후서에서 가져왔습니다. <em>“너희는 그리스도의 편지라.”</em> 사람은 저마다 하나님이 쓰고 계신 한 통의 편지라는 뜻입니다. 이 편지를 읽고 있는 당신의 이야기도, 지금 쓰이는 중입니다.</p>
+
+  <h2 class="reveal-line"><span class="en">This Sunday</span><span class="ko">이번 주일에는</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <div class="week-lt reveal-line" id="weekLt">
+    <div id="wkWord" hidden><span class="k">말씀</span><span class="t" id="wkSermon"></span><span class="go" id="wkSermonMeta"></span></div>
+    <a href="/bulletin" id="wkSongsRow"><span class="k">찬양</span><span class="t" id="wkSongs"></span><span class="go">미리 듣기 ↗</span></a>
+    <a href="/bulletin/bulletin.pdf" target="_blank" rel="noopener"><span class="k">주보</span><span class="t" id="wkIssue">이번 주 주보</span><span class="go">PDF ↗</span></a>
+  </div>
+
+  <h2 class="reveal-line"><span class="en">Why “Story”</span><span class="ko">왜 ‘이야기’인가요</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <blockquote class="verse-card reveal-line">
+    <p>너희는 우리로 말미암아 나타난 그리스도의 편지니 이는 먹으로 쓴 것이 아니요 오직 살아 계신 하나님의 영으로 쓴 것이며 또 돌판에 쓴 것이 아니요 오직 육의 마음판에 쓴 것이라.</p>
+    <cite>고린도후서 3장 3절</cite>
+  </blockquote>
+  <p class="reveal-line">바울은 자기를 증명하라는 요구 앞에서 추천서 대신 성도들을 가리켰습니다. 너희가 나의 편지라고요. 복음은 종이가 아니라 사람에게 쓰입니다. 그래서 우리는 ‘이야기’라는 이름을 붙였고, 이 홈페이지도 한 통의 편지로 만들었습니다.</p>
+
+  <h2 class="reveal-line"><span class="en">Four Stories</span><span class="ko">우리가 붙드는 네 가지</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <ol class="pillars-lt reveal-line">
+    <li><span class="n">01</span><div><b>His Story</b><small>나를 구원하신 주님의 이야기. 예배와 사역의 중심에 복음을 둡니다.</small></div></li>
+    <li><span class="n">02</span><div><b>My Story</b><small>내가 살아내는 이야기. 구경꾼이 아니라 증인으로 삽니다.</small></div></li>
+    <li><span class="n">03</span><div><b>Deep Story</b><small>말씀과 기도로 깊어지는 이야기. 한 사람씩 제자로 세웁니다.</small></div></li>
+    <li><span class="n">04</span><div><b>Our Story</b><small>함께 써 가는 이야기. 삶의 자리에서 그리스도를 보여 주는 공동체입니다.</small></div></li>
+  </ol>
+
+  <figure class="enclosed reveal-line">
+    <span class="tape" aria-hidden="true"></span>
+    <img src="assets/photos/1004/IMG_4565.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="10월 4일 주일, 둘러앉아 말씀을 나누는 성도들">
+    <figcaption>동봉 · 10월 4일 주일, 말씀 나눔</figcaption>
+  </figure>
+
+  <h2 class="reveal-line"><span class="en">When &amp; Where</span><span class="ko">오시는 길</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <div class="where reveal-line">
+    <div><span class="k">When</span><b>매주 주일<br>저녁 6시</b><span class="where-s">한국어 예배 · 축도까지 약 1시간 · 예배 후 함께 저녁</span></div>
+    <div><span class="k">Where</span><b>4942 FL-46 #1026<br>Sanford, FL 32771</b><a href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">길찾기 ↗</a></div>
+  </div>
+
+  <div class="close reveal-line">
+    <p>따로 준비하실 건 없습니다. 주일 저녁 6시, 편하게 오세요.</p>
+    <div class="sign"><b>샌포드 스토리교회 드림</b><span class="seal" aria-hidden="true"><img class="seal-wax" src="assets/envelope/seal.webp" alt=""><img class="seal-mark" src="assets/emblem/mark-200.png" alt=""></span></div>
+    <div class="cta-row">
+      <a class="lt-btn lt-btn--fill" href="/visit.html">처음 오시는 분께 →</a>
+      <a class="lt-btn" href="mailto:sanfordstorychurch@gmail.com?subject=%5B%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B5%90%ED%9A%8C%5D%20%EB%8B%B5%EC%9E%A5">답장 쓰기 ✉</a>
     </div>
   </div>
-</section>
 
-
-<!-- ============ AFFILIATION — CRCNA ============ -->
-<section class="affiliation" id="affiliation">
-  <div class="affiliation-inner">
-    <div class="affiliation-label rv"><span class="line"></span>Denominational Affiliation<span class="line"></span></div>
-    <img class="crcna-mark rv rv-2" src="assets/brand/crcna-logo.png" alt="Christian Reformed Church in North America (CRCNA)">
-    <p class="affiliation-body rv rv-3">
-      스토리교회는 <b>북미주 개혁교회(CRCNA)</b>에 속한 교회입니다.
-      1857년 네덜란드 이민자들이 세운 신앙 유산에서 시작되어, 종교개혁의 정통성과 깊이 있는 신학을 굳건히 지켜온 교단입니다.
-      역사적 뿌리는 네덜란드에 있지만, 현재는 다양한 인종과 문화가 어우러진 북미의 대표적인 교단으로 성장했습니다.
-      말씀의 절대 권위를 믿으며, 교회뿐만 아니라 삶의 모든 영역에서 하나님의 주권을 인정하는 건강한 신앙을 추구합니다.
-    </p>
-    <a class="affiliation-link rv rv-4" href="https://www.crcna.org/" target="_blank" rel="noopener">
-      crcna.org <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
-
-
-<!-- ============ INVITE — 마지막 화면 (주황 전면은 사이트에서 여기 한 번만) ============ -->
-<section class="invite" id="invite">
-  <img class="invite-mark" src="assets/emblem/icon-orange-tp.png" alt="">
-  <div class="invite-in">
-    <span class="invite-k rv"><span id="invDate">주일</span> · 저녁 6시</span>
-    <h2 class="invite-h rv rv-2">환영합니다.</h2>
-    <p class="invite-p rv rv-3">매주 주일 저녁 6시, 샌포드에서 함께 예배드립니다.</p>
-    <div class="invite-cta rv rv-4">
-      <a class="inv-btn inv-btn--fill" href="/visit.html">처음 오시는 분 →</a>
-      <a class="inv-btn" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">길찾기 ↗</a>
+  <div class="ps reveal-line">
+    <span class="k">P.S.</span>
+    <p class="ps-p">지난 주일의 말씀은 유튜브에, 그날의 모습은 인스타그램에 올려 두었습니다.</p>
+    <div class="ps-links">
+      <a href="https://www.youtube.com/shorts/N3nfJGGfhXU" target="_blank" rel="noopener">▶ 하나님의 첫 이야기 · 창세기 1:1</a>
+      <a href="https://www.youtube.com/shorts/uzmxJPI2iBM" target="_blank" rel="noopener">▶ 10월 4일 주일 예배</a>
+      <a href="https://www.instagram.com/storychurch_sanford/" target="_blank" rel="noopener">@storychurch_sanford</a>
+      <a href="/bulletins.html">지난 주보</a>
     </div>
-    <span class="invite-addr rv rv-4">4942 FL-46 #1026, Sanford, FL 32771</span>
   </div>
-</section>
-
+</article>
+<div class="airmail airmail--bottom" aria-hidden="true"></div>
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -687,25 +512,9 @@
 
 
 
-<!-- 찬양 팝업 — 하루 한 번. 곡은 위 섹션과 같은 목록 (js/praise.js) -->
-<dialog class="pop" id="praisePop" aria-labelledby="praisePopTitle">
-  <button class="pop-x" data-close aria-label="닫기">&times;</button>
-  <div class="pop-body">
-    <span class="pop-k">This Week's Praise</span>
-    <h2 id="praisePopTitle"><span id="praisePopDate"></span> 주일, 함께 부를 찬양</h2>
-    <p>미리 들어보고 같이 찬양하면 좋겠습니다.</p>
-    <ul class="praise-list" id="praisePopList"></ul>
-    <a class="praise-all" id="praisePopAll" hidden target="_blank" rel="noopener">전체 재생 ↗</a>
-  </div>
-  <div class="pop-foot">
-    <button type="button" data-today>오늘 하루 보지 않기</button>
-    <button type="button" class="pop-ok" data-close>닫기</button>
-  </div>
-</dialog>
 
-<script src="js/site.js?v=2" defer></script>
-<script src="bulletin/data.js?v=2026-10-11.e638cfd4" defer></script>
-<script src="js/praise.js?v=7" defer></script>
-<script src="js/home.js?v=2" defer></script>
+<script src="js/site.js?v=3" defer></script>
+<script src="bulletin/data.js?v=2026-10-11.7123510b" defer></script>
+<script src="js/letter.js?v=7" defer></script>
 </body>
 </html>

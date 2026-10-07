@@ -74,7 +74,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   text-shadow:0 1px 8px rgba(0,0,0,.5);
 }
 .crcna-mini .txt small{
-  font-size:8.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+  font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
   color:rgba(245,239,228,.55);
 }
 .crcna-mini .txt b{
@@ -94,7 +94,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 }
 .bmark .word b{display:block;font-weight:800}
 .bmark .word small{
-  display:block;font-size:9px;font-weight:600;letter-spacing:.42em;
+  display:block;font-size:11px;font-weight:600;letter-spacing:.42em;
   color:rgba(245,239,228,.55);margin-top:3px;
 }
 .brand-bar-right{
@@ -119,7 +119,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .brand-bar .status{
   display:flex;align-items:center;gap:10px;
   font-family:var(--body);
-  font-size:10.5px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+  font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
   color:rgba(245,239,228,.9);
   text-shadow:0 1px 8px rgba(0,0,0,.55);
 }
@@ -134,7 +134,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:40;
   display:flex;flex-direction:column;align-items:center;gap:8px;
   font-family:var(--body);
-  font-size:9.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+  font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
   color:rgba(245,239,228,.7);
   text-shadow:0 1px 8px rgba(0,0,0,.6);
   transition:opacity .5s ease;
@@ -389,7 +389,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   display:inline-flex;align-items:center;gap:14px;
   margin-bottom:40px;
   font-family:var(--body);
-  font-size:10.5px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;
+  font-size:12px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;
   color:var(--orange);
   text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
@@ -453,6 +453,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .body-manifesto em{
   font-style:normal;color:var(--orange);font-weight:800;
 }
+/* 크림 섹션에서는 주황 글자가 안 읽힌다(1.97:1) → 진하게 + 주황 밑줄 */
+#chScripture .body-manifesto em{color:var(--ink);text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:.12em;text-underline-offset:.1em}
 
 .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
@@ -496,6 +498,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   transform:translate(-50%,-50%);opacity:.06;
 }
 #chScripture .display{color:var(--ink);text-shadow:none}
+#chScripture .display .accent,.pillars-heading .accent,.for-hero .accent{color:var(--ink);position:relative;display:inline-block;z-index:0}
+#chScripture .display .accent::after,.pillars-heading .accent::after,.for-hero .accent::after{
+  content:"";position:absolute;left:-.04em;right:-.04em;bottom:.04em;height:.16em;
+  background:var(--orange);border-radius:99px;z-index:-1;
+}
 #chScripture .body-copy{color:var(--ink-dim);text-shadow:none}
 #chScripture .body-manifesto{color:var(--ink);text-shadow:none;font-weight:400}
 #chScripture .body-manifesto b{color:var(--ink);font-weight:800}
@@ -518,8 +525,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .verse-cite{
   display:block;font-style:normal;
   font-family:var(--disp-en);font-weight:900;letter-spacing:.16em;text-transform:uppercase;
-  font-size:clamp(12px,1.2vw,14px);
-  color:var(--orange);
+  font-size:clamp(13px,1.2vw,14px);
+  color:var(--ink);
   margin-top:22px;
 }
 .display.living{font-size:clamp(48px,7vw,100px);line-height:1}
@@ -548,7 +555,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   font-size:clamp(36px,5vw,64px);line-height:1.05;
   color:var(--ink);margin-top:14px;
 }
-.pillars-heading .accent{color:var(--orange)}
 .pillars{list-style:none;padding:0;margin:0}
 .pillars li{
   display:grid;grid-template-columns:110px 1fr 1.1fr;
@@ -561,7 +567,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .pillars .pnum{
   font-family:var(--disp-en);font-weight:900;
   font-size:clamp(38px,4vw,54px);letter-spacing:.02em;line-height:1;
-  color:var(--orange);padding-top:8px;
+  color:var(--ink);
+  background:var(--orange);border-radius:10px;padding:10px 12px 8px;display:inline-block;
 }
 .pillars h3{
   font-family:var(--disp-en);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;
@@ -571,7 +578,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .pillars h3 small{
   display:block;
   font-family:var(--disp-ko);font-weight:800;letter-spacing:-.02em;
-  font-size:clamp(17px,1.7vw,24px);color:var(--orange);margin-top:10px;
+  font-size:clamp(17px,1.7vw,24px);color:var(--ink-dim);margin-top:10px;
 }
 .pillars p{
   font-family:var(--body);
@@ -593,14 +600,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   font-family:var(--disp-ko);font-weight:900;letter-spacing:-.03em;
   font-size:clamp(48px,8vw,110px);line-height:1;color:var(--ink);
 }
-.for-hero .accent{color:var(--orange)}
 .for-tail{
   margin-top:36px;
   font-family:var(--disp-ko);font-weight:800;letter-spacing:-.02em;
   font-size:clamp(20px,2.8vw,36px);line-height:1.35;
   color:var(--ink);
 }
-.for-tail b{color:var(--orange);font-weight:900}
+.for-tail b{color:var(--ink);font-weight:900;text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:.12em;text-underline-offset:.1em}
 .for-cta{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
 .for-cta .btn{
   background:var(--navy);color:var(--cream);border-color:var(--navy);
@@ -664,7 +670,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .recruit-card .rc-title small{
   display:inline-block;margin-left:10px;
   font-family:var(--body);font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  font-size:10.5px;color:rgba(245,239,228,.55);
+  font-size:12px;color:rgba(245,239,228,.55);
   vertical-align:middle;
 }
 .recruit-card .rc-arrow{
@@ -724,7 +730,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
 .affiliation-label{
   display:flex;align-items:center;justify-content:center;gap:14px;
   margin-bottom:28px;
-  font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+  font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
   color:rgba(42,29,15,.42);
 }
 .affiliation-label .line{
@@ -758,7 +764,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-off
   .affiliation{padding:9vh 20px}
   .affiliation .crcna-mark{height:44px;margin-bottom:22px}
   .affiliation-body{font-size:13.5px;line-height:1.8}
-  .affiliation-label{font-size:10px;letter-spacing:.28em}
+  .affiliation-label{font-size:12px;letter-spacing:.28em}
   .affiliation-label .line{max-width:70px}
 }
 
@@ -783,7 +789,7 @@ footer.site .ig{
   display:inline-flex;align-items:center;gap:10px;
   margin-top:28px;
   font-family:var(--body);
-  font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
   color:rgba(245,239,228,.8);
   transition:color .3s ease;
 }
@@ -814,19 +820,15 @@ footer.site .copyright{
 @media(max-width:640px){
   .brand-bar{padding:14px 18px}
   .bmark .emb{height:30px}
-  .bmark .word{font-size:10px;letter-spacing:.24em}
-  .bmark .word small{font-size:8px;letter-spacing:.32em}
+  .bmark .word{font-size:11px;letter-spacing:.2em}
+  .bmark .word small{display:none}
   .brand-bar-left{gap:10px}
   .brand-bar-divider{height:22px}
-  .crcna-mini{gap:7px}
-  .crcna-mini .mark{height:18px}
-  .crcna-mini .txt small{font-size:7.5px;letter-spacing:.28em}
-  .crcna-mini .txt b{font-size:9.5px;letter-spacing:.24em;margin-top:2px}
+  .brand-bar-divider,.crcna-mini,.brand-bar .status{display:none}   /* 좁은 화면: CRCNA 는 교단 섹션·푸터에 있다 */
   .brand-bar-right{gap:14px}
-  .lang-switch{font-size:10px;letter-spacing:.22em;gap:7px}
-  .brand-bar .status{font-size:9px;letter-spacing:.24em}
-  .brand-bar .status .label{display:none}
-  .scroll-hint{font-size:8.5px;letter-spacing:.28em;bottom:14px}
+  .lang-switch{font-size:12px;letter-spacing:.18em;gap:8px}
+  .lang-switch a{padding:12px 6px}
+  .scroll-hint{font-size:11px;letter-spacing:.24em;bottom:14px}
 
   .hero-sticky{padding:0}
   .hero-mark{width:min(160vw,900px)}
@@ -885,7 +887,7 @@ footer.site .copyright{
   footer.site{padding:56px 20px 36px}
   footer.site .mark{height:44px;margin-bottom:22px}
   footer.site .foot-when{font-size:10px;letter-spacing:.32em}
-  footer.site .ig{font-size:10px;letter-spacing:.24em;margin-top:22px}
+  footer.site .ig{font-size:12px;letter-spacing:.24em;margin-top:22px}
 }
 
 @media(max-height:640px){
@@ -974,6 +976,7 @@ footer.site .copyright{
 
 /* ---- 히어로: 매주 돌아오는 주일 안내 (지난 창립예배 카운트다운 자리) ---- */
 .reveal-next{
+  pointer-events:auto;
   margin-top:clamp(18px,3.2vh,34px);
   display:inline-flex;flex-direction:column;align-items:center;gap:10px;
   padding:clamp(15px,2.2vh,22px) clamp(22px,4vw,36px);
@@ -999,6 +1002,13 @@ footer.site .copyright{
   text-decoration:underline;text-underline-offset:3px;text-align:center;
 }
 .rn-place:hover{color:var(--orange-soft)}
+/* 히어로 상자 안 유일한 버튼 — 설득 페이지의 첫 행동은 첫 화면에 */
+.rn-cta{display:inline-flex;align-items:center;margin-top:14px;padding:13px 24px;border-radius:99px;
+  background:var(--orange);color:var(--navy);font-family:var(--disp-ko);font-weight:800;font-size:15px;letter-spacing:-.01em;
+  transition:transform .3s var(--ease),background .3s}
+.rn-cta:hover{background:var(--cream);transform:translateY(-1px)}
+/* 환영 — 손글씨(tegaki SVG, 반복). 글자는 alt 로 */
+.invite-h--ink .ink{width:min(70vw,460px);height:auto;margin:0 auto}
 @media(max-width:640px){
   .reveal-next{padding:15px 18px;gap:8px}
   .rn-date,.rn-time{font-size:25px}
@@ -1186,7 +1196,7 @@ footer.site .copyright{
 .sec.dark .inline-link{color:var(--cream)}
 
 /* 하위 페이지는 뒤가 크림이라 크림 글자가 사라진다 — 바에 항상 바탕을 준다 */
-body.page .brand-bar{
+body.page .brand-bar,.brand-bar.on-light{
   background:rgba(20,16,10,.95);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(245,239,228,.12);
@@ -1507,3 +1517,166 @@ body.page .tn-cta,body.page .menubtn{position:relative;z-index:61}
 .week-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,239,228,.25);color:var(--cream);font-size:18px;display:grid;place-items:center}
 .week-btn:hover{background:rgba(245,239,228,.1)}
 .wk--word .wk-t,.wk--songs .wk-t{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ============================================
+   HOME = LETTER (2026-10) — 페이지 전체가 편지지. js/letter.js
+============================================ */
+/* 종이: 바탕색 + 섬유 노이즈 + 아주 옅은 괘선 */
+body.letter{background:#F6EEDD}
+/* 종이: 바탕색 위에 실제 종이 질감 타일(assets/paper/paper-tile.webp, 1024px, multiply)을 깐다 + 아주 옅은 괘선 */
+.desk{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(180deg,transparent 0 39px,rgba(42,29,15,.05) 39px 40px),
+    radial-gradient(120% 90% at 50% 20%,#FBF5E6 0%,#F4EBD6 60%,#E9DEC4 100%)}
+.desk::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
+  background:url('../assets/paper/paper-tile.webp') 0 0/1024px 1024px repeat}
+.desk::before{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.5;
+  background:url('../assets/paper/paper-tile.webp') 300px 500px/1600px 1600px repeat}  /* 두 겹(다른 배율) → 반복 티 안 남 */
+body.letter .brand-bar{background:rgba(20,16,10,.96);border-bottom:1px solid rgba(245,239,228,.1);padding-top:14px;padding-bottom:14px}
+/* 항공우편 테두리 — 주황·네이비 사선 띠 */
+.airmail{position:relative;z-index:1;height:12px;
+  background:repeating-linear-gradient(135deg,var(--orange) 0 22px,transparent 22px 44px,var(--navy) 44px 66px,transparent 66px 88px)}
+.airmail--top{margin-top:calc(var(--bar-h,74px))}
+.airmail--bottom{margin-top:0}
+/* 편지 본문 — 꽉 찬 종이 위, 읽기 폭만 제한 */
+.sheet{position:relative;z-index:1;width:min(100% - 40px,860px);margin:0 auto;color:var(--ink);
+  padding:clamp(40px,6vw,72px) 0 clamp(56px,7vw,90px)}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:clamp(36px,6vw,64px)}
+.lt-date{font-family:var(--disp-en);font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--ink-dim);line-height:1.6;padding-top:10px}
+.lt-date b{display:block;font-family:var(--disp-ko);font-size:clamp(24px,2.6vw,30px);letter-spacing:-.02em;color:var(--ink);margin:4px 0 2px}
+.lt-date .lt-sub{display:block;font-family:var(--body);font-weight:600;letter-spacing:0;text-transform:none;font-size:14.5px}
+/* 우표 — 톱니 가장자리(마스크) 안에 샌포드 사진 */
+.postage{position:relative;flex:none;width:clamp(150px,20vw,210px);transform:rotate(3deg)}
+.pstamp{position:relative;aspect-ratio:4/5;background:#fff;padding:7%;
+  -webkit-mask:radial-gradient(circle at 50% 0,transparent 4.5px,#000 5px) 0 0/16px 100% ,linear-gradient(#000,#000);
+  mask:
+    radial-gradient(circle 5px at 8px 0,transparent 98%,#000) -8px 0/16px 10px repeat-x,
+    radial-gradient(circle 5px at 8px 100%,transparent 98%,#000) -8px 100%/16px 10px repeat-x,
+    radial-gradient(circle 5px at 0 8px,transparent 98%,#000) 0 -8px/10px 16px repeat-y,
+    radial-gradient(circle 5px at 100% 8px,transparent 98%,#000) 100% -8px/10px 16px repeat-y,
+    linear-gradient(#000,#000) 10px 10px/calc(100% - 20px) calc(100% - 20px) no-repeat;
+  box-shadow:0 10px 24px rgba(42,29,15,.25)}
+.pstamp img{position:absolute;inset:7%;width:86%;height:86%;object-fit:cover;filter:sepia(.35) saturate(.9) contrast(1.05)}
+.pstamp span{position:absolute;left:0;right:0;text-align:center;font-family:var(--disp-en);font-weight:900;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);letter-spacing:.14em;text-transform:uppercase}
+.pstamp-top{top:11%;font-size:10px}
+.pstamp-bot{bottom:11%;font-size:10px}
+.pstamp-val{top:38%;font-size:clamp(34px,4vw,48px);line-height:1;letter-spacing:0}
+.pstamp-val small{font-size:.4em;margin-left:2px;vertical-align:top}
+.postmark{position:absolute;width:150%;left:-70%;top:28%;color:rgba(42,29,15,.62);transform:rotate(-8deg);mix-blend-mode:multiply}
+.postmark text{font-family:var(--disp-en);fill:currentColor}
+
+.lt p,.lt li{font-size:clamp(17px,1.6vw,20px);line-height:1.95;color:var(--ink);word-break:keep-all}
+.lt p+p{margin-top:1.1em}
+.lt p em{font-style:normal;font-weight:800}
+.lt>p,.lt>blockquote,.lt .close,.lt .ps{max-width:720px}
+.greet{font-size:clamp(20px,2.1vw,25px)!important;font-weight:700;margin-bottom:28px}
+.lead{font-family:var(--disp-ko);font-weight:900;letter-spacing:-.03em;font-size:clamp(34px,5.4vw,66px)!important;line-height:1.15!important;margin:0 0 36px;text-wrap:balance;max-width:none!important}
+.lead .u{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:.14em;text-underline-offset:.08em}
+.lt h2{margin:clamp(52px,8vw,84px) 0 20px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.lt h2 .en{font-family:var(--disp-en);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:var(--ink-dim)}
+.lt h2 .ko{font-family:var(--disp-ko);font-weight:900;letter-spacing:-.02em;font-size:clamp(22px,2.4vw,28px);color:var(--ink)}
+.lt h2 .hline{width:110px;height:8px;color:var(--orange);align-self:center;flex:none}
+.verse-card{margin:36px 0;padding:28px 30px;background:rgba(255,255,255,.55);border-left:4px solid var(--orange);box-shadow:0 1px 0 rgba(42,29,15,.08)}
+.verse-card p{font-size:clamp(16.5px,1.5vw,18.5px)!important;line-height:1.85;color:var(--ink)}
+.verse-card cite{display:block;margin-top:12px;font-style:normal;font-weight:800;font-size:14px;color:var(--ink-dim)}
+.pillars-lt{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 40px}
+.pillars-lt li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+.pillars-lt .n{font-family:var(--disp-en);font-weight:900;font-size:20px;color:var(--ink);background:var(--orange);border-radius:8px;padding:8px 0;text-align:center;line-height:1}
+.pillars-lt b{display:block;font-family:var(--disp-en);font-weight:900;font-size:21px;letter-spacing:-.01em;text-transform:uppercase}
+.pillars-lt small{display:block;font-size:16px!important;line-height:1.7;color:var(--ink-dim);margin-top:4px}
+.week-lt{margin-top:6px;display:grid;gap:4px;max-width:760px}
+.week-lt [hidden]{display:none!important}
+.week-lt a,.week-lt div{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(42,29,15,.16);font-size:clamp(16.5px,1.55vw,19px)}
+.week-lt .k{font-family:var(--disp-en);font-weight:900;letter-spacing:.12em;font-size:12px;color:var(--ink-dim);text-transform:uppercase;flex:none;width:92px}
+.week-lt .t{flex:1;font-weight:700;min-width:0}
+/* 찬양 — 곡마다 한 줄. .week-lt a 의 flex/space-between 을 덮는다 */
+.week-lt .t .song{display:flex;justify-content:flex-start;align-items:baseline;gap:12px;padding:5px 0;border:0;font-size:inherit;line-height:1.45;color:var(--ink)}
+.week-lt .t a.song:hover{text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:3px}
+.week-lt .song-n{flex:none;width:1.4em;font-family:var(--disp-en);font-weight:900;font-size:.8em;color:var(--ink-dim)}
+.week-lt a#wkSongsRow{align-items:flex-start}
+.seal .seal-mark{width:34%}
+.week-lt .go{flex:none;font-size:13px;font-weight:800;color:var(--ink);text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:3px}
+/* 동봉 사진 — 테이프로 붙인 인화지 */
+.enclosed{margin:clamp(48px,7vw,80px) auto 0;width:min(100%,520px);padding:12px 12px 16px;background:#fff;box-shadow:0 14px 34px rgba(42,29,15,.22);transform:rotate(-2deg);position:relative}
+.enclosed img{width:100%;height:auto;display:block;filter:saturate(.95)}
+.enclosed figcaption{margin-top:12px;font-size:14px;font-weight:700;color:var(--ink-dim);letter-spacing:.02em}
+.enclosed .tape{position:absolute;left:50%;top:-14px;width:120px;height:30px;margin-left:-60px;background:rgba(255,154,31,.7);transform:rotate(-3deg);mix-blend-mode:multiply}
+.where{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:760px}
+.where div{padding:18px 0;border-top:2px solid var(--ink)}
+.where .k{font-family:var(--disp-en);font-weight:900;letter-spacing:.14em;font-size:12px;color:var(--ink-dim);text-transform:uppercase}
+.where b{display:block;margin-top:8px;font-family:var(--disp-ko);font-weight:900;font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;line-height:1.3}
+.where .where-s{display:block;margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--ink-dim);font-weight:600}
+.where a{display:inline-block;margin-top:8px;font-size:14.5px;font-weight:700;text-decoration:underline;text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:3px}
+.close{margin-top:clamp(52px,8vw,84px)}
+.sign{margin-top:36px;display:flex;align-items:center;gap:18px}
+.sign b{font-family:var(--disp-ko);font-weight:900;font-size:clamp(23px,2.5vw,30px);letter-spacing:-.02em}
+.seal{position:relative;width:72px;height:72px;display:grid;place-items:center;transform:rotate(-8deg);filter:drop-shadow(0 3px 6px rgba(42,29,15,.3))}
+.cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.lt-btn{display:inline-flex;align-items:center;padding:16px 26px;border-radius:8px;font-family:var(--disp-ko);font-weight:800;font-size:16px;letter-spacing:-.01em;border:2px solid var(--navy)}
+.lt-btn--fill{background:var(--navy);color:var(--cream)} .lt-btn--fill:hover{background:var(--orange);border-color:var(--orange);color:var(--navy)}
+.lt-btn:not(.lt-btn--fill):hover{background:rgba(42,29,15,.07)}
+.ps{margin-top:clamp(56px,8vw,88px);padding-top:18px;border-top:1px dashed rgba(42,29,15,.3);max-width:none!important}
+.ps .k{font-family:var(--disp-en);font-weight:900;letter-spacing:.16em;font-size:11px;color:var(--ink-dim)}
+.ps-p{margin-top:4px;font-size:13.5px!important;line-height:1.6!important;color:var(--ink-dim)}
+.ps-links{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 8px}
+.ps-links a{padding:7px 11px;border:1px solid rgba(42,29,15,.25);border-radius:99px;font-size:12.5px;font-weight:700;color:var(--ink-dim);background:rgba(255,255,255,.35)}
+.ps-links a:hover{border-color:var(--ink);color:var(--ink)}
+footer.site{position:relative;z-index:1}
+.reveal-line{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal-line.is-in{opacity:1;transform:none}
+
+/* ---- 봉투 — 스크롤로 열린다. --p 0(닫힘) → 1(편지 꺼냄) ---- */
+.intro{position:relative;z-index:2;height:200vh;--p:0}
+.intro[hidden]{display:none}
+.intro-stage{position:sticky;top:0;height:100vh;height:100dvh;display:grid;place-items:center;overflow:hidden;perspective:1600px;padding-top:9vh}
+.env-box{position:relative;width:min(92vw,860px);aspect-ratio:1426/890;transform-style:preserve-3d;cursor:pointer;border:0;background:none;padding:0;display:block;
+  --open:clamp(0, var(--p) / .3, 1);--rise:clamp(0, (var(--p) - .3) / .45, 1);--gone:clamp(0, (var(--p) - .7) / .3, 1);
+  transform:rotateX(calc(6deg - var(--open) * 3deg)) translateY(calc(var(--gone) * 70vh));
+  opacity:calc(1 - clamp(0, (var(--p) - .8) / .2, 1))}
+.env-box>span{position:absolute;display:block}
+/* 사진 봉투 (assets/envelope/*.webp — GPT 생성, 알파 PNG 를 크롭) */
+.env-shadow{inset:8% -1% -6% -1%;border-radius:12px;background:rgba(42,29,15,.45);filter:blur(28px);transform:translateZ(-1px)}
+.env-back{inset:1% 1.5%;border-radius:6px;background:#1A130D;box-shadow:inset 0 0 50px rgba(0,0,0,.6)}
+/* 몸통 사진에서 위쪽 삼각형(접힘 꼭짓점 48.8%)을 잘라내 안쪽이 보이게 */
+.env-front{inset:0;z-index:3;background:url('../assets/envelope/body.webp') center/100% 100% no-repeat;
+  clip-path:polygon(0 0,50% 48.8%,100% 0,100% 100%,0 100%);filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+/* 덮개 사진 — 폭 100%, 높이는 사진 비율(0.4194) 그대로. 뒤집히면 안쪽 면 사진 */
+.env-flap{left:0;right:0;top:0;height:67.2%;z-index:4;transform-origin:top center;transform-style:preserve-3d;
+  transform:rotateX(calc(var(--open) * 180deg));
+  background:url('../assets/envelope/flap-out.webp') center/100% 100% no-repeat;backface-visibility:hidden;
+  filter:drop-shadow(0 calc(4px + var(--open) * 10px) calc(6px + var(--open) * 14px) rgba(0,0,0,.45))}
+.env-flap-in{position:absolute;inset:0;transform:rotateX(180deg);backface-visibility:hidden;
+  background:url('../assets/envelope/flap-in.webp') center/100% 100% no-repeat}
+/* 밀랍 봉인 사진 + 원래 색 엠블럼. 덮개 꼭짓점(67%)에 */
+.env-seal{left:50%;top:67%;z-index:5;width:12%;aspect-ratio:1;margin-left:-6%;transform:translateY(-50%);display:grid;place-items:center;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));
+  opacity:calc(1 - clamp(0, var(--p) / .12, 1));transform:translateY(calc(-50% - clamp(0, var(--p) / .12, 1) * 10px))}
+.seal-wax{position:absolute;inset:0;width:100%;height:100%}
+.seal-mark{position:absolute;left:50%;top:50%;width:32%;height:auto;transform:translate(-50%,-50%)}   /* .env-box>span 이 display 를 덮어써서 그리드 중앙정렬이 안 먹는다 → 절대 중앙 */
+/* 편지 — 봉투 속에서 올라온다 (편지지 사진) */
+.env-letter{left:5%;right:5%;top:4%;height:92%;z-index:1;padding:9% 9%;display:grid;gap:12px;align-content:start;
+  background:url('../assets/envelope/sheet.webp') center top/100% auto no-repeat;
+  filter:drop-shadow(0 8px 20px rgba(42,29,15,.35));
+  transform:translateY(calc(var(--rise) * -54%)) scale(calc(1 + var(--rise) * .04));
+  opacity:calc(1 - clamp(0, (var(--p) - .85) / .15, 1))}
+.intro.past-half .env-letter{z-index:6}
+.env-letter-head{position:relative;z-index:1;font-family:var(--disp-ko);font-weight:800;font-size:clamp(14px,2vw,22px);color:var(--ink);margin-bottom:6px}
+.env-letter-sub{position:relative;z-index:1;font-size:clamp(12px,1.5vw,17px);font-weight:600;color:var(--ink-dim);letter-spacing:-.01em}
+.env-to{left:7%;bottom:9%;z-index:4;color:rgba(251,246,234,.88);font-family:var(--body);text-align:left;opacity:calc(1 - var(--open))}
+.env-to span{display:block;font-family:var(--disp-en);font-weight:900;letter-spacing:.2em;font-size:12px;color:var(--orange)}
+.env-to b{display:block;margin-top:5px;font-size:clamp(17px,2.6vw,24px);font-weight:800}
+.env-to small{display:block;margin-top:6px;font-size:clamp(11px,1.3vw,13px);font-weight:600;letter-spacing:.04em;color:rgba(251,246,234,.6)}
+.intro-hint{position:absolute;left:0;right:0;bottom:clamp(22px,5vh,48px);text-align:center;font-size:15px;font-weight:700;color:var(--ink-dim);
+  opacity:calc(1 - clamp(0, var(--p) / .15, 1));transition:opacity .2s}
+.intro-hint .arrow{display:inline-block;animation:hint-bob 1.6s ease-in-out infinite}
+@keyframes hint-bob{50%{transform:translateY(5px)}}
+/* 편지 본문은 봉투가 다 열린 뒤 이어진다 */
+body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px)}
+@media(max-width:640px){
+  .where{grid-template-columns:1fr}
+  .sheet-top{flex-direction:row;align-items:flex-start}
+  .postage{width:120px;margin-top:-6px}.postmark{left:-60%;width:140%;top:30%}
+  .week-lt .k{width:60px} .lt h2 .hline{width:70px}
+  .enclosed{transform:rotate(-1.5deg)}
+}
+@media(prefers-reduced-motion:reduce){.reveal-line{opacity:1;transform:none}.intro{display:none!important}}

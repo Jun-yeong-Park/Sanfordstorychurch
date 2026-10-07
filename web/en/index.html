@@ -285,10 +285,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles/site.css?v=29">
+<link rel="stylesheet" href="../styles/site.css?v=48">
 </head>
-<body>
+<body class="letter">
 <a class="skip" href="#main">Skip to content</a>
+<div class="desk" aria-hidden="true"></div>
 
 <!-- ============ FIXED TOP BAR ============ -->
 <div class="brand-bar">
@@ -329,7 +330,7 @@
     <div class="tn-menu" id="tnm3" hidden>
       <a href="/en/events.html">Events</a>
       <a href="/en/giving.html">Giving</a>
-      <a href="mailto:hello@sanfordstorychurch.com">Contact</a>
+      <a href="mailto:sanfordstorychurch@gmail.com">Contact</a>
     </div>
   </div>
 </nav>
@@ -364,289 +365,112 @@
     <p class="dr-k">Connect</p>
     <a href="/en/events.html">Events</a>
     <a href="/en/giving.html">Giving</a>
-    <a href="mailto:hello@sanfordstorychurch.com">Contact</a>
+    <a href="mailto:sanfordstorychurch@gmail.com">Contact</a>
     <a class="dr-cta" href="/en/visit.html">I'm New →</a>
   </nav>
 </div>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="hero-sticky" id="top">
-    <div class="hero-bg hero-bg--reel" id="heroBg">
-      <video class="hero-video" muted playsinline preload="auto" poster="../assets/video/hero-poster.jpg" aria-hidden="true"></video>
-    </div>
-    <button type="button" class="hero-pause" id="heroPause" aria-pressed="false" aria-label="Pause background video"><span class="hp-pause" aria-hidden="true">❚❚</span><span class="hp-play" aria-hidden="true">▶</span></button>
-    <div class="hero-tint"></div>
-    <img class="hero-mark" src="../assets/emblem/icon-orange-tp.png" alt="">
-
-    <div class="reveal" id="reveal">
-      <h1 class="sr-only">Sanford Story Church — Korean church in Sanford, Florida · Serving Orlando, Lake Mary and Central Florida · Sunday worship 6:00 PM · 4942 FL-46 #1026, Sanford, FL 32771</h1>
-      <img class="logo-lockup" src="../assets/logo/1.png" width="5400" height="1996" fetchpriority="high" alt="Sanford Story Church logo">
-      <p class="reveal-headline">God's story begins<br>in <span class="accent">your life</span>.</p>
-      <div class="reveal-details">Sanford, Florida</div>
-
-      <!-- 날짜를 박아두지 않는다. js/site.js 가 다음 주일을 계산한다 -->
-      <div class="reveal-next" aria-label="This Sunday">
-        <div class="rn-kicker"><span class="live-dot"></span>This Sunday</div>
-        <div class="rn-line">
-          <span class="rn-date" id="nextDate">Sunday</span>
-          <span class="rn-sep">·</span>
-          <span class="rn-time">6:00 PM</span>
-        </div>
-        <a class="rn-place" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">4942 FL-46 #1026, Sanford, FL 32771 · Directions ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="scroll-hint" id="scrollHint">
-  <span>Scroll</span>
-  <span class="line"></span>
-</div>
-
-<!-- ============ MARQUEE TICKER ============ -->
-
-</div>
-
-<!-- ============ SUNDAY WORSHIP · SERMON · LOCATION — ../bulletin/data.js is the source ============ -->
-<!-- ============ THIS WEEK — 말씀·찬양·주보는 bulletin/data.js (js/home.js). 쇼츠·카드뉴스는 실제 올라간 것만 ============ -->
+<div class="airmail airmail--top" aria-hidden="true"></div>
 <main id="main">
-<section class="week" id="week" aria-label="This week">
-  <div class="week-head">
-    <span class="week-k"><span class="live-dot"></span>This Week</span>
-    <h2>This Week's <span class="accent">Story</span></h2>
-    <div class="week-nav"><button type="button" class="week-btn" data-dir="-1" aria-label="Previous">←</button><button type="button" class="week-btn" data-dir="1" aria-label="Next">→</button></div>
-  </div>
-  <div class="week-track">
-    <a class="wk wk--word" href="/bulletin">
-      <span class="wk-k">This Week's Message</span>
-      <b class="wk-t" id="wkSermon"></b>
-      <span class="wk-s" id="wkSermonMeta"></span>
-      <span class="wk-go">Online bulletin →</span>
-    </a>
-    <a class="wk wk--songs" href="#chPraise">
-      <span class="wk-k">This Week's Songs</span>
-      <b class="wk-t" id="wkSongs"></b>
-      <span class="wk-s" id="wkSongsMeta"></span>
-      <span class="wk-go">Listen ahead ↓</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/N3nfJGGfhXU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/N3nfJGGfhXU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">Shorts · Sermon</span><b class="wk-t">God's First Story<br>Genesis 1:1</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/uzmxJPI2iBM" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/uzmxJPI2iBM/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">Shorts · Recap</span><b class="wk-t">Sunday Worship · Oct 4</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media" href="https://www.youtube.com/shorts/u7ti0u2WbCU" target="_blank" rel="noopener">
-      <img src="https://i.ytimg.com/vi/u7ti0u2WbCU/oar2.jpg" width="1080" height="1920" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">Shorts · Sermon</span><b class="wk-t">Who Is God to You?</b></span>
-      <span class="wk-play">▶</span>
-    </a>
-    <a class="wk wk--media wk--card" href="https://www.instagram.com/storychurch_sanford/p/DeAMLI2oBR-/" target="_blank" rel="noopener">
-      <img src="../assets/preview/card-0927.png" width="640" height="800" alt="" loading="lazy">
-      <span class="wk-over"><span class="wk-k">Cards · Instagram</span><b class="wk-t">You Are a Letter from Christ</b></span>
-    </a>
-    <a class="wk wk--pdf" href="/bulletin/bulletin.pdf" target="_blank" rel="noopener">
-      <span class="wk-k">Bulletin</span>
-      <b class="wk-t" id="wkIssue">This week's bulletin</b>
-      <span class="wk-s">Download PDF</span>
-      <span class="wk-go">Open ↗</span>
-    </a>
+<!-- 봉투 — 첫 방문에 한 번. 스크롤하는 만큼 열린다 (js/letter.js 가 --p 0~1 을 준다). 같은 세션에선 건너뜀 -->
+<section class="intro" id="intro" hidden aria-label="Envelope">
+  <div class="intro-stage">
+    <button type="button" class="env-box" id="envBox" aria-label="Open the letter">
+      <span class="env-shadow"></span>
+      <span class="env-back"></span>
+      <span class="env-letter">
+        <span class="env-letter-head">To our neighbor in Sanford,</span>
+        <span class="env-letter-sub">God’s story begins in your life.</span>
+      </span>
+      <span class="env-front"></span>
+      <span class="env-flap"><span class="env-flap-in"></span></span>
+      <span class="env-seal"><img class="seal-wax" src="../assets/envelope/seal.webp" alt=""><img class="seal-mark" src="../assets/emblem/mark-200.png" alt=""></span>
+      <span class="env-to"><span>To.</span><b>Our neighbor in Sanford</b><small>4942 FL-46 #1026 · Sanford, Florida</small></span>
+    </button>
+    <p class="intro-hint">Scroll to open the letter <span class="arrow">↓</span></p>
   </div>
 </section>
-
-<!-- ============ BRAND SPLASH ============ -->
-<!-- ============ CHAPTER 01 ============ -->
-<section class="chapter" id="ch1">
-  <div class="chapter-bg" data-parallax="0.12"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      God is <span class="accent">still writing</span><br>
-      His story — in this city,<br>
-      and in <span class="accent story-swipe">your life</span>.
-    </h2>
-  </div>
-</section>
-
-<!-- ============ SCRIPTURE ============ -->
-<section class="chapter" id="chScripture">
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <blockquote class="verse rv rv-2">
-      “You show that you are a letter from Christ, the result of our ministry, written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts.”
-      <cite class="verse-cite">— 2 Corinthians 3:3</cite>
-    </blockquote>
-    <h2 class="display living rv rv-3">
-      We are His<br><span class="accent">living story</span>.
-    </h2>
-    <p class="body-manifesto rv rv-4">
-      The gospel is<br>
-      <b>God's most <em>beautiful</em> story</b><br>
-      — written for you.
-    </p>
-    <p class="body-manifesto rv rv-5" style="margin-top:28px">
-      Our <em>old story</em> is finished.<br>
-      In Christ we are made completely new —<br>
-      reborn as <b>God's living letter</b>.
-    </p>
-  </div>
-</section>
-
-<!-- ============ CHAPTER 02 ============ -->
-<section class="chapter" id="ch2">
-  <div class="chapter-bg" data-parallax="0.10"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      Together with <span class="accent">you</span>,<br>a <span class="accent">new church</span><br>begins in Sanford.
-    </h2>
-    <p class="body-manifesto rv rv-3">
-      Centered on <b>Jesus Christ</b>,<br>
-      shaped by <em>grace</em> —<br>
-      a <b>faithful community</b> becoming<br>
-      part of God's story<br>
-      in Sanford.
-    </p>
-  </div>
-</section>
-
-<!-- ============ FOUR PILLARS ============ -->
-<section class="chapter" id="chPillars">
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <div class="top-center">
-      <h2 class="pillars-heading rv rv-2">Four pillars<br>that shape <span class="accent">Story Church</span>.</h2>
-    </div>
-    <ol class="pillars">
-      <li class="rv rv-2">
-        <span class="pnum">01</span>
-        <h3>His Story<small>The Heart of the Gospel</small></h3>
-        <p>The great story of the Lord who saved us. Every gathering and ministry centers on the gospel of Jesus Christ alone.</p>
-      </li>
-      <li class="rv rv-3">
-        <span class="pnum">02</span>
-        <h3>My Story<small>A Life That Bears Witness</small></h3>
-        <p>The story I live out in the world. We are not spectators — we are living witnesses who embody the Lord's story with our own lives.</p>
-      </li>
-      <li class="rv rv-4">
-        <span class="pnum">03</span>
-        <h3>Deep Story<small>Spiritual Formation</small></h3>
-        <p>The story that deepens inwardly through the Word and prayer. We form each believer as a faithful disciple of Christ.</p>
-      </li>
-      <li class="rv rv-5">
-        <span class="pnum">04</span>
-        <h3>Our Story<small>A Faithful Community</small></h3>
-        <p>The story we finish together. A faithful community that clearly reveals the character of Christ and the beauty of the gospel in every place of life.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ THIS WEEK'S PRAISE — song list comes from ../bulletin/data.js ============ -->
-<section class="chapter" id="chPraise" hidden>
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <div class="chapter-label rv">This Week's Praise</div>
-    <h2 class="display rv rv-2">
-      Sunday, <span id="praiseDate"></span><br><span class="accent">Songs We'll Sing Together</span>
-    </h2>
-    <p class="praise-sub rv rv-3">Have a listen ahead of time — we'd love to sing them with you. Worship led by <b>Kanghyeon Heo</b></p>
-    <ul class="praise-list rv rv-3" id="praiseList"></ul>
-    <a class="praise-all" id="praiseAll" hidden target="_blank" rel="noopener">Play all ↗</a>
-  </div>
-</section>
-
-<!-- ============ WHO IS THIS FOR ============ -->
-<section class="chapter" id="chFor">
-  <div class="chapter-inner">
-    <p class="for-hero rv rv-2">
-      A new story<br>begins in <span class="accent">Sanford</span>.
-    </p>
-    <p class="for-tail rv rv-3">
-      We invite you<br>to that <b>beginning</b>.
-    </p>
-    <div class="for-cta rv rv-4">
-      <a class="btn primary" href="https://forms.gle/UD3BDJRezNzVYegw6" target="_blank" rel="noopener">
-        Join Us on September 27 <span class="arrow">→</span>
-      </a>
+<article class="sheet lt" id="sheet" aria-label="A letter from Story Church">
+  <h1 class="sr-only">Sanford Story Church — Korean church in Sanford, Florida · Sundays 6 PM · 4942 FL-46 #1026, Sanford, FL 32771</h1>
+  <div class="sheet-top">
+    <div class="lt-date"><span class="lt-from">Sanford, Florida</span><b id="letterDate">Sunday</b><span class="lt-sub">Six in the evening, the hour we gather</span></div>
+    <div class="postage" aria-hidden="true">
+      <div class="pstamp">
+        <img src="../assets/photos/sanford-waterfront.jpg" alt="">
+        <span class="pstamp-top">Sanford · Florida</span>
+        <span class="pstamp-val">6<small>PM</small></span>
+        <span class="pstamp-bot">Story Church</span>
+      </div>
+      <svg class="postmark" viewBox="0 0 160 110" aria-hidden="true">
+        <circle cx="52" cy="55" r="44" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <circle cx="52" cy="55" r="35" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text x="52" y="50" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1.5">SANFORD</text>
+        <text x="52" y="64" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="1" id="postmarkDate">2026</text>
+        <path d="M100 38c10-6 20 6 30 0s20 6 28 0M100 55c10-6 20 6 30 0s20 6 28 0M100 72c10-6 20 6 30 0s20 6 28 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
     </div>
   </div>
-</section>
 
-<!-- ============ CHAPTER 03 — CTA ============ -->
-<section class="chapter" id="ch3">
-  <div class="chapter-bg"></div>
-  <div class="chapter-tint"></div>
-  <img class="chapter-watermark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="chapter-inner">
-    <h2 class="display rv rv-2">
-      Let's write God's story<br><span class="accent">together</span>.
-    </h2>
-    <p class="cta-sub rv rv-3">
-      We're inviting <span class="accent">partners</span> into this church plant.
-    </p>
-    <div class="recruit rv rv-3">
-      <a class="recruit-card" href="https://forms.gle/AWhvv4ShUS9dLa7A9" target="_blank" rel="noopener">
-        <span class="rc-num">01</span>
-        <span class="rc-title">Worship Team <small>Music · Praise</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
-      <a class="recruit-card" href="https://docs.google.com/forms/u/2/d/e/1FAIpQLSfx3vyJKxm3ixhfoT4CRvCoW7EcD_wKn_njVPkHBbSzxcjFzg/viewform?usp=send_form" target="_blank" rel="noopener">
-        <span class="rc-num">02</span>
-        <span class="rc-title">Media Team <small>Video · Design</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
-    </div>
-    <div class="inquiry-block rv rv-4">
-      <div class="inquiry-label"><span class="line"></span>General Inquiry<span class="line"></span></div>
-      <a class="recruit-card recruit-card--inquiry" href="mailto:sanfordstorychurch@gmail.com?subject=%5BSanford%20Story%20Church%5D%20Inquiry">
-        <span class="rc-num">✉</span>
-        <span class="rc-title">Other Questions <small>Contact us by email</small></span>
-        <span class="rc-arrow">→</span>
-      </a>
+  <p class="greet reveal-line">To our neighbor in Sanford,</p>
+  <p class="lead reveal-line">God’s story begins<br>in <span class="u">your life</span>.</p>
+  <p class="reveal-line">Hello from Story Church. We are a Korean-speaking church that opened its doors in Sanford in the fall of 2026. Every Sunday at six we gather to sing, hear the Word, talk it over in a circle, and then share dinner.</p>
+  <p class="reveal-line">Our name comes from Second Corinthians: <em>“You are a letter from Christ.”</em> Every person is a letter God is still writing. Yours included — and the ink is not dry yet.</p>
+
+  <h2 class="reveal-line"><span class="en">This Sunday</span><span class="ko">What to expect</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <div class="week-lt reveal-line" id="weekLt">
+    <div id="wkWord" hidden><span class="k">Message</span><span class="t" id="wkSermon"></span><span class="go" id="wkSermonMeta"></span></div>
+    <a href="/bulletin" id="wkSongsRow"><span class="k">Songs</span><span class="t" id="wkSongs"></span><span class="go">Listen ↗</span></a>
+    <a href="/bulletin/bulletin.pdf" target="_blank" rel="noopener"><span class="k">Bulletin</span><span class="t" id="wkIssue">This week’s bulletin</span><span class="go">PDF ↗</span></a>
+  </div>
+
+  <h2 class="reveal-line"><span class="en">Why “Story”</span><span class="ko">The name</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <blockquote class="verse-card reveal-line">
+    <p>You show that you are a letter from Christ, the result of our ministry, written not with ink but with the Spirit of the living God, not on tablets of stone but on tablets of human hearts.</p>
+    <cite>2 Corinthians 3:3</cite>
+  </blockquote>
+  <p class="reveal-line">When Paul was asked to prove himself, he did not produce a reference letter. He pointed at the people. <em>You</em> are our letter, he said. The gospel is written on people, not paper. That is why we are called Story — and why this whole page is a letter.</p>
+
+  <h2 class="reveal-line"><span class="en">Four Stories</span><span class="ko">What we hold on to</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <ol class="pillars-lt reveal-line">
+    <li><span class="n">01</span><div><b>His Story</b><small>The story of the Lord who saved us. The gospel stays at the center of everything we do.</small></div></li>
+    <li><span class="n">02</span><div><b>My Story</b><small>The story I live out. Not a spectator — a witness.</small></div></li>
+    <li><span class="n">03</span><div><b>Deep Story</b><small>The story that deepens through Word and prayer. One disciple at a time.</small></div></li>
+    <li><span class="n">04</span><div><b>Our Story</b><small>The story we write together. A community that shows Christ where we live.</small></div></li>
+  </ol>
+
+  <figure class="enclosed reveal-line">
+    <span class="tape" aria-hidden="true"></span>
+    <img src="../assets/photos/1004/IMG_4565.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="Sunday, October 4 — sharing the Word in a circle">
+    <figcaption>Enclosed · Sunday, October 4 — sharing the Word</figcaption>
+  </figure>
+
+  <h2 class="reveal-line"><span class="en">When &amp; Where</span><span class="ko">Finding us</span><svg class="hline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5c20-4 40 2 60-1s40-2 58 1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></h2>
+  <div class="where reveal-line">
+    <div><span class="k">When</span><b>Every Sunday<br>6:00 PM</b><span class="where-s">Worship is in Korean · About an hour · Dinner together afterward</span></div>
+    <div><span class="k">Where</span><b>4942 FL-46 #1026<br>Sanford, FL 32771</b><a href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">Directions ↗</a></div>
+  </div>
+
+  <div class="close reveal-line">
+    <p>Nothing to prepare. Sunday at six — just come as you are.</p>
+    <div class="sign"><b>Sanford Story Church</b><span class="seal" aria-hidden="true"><img class="seal-wax" src="../assets/envelope/seal.webp" alt=""><img class="seal-mark" src="../assets/emblem/mark-200.png" alt=""></span></div>
+    <div class="cta-row">
+      <a class="lt-btn lt-btn--fill" href="/en/visit.html">First time here →</a>
+      <a class="lt-btn" href="mailto:sanfordstorychurch@gmail.com?subject=%5BStory%20Church%5D%20Reply">Write back ✉</a>
     </div>
   </div>
-</section>
 
-
-<!-- ============ AFFILIATION — CRCNA ============ -->
-<section class="affiliation" id="affiliation">
-  <div class="affiliation-inner">
-    <div class="affiliation-label rv"><span class="line"></span>Denominational Affiliation<span class="line"></span></div>
-    <img class="crcna-mark rv rv-2" src="../assets/brand/crcna-logo.png" alt="Christian Reformed Church in North America (CRCNA)">
-    <p class="affiliation-body rv rv-3">
-      Sanford Story Church is part of the <b>Christian Reformed Church in North America (CRCNA)</b> — a denomination that traces its roots back to 1857 with Dutch immigrants who sought to faithfully live out the Reformed tradition.
-      While honoring this rich heritage, the CRCNA has grown into a diverse, multi-ethnic family of churches across the United States and Canada.
-      We are united by a deep commitment to biblical authority and a worldview that acknowledges God's sovereignty over every area of life.
-    </p>
-    <a class="affiliation-link rv rv-4" href="https://www.crcna.org/" target="_blank" rel="noopener">
-      crcna.org <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
-
-
-<!-- ============ INVITE — 마지막 화면 (주황 전면은 사이트에서 여기 한 번만) ============ -->
-<section class="invite" id="invite">
-  <img class="invite-mark" src="../assets/emblem/icon-orange-tp.png" alt="">
-  <div class="invite-in">
-    <span class="invite-k rv"><span id="invDate">Sunday</span> · 6 PM</span>
-    <h2 class="invite-h rv rv-2">Welcome.</h2>
-    <p class="invite-p rv rv-3">Every Sunday at 6 PM, we worship together in Sanford.</p>
-    <div class="invite-cta rv rv-4">
-      <a class="inv-btn inv-btn--fill" href="/en/visit.html">First time here →</a>
-      <a class="inv-btn" href="https://www.google.com/maps/search/?api=1&query=4942+FL-46+%231026+Sanford+FL+32771" target="_blank" rel="noopener">Directions ↗</a>
+  <div class="ps reveal-line">
+    <span class="k">P.S.</span>
+    <p class="ps-p">Last Sunday’s message is on YouTube; the photos are on Instagram.</p>
+    <div class="ps-links">
+      <a href="https://www.youtube.com/shorts/N3nfJGGfhXU" target="_blank" rel="noopener">▶ God’s First Story · Genesis 1:1</a>
+      <a href="https://www.youtube.com/shorts/uzmxJPI2iBM" target="_blank" rel="noopener">▶ Sunday Worship · Oct 4</a>
+      <a href="https://www.instagram.com/storychurch_sanford/" target="_blank" rel="noopener">@storychurch_sanford</a>
+      <a href="/en/bulletins.html">Past bulletins</a>
     </div>
-    <span class="invite-addr rv rv-4">4942 FL-46 #1026, Sanford, FL 32771</span>
   </div>
-</section>
-
+</article>
+<div class="airmail airmail--bottom" aria-hidden="true"></div>
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -692,9 +516,8 @@
   </div>
 </dialog>
 
-<script src="../js/site.js?v=2" defer></script>
-<script src="../bulletin/data.js?v=2026-10-11.e638cfd4" defer></script>
-<script src="../js/praise.js?v=7" defer></script>
-<script src="../js/home.js?v=2" defer></script>
+<script src="../js/site.js?v=3" defer></script>
+<script src="../bulletin/data.js?v=2026-10-11.7123510b" defer></script>
+<script src="../js/letter.js?v=7" defer></script>
 </body>
 </html>
