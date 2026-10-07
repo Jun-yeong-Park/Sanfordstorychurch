@@ -44,7 +44,7 @@ const EN: Record<string, string> = {
   '(표시 이름 없음 — 교회 탭 → 내 계정)': '(No display name — Church → My Account)', '교회 서버(Supabase)를 연결하면 교회 전체가 함께 봅니다 (app/supabase/README.md).': 'Once the church server is connected, everyone will see the Wall together.',
   '부적절한 콘텐츠는 허용하지 않습니다 (무관용).': 'Zero tolerance for objectionable content.',
   '나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.': "The Story Wall is for sharing grace and prayer requests among members. Profanity, hate speech, sexual content, threats, spam, or sharing others' private information is strictly prohibited and removed on sight.",
-  '익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com': 'Anonymous posts follow the same rules. Use the ⋯ menu to report a post or block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: hello@sanfordstorychurch.com',
+  '익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: sanfordstorychurch@gmail.com': 'Anonymous posts follow the same rules. Use the ⋯ menu to report a post or block its author. Reported posts are hidden immediately and reviewed within 24 hours; violators are removed. Contact: sanfordstorychurch@gmail.com',
   '부적절한 표현이 포함되어 있어 올릴 수 없습니다.': 'Your post contains inappropriate language and cannot be posted.',
   // church
   '웹사이트 마지막 업데이트': 'Website last updated', '교회 서버(Supabase)가 연결되면 로그인이 열립니다.': 'Sign-in opens once the church server is connected.',

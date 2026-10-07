@@ -22,4 +22,4 @@ export const REPORT_REASONS = [
 export const EULA_VERSION = 1;
 export const TERMS_URL = 'https://sanfordstorychurch.com/terms';
 export const PRIVACY_URL = 'https://sanfordstorychurch.com/privacy';
-export const ABUSE_EMAIL = 'hello@sanfordstorychurch.com';
+export const ABUSE_EMAIL = 'sanfordstorychurch@gmail.com';

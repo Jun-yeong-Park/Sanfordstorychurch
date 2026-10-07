@@ -171,7 +171,7 @@ export default function WallScreen() {
           <ScrollView contentContainerStyle={{ padding: 22, paddingBottom: 40 }}>
             <Body bold size={15}>{tr('부적절한 콘텐츠는 허용하지 않습니다 (무관용).')}</Body>
                 <Body size={14.5} style={{ marginTop: 10 }}>{tr('나눔 벽은 성도들이 은혜와 기도 제목을 나누는 곳입니다. 욕설, 혐오 발언, 성적 표현, 위협, 스팸, 타인의 개인정보 게시는 금지되며 발견 즉시 삭제됩니다.')}</Body>
-                <Body size={14.5} style={{ marginTop: 10 }}>{tr('익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: hello@sanfordstorychurch.com')}</Body>
+                <Body size={14.5} style={{ marginTop: 10 }}>{tr('익명 글도 같은 규칙이 적용됩니다. 글의 ⋯ 메뉴에서 신고하거나 작성자를 차단할 수 있습니다. 신고된 글은 바로 숨겨지고 24시간 안에 검토하며, 위반자는 정지됩니다. 문의: sanfordstorychurch@gmail.com')}</Body>
             <Pressable onPress={() => Linking.openURL(TERMS_URL)} style={{ marginTop: 16 }}><Body size={14} style={{ textDecorationLine: 'underline', textDecorationColor: c.orange }}>{tr('이용약관 보기')} ↗</Body></Pressable>
             <Btn label={tr('동의하고 계속')} onPress={async () => { try { await acceptEula(); setShowEula(false); await post(); } catch (e) { Alert.alert(tr('오류'), (e as Error).message); } }} style={{ marginTop: 26 }} />
             <Btn label={tr('취소')} variant="ghost" onPress={() => setShowEula(false)} style={{ marginTop: 10 }} />

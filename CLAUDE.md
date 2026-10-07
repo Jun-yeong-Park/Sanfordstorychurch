@@ -221,7 +221,7 @@ verses.js 추출 · 게시판 목록(archive.js) · **캐시 버전 스탬프**.
 주소     4942 FL-46 #1026, Sanford, FL 32771
 예배     매주 주일 저녁 6시 (한국어)
 교단     CRCNA (북미주 개혁교회)
-이메일   hello@sanfordstorychurch.com
+이메일   sanfordstorychurch@gmail.com
 인스타   @storychurch_sanford
 유튜브   youtube.com/@SANFORDSTORYCHURCH
 헌금     Zelle sanfordstorychurch0927@gmail.com
