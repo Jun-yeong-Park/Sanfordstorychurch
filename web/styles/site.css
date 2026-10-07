@@ -1716,3 +1716,16 @@ body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px)}
 .mini-people b{display:block;font-family:var(--disp-ko);font-weight:900;font-size:19px;color:var(--ink)}
 .mini-people span{display:block;margin-top:4px;font-size:14.5px;color:var(--ink-dim)}
 @media(max-width:640px){.toc{justify-content:flex-start}.flow li{grid-template-columns:44px 1fr;padding:18px 14px}}
+
+/* 자주 묻는 질문 — 접기. 질문을 누르면 답이 열린다 (details/summary 라 키보드·스크린리더 그대로) */
+.qa--fold details{border-top:1px solid rgba(42,29,15,.16)}
+.qa--fold details:last-child{border-bottom:1px solid rgba(42,29,15,.16)}
+.qa--fold summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 2px;
+  font-family:var(--disp-ko);font-weight:900;font-size:clamp(17px,2vw,20px);line-height:1.4;color:var(--ink)}
+.qa--fold summary::-webkit-details-marker{display:none}
+.qa--fold summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);color:var(--ink);
+  display:grid;place-items:center;font-family:var(--body);font-weight:800;font-size:20px;line-height:1;transition:transform .25s var(--ease)}
+.qa--fold details[open] summary::after{transform:rotate(45deg)}
+.qa--fold summary:hover{color:var(--ink-dim)}
+.qa--fold details p{padding:0 44px 22px 2px;font-size:15.5px;line-height:1.85;color:var(--ink-dim)}
+.qa--fold details p b{color:var(--ink)}
