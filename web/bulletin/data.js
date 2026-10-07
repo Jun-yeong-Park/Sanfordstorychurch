@@ -85,12 +85,12 @@ window.BULLETIN = {
   // 다음 주 예고
   // 헌금 보고 — 매주 투명 공개. amount 는 숫자(달러).
   offering: {
-    week: "9월 27일",
-    weekEn: "September 27",
+    week: "10월 4일",
+    weekEn: "October 4",
     items: [
       { name: "주일헌금", nameEn: "Sunday Offering", amount: 0 },
       { name: "십일조", nameEn: "Tithe", amount: 0 },
-      { name: "감사헌금", nameEn: "Thanksgiving", amount: 350 },
+      { name: "감사헌금", nameEn: "Thanksgiving", amount: 110 },
       { name: "선교헌금", nameEn: "Missions", amount: 0 },
     ],
     note: "재정 보고서는 분기별로 온 성도에게 공유됩니다. 문의: 허강현",
