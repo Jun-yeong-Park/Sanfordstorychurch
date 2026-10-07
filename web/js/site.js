@@ -133,4 +133,49 @@
     apply();
   }
 
+
+  // 메일 버튼 — mailto 는 메일 앱이 연결돼 있지 않거나(대부분의 PC·폰) 카카오톡 같은 앱 안 브라우저에선
+  // 눌러도 아무 일이 없다. 그래서 누르면 연락 방법을 고르는 창을 띄운다: 메일 앱 · 주소 복사 · 인스타그램 DM.
+  (function(){
+    const en = document.documentElement.lang === 'en';
+    const T = en
+      ? { title:'Get in touch', mail:'Open mail app', copy:'Copy address', copied:'Copied', ig:'Message on Instagram', close:'Close', note:'If your mail app does not open, copy the address or send us a message on Instagram.' }
+      : { title:'연락하기', mail:'메일 앱으로 보내기', copy:'주소 복사', copied:'복사했습니다', ig:'인스타그램 DM 보내기', close:'닫기', note:'메일 앱이 열리지 않으면 주소를 복사하시거나 인스타그램 메시지로 연락 주세요.' };
+    let dlg = null;
+    function build(){
+      dlg = document.createElement('dialog');
+      dlg.className = 'contact-sheet';
+      dlg.setAttribute('aria-labelledby', 'csTitle');
+      dlg.innerHTML =
+        '<button type="button" class="cs-x" aria-label="' + T.close + '">&times;</button>' +
+        '<h2 id="csTitle">' + T.title + '</h2>' +
+        '<p class="cs-addr" id="csAddr"></p>' +
+        '<div class="cs-actions">' +
+          '<a class="cs-btn cs-btn--fill" id="csMail" href="#">' + T.mail + '</a>' +
+          '<button type="button" class="cs-btn" id="csCopy">' + T.copy + '</button>' +
+          '<a class="cs-btn" href="https://ig.me/m/storychurch_sanford" target="_blank" rel="noopener">' + T.ig + ' ↗</a>' +
+        '</div>' +
+        '<p class="cs-note">' + T.note + '</p>';
+      document.body.appendChild(dlg);
+      dlg.querySelector('.cs-x').addEventListener('click', () => dlg.close());
+      dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+      dlg.querySelector('#csCopy').addEventListener('click', async e => {
+        const addr = dlg.querySelector('#csAddr').textContent, b = e.currentTarget;
+        try { await navigator.clipboard.writeText(addr); }
+        catch (err) { const r = document.createRange(); r.selectNodeContents(dlg.querySelector('#csAddr')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); }
+        b.textContent = T.copied; setTimeout(() => { b.textContent = T.copy; }, 1800);
+      });
+    }
+    document.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+      if (!a || a.closest('.contact-sheet') || typeof HTMLDialogElement === 'undefined') return;
+      e.preventDefault();
+      if (!dlg) build();
+      dlg.querySelector('#csAddr').textContent = a.getAttribute('href').slice(7).split('?')[0];
+      dlg.querySelector('#csMail').href = a.getAttribute('href');
+      const drawer = document.getElementById('drawer'); if (drawer && !drawer.hidden) document.getElementById('drawerClose')?.click();
+      dlg.showModal();
+    });
+  })();
+
 })();

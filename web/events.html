@@ -48,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles/site.css?v=58">
+<link rel="stylesheet" href="styles/site.css?v=60">
 </head>
 <body class="page">
 
@@ -191,7 +191,7 @@
   <div class="copyright">© 스토리교회 · Story Church Sanford</div>
 </footer>
 
-<script src="js/site.js?v=3" defer></script>
+<script src="js/site.js?v=4" defer></script>
 <script src="bulletin/data.js?v=2026-10-11.4f1e7838" defer></script>
 <script>
 addEventListener('DOMContentLoaded', function(){
@@ -246,7 +246,7 @@ addEventListener('DOMContentLoaded', function(){
       if (key === iso(today)) cls.push('today');
       if (byDay[key]) cls.push('has');
       cells += '<div class="' + cls.join(' ') + '"><span class="n">' + d.getDate() + '</span>'
-             + (byDay[key] ? '<span class="dot" aria-hidden="true"></span>' : '') + '</div>';
+             + (byDay[key] ? byDay[key].map(function(e){ return '<span class="cal-ev">' + esc(e.title) + '</span>'; }).join('') : '') + '</div>';
       if (i >= 34 && d.getMonth() !== m && d.getDay() === 6) break;    // 빈 줄은 그리지 않는다
     }
     grid.innerHTML = cells;
