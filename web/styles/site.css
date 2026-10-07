@@ -1674,9 +1674,16 @@ footer.site{position:relative;z-index:1}
 body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px)}
 @media(max-width:640px){
   .where{grid-template-columns:1fr}
-  .sheet-top{flex-direction:row;align-items:flex-start}
-  .postage{width:120px;margin-top:-6px}.postmark{left:-60%;width:140%;top:30%}
-  .week-lt .k{width:60px} .lt h2 .hline{width:70px}
+  .sheet-top{flex-direction:row;align-items:flex-start;gap:12px}
+  .lt-date{max-width:58%;padding-top:4px}
+  /* 소인이 날짜 글자를 덮지 않게 — 우표 왼쪽 살짝만 걸치게 */
+  .postage{width:112px;margin-top:-4px}.postmark{left:-22%;width:104%;top:36%}
+  .week-lt .k{width:60px} .week-lt a,.week-lt div{gap:10px}
+  .lt h2 .hline{width:70px}
   .enclosed{transform:rotate(-1.5deg)}
+  .intro-stage{padding-top:0}
+  .env-box{width:96vw}
+  .env-to{left:6%;bottom:4%} .env-to span{font-size:10px} .env-to b{font-size:15px;margin-top:2px} .env-to small{font-size:10px;margin-top:3px}   /* 봉인(덮개 끝 67%) 아래로 */
+  .env-seal{width:13%;margin-left:-6.5%}
 }
 @media(prefers-reduced-motion:reduce){.reveal-line{opacity:1;transform:none}.intro{display:none!important}}
