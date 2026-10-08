@@ -1636,23 +1636,23 @@ footer.site{position:relative;z-index:1}
 .intro[hidden]{display:none}
 .intro-stage{position:sticky;top:0;height:100vh;height:100dvh;display:grid;place-items:center;overflow:hidden;perspective:1600px;padding-top:9vh}
 .env-box{position:relative;width:min(92vw,860px);aspect-ratio:1426/890;transform-style:preserve-3d;cursor:pointer;border:0;background:none;padding:0;display:block;will-change:transform,opacity;
-  --open:clamp(0, var(--p) / .3, 1);--rise:clamp(0, (var(--p) - .3) / .45, 1);--gone:clamp(0, (var(--p) - .7) / .3, 1);
+  --open:clamp(0, var(--p) / .3, 1);--rise:clamp(0, (var(--p) - .3) / .45, 1);--gone:clamp(0, (var(--p) - .62) / .2, 1);
   transform:rotateX(calc(6deg - var(--open) * 3deg)) translateY(calc(var(--gone) * 70vh));
-  opacity:calc(1 - clamp(0, (var(--p) - .8) / .2, 1))}
+  opacity:calc(1 - clamp(0, (var(--p) - .66) / .16, 1))}
 .env-box>span{position:absolute;display:block}
 /* 사진 봉투 (assets/envelope/*.webp — GPT 생성, 알파 PNG 를 크롭) */
 .env-shadow{inset:8% -1% -6% -1%;border-radius:12px;background:radial-gradient(ellipse at 50% 50%,rgba(42,29,15,.45),rgba(42,29,15,.25) 60%,transparent 100%);transform:translateZ(-1px)}  /* blur 필터 대신 그라디언트 */
-.env-back{inset:1% 1.5%;border-radius:6px;background:#1A130D;box-shadow:inset 0 0 50px rgba(0,0,0,.6)}
+.env-back{inset:1% 1.5%;border-radius:6px;background:#8A3E0C;box-shadow:inset 0 0 50px rgba(0,0,0,.6)}
 /* 몸통 사진에서 위쪽 삼각형(접힘 꼭짓점 48.8%)을 잘라내 안쪽이 보이게 */
-.env-front{inset:0;z-index:3;background:url('../assets/envelope/body.webp') center/100% 100% no-repeat;
+.env-front{inset:0;z-index:3;background:url('../assets/envelope/body-orange.webp') center/100% 100% no-repeat;
   clip-path:polygon(0 0,50% 48.8%,100% 0,100% 100%,0 100%);filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
 /* 덮개 사진 — 폭 100%, 높이는 사진 비율(0.4194) 그대로. 뒤집히면 안쪽 면 사진 */
 .env-flap{left:0;right:0;top:0;height:67.2%;z-index:4;transform-origin:top center;transform-style:preserve-3d;
   transform:rotateX(calc(var(--open) * 180deg));
-  background:url('../assets/envelope/flap-out.webp') center/100% 100% no-repeat;backface-visibility:hidden;
+  background:url('../assets/envelope/flap-out-orange.webp') center/100% 100% no-repeat;backface-visibility:hidden;
   filter:drop-shadow(0 8px 12px rgba(0,0,0,.4));will-change:transform}
 .env-flap-in{position:absolute;inset:0;transform:rotateX(180deg);backface-visibility:hidden;
-  background:url('../assets/envelope/flap-in.webp') center/100% 100% no-repeat}
+  background:url('../assets/envelope/flap-in-orange.webp') center/100% 100% no-repeat}
 /* 밀랍 봉인 사진 + 원래 색 엠블럼. 덮개 꼭짓점(67%)에 */
 .env-seal{left:50%;top:67%;z-index:5;width:12%;aspect-ratio:1;margin-left:-6%;transform:translateY(-50%);display:grid;place-items:center;
   filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));
@@ -1664,21 +1664,26 @@ footer.site{position:relative;z-index:1}
   background:url('../assets/envelope/sheet.webp') center top/100% auto no-repeat;
   filter:drop-shadow(0 8px 20px rgba(42,29,15,.35));will-change:transform,opacity;
   transform:translateY(calc(var(--rise) * -54%)) scale(calc(1 + var(--rise) * .04));
-  opacity:calc(1 - clamp(0, (var(--p) - .85) / .15, 1))}
+  opacity:calc(1 - clamp(0, (var(--p) - .68) / .14, 1))}
 .intro.past-half .env-letter{z-index:6}
 .env-letter-head{position:relative;z-index:1;font-family:var(--disp-ko);font-weight:800;font-size:clamp(14px,2vw,22px);color:var(--ink);margin-bottom:6px}
 .env-letter-sub{position:relative;z-index:1;font-size:clamp(12px,1.5vw,17px);font-weight:600;color:var(--ink-dim);letter-spacing:-.01em}
 .env-letter-head,.env-letter-sub{display:block}   /* .env-box>span 의 display:block 상속으로 그리드가 풀려 한 줄로 붙던 것 */
-.env-to{left:7%;bottom:9%;z-index:4;color:rgba(251,246,234,.88);font-family:var(--body);text-align:left;opacity:calc(1 - var(--open))}
-.env-to span{display:block;font-family:var(--disp-en);font-weight:900;letter-spacing:.2em;font-size:12px;color:var(--orange)}
+.env-to{left:7%;bottom:9%;z-index:4;color:var(--ink);font-family:var(--body);text-align:left;opacity:calc(1 - var(--open))}
+.env-to span{display:block;font-family:var(--disp-en);font-weight:900;letter-spacing:.2em;font-size:12px;color:var(--navy)}
 .env-to b{display:block;margin-top:5px;font-size:clamp(17px,2.6vw,24px);font-weight:800}
-.env-to small{display:block;margin-top:6px;font-size:clamp(11px,1.3vw,13px);font-weight:600;letter-spacing:.04em;color:rgba(251,246,234,.6)}
+.env-to small{display:block;margin-top:6px;font-size:clamp(11px,1.3vw,13px);font-weight:700;letter-spacing:.04em;color:rgba(42,29,15,.78)}
 .intro-hint{position:absolute;left:0;right:0;bottom:clamp(22px,5vh,48px);text-align:center;font-size:15px;font-weight:700;color:var(--ink-dim);
   opacity:calc(1 - clamp(0, var(--p) / .15, 1));transition:opacity .2s}
 .intro-hint .arrow{display:inline-block;animation:hint-bob 1.6s ease-in-out infinite}
 @keyframes hint-bob{50%{transform:translateY(5px)}}
 /* 편지 본문은 봉투가 다 열린 뒤 이어진다 */
-body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px)}
+/* 봉투가 다 열린 뒤 빈 종이만 한 화면 내려가던 것 → 편지를 봉투 무대 위로 끌어올려(-82vh)
+   봉투가 내려가는 동안(진행 .7→1) 그 자리에서 페이드인 */
+body.letter.has-intro .sheet{padding-top:clamp(30px,5vh,60px);margin-top:-82vh;z-index:3;pointer-events:none;
+  --sheet-o:clamp(0, (var(--ep, 1) - .84) / .16, 1);
+  opacity:var(--sheet-o);transform:translateY(calc((1 - var(--sheet-o)) * 36px));will-change:opacity,transform}
+body.letter.has-intro.sheet-live .sheet{pointer-events:auto}
 @media(max-width:640px){
   .where{grid-template-columns:1fr}
   .sheet-top{flex-direction:row;align-items:flex-start;gap:12px}

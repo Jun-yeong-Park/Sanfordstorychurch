@@ -17,6 +17,9 @@
       const p = Math.min(1, Math.max(0, scrollY / span()));
       intro.style.setProperty('--p', p.toFixed(4));
       intro.classList.toggle('past-half', p > .5);
+      // 편지 본문도 같은 진행값으로 — 봉투가 내려가는 동안 그 자리에서 페이드인
+      document.body.style.setProperty('--ep', p.toFixed(4));
+      document.body.classList.toggle('sheet-live', p > .9);
       if (p >= 1 && !seen){ seen = true; try { sessionStorage.setItem('envSeen', '1'); } catch (e) {} }
     };
     addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
